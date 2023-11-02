@@ -1,4 +1,4 @@
 extends Node
 
 
-var useController = true
+var useController = false

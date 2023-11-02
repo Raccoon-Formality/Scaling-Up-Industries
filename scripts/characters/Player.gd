@@ -10,8 +10,8 @@ onready var gunParticles = preload("res://scenes/particles/GunInpactParticles.ts
 onready var ParticleHolder = get_tree().get_nodes_in_group("ParticleHolder")[0]
 
 var gravity = -30
-var walk_speed = 9
-var crouch_speed = 3
+var walk_speed = 6
+var crouch_speed = 2
 var speed = walk_speed
 var mouse_sensitivity = 0.002  # radians/pixel
 var controller_sensitivity = 0.06  # radians/pixel
@@ -29,7 +29,11 @@ func spawn_particles(object, pos, normal):
 	objectInstance.translation = pos
 	#objectInstance.direction = normal
 	ParticleHolder.add_child(objectInstance)
-	objectInstance.look_at(pos + normal, Vector3.RIGHT)
+	if normal != Vector3.LEFT and normal != Vector3.RIGHT:
+		print(normal)
+		objectInstance.look_at(pos + normal, Vector3.RIGHT)
+	else:
+		objectInstance.look_at(pos + normal, Vector3.DOWN)
 
 func get_input():
 	var input_dir = Vector3()

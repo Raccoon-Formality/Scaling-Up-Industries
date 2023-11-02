@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="GameOff2023"
-run/main_scene="res://scenes/levels/TestLevel.tscn"
+run/main_scene="res://scenes/levels/level1/World.tscn"
 
 [autoload]
 

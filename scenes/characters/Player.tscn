@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/characters/Player.gd" type="Script" id=1]
-[ext_resource path="res://scenes/assets/tests/glock.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/assets/tests/M4A1.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/menus/pause_menu.gd" type="Script" id=3]
 [ext_resource path="res://assets/fonts/KrunchBold.ttf" type="DynamicFontData" id=4]
 
@@ -27,9 +27,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 [node name="Camera" type="Camera" parent="Pivot"]
 cull_mask = 1048573
 
-[node name="glock" parent="Pivot/Camera" instance=ExtResource( 2 )]
-transform = Transform( -0.0370709, -0.000700147, 0.247235, -0.00472083, 0.249955, -1.30944e-10, -0.247191, -0.00466863, -0.0370775, 0.541272, -0.42207, -1.25605 )
-visible = false
+[node name="M4A1" parent="Pivot/Camera" instance=ExtResource( 2 )]
+transform = Transform( -1.99184, 0.00337945, -0.180434, 0, 1.99965, 0.0374526, 0.180466, 0.0372998, -1.99149, 0.474129, -0.354031, -0.683948 )
+
+[node name="gun" type="Spatial" parent="Pivot/Camera"]
+__meta__ = {
+"_editor_description_": "put gun here and make the mesh render to layer 2 under LOD"
+}
 
 [node name="ViewportContainer" type="ViewportContainer" parent="Pivot/Camera"]
 margin_right = 1024.0
@@ -47,7 +51,15 @@ cull_mask = 2
 
 [node name="Raycast" type="RayCast" parent="Pivot"]
 enabled = true
-cast_to = Vector3( 0, 0, -8 )
+cast_to = Vector3( 0, 0, -100 )
+
+[node name="flashLight" type="SpotLight" parent="Pivot"]
+transform = Transform( 1, 0, 0, 0, 0.998196, -0.0600381, 0, 0.0600381, 0.998196, -0.497055, -0.5, 0 )
+visible = false
+layers = 3
+light_color = Color( 1, 0.901961, 0.701961, 1 )
+spot_range = 12.0
+spot_angle = 25.4018
 
 [node name="game_ui" type="CanvasLayer" parent="."]
 
@@ -64,6 +76,7 @@ align = 1
 valign = 1
 
 [node name="pause_menu" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource( 3 )
 
 [node name="Control" type="Control" parent="pause_menu"]
