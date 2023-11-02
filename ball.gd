@@ -20,23 +20,25 @@ var startScale = Vector3(1,1,1)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	startScale = scale
 	if moveTo != null:
 		
-		var dis = global_translation.distance_to(player.global_translation)
+		var dis = global_translation.distance_to(player.camera.global_translation)
 		var disDifference = dis / startingDis
 		#var math = atan(scale.x / (2 * disDifference))
-		var vector = Vector3.ZERO
+		disDifference = clamp(disDifference,0,3)
+		#var vector = Vector3.ZERO
 		#vector.x = math
 		#vector.y = math
 		#vector.z = math
-		coll.shape.radius = disDifference
-		mesh.mesh.radius = disDifference
-		mesh.mesh.height = 2 * disDifference 
+		
+		coll.shape.radius = lerp(coll.shape.radius,disDifference,0.25)
+		mesh.mesh.radius = lerp(mesh.mesh.radius,disDifference,0.25)
+		mesh.mesh.height = lerp(mesh.mesh.height,2 * disDifference,0.25)
 		
 		print(disDifference)
 		var point_to = moveTo - global_translation
 		if wallNormal != null:
 			point_to += wallNormal * disDifference
-		set_linear_velocity((point_to) * 500 * delta)
-		
+		set_linear_velocity((point_to) * 1000 * delta)
+	else:
+		startScale = mesh.mesh.radius
