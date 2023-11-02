@@ -14,6 +14,7 @@ var walk_speed = 9
 var crouch_speed = 3
 var speed = walk_speed
 var mouse_sensitivity = 0.002  # radians/pixel
+var controller_sensitivity = 0.06  # radians/pixel
 var jump_force = 10
 
 var velocity = Vector3()
@@ -32,7 +33,6 @@ func spawn_particles(object, pos, normal):
 
 func get_input():
 	var input_dir = Vector3()
-	# desired move in camera direction
 	if Input.is_action_pressed("ui_up"):
 		input_dir += -global_transform.basis.z
 	if Input.is_action_pressed("ui_down"):
@@ -42,6 +42,7 @@ func get_input():
 	if Input.is_action_pressed("ui_right"):
 		input_dir += global_transform.basis.x
 	input_dir = input_dir.normalized()
+	
 	return input_dir
 
 func _unhandled_input(event):
@@ -54,6 +55,12 @@ func _process(delta):
 	guncamera.global_transform = camera.global_transform
 
 func _physics_process(delta):
+	# controller look
+	if Global.useController:
+		rotation.y -= ((Input.get_action_strength("look_right") - Input.get_action_strength("look_left")) * controller_sensitivity)
+		$Pivot.rotation.x += ((Input.get_action_strength("look_up") - Input.get_action_strength("look_down")) * controller_sensitivity)
+		$Pivot.rotation.x = clamp($Pivot.rotation.x, -1.2, 1.2)
+	
 	# apply gravity and get input direction
 	velocity.y += gravity * delta
 	var desired_velocity = get_input() * speed
@@ -85,5 +92,13 @@ func _physics_process(delta):
 	
 	# shooting
 	if Input.is_action_just_pressed("mouse_click"):
+		if Global.useController:
+			Input.start_joy_vibration( 0, 0.6, 0.6, 0.2)
 		if raycast.is_colliding():
 			spawn_particles(gunParticles, raycast.get_collision_point(), raycast.get_collision_normal())
+	
+	# pause
+	if Input.is_action_just_pressed("ui_cancel"):
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		set_physics_process(false)
+		$pause_menu.show()

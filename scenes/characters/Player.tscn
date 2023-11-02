@@ -1,10 +1,16 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/characters/Player.gd" type="Script" id=1]
 [ext_resource path="res://scenes/assets/tests/glock.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/menus/pause_menu.gd" type="Script" id=3]
+[ext_resource path="res://assets/fonts/KrunchBold.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
+
+[sub_resource type="DynamicFont" id=2]
+size = 36
+font_data = ExtResource( 4 )
 
 [node name="Player" type="KinematicBody" groups=["Player"]]
 collision_layer = 2
@@ -45,14 +51,52 @@ cast_to = Vector3( 0, 0, -8 )
 
 [node name="game_ui" type="CanvasLayer" parent="."]
 
-[node name="control" type="Control" parent="game_ui"]
+[node name="Control" type="Control" parent="game_ui"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="game_ui/control"]
+[node name="Label" type="Label" parent="game_ui/Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 text = "X"
 align = 1
 valign = 1
+
+[node name="pause_menu" type="CanvasLayer" parent="."]
+script = ExtResource( 3 )
+
+[node name="Control" type="Control" parent="pause_menu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="pause_menu/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.317647 )
+
+[node name="Label" type="Label" parent="pause_menu/Control"]
+margin_left = 48.0
+margin_top = 40.0
+margin_right = 162.0
+margin_bottom = 66.0
+custom_fonts/font = SubResource( 2 )
+text = "Pause"
+
+[node name="QuitButton" type="Button" parent="pause_menu/Control"]
+margin_left = 59.0
+margin_top = 413.0
+margin_right = 96.0
+margin_bottom = 433.0
+text = "quit"
+
+[node name="ContinueButton" type="Button" parent="pause_menu/Control"]
+margin_left = 61.0
+margin_top = 375.0
+margin_right = 98.0
+margin_bottom = 395.0
+text = "continue"
+
+[connection signal="pressed" from="pause_menu/Control/QuitButton" to="pause_menu" method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="pause_menu/Control/ContinueButton" to="pause_menu" method="_on_ContinueButton_pressed"]
