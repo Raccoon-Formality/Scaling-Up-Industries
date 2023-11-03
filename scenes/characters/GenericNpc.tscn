@@ -23,3 +23,6 @@ shape = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
 mesh = SubResource( 2 )
 material/0 = SubResource( 3 )
+
+[node name="StateIndicatorTimer" type="Timer" parent="."]
+wait_time = 0.5
