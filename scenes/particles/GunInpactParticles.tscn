@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/programmerArt/smoke.png" type="Texture" id=1]
+[ext_resource path="res://scripts/particles/GunInpactParticles.gd" type="Script" id=2]
+[ext_resource path="res://assets/programmerArt/bullet_hole.png" type="Texture" id=3]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_transparent = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="QuadMesh" id=2]
+material = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 1 ), 1.4, 0.0, 0, 0, Vector2( 0.5, 0.5 ), 0.0, 0.0, 0, 0 ]
+
+[node name="GunInpactParticles" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, -0.01 )
+texture = ExtResource( 3 )
+
+[node name="Particles" type="CPUParticles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, -0.05 )
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.9
+mesh = SubResource( 2 )
+direction = Vector3( 0, 0, -1 )
+spread = 10.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 5.0
+scale_amount_curve = SubResource( 3 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
