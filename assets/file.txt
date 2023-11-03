@@ -1,1 +1,3 @@
 dev branch file edit test - billy
+
+Make sure to use Blender 3.6 or newer to open files. Textures should be packed in the blend file, but I'll thro them in here JIC
