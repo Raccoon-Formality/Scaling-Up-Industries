@@ -45,7 +45,7 @@ func shoot(weapon):
 	if raycast.is_colliding() and not raycast.get_collider().is_in_group("Door"):
 		if Global.useController:
 			Input.start_joy_vibration( 0, 0.6, 0.6, 0.2)
-		if raycast.is_colliding() and ("num_health_points" in raycast.get_collider()):
+		if raycast.is_colliding() and ("num_health_points" in raycast.get_collider()): # "num_health_points" is composition over inheritance
 				raycast.get_collider().inflict_damage()		
 		spawn_particles(gunParticles, raycast.get_collision_point(), raycast.get_collision_normal())
 
