@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/glock.glb-6bcda166af56fd34e6465b109a2d0e4b.scn"
+path="res://.import/M4A1.fbx-911585eff3ef91c6d2934af0aa5b0005.scn"
 
 [deps]
 
-source_file="res://assets/programmerArt/3d/glock.glb"
-dest_files=[ "res://.import/glock.glb-6bcda166af56fd34e6465b109a2d0e4b.scn" ]
+source_file="res://assets/programmerArt/3d/M4A1/M4A1.fbx"
+dest_files=[ "res://.import/M4A1.fbx-911585eff3ef91c6d2934af0aa5b0005.scn" ]
 
 [params]
 
