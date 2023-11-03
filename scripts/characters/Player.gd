@@ -24,16 +24,22 @@ func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	$Pivot/Camera/ViewportContainer/Viewport.size = get_viewport().size
 
+
+
 func spawn_particles(object, pos, normal):
 	var objectInstance = object.instance()
 	objectInstance.translation = pos
 	#objectInstance.direction = normal
 	ParticleHolder.add_child(objectInstance)
-	if normal != Vector3.LEFT and normal != Vector3.RIGHT:
-		print(normal)
+	#bullet_traces($Pivot/Camera/M4A1/gun.global_translation,pos)
+	print(normal)
+	if normal != Vector3.LEFT and not is_equal_approx(normal.x, 1):
+		print(Vector3.RIGHT)
 		objectInstance.look_at(pos + normal, Vector3.RIGHT)
 	else:
 		objectInstance.look_at(pos + normal, Vector3.DOWN)
+
+
 
 func get_input():
 	var input_dir = Vector3()
@@ -95,12 +101,18 @@ func _physics_process(delta):
 	velocity = move_and_slide(lerp_velocity, Vector3.UP, true)
 	
 	# shooting
-	if Input.is_action_just_pressed("mouse_click"):
+	if Input.is_action_pressed("mouse_click"):
 		if Global.useController:
 			Input.start_joy_vibration( 0, 0.6, 0.6, 0.2)
-		if raycast.is_colliding():
+		if raycast.is_colliding() and not raycast.get_collider().is_in_group("Door"):
 			spawn_particles(gunParticles, raycast.get_collision_point(), raycast.get_collision_normal())
 	
+	# interactibles
+	if Input.is_action_just_pressed("interact"):
+		if raycast.is_colliding():
+			if raycast.get_collider() is Interactibles:
+				raycast.get_collider().interact()
+
 	# pause
 	if Input.is_action_just_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
