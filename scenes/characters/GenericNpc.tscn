@@ -12,6 +12,7 @@ radius = 0.5
 albedo_color = Color( 0.87451, 0.0196078, 0.0196078, 1 )
 
 [node name="GenericNpc" type="KinematicBody"]
+collision_layer = 2
 collision_mask = 7
 script = ExtResource( 1 )
 
