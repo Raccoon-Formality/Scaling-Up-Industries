@@ -1,12 +1,46 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scripts/characters/Player.gd" type="Script" id=1]
 [ext_resource path="res://scenes/characters/gunarmz.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/menus/pause_menu.gd" type="Script" id=3]
 [ext_resource path="res://assets/fonts/KrunchBold.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/audio/pistol.wav" type="AudioStream" id=5]
+[ext_resource path="res://scenes/ui/audioSliders.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/characters/armz.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/audio/punch.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/audio/pistolEmpty.wav" type="AudioStream" id=9]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+uniform float vignette_intensity = 0.4;
+uniform float vignette_opacity : hint_range(0.0, 1.0) = 0.5;
+uniform vec4 vignette_rgb : hint_color = vec4(0.0, 0.0, 0.0, 1.0);
+
+float vignette(vec2 uv){
+	uv *= 1.0 - uv.xy;
+	float vignette = uv.x * uv.y * 15.0;
+	return pow(vignette, vignette_intensity * vignette_opacity);
+}
+
+void fragment(){
+	vec4 color = texture(SCREEN_TEXTURE, SCREEN_UV);
+	vec4 text = texture(TEXTURE, UV);
+	
+	text.rgba *= (vignette_rgb.rgba);
+	text.rgba *= (1.0 - vignette(UV));
+	
+	COLOR = vec4((text.rgb)*color.rgb,text.a);
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+shader_param/vignette_intensity = 0.4
+shader_param/vignette_opacity = 0.5
+shader_param/vignette_rgb = Color( 0, 0, 0, 1 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 36
@@ -26,6 +60,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 
 [node name="Camera" type="Camera" parent="Pivot"]
 cull_mask = 1048573
+
+[node name="armz" parent="Pivot/Camera" instance=ExtResource( 7 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.1, -2.2, 0 )
+visible = false
 
 [node name="gunarmz" parent="Pivot/Camera" instance=ExtResource( 2 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.1, -2.2, 0 )
@@ -65,12 +103,23 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 
+[node name="Vignette" type="ColorRect" parent="game_ui/Control"]
+material = SubResource( 4 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
 [node name="Label" type="Label" parent="game_ui/Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 text = "X"
 align = 1
 valign = 1
+
+[node name="AmmoLabel" type="Label" parent="game_ui/Control"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "10"
 
 [node name="pause_menu" type="CanvasLayer" parent="."]
 visible = false
@@ -84,7 +133,7 @@ mouse_filter = 2
 [node name="ColorRect" type="ColorRect" parent="pause_menu/Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.317647 )
+color = Color( 0, 0, 0, 0.498039 )
 
 [node name="Label" type="Label" parent="pause_menu/Control"]
 margin_left = 48.0
@@ -101,6 +150,7 @@ margin_left = 64.0
 margin_top = -56.0
 margin_right = 101.0
 margin_bottom = -36.0
+mouse_default_cursor_shape = 2
 text = "quit"
 
 [node name="ContinueButton" type="Button" parent="pause_menu/Control"]
@@ -110,7 +160,26 @@ margin_left = 64.0
 margin_top = -96.0
 margin_right = 132.0
 margin_bottom = -76.0
+mouse_default_cursor_shape = 2
 text = "continue"
+
+[node name="audioSliders" parent="pause_menu/Control" instance=ExtResource( 6 )]
+margin_left = 224.0
+margin_top = 360.0
+margin_right = 552.0
+margin_bottom = 432.0
+
+[node name="shootSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+bus = "sfx"
+
+[node name="punchSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+bus = "sfx"
+
+[node name="noAmmoSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+bus = "sfx"
 
 [connection signal="pressed" from="pause_menu/Control/QuitButton" to="pause_menu" method="_on_QuitButton_pressed"]
 [connection signal="pressed" from="pause_menu/Control/ContinueButton" to="pause_menu" method="_on_ContinueButton_pressed"]

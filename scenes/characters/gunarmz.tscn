@@ -2930,7 +2930,7 @@ advance_condition = "shoot"
 
 [sub_resource type="AnimationNodeStateMachine" id=19]
 states/aimFire/node = SubResource( 10 )
-states/aimFire/position = Vector2( 485, 53 )
+states/aimFire/position = Vector2( 485, 52 )
 states/gunIdle/node = SubResource( 11 )
 states/gunIdle/position = Vector2( 301, 206 )
 states/gunRun/node = SubResource( 12 )
@@ -3274,6 +3274,7 @@ skin = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "gunRun"
+playback_process_mode = 2
 anims/aimFire = SubResource( 4 )
 anims/gunAim = SubResource( 5 )
 anims/gunIdle = SubResource( 6 )

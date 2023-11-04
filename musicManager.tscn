@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/audio/owlSynth-mp3/Shooter Synthwave 5.mp3" type="AudioStream" id=1]
+
+[node name="musicManager" type="Spatial"]
+
+[node name="track1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+autoplay = true
+bus = "music"
