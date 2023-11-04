@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "KinematicBody",
+"class": "GenericNpc",
+"language": "GDScript",
+"path": "res://scripts/characters/GenericNpc.gd"
+}, {
 "base": "StaticBody",
 "class": "Interactibles",
 "language": "GDScript",
 "path": "res://scripts/Interactibles.gd"
 } ]
 _global_script_class_icons={
+"GenericNpc": "",
 "Interactibles": ""
 }
 

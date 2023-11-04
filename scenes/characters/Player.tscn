@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/characters/Player.gd" type="Script" id=1]
-[ext_resource path="res://scenes/assets/tests/M4A1.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/menus/pause_menu.gd" type="Script" id=3]
 [ext_resource path="res://assets/fonts/KrunchBold.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://scenes/assets/3d/gunarmz.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -27,14 +27,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 [node name="Camera" type="Camera" parent="Pivot"]
 cull_mask = 1048573
 
-[node name="M4A1" parent="Pivot/Camera" instance=ExtResource( 2 )]
-transform = Transform( -1.99184, 0.00337945, -0.180434, 0, 1.99965, 0.0374526, 0.180466, 0.0372998, -1.99149, 0.474129, -0.354031, -0.683948 )
-
-[node name="gun" type="Spatial" parent="Pivot/Camera/M4A1"]
-transform = Transform( -0.49796, 0, 0.0451164, 0.000844864, 0.499912, 0.00932495, -0.0451085, 0.00936315, -0.497873, 0.00248054, 0.0928912, 0.607681 )
-__meta__ = {
-"_editor_description_": "put gun here and make the mesh render to layer 2 under LOD"
-}
+[node name="gunarmz" parent="Pivot/Camera" instance=ExtResource( 5 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -2.2, 0 )
 
 [node name="ViewportContainer" type="ViewportContainer" parent="Pivot/Camera"]
 margin_right = 1024.0

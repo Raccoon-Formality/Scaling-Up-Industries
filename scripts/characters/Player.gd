@@ -46,7 +46,8 @@ func shoot(weapon):
 		if Global.useController:
 			Input.start_joy_vibration( 0, 0.6, 0.6, 0.2)
 		if raycast.is_colliding() and ("num_health_points" in raycast.get_collider()): # "num_health_points" is composition over inheritance
-				raycast.get_collider().inflict_damage()		
+				raycast.get_collider().inflict_damage()
+		$Pivot/Camera/gunarmz/AnimationPlayer.play("hipFire")
 		spawn_particles(gunParticles, raycast.get_collision_point(), raycast.get_collision_normal())
 
 func get_input():
@@ -59,6 +60,7 @@ func get_input():
 		input_dir += -global_transform.basis.x
 	if Input.is_action_pressed("ui_right"):
 		input_dir += global_transform.basis.x
+		
 	input_dir = input_dir.normalized()
 	
 	return input_dir
@@ -67,7 +69,7 @@ func _unhandled_input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(-event.relative.x * mouse_sensitivity)
 		$Pivot.rotate_x(-event.relative.y * mouse_sensitivity)
-		$Pivot.rotation.x = clamp($Pivot.rotation.x, -1.2, 1.2)
+		$Pivot.rotation.x = clamp($Pivot.rotation.x, -PI/2, PI/2)
 
 func _process(delta):
 	guncamera.global_transform = camera.global_transform
@@ -77,7 +79,7 @@ func _physics_process(delta):
 	if Global.useController:
 		rotation.y -= ((Input.get_action_strength("look_right") - Input.get_action_strength("look_left")) * controller_sensitivity)
 		$Pivot.rotation.x += ((Input.get_action_strength("look_up") - Input.get_action_strength("look_down")) * controller_sensitivity)
-		$Pivot.rotation.x = clamp($Pivot.rotation.x, -1.2, 1.2)
+		$Pivot.rotation.x = clamp($Pivot.rotation.x, -PI/2, PI/2)
 	
 	# apply gravity and get input direction
 	velocity.y += gravity * delta
