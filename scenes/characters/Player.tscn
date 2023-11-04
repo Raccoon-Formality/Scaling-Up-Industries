@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/characters/Player.gd" type="Script" id=1]
+[ext_resource path="res://scenes/characters/gunarmz.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/menus/pause_menu.gd" type="Script" id=3]
 [ext_resource path="res://assets/fonts/KrunchBold.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://scenes/assets/3d/gunarmz.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -27,26 +27,27 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 [node name="Camera" type="Camera" parent="Pivot"]
 cull_mask = 1048573
 
-[node name="gunarmz" parent="Pivot/Camera" instance=ExtResource( 5 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -2.2, 0 )
+[node name="gunarmz" parent="Pivot/Camera" instance=ExtResource( 2 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.1, -2.2, 0 )
 
 [node name="ViewportContainer" type="ViewportContainer" parent="Pivot/Camera"]
-margin_right = 1024.0
-margin_bottom = 600.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 mouse_filter = 2
 
 [node name="Viewport" type="Viewport" parent="Pivot/Camera/ViewportContainer"]
-size = Vector2( 1024, 600 )
+size = Vector2( 640, 480 )
 transparent_bg = true
 handle_input_locally = false
 render_target_update_mode = 3
 
 [node name="GunCam" type="Camera" parent="Pivot/Camera/ViewportContainer/Viewport"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 cull_mask = 2
 
 [node name="Raycast" type="RayCast" parent="Pivot"]
 enabled = true
-cast_to = Vector3( 0, 0, -100 )
+cast_to = Vector3( 0, 0, -25 )
 collision_mask = 15
 
 [node name="flashLight" type="SpotLight" parent="Pivot"]
@@ -94,17 +95,21 @@ custom_fonts/font = SubResource( 2 )
 text = "Pause"
 
 [node name="QuitButton" type="Button" parent="pause_menu/Control"]
-margin_left = 59.0
-margin_top = 413.0
-margin_right = 96.0
-margin_bottom = 433.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 64.0
+margin_top = -56.0
+margin_right = 101.0
+margin_bottom = -36.0
 text = "quit"
 
 [node name="ContinueButton" type="Button" parent="pause_menu/Control"]
-margin_left = 61.0
-margin_top = 375.0
-margin_right = 98.0
-margin_bottom = 395.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 64.0
+margin_top = -96.0
+margin_right = 132.0
+margin_bottom = -76.0
 text = "continue"
 
 [connection signal="pressed" from="pause_menu/Control/QuitButton" to="pause_menu" method="_on_QuitButton_pressed"]

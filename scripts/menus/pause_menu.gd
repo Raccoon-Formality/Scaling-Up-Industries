@@ -5,6 +5,7 @@ onready var player = get_tree().get_nodes_in_group("Player")[0]
 func exitMenu():
 	hide()
 	player.set_physics_process(true)
+	player.set_process(true)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _process(delta):

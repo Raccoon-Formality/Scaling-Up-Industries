@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://assets/gltf/gun.material" type="Material" id=1]
 [ext_resource path="res://assets/gltf/playerArms.material" type="Material" id=2]
@@ -1119,6 +1119,7 @@ tracks/62/keys = PoolRealArray( 0, 1, 4.64728e-07, 4.64728e-07, 4.64728e-07, 4.6
 [sub_resource type="Animation" id=6]
 resource_name = "gunIdle"
 length = 1.41667
+loop = true
 tracks/0/type = "transform"
 tracks/0/path = NodePath("armRig/Skeleton:f_index.03.L")
 tracks/0/interp = 1
@@ -2009,6 +2010,7 @@ tracks/62/keys = PoolRealArray( 0, 1, 5.08078e-06, 5.08078e-06, 5.08078e-06, 5.0
 [sub_resource type="Animation" id=8]
 resource_name = "gunRun"
 length = 1.375
+loop = true
 tracks/0/type = "transform"
 tracks/0/path = NodePath("armRig/Skeleton:f_index.03.L")
 tracks/0/interp = 1
@@ -2896,6 +2898,48 @@ tracks/62/imported = false
 tracks/62/enabled = true
 tracks/62/keys = PoolRealArray( 0, 1, 4.64728e-07, 4.64728e-07, 4.64728e-07, 4.64728e-07, 4.64728e-07, 4.64728e-07, 1, 1, 1, 1, 0.291667, 1, 4.64728e-07, 4.64728e-07, 4.64728e-07, 4.64728e-07, 4.64728e-07, 4.64728e-07, 1, 1, 1, 1 )
 
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "hipFire"
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "gunIdle"
+
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "gunRun"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+advance_condition = "running"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+advance_condition = "idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+advance_condition = "shoot"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+switch_mode = 2
+auto_advance = true
+advance_condition = "idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+switch_mode = 2
+advance_condition = "running"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+advance_condition = "shoot"
+
+[sub_resource type="AnimationNodeStateMachine" id=19]
+states/aimFire/node = SubResource( 10 )
+states/aimFire/position = Vector2( 485, 53 )
+states/gunIdle/node = SubResource( 11 )
+states/gunIdle/position = Vector2( 301, 206 )
+states/gunRun/node = SubResource( 12 )
+states/gunRun/position = Vector2( 702, 201 )
+transitions = [ "gunIdle", "gunRun", SubResource( 13 ), "gunRun", "gunIdle", SubResource( 14 ), "gunIdle", "aimFire", SubResource( 15 ), "aimFire", "gunIdle", SubResource( 16 ), "aimFire", "gunRun", SubResource( 17 ), "gunRun", "aimFire", SubResource( 18 ) ]
+start_node = "gunIdle"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=20]
+
 [node name="gunarmz" type="Spatial"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.548, -0.358 )
 
@@ -3219,17 +3263,29 @@ bones/62/enabled = true
 bones/62/bound_children = [  ]
 
 [node name="armMesh" type="MeshInstance" parent="armRig/Skeleton"]
+layers = 3
 mesh = SubResource( 1 )
 skin = SubResource( 2 )
 
 [node name="gun" type="MeshInstance" parent="armRig/Skeleton"]
+layers = 3
 mesh = SubResource( 3 )
 skin = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "gunRun"
 anims/aimFire = SubResource( 4 )
 anims/gunAim = SubResource( 5 )
 anims/gunIdle = SubResource( 6 )
 anims/gunLoad = SubResource( 7 )
 anims/gunRun = SubResource( 8 )
 anims/hipFire = SubResource( 9 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 19 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 20 )
+parameters/conditions/idle = false
+parameters/conditions/running = false
+parameters/conditions/shoot = false

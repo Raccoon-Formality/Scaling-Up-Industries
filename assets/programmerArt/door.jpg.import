@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/CheckerTile.png-42f70bc944612e6cae7134f98c0eae04.s3tc.stex"
-path.etc="res://.import/CheckerTile.png-42f70bc944612e6cae7134f98c0eae04.etc.stex"
+path.s3tc="res://.import/door.jpg-d9cb8bfd522ccbf38cd33d48b22aaf21.s3tc.stex"
+path.etc="res://.import/door.jpg-d9cb8bfd522ccbf38cd33d48b22aaf21.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/textures/CheckerTile.png"
-dest_files=[ "res://.import/CheckerTile.png-42f70bc944612e6cae7134f98c0eae04.s3tc.stex", "res://.import/CheckerTile.png-42f70bc944612e6cae7134f98c0eae04.etc.stex" ]
+source_file="res://assets/programmerArt/door.jpg"
+dest_files=[ "res://.import/door.jpg-d9cb8bfd522ccbf38cd33d48b22aaf21.s3tc.stex", "res://.import/door.jpg-d9cb8bfd522ccbf38cd33d48b22aaf21.etc.stex" ]
 
 [params]
 

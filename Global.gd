@@ -1,7 +1,7 @@
 extends Node
 
 var weaponsDict = {
-	"ar15": {"fireRate": 10, "rapid": true}
+	"pistol": {"fireRate": 10, "rapid": false}
 }
 
 var useController = false
