@@ -19,7 +19,8 @@ void vertext() {
 void fragment() {
 	vec4 wrld_vertex = CAMERA_MATRIX * vec4(VERTEX, 1.0);
 	NORMAL *= mat3(INV_CAMERA_MATRIX);
-	vec4 wallText = texture(walls, UV.yx * 2.0);
+	vec2 wallsUV = vec2(wrld_vertex.xy) + vec2(wrld_vertex.z,0.0);
+	vec4 wallText = texture(walls, wallsUV / 4.0);
 	vec4 floorsText = texture(floors, wrld_vertex.xz / 2.0);
 	vec4 ceilingText = texture(ceiling, wrld_vertex.xz / 2.0);
 	if (NORMAL.y <= -0.9) {

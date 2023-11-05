@@ -5,6 +5,5 @@
 [sub_resource type="CubeMesh" id=1]
 
 [node name="MeshInstance" type="MeshInstance"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 mesh = SubResource( 1 )
 material/0 = ExtResource( 1 )
