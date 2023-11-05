@@ -12,6 +12,9 @@ onready var gunParticles = preload("res://scenes/particles/GunInpactParticles.ts
 
 onready var ParticleHolder = get_tree().get_nodes_in_group("ParticleHolder")[0]
 
+onready var punchingAnimation = $Pivot/Camera/armz/AnimationPlayer
+var punchingArmIsRight = true
+
 var gravity = -30
 var walk_speed = 6
 var crouch_speed = 2
@@ -19,6 +22,7 @@ var speed = walk_speed
 var mouse_sensitivity = 0.002  # radians/pixel
 var controller_sensitivity = 0.06  # radians/pixel
 var jump_force = 10
+var paused = false
 
 var velocity = Vector3()
 var lerp_velocity = Vector3()
@@ -26,11 +30,21 @@ var lerp_velocity = Vector3()
 var handItem = "fists"
 
 func _ready():
+	$pause_menu.player = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	changeWeapon(Global.currentSelect)
 	$Pivot/Camera/ViewportContainer/Viewport.size = get_viewport().size
 
 var counter = 0
+
+
+
+func pause():
+	paused = true
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	$pause_menu.show()
+	set_physics_process(false)
+	set_process(false)
 
 func changeWeapon(num):
 	handItem = Global.Inventory[num]
@@ -42,6 +56,7 @@ func changeWeapon(num):
 	else:
 		$Pivot/Camera/armz.hide()
 		$Pivot/Camera/gunarmz.show()
+		ammoLabel.text = str(Global.Ammo[handItem])
 		ammoLabel.show()
 
 func spawn_particles(object, pos, normal):
@@ -64,7 +79,13 @@ func shoot(weapon):
 				raycast.get_collider().inflict_damage()
 		
 		if handItem == "fists":
-			$Pivot/Camera/armz/AnimationPlayer.play("Punching")
+			if punchingArmIsRight:
+				punchingAnimation.play("punchLeft")
+				punchingArmIsRight = false
+			else:
+				punchingAnimation.play("punchLeft")
+				punchingArmIsRight = true
+
 			$punchSound.play()
 			spawn_particles(gunParticles, raycast.get_collision_point(), raycast.get_collision_normal())
 		else:
@@ -101,12 +122,16 @@ func _unhandled_input(event):
 		$Pivot.rotate_x(-event.relative.y * mouse_sensitivity)
 		$Pivot.rotation.x = clamp($Pivot.rotation.x, -PI/2, PI/2)
 
+
+func _input(event):
+	if event is InputEventMouseButton and not paused:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
 func _process(delta):
 	guncamera.global_transform = camera.global_transform
 	updateGunAnimationTree()
 
 func _physics_process(delta):
-	
 	# controller look
 	if Global.useController:
 		rotation.y -= ((Input.get_action_strength("look_right") - Input.get_action_strength("look_left")) * controller_sensitivity)
@@ -181,13 +206,9 @@ func _physics_process(delta):
 	else:
 		gunCrosshair.modulate = Color(0.2,0.2,0.2)
 		gunCrosshair.text = "X"
-
-	# pause
-	if Input.is_action_just_pressed("ui_cancel"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		set_physics_process(false)
-		set_process(false)
-		$pause_menu.show()
+	
+	if (Input.is_action_just_pressed("pause") or Input.mouse_mode == Input.MOUSE_MODE_VISIBLE) and not paused:
+		pause()
 
 func updateGunAnimationTree():
 	if abs(velocity.x) <= speed / 2 and abs(velocity.z) <= speed / 2:
