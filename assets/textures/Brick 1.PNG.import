@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Cement.png-24bec4c1b4e45518cfe4c83ee0311fa0.s3tc.stex"
-path.etc="res://.import/Cement.png-24bec4c1b4e45518cfe4c83ee0311fa0.etc.stex"
+path.s3tc="res://.import/Brick 1.PNG-2364ebcd0194b0d1c14a1d01d98c930d.s3tc.stex"
+path.etc="res://.import/Brick 1.PNG-2364ebcd0194b0d1c14a1d01d98c930d.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/textures/Cement.png"
-dest_files=[ "res://.import/Cement.png-24bec4c1b4e45518cfe4c83ee0311fa0.s3tc.stex", "res://.import/Cement.png-24bec4c1b4e45518cfe4c83ee0311fa0.etc.stex" ]
+source_file="res://assets/textures/Brick 1.PNG"
+dest_files=[ "res://.import/Brick 1.PNG-2364ebcd0194b0d1c14a1d01d98c930d.s3tc.stex", "res://.import/Brick 1.PNG-2364ebcd0194b0d1c14a1d01d98c930d.etc.stex" ]
 
 [params]
 
