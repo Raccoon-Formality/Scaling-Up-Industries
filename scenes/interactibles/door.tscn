@@ -50,7 +50,7 @@ root_node = NodePath("../door")
 anims/close = SubResource( 5 )
 anims/open = SubResource( 3 )
 
-[node name="door" type="StaticBody" parent="." groups=["Door"]]
+[node name="door" type="StaticBody" parent="." groups=["CantShoot"]]
 collision_layer = 8
 
 [node name="MeshInstance" type="MeshInstance" parent="door"]

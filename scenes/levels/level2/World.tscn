@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scenes/levels/startPos.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/levels/TileMap.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/characters/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/levels/holders.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/interactibles/door.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/interactibles/Button.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/levels/endPoint.tscn" type="PackedScene" id=9]
+
+[node name="World" type="Spatial"]
+
+[node name="startPos" parent="." instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, 0 )
+
+[node name="endPoint" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.1903, -3.96, 18.5226 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10.6037, 0, -1.86863 )
+
+[node name="GridMap" parent="." instance=ExtResource( 2 )]
+data = {
+"cells": PoolIntArray( 0, 0, 1441792, 0, 1, 1441797, 65536, 2, 1441797, 131072, 3, 1441797, 196608, 4, 1441797, 0, 65535, 1441792 )
+}
+__meta__ = {
+"_editor_clip_": 0,
+"_editor_floor_": Vector3( 0, 0, 0 )
+}
+
+[node name="holders" parent="." instance=ExtResource( 4 )]
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, -0.467066, 0.884223, 0, -0.884223, -0.467066, 0, 10.0049, 2.83859 )
+light_energy = 0.3
+light_specular = 0.0
+directional_shadow_mode = 0
+
+[node name="Interactibles" type="Spatial" parent="."]
+
+[node name="door" parent="Interactibles" instance=ExtResource( 5 )]
+transform = Transform( -2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, 2, 0, -4 )
+
+[node name="Button" parent="Interactibles" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, -3, 36 )
+node_path = NodePath("../door")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/gltf/playerArms.material" type="Material" id=1]
 
@@ -197,6 +197,9 @@ bind/57/pose = Transform( 0.5679, 0.785694, -0.245304, -0.79234, 0.602546, 0.095
 bind/58/name = "elbowPole.R"
 bind/58/bone = -1
 bind/58/pose = Transform( -0.759631, 0.650354, 0, -7.75283e-08, -9.05551e-08, -1, -0.650355, -0.759631, 0, -1.4477, -0.584455, 0.178402 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "Idle"
 
 [sub_resource type="Animation" id=3]
 resource_name = "Punching"
@@ -918,8 +921,11 @@ bones/58/enabled = true
 bones/58/bound_children = [  ]
 
 [node name="armMesh" type="MeshInstance" parent="armRig/Skeleton"]
+layers = 2
 mesh = SubResource( 1 )
 skin = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+method_call_mode = 1
+anims/Idle = SubResource( 4 )
 anims/Punching = SubResource( 3 )
