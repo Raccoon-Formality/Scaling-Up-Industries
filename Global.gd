@@ -23,3 +23,12 @@ var useController = false
 var Inventory = ["fists","pistol"]
 var Ammo = {"pistol" : 10}
 var currentSelect = 0
+
+# reload game for testing
+func _process(delta):
+	if Input.is_action_just_pressed("reload"):
+		levelNumber = 0
+		Inventory = ["fists","pistol"]
+		Ammo = {"pistol" : 10}
+		currentSelect = 0
+		get_tree().reload_current_scene()
