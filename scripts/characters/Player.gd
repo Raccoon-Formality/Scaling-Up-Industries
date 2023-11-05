@@ -12,6 +12,9 @@ onready var gunParticles = preload("res://scenes/particles/GunInpactParticles.ts
 
 onready var ParticleHolder = get_tree().get_nodes_in_group("ParticleHolder")[0]
 
+onready var punchingAnimation = $Pivot/Camera/armz/AnimationPlayer
+var punchingArmIsRight = true
+
 var gravity = -30
 var walk_speed = 6
 var crouch_speed = 2
@@ -76,7 +79,13 @@ func shoot(weapon):
 				raycast.get_collider().inflict_damage()
 		
 		if handItem == "fists":
-			$Pivot/Camera/armz/AnimationPlayer.play("Punching")
+			if punchingArmIsRight:
+				punchingAnimation.play("punchLeft")
+				punchingArmIsRight = false
+			else:
+				punchingAnimation.play("punchLeft")
+				punchingArmIsRight = true
+
 			$punchSound.play()
 			spawn_particles(gunParticles, raycast.get_collision_point(), raycast.get_collision_normal())
 		else:

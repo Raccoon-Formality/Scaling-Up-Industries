@@ -60,6 +60,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 
 [node name="Camera" type="Camera" parent="Pivot"]
 cull_mask = 1048573
+current = true
 
 [node name="armz" parent="Pivot/Camera" instance=ExtResource( 7 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.1, -2.2, 0 )
@@ -82,6 +83,7 @@ render_target_update_mode = 3
 [node name="GunCam" type="Camera" parent="Pivot/Camera/ViewportContainer/Viewport"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 cull_mask = 2
+current = true
 
 [node name="Raycast" type="RayCast" parent="Pivot"]
 enabled = true
