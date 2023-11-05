@@ -79,15 +79,16 @@ func shoot(weapon):
 				raycast.get_collider().inflict_damage()
 		
 		if handItem == "fists":
-			if punchingArmIsRight:
-				punchingAnimation.play("punchLeft")
-				punchingArmIsRight = false
-			else:
-				punchingAnimation.play("punchLeft")
-				punchingArmIsRight = true
+			if punchingAnimation.current_animation == "":
+				if punchingArmIsRight:
+					punchingAnimation.play("punchRight")
+					punchingArmIsRight = false
+				else:
+					punchingAnimation.play("punchLeft")
+					punchingArmIsRight = true
 
-			$punchSound.play()
-			spawn_particles(gunParticles, raycast.get_collision_point(), raycast.get_collision_normal())
+				$punchSound.play()
+				spawn_particles(gunParticles, raycast.get_collision_point(), raycast.get_collision_normal())
 		else:
 			if Global.Ammo[handItem] > 0:
 				gunAnimationTree["parameters/conditions/shoot"] = true
@@ -179,6 +180,7 @@ func _physics_process(delta):
 			shoot(currectWeapon)
 	if Input.is_action_just_pressed("mouse_click") and not currectWeapon["rapid"]:
 		shoot(currectWeapon)
+		#print("click")
 
 	# interactibles
 	if Input.is_action_just_pressed("interact"):
@@ -219,3 +221,7 @@ func updateGunAnimationTree():
 		gunAnimationTree["parameters/conditions/running"] = true
 	
 	gunAnimationTree["parameters/conditions/shoot"] = false
+
+
+func _on_punchTimer_timeout():
+	pass # Replace with function body.

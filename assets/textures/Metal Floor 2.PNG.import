@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Cement.png-24bec4c1b4e45518cfe4c83ee0311fa0.s3tc.stex"
-path.etc="res://.import/Cement.png-24bec4c1b4e45518cfe4c83ee0311fa0.etc.stex"
+path.s3tc="res://.import/Metal Floor 2.PNG-b39ce94488445ef2ebf92e7817caee67.s3tc.stex"
+path.etc="res://.import/Metal Floor 2.PNG-b39ce94488445ef2ebf92e7817caee67.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/textures/Cement.png"
-dest_files=[ "res://.import/Cement.png-24bec4c1b4e45518cfe4c83ee0311fa0.s3tc.stex", "res://.import/Cement.png-24bec4c1b4e45518cfe4c83ee0311fa0.etc.stex" ]
+source_file="res://assets/textures/Metal Floor 2.PNG"
+dest_files=[ "res://.import/Metal Floor 2.PNG-b39ce94488445ef2ebf92e7817caee67.s3tc.stex", "res://.import/Metal Floor 2.PNG-b39ce94488445ef2ebf92e7817caee67.etc.stex" ]
 
 [params]
 

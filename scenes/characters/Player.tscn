@@ -183,5 +183,9 @@ bus = "sfx"
 stream = ExtResource( 9 )
 bus = "sfx"
 
+[node name="punchTimer" type="Timer" parent="."]
+wait_time = 0.4
+
 [connection signal="pressed" from="pause_menu/Control/QuitButton" to="pause_menu" method="_on_QuitButton_pressed"]
 [connection signal="pressed" from="pause_menu/Control/ContinueButton" to="pause_menu" method="_on_ContinueButton_pressed"]
+[connection signal="timeout" from="punchTimer" to="." method="_on_punchTimer_timeout"]

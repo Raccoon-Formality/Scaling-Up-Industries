@@ -1,6 +1,6 @@
 [gd_resource type="SpatialMaterial" load_steps=2 format=2]
 
-[ext_resource path="res://assets/programmerArt/white.png" type="Texture" id=1]
+[ext_resource path="res://assets/textures/Brick 1.PNG" type="Texture" id=1]
 
 [resource]
 params_cull_mode = 2
