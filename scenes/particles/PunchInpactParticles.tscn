@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/programmerArt/smoke.png" type="Texture" id=1]
 [ext_resource path="res://scripts/particles/PunchInpactParticles.gd" type="Script" id=2]
-[ext_resource path="res://assets/textures/damage decals/drywall dent.PNG" type="Texture" id=3]
+[ext_resource path="res://assets/textures/damage decals/drywallDent-fixed.PNG" type="Texture" id=3]
 
 [sub_resource type="SpatialMaterial" id=1]
 flags_transparent = true

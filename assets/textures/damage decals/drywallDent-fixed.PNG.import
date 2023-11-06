@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/drywall hole.PNG-c9b24bbe20ea0efa7bb6be0f5b1ebe67.s3tc.stex"
-path.etc="res://.import/drywall hole.PNG-c9b24bbe20ea0efa7bb6be0f5b1ebe67.etc.stex"
+path.s3tc="res://.import/drywallDent-fixed.PNG-ae8a3b0350c5dc4057e2638b62e672ad.s3tc.stex"
+path.etc="res://.import/drywallDent-fixed.PNG-ae8a3b0350c5dc4057e2638b62e672ad.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/textures/damage decals/drywall hole.PNG"
-dest_files=[ "res://.import/drywall hole.PNG-c9b24bbe20ea0efa7bb6be0f5b1ebe67.s3tc.stex", "res://.import/drywall hole.PNG-c9b24bbe20ea0efa7bb6be0f5b1ebe67.etc.stex" ]
+source_file="res://assets/textures/damage decals/drywallDent-fixed.PNG"
+dest_files=[ "res://.import/drywallDent-fixed.PNG-ae8a3b0350c5dc4057e2638b62e672ad.s3tc.stex", "res://.import/drywallDent-fixed.PNG-ae8a3b0350c5dc4057e2638b62e672ad.etc.stex" ]
 
 [params]
 

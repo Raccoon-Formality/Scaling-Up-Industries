@@ -115,6 +115,8 @@ func spawn_particles(partObject, collider, pos, normal, local):
 		objectInstance.look_at(pos + normal, Vector3.UP)
 	# make particle's rotation random
 	objectInstance.holes.rotation_degrees.z += rand_range(-180,180)
+# godot 3 doesn't support decals as far as I know,
+# so a node with a sprite3d and particles was my best solution
 
 # shoot with arguement weapon
 func shoot(weapon):
