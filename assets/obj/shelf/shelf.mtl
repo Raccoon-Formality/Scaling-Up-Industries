@@ -1,18 +1,12 @@
-# Apple ModelI/O MTL File: shelf.mtl
+# Blender 3.6.5 MTL File: 'furnishings.blend'
+# www.blender.org
 
-newmtl 
-	map_Kd -color.png
-	Kd 1 1 1
-	Ka 0 0 0
-	Ks 0
-	ao 0
-	subsurface 0
-	map_metallic -metallic.png
-	specularTint 0
-	map_roughness -roughness.png
-	anisotropicRotation 0
-	sheen 0.05
-	sheenTint 0
-	clearCoat 0
-	clearCoatGloss 0
-
+newmtl shelf
+Ns 52.691124
+Ka 1.000000 1.000000 1.000000
+Ks 0.202273 0.202273 0.202273
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 2
+map_Kd -color.png
+map_d -color.png
