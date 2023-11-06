@@ -1,5 +1,6 @@
 extends Spatial
 
+# activateable object
 
 var angle = 0
 var opened = false

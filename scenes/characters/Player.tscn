@@ -55,12 +55,18 @@ script = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1, 0 )
 shape = SubResource( 1 )
 
+[node name="headCheck" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
+enabled = true
+cast_to = Vector3( 0, 1, 0 )
+
 [node name="Pivot" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 
 [node name="Camera" type="Camera" parent="Pivot"]
 cull_mask = 1048573
 current = true
+far = 8192.0
 
 [node name="armz" parent="Pivot/Camera" instance=ExtResource( 7 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.1, -2.2, 0 )
@@ -84,6 +90,7 @@ render_target_update_mode = 3
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 cull_mask = 2
 current = true
+far = 8192.0
 
 [node name="Raycast" type="RayCast" parent="Pivot"]
 enabled = true
@@ -183,9 +190,5 @@ bus = "sfx"
 stream = ExtResource( 9 )
 bus = "sfx"
 
-[node name="punchTimer" type="Timer" parent="."]
-wait_time = 0.4
-
 [connection signal="pressed" from="pause_menu/Control/QuitButton" to="pause_menu" method="_on_QuitButton_pressed"]
 [connection signal="pressed" from="pause_menu/Control/ContinueButton" to="pause_menu" method="_on_ContinueButton_pressed"]
-[connection signal="timeout" from="punchTimer" to="." method="_on_punchTimer_timeout"]

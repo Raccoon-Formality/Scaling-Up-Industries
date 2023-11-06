@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://scripts/menus/audioSliders.gd" type="Script" id=1]
+[ext_resource path="res://scripts/menus/elements/audio_sliders.gd" type="Script" id=1]
 
 [node name="audioSliders" type="Control"]
 margin_right = 328.0

@@ -1,5 +1,8 @@
 extends Interactibles
 
+# door body is interactible while the parent is the activateable
+# door body activaes door
+
 onready var doorParent = get_parent()
 
 func interact():
@@ -9,4 +12,3 @@ func interact():
 	else:
 		doorParent.angle = 0 
 		doorParent.opened = false
-	

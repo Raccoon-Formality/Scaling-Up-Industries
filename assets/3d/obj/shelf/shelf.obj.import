@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/shelf.obj-c2874ca0422ad2020cfbb0dd76ca3c04.mesh"
+
+[deps]
+
+files=[ "res://.import/shelf.obj-c2874ca0422ad2020cfbb0dd76ca3c04.mesh" ]
+
+source_file="res://assets/3d/obj/shelf/shelf.obj"
+dest_files=[ "res://.import/shelf.obj-c2874ca0422ad2020cfbb0dd76ca3c04.mesh", "res://.import/shelf.obj-c2874ca0422ad2020cfbb0dd76ca3c04.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/pause.mp3-21ad6ad37c12c35afbd6bc4f2cf9dc80.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/owlSynth-mp3/pause.mp3"
+dest_files=[ "res://.import/pause.mp3-21ad6ad37c12c35afbd6bc4f2cf9dc80.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

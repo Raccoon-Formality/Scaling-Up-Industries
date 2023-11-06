@@ -1,0 +1,66 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+render_mode unshaded;
+//render_mode world_vertex_coords;
+//render_mode blend_add;
+render_mode cull_disabled;
+
+
+uniform float value = 2.0;
+uniform float offset = 0.0;
+uniform vec4 color: hint_color = vec4(0.5,0.5,0.5,0.1);
+uniform vec4 color2: hint_color = vec4(0.5,0.5,0.5,0.1);
+uniform float color_start = 0.0;
+uniform float color_end = 1.0;
+
+uniform float amp: hint_range(0.0, 0.2, 0.01) = 0.1f;
+
+varying vec3 normal;
+varying vec2 uv;
+void vertex() {
+	//some_color = NORMAL; // make the normal the color
+	
+	normal = NORMAL;
+	uv = (UV + offset) * value;
+	
+	vec3 f = ((sin(VERTEX.y * 2.0 + TIME * 1.0) * 0.5 + 0.5) * 5.0) * NORMAL;
+	
+	float t = cos((UV.y + TIME * 0.1) * 5.0) * 0.5 + 0.5;
+	
+	VERTEX += f * amp;
+}
+
+float InverseLerp(float a, float b, float v) {
+	return (v-a)/(b-a);
+}
+
+void fragment() {
+	//ALBEDO = some_color; // normal from vertex to fragment
+	//float t = clamp( InverseLerp(color_start,color_end,abs(fract(uv.x * 5.0)*2.0-1.0)), 0.0, 1.0 );
+	
+	//float t = smoothstep(color_start,color_end,uv.x);
+	//t = fract(t);
+	
+	float xOffset = cos(UV.x * 8.0) * 0.01;
+	
+	float t = cos((UV.y + xOffset + TIME * 0.1) * 5.0) * 0.5 + 0.5;
+	t *= UV.y;
+	vec4 new_color = mix(color, color2, NORMAL.y);
+	
+	
+	ALPHA = 0.5;
+	ALBEDO = vec3(new_color.rgb);//new_color.rgb;//vec3(uv.xy, 0);
+
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/value = 2.0
+shader_param/offset = 0.0
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/color2 = Color( 0.968627, 0, 1, 1 )
+shader_param/color_start = 0.0
+shader_param/color_end = 1.0
+shader_param/amp = 0.1
