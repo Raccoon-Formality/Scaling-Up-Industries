@@ -4,6 +4,6 @@ func _ready():
 	._ready()
 	$pause_menu.hide()
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
