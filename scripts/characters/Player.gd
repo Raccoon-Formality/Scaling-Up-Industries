@@ -9,6 +9,7 @@ onready var gunAnimationTree = $Pivot/Camera/gunarmz/AnimationTree
 onready var gunCrosshair = $game_ui/Control/Label
 onready var ammoLabel = $game_ui/Control/AmmoLabel
 onready var gunParticles = preload("res://scenes/particles/GunInpactParticles.tscn")
+onready var punchParticles = preload("res://scenes/particles/PunchInpactParticles.tscn")
 
 onready var ParticleHolder = get_tree().get_nodes_in_group("ParticleHolder")[0]
 
@@ -88,7 +89,7 @@ func shoot(weapon):
 					punchingArmIsRight = true
 
 				$punchSound.play()
-				spawn_particles(gunParticles, raycast.get_collision_point(), raycast.get_collision_normal())
+				spawn_particles(punchParticles, raycast.get_collision_point(), raycast.get_collision_normal())
 		else:
 			if Global.Ammo[handItem] > 0:
 				gunAnimationTree["parameters/conditions/shoot"] = true
