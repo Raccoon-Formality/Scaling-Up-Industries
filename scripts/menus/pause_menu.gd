@@ -15,10 +15,11 @@ func exitMenu():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
+
 # if quit UI button pressed, exit game.
 # currently does nothing
 func _on_QuitButton_pressed():
-	pass # Replace with function body.
+	get_tree().change_scene("res://scenes/ui/menus/Main_Menu.tscn")
 
 # if continue UI button press, exit menu
 func _on_ContinueButton_pressed():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/levels/startPos.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/assets/tilesets/tileset.tres" type="MeshLibrary" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scenes/interactibles/singleDoor.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/static/doorway.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/levels/endPoint.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/interactibles/ventDoor.tscn" type="PackedScene" id=10]
 
 [node name="World" type="Spatial"]
 
@@ -43,7 +44,7 @@ data = {
 }
 __meta__ = {
 "_editor_clip_": 0,
-"_editor_floor_": Vector3( 0, -1, 0 )
+"_editor_floor_": Vector3( 0, -5, 0 )
 }
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
@@ -67,6 +68,9 @@ skeleton = NodePath("../..")
 
 [node name="singleDoor" parent="Interactibles/doorway" instance=ExtResource( 7 )]
 transform = Transform( -1.09278e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.09278e-08, 0, 0, 0.25 )
+
+[node name="ventDoor" parent="Interactibles" instance=ExtResource( 10 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 24, -4, 27 )
 
 [node name="teapot" parent="." instance=ExtResource( 4 )]
 transform = Transform( 4.33013, 0, -2.5, 0, 5, 0, 2.5, 0, 4.33013, 38, -7, 4 )

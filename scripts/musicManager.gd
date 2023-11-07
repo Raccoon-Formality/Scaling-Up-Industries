@@ -2,7 +2,8 @@ extends Spatial
 
 var song = null
 
-func _process(delta):
+func _process(_delta):
+	#print(Global.currentSong)
 	if song != Global.currentSong:
 		var holdPoint = $track1.get_playback_position()
 		$track1.stream = load(Global.currentSong)

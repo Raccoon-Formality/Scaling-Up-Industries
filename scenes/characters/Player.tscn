@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scripts/characters/Player.gd" type="Script" id=1]
 [ext_resource path="res://scenes/characters/gunarmz.tscn" type="PackedScene" id=2]
@@ -9,6 +9,10 @@
 [ext_resource path="res://scenes/characters/armz.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/audio/punch.wav" type="AudioStream" id=8]
 [ext_resource path="res://assets/audio/pistolEmpty.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/audio/footstep.ogg" type="AudioStream" id=10]
+[ext_resource path="res://assets/audio/jump.ogg" type="AudioStream" id=11]
+[ext_resource path="res://assets/audio/hurt.ogg" type="AudioStream" id=12]
+[ext_resource path="res://scripts/menus/death_menu.gd" type="Script" id=13]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -42,8 +46,19 @@ shader_param/vignette_intensity = 0.4
 shader_param/vignette_opacity = 0.5
 shader_param/vignette_rgb = Color( 0, 0, 0, 1 )
 
+[sub_resource type="DynamicFont" id=6]
+size = 32
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 1, 0, 0, 1 )
+
 [sub_resource type="DynamicFont" id=2]
 size = 36
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 86
 font_data = ExtResource( 4 )
 
 [node name="Player" type="KinematicBody" groups=["Player"]]
@@ -126,9 +141,22 @@ align = 1
 valign = 1
 
 [node name="AmmoLabel" type="Label" parent="game_ui/Control"]
-margin_right = 40.0
-margin_bottom = 14.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 56.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 6 )
 text = "10"
+
+[node name="HealthBar" type="ProgressBar" parent="game_ui/Control"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_right = 168.0
+margin_bottom = 14.0
+rect_rotation = 89.9999
+custom_colors/font_color = Color( 0, 0, 0, 0 )
+custom_styles/fg = SubResource( 5 )
+value = 50.0
 
 [node name="pause_menu" type="CanvasLayer" parent="."]
 visible = false
@@ -178,6 +206,62 @@ margin_top = 360.0
 margin_right = 552.0
 margin_bottom = 432.0
 
+[node name="death_menu" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource( 13 )
+
+[node name="Control" type="Control" parent="death_menu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="death_menu/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 1, 1, 0.447059 )
+
+[node name="deadLabel" type="Label" parent="death_menu/Control"]
+margin_left = 136.0
+margin_top = 136.0
+margin_right = 504.0
+margin_bottom = 197.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "You Died"
+align = 1
+valign = 1
+
+[node name="continueLabel" type="Label" parent="death_menu/Control"]
+margin_left = 192.0
+margin_top = 304.0
+margin_right = 368.0
+margin_bottom = 336.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Continue?"
+valign = 1
+
+[node name="yesButton" type="Button" parent="death_menu/Control"]
+margin_left = 192.0
+margin_top = 360.0
+margin_right = 226.0
+margin_bottom = 380.0
+text = "yes"
+
+[node name="noButton" type="Button" parent="death_menu/Control"]
+margin_left = 192.0
+margin_top = 392.0
+margin_right = 226.0
+margin_bottom = 412.0
+text = "no"
+
+[node name="levelLabel" type="Label" parent="death_menu/Control"]
+margin_left = 256.0
+margin_top = 232.0
+margin_right = 384.0
+margin_bottom = 272.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "current saved level:"
+align = 1
+
 [node name="shootSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 bus = "sfx"
@@ -190,5 +274,19 @@ bus = "sfx"
 stream = ExtResource( 9 )
 bus = "sfx"
 
+[node name="footstepsSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+bus = "sfx"
+
+[node name="jumpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+volume_db = -10.0
+bus = "sfx"
+
+[node name="hurtSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+
 [connection signal="pressed" from="pause_menu/Control/QuitButton" to="pause_menu" method="_on_QuitButton_pressed"]
 [connection signal="pressed" from="pause_menu/Control/ContinueButton" to="pause_menu" method="_on_ContinueButton_pressed"]
+[connection signal="pressed" from="death_menu/Control/yesButton" to="death_menu" method="_on_yesButton_pressed"]
+[connection signal="pressed" from="death_menu/Control/noButton" to="death_menu" method="_on_noButton_pressed"]

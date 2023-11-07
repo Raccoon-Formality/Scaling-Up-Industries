@@ -49,17 +49,81 @@ var useController = false
 
 # player inventory
 # TODO: save and load inventory
-var Inventory = ["fists","pistol"]
-var Ammo = {"pistol" : 10}
+var Inventory = [["fists",-1],["pistol",10]]
+#var Ammo = {"pistol" : 10}
 var currentSelect = 0
+var health = 100
+
+var currentLoad = null
+
+func resetVars():
+	currentSong = musicDict["track3"]
+	previousSong = null
+	previousSongPoint = 0.0
+	levelNumber = 0
+	
+	Inventory = [["fists",-1],["pistol",10]]
+	#Ammo = {"pistol" : 10}
+	currentSelect = 0
+	health = 100
 
 # reload game for testing
 # TODO: make this a function for player death
 # might have to be done per level script
 func _process(delta):
+#	print(currentLoad)
 	if Input.is_action_just_pressed("reload"):
-		levelNumber = 0
-		Inventory = ["fists","pistol"]
-		Ammo = {"pistol" : 10}
-		currentSelect = 0
-		get_tree().reload_current_scene()
+		restartLevel()
+
+func restartLevel():
+	if levelNumber != 0:
+		resetVars()
+		loadSave()
+	else:
+		resetVars()
+	
+	get_tree().reload_current_scene()
+
+func save():
+	var currentLevelNumber = levelNumber
+	var currentInventory = Inventory
+	#var currentAmmo = Ammo
+	var saveDict = {
+		"save": [currentLevelNumber, currentInventory, currentSelect],
+		"settings": [
+			AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")),
+			AudioServer.get_bus_volume_db(AudioServer.get_bus_index("music")),
+			AudioServer.get_bus_volume_db(AudioServer.get_bus_index("sfx"))
+		],
+	}
+	
+	var file = File.new()
+	file.open("user://SAVE.json", File.WRITE)
+	file.store_string(to_json(saveDict))
+	file.close()
+	print(saveDict)
+
+func loadSave():
+	var file = File.new()
+	if file.file_exists("user://SAVE.json"):
+		file.open("user://SAVE.json", File.READ)
+		var data = parse_json(file.get_as_text())
+		file.close()
+		if typeof(data) == TYPE_DICTIONARY:
+			currentLoad = data
+			var localSave = currentLoad["save"]
+			levelNumber = localSave[0]
+			Inventory = localSave[1]
+			#currentSelect = localSave[2]
+			var localSettings =  currentLoad["settings"]
+			AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), localSettings[0])
+			AudioServer.set_bus_volume_db(AudioServer.get_bus_index("music"), localSettings[1])
+			AudioServer.set_bus_volume_db(AudioServer.get_bus_index("sfx"), localSettings[2])
+		else:
+			printerr("Corrupted data!")
+			currentLoad = null
+			return null
+	else:
+		printerr("No saved data!")
+		currentLoad = null
+

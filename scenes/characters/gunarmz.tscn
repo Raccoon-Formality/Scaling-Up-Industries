@@ -3,7 +3,6 @@
 [ext_resource path="res://assets/3d/gltf/gun.material" type="Material" id=1]
 [ext_resource path="res://assets/3d/gltf/playerArms.material" type="Material" id=2]
 
-
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "gunarmz_Mesh001"
 surfaces/0 = {
