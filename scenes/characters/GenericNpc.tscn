@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/characters/GenericNpc.gd" type="Script" id=1]
+[ext_resource path="res://scenes/characters/cone.tscn" type="PackedScene" id=2]
 
 [sub_resource type="CapsuleMesh" id=2]
 radius = 0.5
@@ -15,6 +16,9 @@ is_hemisphere = true
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
+
+[sub_resource type="ConvexPolygonShape" id=7]
+points = PoolVector3Array( 0, 1, 0, 0.194988, -1, -0.980814, 0, -1, -1, -0.195184, -1, -0.980814, -0.382733, -1, -0.924041, -0.555599, -1, -0.831637, -0.707126, -1, -0.707126, -0.831637, -1, -0.555599, -0.924041, -1, -0.382733, -0.980814, -1, -0.195184, -1, -1, -0.000195742, -0.980814, -1, 0.194988, -0.924041, -1, 0.382537, -0.831637, -1, 0.555403, -0.707126, -1, 0.70693, -0.555599, -1, 0.831441, -0.382733, -1, 0.923845, -0.195184, -1, 0.980619, -0.000195742, -1, 1, 0.194988, -1, 0.980619, 0.382537, -1, 0.923845, 0.555403, -1, 0.831441, 0.70693, -1, 0.70693, 0.831441, -1, 0.555403, 0.923845, -1, 0.382537, 0.980619, -1, 0.194988, 1, -1, -0.000195742, 0.980619, -1, -0.195184, 0.923845, -1, -0.382733, 0.831441, -1, -0.555599, 0.70693, -1, -0.707126, 0.555403, -1, -0.831637, 0.382537, -1, -0.924041 )
 
 [node name="GenericNpc" type="KinematicBody" groups=["enemies"]]
 collision_layer = 2
@@ -45,3 +49,14 @@ wait_time = 0.5
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
+
+[node name="VisionArea" type="Area" parent="."]
+
+[node name="Cone" parent="VisionArea" instance=ExtResource( 2 )]
+transform = Transform( 25, 0, 0, 0, -6.55671e-07, -25, 0, 15, -1.09278e-06, 0, 0.5, -15.25 )
+visible = false
+skeleton = NodePath("../..")
+
+[node name="CollisionShape" type="CollisionShape" parent="VisionArea"]
+transform = Transform( 25, 0, 0, 0, -6.55671e-07, -25, 0, 15, -1.09278e-06, 0, 0.5, -15.25 )
+shape = SubResource( 7 )

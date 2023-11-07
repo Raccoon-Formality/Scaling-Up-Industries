@@ -44,39 +44,66 @@ func _ready():
 	_current_state = STATES.INIT
 	num_health_points = STARTING_HEALTH_POINTS
 	_update_state_machine()
-
-
-func _physics_process(_delta):
-	
-	_update_state_machine()
 	
 	_register_listener_for_player_gun_sounds()
 
+
+func _physics_process(_delta):
+	_update_state_machine()
+
+	# state exit events
 	if _previous_state == STATES.COMBAT and _current_state != STATES.COMBAT:
 		_exit_combat()
 		_un_alert_the_npc()
 	elif _previous_state != STATES.COMBAT and _current_state == STATES.COMBAT:
 		_enter_combat()
 
+	# state dependent processes
 	if _current_state == STATES.IDLE:
-		pass
+		_notice_the_player_if_in_los()
 	elif _current_state == STATES.PATROL:
 		_move_toward_position(navAgent.get_next_location())
+		_notice_the_player_if_in_los()
 	elif _current_state == STATES.COMBAT:
 		if _enemy_position == null:
 			print("Error: enemy_position is null")
-
+		
+		_notice_the_player_if_in_los()
+		
 		_enemy_position = player_node.translation # TODO: for tracking of generic targets, some kind of handler to track targets 
 		turn_towards_target(_enemy_position)	
 		_move_toward_position(navAgent.get_next_location())
 	elif _current_state == STATES.DECEASED:
 		if _previous_state != STATES.DECEASED:
+			_unregister_listener_for_player_gun_sounds()
 			_change_mesh_color(Color(0,0,0,1))
+	
+
+func _notice_the_player_if_in_los():
+	if can_see:
+		if player_is_visible() and _enemy_position != null:
+			_alert_the_npc(_enemy_position)
+	
+
+func player_is_visible():
+	var is_visible = false
+	var overlaps = $VisionArea.get_overlapping_bodies()
+	if overlaps.size() > 0:
+		for overlap in overlaps:
+			if overlap.name == "Player":
+				_enemy_position = player_node.translation
+				is_visible = true
+	
+	return is_visible
 	
 	
 func _register_listener_for_player_gun_sounds():
 	player_node.connect("gun_fired", self, "_react_to_gun_sound_if_close")
 	
+
+func _unregister_listener_for_player_gun_sounds():
+	player_node.disconnect("gun_fired", self, "_react_to_gun_sound_if_close")
+
 
 func _react_to_gun_sound_if_close():
 	if can_hear and Vector3(global_transform.origin - player_node.global_transform.origin).length() <= MAXIMUM_EARSHOT_DISTANCE:
@@ -119,8 +146,10 @@ func _update_state_machine():
 	if _current_state == STATES.INIT:
 		_current_state = STATES.IDLE
 		can_hear = true
+		can_see = true
 	
 	elif _current_state == STATES.IDLE:
+		can_see = true
 		can_hear = true
 		if num_health_points <= 0:
 			_current_state = STATES.DECEASED
@@ -129,6 +158,7 @@ func _update_state_machine():
 			
 	elif _current_state == STATES.PATROL:
 		can_hear = true
+		can_see = true
 		if num_health_points <= 0:
 			_current_state = STATES.DECEASED
 		elif has_just_been_alerted:
@@ -138,11 +168,13 @@ func _update_state_machine():
 	
 	elif _current_state == STATES.COMBAT:
 		can_hear = true
+		can_see = true
 		if num_health_points <= 0:
 			_current_state = STATES.DECEASED
 	
 	elif _current_state == STATES.DECEASED:
 		can_hear = false
+		can_see = false
 
 	self.has_just_been_alerted = false
 	self.has_just_reached_destination = false
