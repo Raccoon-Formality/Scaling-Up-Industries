@@ -8,6 +8,8 @@ onready var player = get_tree().get_nodes_in_group("Player")[0]
 # changes music back, and captures cursor.
 func exitMenu():
 	hide()
+	player.get_node("Pivot/Camera/ViewportContainer").show()
+	player.get_node("game_ui").show()
 	player.paused = false
 	player.set_physics_process(true)
 	player.set_process(true)

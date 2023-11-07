@@ -170,7 +170,7 @@ mouse_filter = 2
 [node name="ColorRect" type="ColorRect" parent="pause_menu/Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.498039 )
+color = Color( 0, 0, 0, 0.729412 )
 
 [node name="Label" type="Label" parent="pause_menu/Control"]
 margin_left = 48.0

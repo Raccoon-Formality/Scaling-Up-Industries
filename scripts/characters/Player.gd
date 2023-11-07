@@ -191,7 +191,8 @@ func pause():
 	paused = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	$pause_menu.show()
-	
+	$Pivot/Camera/ViewportContainer.hide()
+	$game_ui.hide()
 	Global.currentSong = Global.musicDict["pause"]
 	set_physics_process(false)
 	set_process(false)
@@ -200,6 +201,7 @@ func death():
 	paused = true
 	dead = true
 	$game_ui.hide()
+	$Pivot/Camera/ViewportContainer.hide()
 	$Pivot.translation = Vector3(0,1,0)
 	camera.translation = Vector3.ZERO
 	camera.rotation_degrees.z = -90

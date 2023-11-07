@@ -3263,12 +3263,12 @@ bones/62/enabled = true
 bones/62/bound_children = [  ]
 
 [node name="armMesh" type="MeshInstance" parent="armRig/Skeleton"]
-layers = 3
+layers = 2
 mesh = SubResource( 1 )
 skin = SubResource( 2 )
 
 [node name="gun" type="MeshInstance" parent="armRig/Skeleton"]
-layers = 3
+layers = 2
 mesh = SubResource( 3 )
 skin = SubResource( 2 )
 
