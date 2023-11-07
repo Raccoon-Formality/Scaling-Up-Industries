@@ -13,6 +13,8 @@ onready var gunCrosshair = $game_ui/Control/Label
 onready var ammoLabel = $game_ui/Control/AmmoLabel
 onready var gunParticles = preload("res://scenes/particles/GunInpactParticles.tscn")
 
+signal gun_fired
+
 # gets particle holder node
 onready var ParticleHolder = get_tree().get_nodes_in_group("ParticleHolder")[0]
 
@@ -129,7 +131,7 @@ func shoot(weapon):
 		# hit enemy
 		# TODO: make particles local if hit enemy and make the particles blood
 		if raycast.is_colliding() and ("num_health_points" in raycast.get_collider()): # "num_health_points" is composition over inheritance
-				raycast.get_collider().inflict_damage()
+				raycast.get_collider().recieve_damage()
 		
 		# if weapon is fist, punch
 		# just realized the argument weapon isn't used, oops
@@ -155,6 +157,8 @@ func shoot(weapon):
 				# play sound at random pitch
 				$shootSound.pitch_scale = rand_range(0.9,1.1)
 				$shootSound.play()
+				emit_signal("gun_fired")
+				
 				# I don't know why this is here and i'm scared to remove it
 				$Pivot/Camera/gunarmz/AnimationPlayer.play("hipFire")
 				# spawn particles

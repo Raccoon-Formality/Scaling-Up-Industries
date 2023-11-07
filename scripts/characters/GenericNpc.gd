@@ -6,6 +6,7 @@ const PROJECTILE_SPEED = 12
 const TURN_SPEED = 0.1
 const RUN_SPEED = 5
 const PROJECTILE_RES_PATH = "res://scenes/characters/Projectile.tscn"
+const MAXIMUM_EARSHOT_DISTANCE = 20
 
 var _previous_state
 var _current_state
@@ -16,6 +17,9 @@ enum STATES {
 	COMBAT,
 	DECEASED
 }
+# state outputs. TODO: put in class to instantiate each state and reference each state as a static variable
+var can_hear
+var can_see
 
 # state machine inputs
 var has_just_been_alerted = false
@@ -27,7 +31,7 @@ var path = []
 
 onready var player_node = get_node("../Player")# TODO: better way of getting player
 var _enemy_position = null
-var num_health_points
+var num_health_points #TODO: ensure anything with num_health_points must have recieve damage method
 
 
 func _ready():
@@ -45,6 +49,8 @@ func _ready():
 func _physics_process(_delta):
 	
 	_update_state_machine()
+	
+	_register_listener_for_player_gun_sounds()
 
 	if _previous_state == STATES.COMBAT and _current_state != STATES.COMBAT:
 		_exit_combat()
@@ -66,7 +72,15 @@ func _physics_process(_delta):
 	elif _current_state == STATES.DECEASED:
 		if _previous_state != STATES.DECEASED:
 			_change_mesh_color(Color(0,0,0,1))
+	
+	
+func _register_listener_for_player_gun_sounds():
+	player_node.connect("gun_fired", self, "_react_to_gun_sound_if_close")
+	
 
+func _react_to_gun_sound_if_close():
+	if can_hear and Vector3(global_transform.origin - player_node.global_transform.origin).length() <= MAXIMUM_EARSHOT_DISTANCE:
+		_alert_the_npc(player_node.global_transform.origin)
 
 func _enter_combat():
 	if not $AttackTimer.is_connected("timeout", self, "_fire_projectile"):
@@ -104,14 +118,17 @@ func _update_state_machine():
 	
 	if _current_state == STATES.INIT:
 		_current_state = STATES.IDLE
+		can_hear = true
 	
 	elif _current_state == STATES.IDLE:
+		can_hear = true
 		if num_health_points <= 0:
 			_current_state = STATES.DECEASED
 		elif has_just_been_alerted:
 			_current_state = STATES.COMBAT
 			
 	elif _current_state == STATES.PATROL:
+		can_hear = true
 		if num_health_points <= 0:
 			_current_state = STATES.DECEASED
 		elif has_just_been_alerted:
@@ -120,11 +137,12 @@ func _update_state_machine():
 			_current_state = STATES.IDLE
 	
 	elif _current_state == STATES.COMBAT:
+		can_hear = true
 		if num_health_points <= 0:
 			_current_state = STATES.DECEASED
 	
 	elif _current_state == STATES.DECEASED:
-		pass
+		can_hear = false
 
 	self.has_just_been_alerted = false
 	self.has_just_reached_destination = false
@@ -141,7 +159,7 @@ func _move_toward_position(target_pos):
 	var _move_result = move_and_slide(velocity, Vector3.UP)
 
 
-func inflict_damage():
+func recieve_damage():
 	if _current_state != STATES.DECEASED:
 		num_health_points -= 3		
 		if _current_state != STATES.COMBAT: #TODO: make independent of current state. timing could be off?
