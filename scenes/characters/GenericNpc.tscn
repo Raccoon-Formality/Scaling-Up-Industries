@@ -54,12 +54,12 @@ autostart = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 
 [node name="Cone" parent="VisionArea" instance=ExtResource( 2 )]
-transform = Transform( 25, 0, 0, 0, -6.55671e-07, -25, 0, 15, -1.09278e-06, 0, 0.5, -15.25 )
+transform = Transform( 30, 0, 0, 0, -4.80825e-07, -30, 0, 11, -1.31134e-06, 0, 0.5, -15.25 )
 visible = false
 skeleton = NodePath("../..")
 
 [node name="CollisionShape" type="CollisionShape" parent="VisionArea"]
-transform = Transform( 25, 0, 0, 0, -6.55671e-07, -25, 0, 15, -1.09278e-06, 0, 0.5, -15.25 )
+transform = Transform( 40, 0, 0, 0, -5.24537e-07, -6, 0, 12, -2.62268e-07, 0, 0.5, -12.25 )
 shape = SubResource( 7 )
 
 [node name="VisionRaycast" type="RayCast" parent="."]

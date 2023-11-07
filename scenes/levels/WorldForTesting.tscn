@@ -16,7 +16,7 @@ polygons = [ PoolIntArray( 3, 2, 0 ), PoolIntArray( 0, 2, 1 ), PoolIntArray( 7, 
 [node name="WorldEnvironment" parent="." instance=ExtResource( 2 )]
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
-transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 13.396, 0, 18.131 )
+transform = Transform( -0.0871559, 0, -0.996195, 0, 1, 0, 0.996195, 0, -0.0871559, 1.928, 0, -2.089 )
 script = ExtResource( 3 )
 
 [node name="holders" parent="." instance=ExtResource( 1 )]
@@ -29,6 +29,12 @@ directional_shadow_mode = 0
 
 [node name="GenericNpc" parent="." instance=ExtResource( 6 )]
 transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 18, 0, 34 )
+
+[node name="GenericNpc2" parent="." instance=ExtResource( 6 )]
+transform = Transform( 0.292372, 0, -0.956305, 0, 1, 0, 0.956305, 0, 0.292372, 15, 0, 21 )
+
+[node name="GenericNpc3" parent="." instance=ExtResource( 6 )]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 17, 0, 5 )
 
 [node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 26 )

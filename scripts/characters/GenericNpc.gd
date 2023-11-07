@@ -1,14 +1,19 @@
 
 class_name GenericNpc extends KinematicBody
 
-const STARTING_HEALTH_POINTS = 10
-const PROJECTILE_SPEED = 20
-const TURN_SPEED = 0.2
-const RUN_SPEED = 3
 const PROJECTILE_RES_PATH = "res://scenes/characters/Projectile.tscn"
-const MAXIMUM_EARSHOT_DISTANCE = 20
-
 const HEIGHT_OF_PLAYER = Vector3(0, 1.5, 0)
+
+export var STARTING_HEALTH_POINTS = 5
+export var PROJECTILE_SPEED = 20
+export var TURN_SPEED = 0.2
+export var RUN_SPEED = 3
+export var MAXIMUM_EARSHOT_DISTANCE = 20
+
+onready var player_node = get_node("../Player")# TODO: better way of getting player
+
+var navAgent : NavigationAgent
+var path = []
 
 var _previous_state
 var _current_state
@@ -28,13 +33,8 @@ var is_alerted
 var has_just_been_alerted = false
 var has_just_reached_destination = false
 
-# navigation. how-to, see the commit at 11/5
-var navAgent : NavigationAgent
-var path = []
-
-onready var player_node = get_node("../Player")# TODO: better way of getting player
-var _enemy_position = null
 var num_health_points #TODO: ensure anything with num_health_points must have recieve damage method
+var _enemy_position = null
 
 
 func _ready():
