@@ -14,6 +14,8 @@ onready var player_node = get_node("../Player")# TODO: better way of getting pla
 
 var navAgent : NavigationAgent
 var path = []
+var waypoint_graph
+var waypoint_index = 0
 
 var _previous_state
 var _current_state
@@ -38,30 +40,82 @@ var _enemy_position = null
 
 
 func _ready():
-	navAgent = $NavigationAgent
-	 
 	# for testing
 	$StateIndicatorTimer.wait_time = 0.25
-	navAgent = $NavigationAgent
 	
+	navAgent = $NavigationAgent
+	waypoint_graph = get_node("WaypointGraph")
+	if waypoint_graph: 
+		_add_patrol_points_to_nav_path()
+		
 	_current_state = STATES.INIT
 	num_health_points = STARTING_HEALTH_POINTS
 	_update_state_machine()
 	
 	_register_listener_for_player_gun_sounds()
-
+	
 
 func _physics_process(_delta):
 	_update_state_machine()
+	_run_state_exit_events()
+	_run_state_dependent_processes()
 
-	# state exit events
-	if _previous_state == STATES.COMBAT and _current_state != STATES.COMBAT:
-		_exit_combat()
-		_un_alert_the_npc()
-	elif _previous_state != STATES.COMBAT and _current_state == STATES.COMBAT:
-		_enter_combat()
 
-	# state dependent processes
+func _add_patrol_points_to_nav_path():
+	waypoint_index = 0
+	_add_next_waypoint_to_nav()
+
+
+func _add_next_waypoint_to_nav():
+	navAgent.set_target_location(waypoint_graph.waypoint_list[waypoint_index].translation)
+	waypoint_index += 1
+	# reset waypoint index so it loops through the waypoints
+	if waypoint_index >= waypoint_graph.waypoint_list.size():
+		waypoint_index = 0
+
+func _update_state_machine():
+	_previous_state = _current_state
+	
+	if _current_state == STATES.INIT:
+		_current_state = STATES.IDLE
+		can_hear = true
+		can_see = true
+	
+	elif _current_state == STATES.IDLE:
+		can_see = true
+		can_hear = true
+		if num_health_points <= 0:
+			_current_state = STATES.DECEASED
+		elif has_just_been_alerted:
+			_current_state = STATES.COMBAT
+		elif navAgent.get_target_location():
+			_current_state = STATES.PATROL
+		
+	elif _current_state == STATES.PATROL:
+		can_hear = true
+		can_see = true
+		if num_health_points <= 0:
+			_current_state = STATES.DECEASED
+		elif has_just_been_alerted:
+			_current_state = STATES.COMBAT
+		elif has_just_reached_destination:
+			_add_next_waypoint_to_nav()
+	
+	elif _current_state == STATES.COMBAT:
+		can_hear = true
+		can_see = true
+		if num_health_points <= 0:
+			_current_state = STATES.DECEASED
+	
+	elif _current_state == STATES.DECEASED:
+		can_hear = false
+		can_see = false
+
+	self.has_just_been_alerted = false
+	self.has_just_reached_destination = false
+
+
+func _run_state_dependent_processes():
 	if _current_state == STATES.IDLE:
 		_notice_the_player_if_in_los()
 	elif _current_state == STATES.PATROL:
@@ -80,6 +134,14 @@ func _physics_process(_delta):
 		if _previous_state != STATES.DECEASED:
 			_unregister_listener_for_player_gun_sounds()
 			_change_mesh_color(Color(0,0,0,1))
+
+
+func _run_state_exit_events():
+	if _previous_state == STATES.COMBAT and _current_state != STATES.COMBAT:
+		_exit_combat()
+		_un_alert_the_npc()
+	elif _previous_state != STATES.COMBAT and _current_state == STATES.COMBAT:
+		_enter_combat()
 	
 
 func _notice_the_player_if_in_los():
@@ -100,7 +162,6 @@ func player_is_visible():
 				
 				if $VisionRaycast.is_colliding():
 					var collider = $VisionRaycast.get_collider()
-					print("debug " + collider.name)
 					if collider.name == "Player":
 						if _enemy_position == null:
 							_enemy_position = player_node.translation
@@ -157,46 +218,6 @@ func _fire_projectile():
 	else:
 		direction = direction.normalized()
 		projectile.apply_impulse(Vector3(), direction * PROJECTILE_SPEED)
-
-
-func _update_state_machine():
-	_previous_state = _current_state
-	
-	if _current_state == STATES.INIT:
-		_current_state = STATES.IDLE
-		can_hear = true
-		can_see = true
-	
-	elif _current_state == STATES.IDLE:
-		can_see = true
-		can_hear = true
-		if num_health_points <= 0:
-			_current_state = STATES.DECEASED
-		elif has_just_been_alerted:
-			_current_state = STATES.COMBAT
-			
-	elif _current_state == STATES.PATROL:
-		can_hear = true
-		can_see = true
-		if num_health_points <= 0:
-			_current_state = STATES.DECEASED
-		elif has_just_been_alerted:
-			_current_state = STATES.COMBAT
-		elif has_just_reached_destination:
-			_current_state = STATES.IDLE
-	
-	elif _current_state == STATES.COMBAT:
-		can_hear = true
-		can_see = true
-		if num_health_points <= 0:
-			_current_state = STATES.DECEASED
-	
-	elif _current_state == STATES.DECEASED:
-		can_hear = false
-		can_see = false
-
-	self.has_just_been_alerted = false
-	self.has_just_reached_destination = false
 	
 
 func _move_toward_position(target_pos):
