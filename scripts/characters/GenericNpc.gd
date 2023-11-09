@@ -6,7 +6,7 @@ const HEIGHT_OF_PLAYER = Vector3(0, 1.5, 0)
 
 export var STARTING_HEALTH_POINTS = 5
 export var PROJECTILE_SPEED = 20
-export var TURN_SPEED = 0.2
+export var TURN_SPEED = 0.1
 export var RUN_SPEED = 3
 export var MAXIMUM_EARSHOT_DISTANCE = 20
 
@@ -119,6 +119,7 @@ func _run_state_dependent_processes():
 	if _current_state == STATES.IDLE:
 		_notice_the_player_if_in_los()
 	elif _current_state == STATES.PATROL:
+		turn_towards_target(navAgent.get_next_location())	
 		_move_toward_position(navAgent.get_next_location())
 		_notice_the_player_if_in_los()
 	elif _current_state == STATES.COMBAT:
@@ -192,7 +193,7 @@ func _enter_combat():
 	
 
 func turn_towards_target(target_pos):
-	$Body/FrontOfEyes.look_at(_enemy_position, Vector3.UP)
+	$Body/FrontOfEyes.look_at(target_pos, Vector3.UP)
 	rotate_y(($Body/FrontOfEyes.rotation.y * TURN_SPEED)) 
 	
 	

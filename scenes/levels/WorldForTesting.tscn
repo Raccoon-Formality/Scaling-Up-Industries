@@ -63,3 +63,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, 26 )
 
 [node name="Waypoint4" parent="GenericNpc2/WaypointGraph" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9859, 0, 26.0219 )
+
+[node name="GenericNpc3" parent="." instance=ExtResource( 6 )]
+transform = Transform( -0.71934, 0, -0.694659, 0, 1, 0, 0.694659, 0, -0.71934, 18, 0, 21 )
