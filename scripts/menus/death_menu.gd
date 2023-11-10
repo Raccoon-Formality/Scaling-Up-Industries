@@ -22,4 +22,4 @@ func _on_yesButton_pressed():
 
 
 func _on_noButton_pressed():
-	get_tree().change_scene("res://scenes/ui/menus/Main_Menu.tscn")
+	get_tree().change_scene("res://scenes/starting_level.tscn")

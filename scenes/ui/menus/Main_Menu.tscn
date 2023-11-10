@@ -1,8 +1,40 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/fonts/KrunchBold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scripts/menus/Main_Menu.gd" type="Script" id=2]
 [ext_resource path="res://scenes/ui/audioSliders.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scripts/menus/ButtonScript.gd" type="Script" id=4]
+[ext_resource path="res://scenes/ui/settingsPanel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/textures/SUI/logo-full.svg" type="Texture" id=6]
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+uniform float vignette_intensity = 0.4;
+uniform float vignette_opacity : hint_range(0.0, 1.0) = 0.5;
+uniform vec4 vignette_rgb : hint_color = vec4(0.0, 0.0, 0.0, 1.0);
+
+float vignette(vec2 uv){
+	uv *= 1.0 - uv.xy;
+	float vignette = uv.x * uv.y * 15.0;
+	return pow(vignette, vignette_intensity * vignette_opacity);
+}
+
+void fragment(){
+	vec4 color = texture(SCREEN_TEXTURE, SCREEN_UV);
+	vec4 text = texture(TEXTURE, UV);
+	
+	text.rgba *= (vignette_rgb.rgba);
+	text.rgba *= (1.0 - vignette(UV));
+	
+	COLOR = vec4((text.rgb)*color.rgb,text.a);
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+shader_param/vignette_intensity = 0.4
+shader_param/vignette_opacity = 0.5
+shader_param/vignette_rgb = Color( 0, 0, 0, 1 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
@@ -13,35 +45,105 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
 
+[node name="Vignette" type="ColorRect" parent="."]
+material = SubResource( 4 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 640.0
+margin_bottom = 480.0
+color = Color( 0, 0, 0, 0.290196 )
+
+[node name="logo" type="TextureRect" parent="."]
+visible = false
+margin_left = 40.0
+margin_top = 16.0
+margin_right = 376.0
+margin_bottom = 152.0
+texture = ExtResource( 6 )
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
 [node name="title" type="Label" parent="."]
+visible = false
 margin_left = 32.0
-margin_top = 32.0
+margin_top = 48.0
 margin_right = 287.0
-margin_bottom = 103.0
+margin_bottom = 119.0
 custom_fonts/font = SubResource( 1 )
 text = "Scaling Up
 Industries"
 
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 32.0
+margin_top = 376.0
+margin_right = 256.0
+margin_bottom = 456.0
+text = "credits:
+Matthew - Engine Wrangler
+Billy - Lead Artist
+David - Lead Programmer"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
 [node name="continueButton" type="Button" parent="."]
-visible = false
-margin_left = 64.0
-margin_top = 320.0
-margin_right = 133.0
-margin_bottom = 340.0
+margin_left = 40.0
+margin_top = 168.0
+margin_right = 112.0
+margin_bottom = 192.0
 text = "Continue"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="startButton" type="Button" parent="."]
-margin_left = 64.0
-margin_top = 360.0
-margin_right = 105.0
-margin_bottom = 380.0
+margin_left = 40.0
+margin_top = 208.0
+margin_right = 88.0
+margin_bottom = 232.0
 text = "Start"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="exitButton" type="Button" parent="."]
+margin_left = 40.0
+margin_top = 328.0
+margin_right = 88.0
+margin_bottom = 352.0
+text = "Exit"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="audioSliders" parent="." instance=ExtResource( 3 )]
-margin_left = 232.0
-margin_top = 344.0
-margin_right = 560.0
-margin_bottom = 416.0
+margin_left = 296.0
+margin_top = 368.0
+margin_right = 616.0
+margin_bottom = 464.0
+rect_scale = Vector2( 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="settingsPanel" parent="." instance=ExtResource( 5 )]
+margin_left = 352.0
+margin_top = 256.0
+margin_right = -96.0
+margin_bottom = -32.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [connection signal="pressed" from="continueButton" to="." method="_on_continueButton_pressed"]
 [connection signal="pressed" from="startButton" to="." method="_on_startButton_pressed"]
+[connection signal="pressed" from="exitButton" to="." method="_on_exitButton_pressed"]

@@ -1,5 +1,9 @@
 extends Node
 
+
+var mouse_sensitivity = 0.002  # radians/pixel
+var controller_sensitivity = 0.06  # radians/pixel
+
 # levels load
 var levelsDict = {
 	"level1": preload("res://scenes/levels/level1/World.tscn"),
@@ -24,13 +28,14 @@ var weaponsDict = {
 				"damage": 25,
 				"raycastLength": 25}, 
 }
+var weaponList = ["pistol"]
 # add "fireRate": 10, to rapid weapons
 
 # music dictionary
 var musicDict = {
 	"pause": "res://assets/audio/owlSynth-mp3/pause.mp3",
 	"track1" : "res://assets/audio/owlSynth-mp3/Shooter Synthwave 1.mp3",
-	"track2" : "res://assets/audio/owlSynth-mp3/Shooter Synthwave 2.mp3",
+	"death" : "res://assets/audio/owlSynth-mp3/Shooter Synthwave 2.mp3",
 	"track3" : "res://assets/audio/owlSynth-mp3/Shooter Synthwave 3.mp3",
 	"track4" : "res://assets/audio/owlSynth-mp3/Shooter Synthwave 4.mp3",
 	"track5" : "res://assets/audio/owlSynth-mp3/Shooter Synthwave 5.mp3",
@@ -40,7 +45,7 @@ var musicDict = {
 }
 
 # variables for music manager
-var currentSong = musicDict["track3"]
+var currentSong = musicDict["track1"]
 var previousSong = null
 var previousSongPoint = 0.0
 
@@ -57,7 +62,7 @@ var health = 100
 var currentLoad = null
 
 func resetVars():
-	currentSong = musicDict["track3"]
+	currentSong = musicDict["track1"]
 	previousSong = null
 	previousSongPoint = 0.0
 	levelNumber = 0
@@ -72,8 +77,13 @@ func resetVars():
 # might have to be done per level script
 func _process(delta):
 #	print(currentLoad)
+	health = clamp(health, -1.0, 100.0)
 	if Input.is_action_just_pressed("reload"):
 		restartLevel()
+
+var fromStart = false
+var fromStartList = []
+var startMusicPos = 0.0
 
 func restartLevel():
 	if levelNumber != 0:
@@ -88,37 +98,27 @@ func save():
 	var currentLevelNumber = levelNumber
 	var currentInventory = Inventory
 	#var currentAmmo = Ammo
-	var saveDict = {
-		"save": [currentLevelNumber, currentInventory, currentSelect],
-		"settings": [
-			AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")),
-			AudioServer.get_bus_volume_db(AudioServer.get_bus_index("music")),
-			AudioServer.get_bus_volume_db(AudioServer.get_bus_index("sfx"))
-		],
-	}
+	var saveDict = [currentLevelNumber, currentInventory, currentSelect, health]
 	
 	var file = File.new()
 	file.open("user://SAVE.json", File.WRITE)
 	file.store_string(to_json(saveDict))
 	file.close()
-	print(saveDict)
+	saveSettings()
 
 func loadSave():
+	loadSettings()
 	var file = File.new()
 	if file.file_exists("user://SAVE.json"):
 		file.open("user://SAVE.json", File.READ)
 		var data = parse_json(file.get_as_text())
 		file.close()
-		if typeof(data) == TYPE_DICTIONARY:
+		if typeof(data) == TYPE_ARRAY and data.size() == 4:
 			currentLoad = data
-			var localSave = currentLoad["save"]
+			var localSave = currentLoad
 			levelNumber = localSave[0]
 			Inventory = localSave[1]
-			#currentSelect = localSave[2]
-			var localSettings =  currentLoad["settings"]
-			AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), localSettings[0])
-			AudioServer.set_bus_volume_db(AudioServer.get_bus_index("music"), localSettings[1])
-			AudioServer.set_bus_volume_db(AudioServer.get_bus_index("sfx"), localSettings[2])
+			health = localSave[3]
 		else:
 			printerr("Corrupted data!")
 			currentLoad = null
@@ -127,3 +127,41 @@ func loadSave():
 		printerr("No saved data!")
 		currentLoad = null
 
+func saveSettings():
+	var saveDict = [
+			db2linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master"))),
+			db2linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("music"))),
+			db2linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("sfx"))),
+			OS.window_fullscreen,
+			mouse_sensitivity,
+			useController
+		]
+	
+	var file = File.new()
+	file.open("user://SETTINGS.json", File.WRITE)
+	file.store_string(to_json(saveDict))
+	file.close()
+	print(saveDict)
+
+func loadSettings():
+	var file = File.new()
+	if file.file_exists("user://SETTINGS.json"):
+		file.open("user://SETTINGS.json", File.READ)
+		var data = parse_json(file.get_as_text())
+		file.close()
+		if typeof(data) == TYPE_ARRAY and data.size() == 6:
+			currentLoad = data
+			var localSettings =  currentLoad
+			AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear2db(localSettings[0]))
+			AudioServer.set_bus_volume_db(AudioServer.get_bus_index("music"), linear2db(localSettings[1]))
+			AudioServer.set_bus_volume_db(AudioServer.get_bus_index("sfx"), linear2db(localSettings[2]))
+			OS.window_fullscreen = localSettings[3]
+			mouse_sensitivity = localSettings[4]
+			useController = localSettings[5]
+		else:
+			printerr("Corrupted data!")
+			currentLoad = null
+			return null
+	else:
+		printerr("No saved data!")
+		currentLoad = null

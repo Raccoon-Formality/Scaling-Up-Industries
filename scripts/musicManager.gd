@@ -2,19 +2,28 @@ extends Spatial
 
 var song = null
 
+
 func _process(_delta):
 	#print(Global.currentSong)
-	if song != Global.currentSong:
+	if song != Global.currentSong and Global.currentSong != null:
 		var holdPoint = $track1.get_playback_position()
 		$track1.stream = load(Global.currentSong)
 		if Global.currentSong == Global.previousSong:
 			$track1.play(Global.previousSongPoint)
 		else:
-			$track1.play()
+			$track1.play(Global.startMusicPos)
+			Global.startMusicPos = 0.0
+		
+		if Global.currentSong == Global.musicDict["pause"] or Global.currentSong == Global.musicDict["death"]:
+			$track1.volume_db = linear2db(0.8)
+		else:
+			$track1.volume_db = linear2db(1.0)
 		
 		Global.previousSongPoint = holdPoint
 		Global.previousSong = song
 		song = Global.currentSong
+
+
 
 # if Global current song gets changed from local song
 	# get position of current song

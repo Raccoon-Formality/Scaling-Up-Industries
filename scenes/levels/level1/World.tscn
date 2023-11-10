@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/levels/startPos.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/assets/tilesets/tileset.tres" type="MeshLibrary" id=2]
@@ -10,11 +10,14 @@
 [ext_resource path="res://scenes/static/doorway.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/levels/endPoint.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/interactibles/ventDoor.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/interactibles/pickups/ammoPickup.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/interactibles/pickups/healthPickup.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/interactibles/pickups/keyPickup.tscn" type="PackedScene" id=13]
 
 [node name="World" type="Spatial"]
 
 [node name="startPos" parent="." instance=ExtResource( 1 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10.6037, 0, -1.86863 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10, 0, -2 )
 
 [node name="endPoint" parent="." instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18, -4, 40 )
@@ -61,6 +64,7 @@ transform = Transform( -2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, 18, -4,
 [node name="Button" parent="Interactibles" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, -3, 36 )
 node_path = NodePath("../door")
+locked = true
 
 [node name="doorway" parent="Interactibles" instance=ExtResource( 8 )]
 transform = Transform( -1.74846e-07, 0, -4, 0, 4, 0, 4, 0, -1.74846e-07, 18, 0, 15.9 )
@@ -68,9 +72,28 @@ skeleton = NodePath("../..")
 
 [node name="singleDoor" parent="Interactibles/doorway" instance=ExtResource( 7 )]
 transform = Transform( -1.09278e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.09278e-08, 0, 0, 0.25 )
+locked = true
 
 [node name="ventDoor" parent="Interactibles" instance=ExtResource( 10 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 24, -4, 27 )
+
+[node name="ammoPickup" parent="Interactibles" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.9014, 0.0400003, -2.25369 )
+spinSpeed = 5.0
+updownSpeed = 4.0
+ammoType = "pistol"
+
+[node name="healthPickup" parent="Interactibles" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.7915, 0.04, 1.62889 )
+healthAmount = 25
+
+[node name="keyPickup" parent="Interactibles" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2524, -3.96, 29.9445 )
+node_path = NodePath("../Button")
+
+[node name="keyPickup2" parent="Interactibles" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.9695, 0.0399998, 3.58742 )
+node_path = NodePath("../doorway/singleDoor")
 
 [node name="teapot" parent="." instance=ExtResource( 4 )]
 transform = Transform( 4.33013, 0, -2.5, 0, 5, 0, 2.5, 0, 4.33013, 38, -7, 4 )

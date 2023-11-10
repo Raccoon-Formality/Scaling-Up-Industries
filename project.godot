@@ -26,12 +26,20 @@ _global_script_class_icons={
 
 [application]
 
-config/name="GameOff2023"
-run/main_scene="res://scenes/ui/menus/Main_Menu.tscn"
+config/name="Scaling Up Industries"
+run/main_scene="res://scenes/starting_level.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="ScalingUpIndustries"
+boot_splash/image="res://assets/splash.png"
+boot_splash/fullsize=false
+boot_splash/bg_color=Color( 1, 1, 1, 1 )
+config/icon="res://assets/icon.PNG"
+config/windows_native_icon="res://assets/icon.ico"
 
 [autoload]
 
 Global="*res://Global.gd"
+ButtonSounds="*res://scenes/ui/ButtonSounds.tscn"
 
 [display]
 
@@ -101,6 +109,7 @@ mouse_click={
 crouch={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777237,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":6,"pressure":0.0,"pressed":false,"script":null)
  ]
 }
 look_up={
@@ -132,11 +141,14 @@ interact={
 changeWeapon={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777218,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":2,"pressure":0.0,"pressed":false,"script":null)
  ]
 }
 pause={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":80,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":96,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":11,"pressure":0.0,"pressed":false,"script":null)
  ]
 }
 escape={
