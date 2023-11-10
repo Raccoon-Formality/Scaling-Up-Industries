@@ -46,6 +46,7 @@ margin_top = 72.0
 margin_right = 147.0
 margin_bottom = 96.0
 text = "Pixelated Graphics"
+script = ExtResource( 2 )
 
 [connection signal="toggled" from="fullscreenCheck" to="." method="_on_fullscreenCheck_toggled"]
 [connection signal="toggled" from="usecontrollerCheck" to="." method="_on_usecontrollerCheck_toggled"]

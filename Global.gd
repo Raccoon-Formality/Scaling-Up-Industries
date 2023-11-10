@@ -134,7 +134,8 @@ func saveSettings():
 			db2linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("sfx"))),
 			OS.window_fullscreen,
 			mouse_sensitivity,
-			useController
+			useController,
+			!get_tree().root.size_override_stretch
 		]
 	
 	var file = File.new()
@@ -149,7 +150,7 @@ func loadSettings():
 		file.open("user://SETTINGS.json", File.READ)
 		var data = parse_json(file.get_as_text())
 		file.close()
-		if typeof(data) == TYPE_ARRAY and data.size() == 6:
+		if typeof(data) == TYPE_ARRAY and data.size() == 7:
 			currentLoad = data
 			var localSettings =  currentLoad
 			AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear2db(localSettings[0]))
@@ -158,6 +159,7 @@ func loadSettings():
 			OS.window_fullscreen = localSettings[3]
 			mouse_sensitivity = localSettings[4]
 			useController = localSettings[5]
+			setPixelation(localSettings[6])
 		else:
 			printerr("Corrupted data!")
 			currentLoad = null
@@ -165,3 +167,9 @@ func loadSettings():
 	else:
 		printerr("No saved data!")
 		currentLoad = null
+
+func setPixelation(bowling):
+	if bowling:
+		get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_VIEWPORT,  SceneTree.STRETCH_ASPECT_KEEP, Vector2(160,120),0.25)
+	else:
+		get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_2D,  SceneTree.STRETCH_ASPECT_KEEP, Vector2(640,480),1)

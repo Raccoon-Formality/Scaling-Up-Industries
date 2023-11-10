@@ -46,12 +46,14 @@ anchor_bottom = 1.0
 script = ExtResource( 2 )
 
 [node name="Vignette" type="ColorRect" parent="."]
+visible = false
 material = SubResource( 4 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 margin_right = 640.0
 margin_bottom = 480.0
 color = Color( 0, 0, 0, 0.290196 )

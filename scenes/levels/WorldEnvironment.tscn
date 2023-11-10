@@ -19,6 +19,9 @@ fog_sun_color = Color( 1, 1, 1, 1 )
 fog_depth_begin = 2.0
 fog_depth_end = 50.0
 fog_depth_curve = 0.406126
+adjustment_brightness = 1.39
+adjustment_contrast = 0.91
+adjustment_saturation = 0.7
 
 [node name="WorldEnvironment" type="WorldEnvironment"]
 environment = SubResource( 4 )

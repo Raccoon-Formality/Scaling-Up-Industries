@@ -52,8 +52,9 @@ albedo_color = Color( 0.192157, 0.192157, 0.192157, 1 )
 
 [sub_resource type="SpatialMaterial" id=8]
 albedo_texture = ExtResource( 8 )
-uv1_scale = Vector3( -1, 0.5, 1 )
+uv1_scale = Vector3( -1, 0.5, 0 )
 uv1_offset = Vector3( 0, 0.25, 0 )
+uv2_scale = Vector3( 0, 0, 0 )
 
 [node name="World" type="Spatial"]
 script = ExtResource( 5 )
@@ -140,9 +141,9 @@ height = 3.0
 material = SubResource( 7 )
 
 [node name="CSGBox" type="CSGBox" parent="moving/billboard"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.4, 0.1 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19209e-07, 3.4, 0.1 )
 width = 4.0
-depth = 0.2
+depth = 0.1
 material = SubResource( 8 )
 
 [node name="trainSound" type="AudioStreamPlayer" parent="."]

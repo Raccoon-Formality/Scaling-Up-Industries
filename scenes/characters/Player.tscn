@@ -117,6 +117,7 @@ stretch = true
 
 [node name="Viewport" type="Viewport" parent="Pivot/Camera/ViewportContainer"]
 size = Vector2( 640, 480 )
+size_override_stretch = true
 transparent_bg = true
 handle_input_locally = false
 render_target_update_mode = 3
@@ -237,9 +238,9 @@ rect_scale = Vector2( 1, 1 )
 
 [node name="settingsPanel" parent="pause_menu/Control" instance=ExtResource( 15 )]
 margin_left = 256.0
-margin_top = 256.0
+margin_top = 248.0
 margin_right = -192.0
-margin_bottom = -32.0
+margin_bottom = -40.0
 
 [node name="death_menu" type="CanvasLayer" parent="."]
 visible = false
