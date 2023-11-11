@@ -5,7 +5,7 @@ const PROJECTILE_RES_PATH = "res://scenes/characters/Projectile.tscn"
 const HEIGHT_OF_PLAYER = Vector3(0, 1.5, 0)
 
 export var STARTING_HEALTH_POINTS = 5
-export var PROJECTILE_SPEED = 20
+export var PROJECTILE_SPEED = 200
 export var TURN_SPEED = 0.1
 export var RUN_SPEED = 3
 export var MAXIMUM_EARSHOT_DISTANCE = 20
@@ -207,9 +207,10 @@ func attack():
 # This method only fires at the player. can make a class-scope list or something to be able to fire at other targets
 func _fire_projectile():
 	self._enemy_position = player_node.translation
+	
 	var projectile = preload(PROJECTILE_RES_PATH).instance()
 	get_parent().add_child(projectile)
-	projectile.global_translation = translation + Vector3(0, 1.5, 0)
+	projectile.global_translation = $BulletSpawnPoint.global_translation
 
 	var direction = global_transform.origin.direction_to(self._enemy_position)
 	if (global_transform.origin.direction_to(self._enemy_position) == Vector3.ZERO):

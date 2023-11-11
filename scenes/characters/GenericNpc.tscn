@@ -70,3 +70,6 @@ enabled = true
 cast_to = Vector3( 0, -1, -32 )
 collision_mask = 3
 debug_shape_custom_color = Color( 0.737255, 0, 0, 1 )
+
+[node name="BulletSpawnPoint" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 1.25, -1 )
