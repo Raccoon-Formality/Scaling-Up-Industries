@@ -11,6 +11,8 @@ var waypoint_list = []
 # 4. The NPC has a waypoint graph variable. Assign this to
 #  		the waypoint graph for the NPC that you want to patrol
 #   	the waypoint 
+# 5. Place the NPC, the waypointgraph node, and the waypoints
+#	    near each other.
 func _ready():
 	init_waypoint_list()
 
