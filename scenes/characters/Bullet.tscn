@@ -3,16 +3,18 @@
 [ext_resource path="res://scenes/characters/Projectile.gd" type="Script" id=1]
 
 [sub_resource type="CapsuleShape" id=7]
-radius = 0.1
+radius = 0.02
 height = 0.1
 
 [sub_resource type="SpatialMaterial" id=8]
-albedo_color = Color( 0.843137, 0.470588, 0, 1 )
+albedo_color = Color( 0.694118, 0.694118, 0.694118, 1 )
 
 [sub_resource type="CapsuleMesh" id=9]
 material = SubResource( 8 )
-radius = 0.1
+radius = 0.02
 mid_height = 0.1
+radial_segments = 8
+rings = 1
 
 [node name="Projectile" type="RigidBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -1 )

@@ -47,7 +47,7 @@ shape = SubResource( 1 )
 wait_time = 0.5
 
 [node name="AttackTimer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 0.3
 autostart = true
 
 [node name="PatrolTimer" type="Timer" parent="."]

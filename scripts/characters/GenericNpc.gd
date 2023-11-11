@@ -1,7 +1,7 @@
 
 class_name GenericNpc extends KinematicBody
 
-const PROJECTILE_RES_PATH = "res://scenes/characters/Projectile.tscn"
+const BULLET_RES_PATH = "res://scenes/characters/Bullet.tscn"
 const HEIGHT_OF_PLAYER = Vector3(0, 1.5, 0)
 
 export var STARTING_HEALTH_POINTS = 5
@@ -206,18 +206,23 @@ func attack():
 
 # This method only fires at the player. can make a class-scope list or something to be able to fire at other targets
 func _fire_projectile():
-	self._enemy_position = player_node.translation
+	self._enemy_position = player_node.translation + HEIGHT_OF_PLAYER
 	
-	var projectile = preload(PROJECTILE_RES_PATH).instance()
-	get_parent().add_child(projectile)
-	projectile.global_translation = $BulletSpawnPoint.global_translation
+	var bullet = preload(BULLET_RES_PATH).instance()
+	get_parent().add_child(bullet)
+	bullet.global_translation = $BulletSpawnPoint.global_translation
 
-	var direction = global_transform.origin.direction_to(self._enemy_position)
-	if (global_transform.origin.direction_to(self._enemy_position) == Vector3.ZERO):
+	var direction = bullet.global_transform.origin.direction_to(self._enemy_position)
+	if (bullet.global_transform.origin.direction_to(self._enemy_position) == Vector3.ZERO):
 		print("Error, the distance between the target and the originator/NPC is zero")
 	else:
 		direction = direction.normalized()
-		projectile.apply_impulse(Vector3(), direction * PROJECTILE_SPEED)
+
+		var direction_from_bullet_spawn_point = $BulletSpawnPoint.global_translation.direction_to(self._enemy_position).normalized()
+		var xy_angle = atan2(direction.x, direction.z)
+		bullet.rotate_y(xy_angle + 0.1)
+		
+		bullet.apply_impulse(Vector3(), direction * PROJECTILE_SPEED)
 	
 
 func _on_to_next_destination():
