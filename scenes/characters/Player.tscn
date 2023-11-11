@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://scripts/characters/Player.gd" type="Script" id=1]
 [ext_resource path="res://scenes/characters/gunarmz.tscn" type="PackedScene" id=2]
@@ -13,11 +13,13 @@
 [ext_resource path="res://assets/audio/jump.ogg" type="AudioStream" id=11]
 [ext_resource path="res://assets/audio/hurt.ogg" type="AudioStream" id=12]
 [ext_resource path="res://scripts/menus/death_menu.gd" type="Script" id=13]
+[ext_resource path="res://scripts/menus/ButtonScript.gd" type="Script" id=14]
+[ext_resource path="res://scenes/ui/settingsPanel.tscn" type="PackedScene" id=15]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
 
-[sub_resource type="Shader" id=3]
+[sub_resource type="Shader" id=8]
 code = "shader_type canvas_item;
 
 uniform float vignette_intensity = 0.4;
@@ -41,7 +43,7 @@ void fragment(){
 }"
 
 [sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 3 )
+shader = SubResource( 8 )
 shader_param/vignette_intensity = 0.4
 shader_param/vignette_opacity = 0.5
 shader_param/vignette_rgb = Color( 0, 0, 0, 1 )
@@ -57,9 +59,26 @@ bg_color = Color( 1, 0, 0, 1 )
 size = 36
 font_data = ExtResource( 4 )
 
+[sub_resource type="InputEventJoypadButton" id=9]
+button_index = 11
+
+[sub_resource type="ShortCut" id=13]
+shortcut = SubResource( 9 )
+
 [sub_resource type="DynamicFont" id=7]
 size = 86
 font_data = ExtResource( 4 )
+
+[sub_resource type="InputEventJoypadButton" id=14]
+
+[sub_resource type="ShortCut" id=11]
+shortcut = SubResource( 14 )
+
+[sub_resource type="InputEventJoypadButton" id=15]
+button_index = 2
+
+[sub_resource type="ShortCut" id=12]
+shortcut = SubResource( 15 )
 
 [node name="Player" type="KinematicBody" groups=["Player"]]
 collision_layer = 2
@@ -94,9 +113,11 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.1, -
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
+stretch = true
 
 [node name="Viewport" type="Viewport" parent="Pivot/Camera/ViewportContainer"]
 size = Vector2( 640, 480 )
+size_override_stretch = true
 transparent_bg = true
 handle_input_locally = false
 render_target_update_mode = 3
@@ -107,9 +128,14 @@ cull_mask = 2
 current = true
 far = 8192.0
 
-[node name="Raycast" type="RayCast" parent="Pivot"]
+[node name="gunRaycast" type="RayCast" parent="Pivot"]
 enabled = true
 cast_to = Vector3( 0, 0, -25 )
+collision_mask = 15
+
+[node name="interRaycast" type="RayCast" parent="Pivot"]
+enabled = true
+cast_to = Vector3( 0, 0, -10 )
 collision_mask = 15
 
 [node name="flashLight" type="SpotLight" parent="Pivot"]
@@ -189,6 +215,7 @@ margin_right = 101.0
 margin_bottom = -36.0
 mouse_default_cursor_shape = 2
 text = "quit"
+script = ExtResource( 14 )
 
 [node name="ContinueButton" type="Button" parent="pause_menu/Control"]
 anchor_top = 1.0
@@ -198,13 +225,22 @@ margin_top = -96.0
 margin_right = 132.0
 margin_bottom = -76.0
 mouse_default_cursor_shape = 2
+shortcut = SubResource( 13 )
 text = "continue"
+script = ExtResource( 14 )
 
 [node name="audioSliders" parent="pause_menu/Control" instance=ExtResource( 6 )]
-margin_left = 224.0
-margin_top = 360.0
-margin_right = 552.0
-margin_bottom = 432.0
+margin_left = 248.0
+margin_top = 352.0
+margin_right = 576.0
+margin_bottom = 448.0
+rect_scale = Vector2( 1, 1 )
+
+[node name="settingsPanel" parent="pause_menu/Control" instance=ExtResource( 15 )]
+margin_left = 256.0
+margin_top = 248.0
+margin_right = -192.0
+margin_bottom = -40.0
 
 [node name="death_menu" type="CanvasLayer" parent="."]
 visible = false
@@ -244,14 +280,18 @@ margin_left = 192.0
 margin_top = 360.0
 margin_right = 226.0
 margin_bottom = 380.0
+shortcut = SubResource( 11 )
 text = "yes"
+script = ExtResource( 14 )
 
 [node name="noButton" type="Button" parent="death_menu/Control"]
 margin_left = 192.0
 margin_top = 392.0
 margin_right = 226.0
 margin_bottom = 412.0
+shortcut = SubResource( 12 )
 text = "no"
+script = ExtResource( 14 )
 
 [node name="levelLabel" type="Label" parent="death_menu/Control"]
 margin_left = 256.0

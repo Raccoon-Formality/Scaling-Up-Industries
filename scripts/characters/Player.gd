@@ -4,7 +4,8 @@ extends KinematicBody
 onready var camera = $Pivot/Camera
 onready var guncamera = $Pivot/Camera/ViewportContainer/Viewport/GunCam
 onready var collider = $PlayerCollider
-onready var raycast = $Pivot/Raycast
+onready var raycast = $Pivot/gunRaycast
+onready var altRaycast = $Pivot/interRaycast
 onready var headRay = $headCheck
 
 # get gun nodes and particles
@@ -36,16 +37,14 @@ var jump_force = 10
 var walk_speed = 6
 var crouch_speed = 2
 var speed = walk_speed # current speed
-var mouse_sensitivity = 0.002  # radians/pixel
 var footstepScale = 1
 # controller input still not fully working
-var controller_sensitivity = 0.06  # radians/pixel
 var paused = false
 var crouching = false
 var dead = false
 var velocity = Vector3()
 var lerp_velocity = Vector3()
-var health = 100
+#var health = 100
 
 # what weapon is currently selected
 var handItem = "fists"
@@ -163,7 +162,6 @@ func shoot(weapon):
 				spawn_particles(gunParticles, raycast.get_collider(), raycast.get_collision_point(), raycast.get_collision_normal(), false)
 				# remove one ammo and update ammo label
 				Global.Inventory[Global.currentSelect][1] -= 1
-				ammoLabel.text = str(Global.Inventory[Global.currentSelect][1])
 			# if no ammo, play shoot animation with empy gun sound
 			else:
 				gunAnimationTree["parameters/conditions/shoot"] = true
@@ -200,6 +198,9 @@ func pause():
 func death():
 	paused = true
 	dead = true
+	if crouching:
+		uncrouch()
+	Global.currentSong = Global.musicDict["death"]
 	$game_ui.hide()
 	$Pivot/Camera/ViewportContainer.hide()
 	$Pivot.translation = Vector3(0,1,0)
@@ -212,8 +213,8 @@ func death():
 func damage(amount):
 	#hurtSound.pitch_scale = rand_range(0.6,0.8)
 	hurtSound.play()
-	health -= amount
-	if health <= 0.0:
+	Global.health -= amount
+	if Global.health <= 0.0:
 		death()
 	vignette.set_shader_param("vignette_rgb",Color(255,0,0))
 	screenshake(15,3)
@@ -226,10 +227,13 @@ func screenshake(amount, amp):
 func handleScreenshake(delta):
 	if camera.translation != Vector3.ZERO:
 		camera.translation = lerp(camera.translation,Vector3.ZERO,0.25)
+	if camera.rotation_degrees.z != 0 and !dead:
+		camera.rotation_degrees.z = lerp(camera.rotation_degrees.z,0.0,0.25)
 	if screenshakeCounter < screenshakeAmount:
 		camera.translation.x += rand_range(-1,1) * screenshakeAmp * delta
 		camera.translation.y += rand_range(-1,1) * screenshakeAmp * delta
 		camera.translation.z += rand_range(-1,1) * screenshakeAmp * delta
+		camera.rotation_degrees.z += rand_range(-15,15) * screenshakeAmp * delta
 		screenshakeCounter += 1
 
 ###### GODOT FUNCTIONS ######
@@ -243,7 +247,8 @@ func _ready():
 	changeWeapon(Global.currentSelect)
 	$Pivot/Camera/ViewportContainer/Viewport.size = get_viewport().size
 	vignette.set_shader_param("vignette_rgb",Color(0,0,0))
-	healthLabel.value = health
+	healthLabel.value = Global.health
+	#camera.current = true
 
 # get_input function for movement
 # this was in the first person controller i copied and pasted it from kidscancode.org
@@ -263,8 +268,8 @@ func get_input():
 # also from kidscancode.org controller, mouse movement controls rotation
 func _unhandled_input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		rotate_y(-event.relative.x * mouse_sensitivity)
-		$Pivot.rotate_x(-event.relative.y * mouse_sensitivity)
+		rotate_y(-event.relative.x * Global.mouse_sensitivity)
+		$Pivot.rotate_x(-event.relative.y * Global.mouse_sensitivity)
 		$Pivot.rotation.x = clamp($Pivot.rotation.x, -PI/2, PI/2)
 
 # if click into window and not pause, capture mouse
@@ -278,7 +283,10 @@ func _input(event):
 # update gun animation tree
 func _process(delta):
 	guncamera.global_transform = camera.global_transform
+	$Pivot/Camera/ViewportContainer/Viewport.size = get_viewport().size
 	updateGunAnimationTree()
+	if global_translation.y < -50 and !dead:
+		damage(100)
 
 # main stuff that has to be called every frame
 func _physics_process(delta):
@@ -290,8 +298,8 @@ func _physics_process(delta):
 		
 		# controller look, currently unused
 		if Global.useController:
-			rotation.y -= ((Input.get_action_strength("look_right") - Input.get_action_strength("look_left")) * controller_sensitivity)
-			$Pivot.rotation.x += ((Input.get_action_strength("look_up") - Input.get_action_strength("look_down")) * controller_sensitivity)
+			rotation.y -= ((Input.get_action_strength("look_right") - Input.get_action_strength("look_left")) * (Global.controller_sensitivity * (Global.mouse_sensitivity/0.002)))
+			$Pivot.rotation.x += ((Input.get_action_strength("look_up") - Input.get_action_strength("look_down")) * (Global.controller_sensitivity * (Global.mouse_sensitivity/0.002)))
 			$Pivot.rotation.x = clamp($Pivot.rotation.x, -PI/2, PI/2)
 		
 		# apply gravity and get input direction
@@ -299,6 +307,7 @@ func _physics_process(delta):
 		var desired_velocity = get_input() * speed
 		velocity.x = desired_velocity.x
 		velocity.z = desired_velocity.z
+		
 		
 		# handle jumping if on ground
 		if Input.is_action_just_pressed("ui_accept") and is_on_floor():
@@ -351,15 +360,15 @@ func _physics_process(delta):
 		
 		# interactibles
 		if Input.is_action_just_pressed("interact"):
-			if raycast.is_colliding():
-				if raycast.get_collider() is Interactibles:
-					raycast.get_collider().interact()
+			if altRaycast.is_colliding():
+				if altRaycast.get_collider() is Interactibles:
+					altRaycast.get_collider().interact()
 		
 		### UI ###
 		
 		# handle crosshair
 		# TODO: optimize and get crosshair assets
-		if raycast.is_colliding() and raycast.get_collider() is Interactibles:
+		if altRaycast.is_colliding() and altRaycast.get_collider() is Interactibles:
 			gunCrosshair.modulate = Color(0,1,0)
 			gunCrosshair.text = "E"
 		elif raycast.is_colliding() and raycast.get_collider().is_in_group("CantShoot"):
@@ -375,8 +384,11 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("TestInputRemoveLater"):
 			damage(5)
 		
-		if healthLabel.value != health:
-			healthLabel.value = lerp(healthLabel.value, health, 0.25)
+		if ammoLabel.text != str(Global.Inventory[Global.currentSelect][1]):
+			ammoLabel.text = str(Global.Inventory[Global.currentSelect][1])
+		
+		if healthLabel.value != Global.health:
+			healthLabel.value = lerp(healthLabel.value, Global.health, 0.25)
 		
 		var vigColor = vignette.get_shader_param("vignette_rgb")
 		if vigColor != Color(0,0,0):
@@ -389,8 +401,8 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("pause") and not paused:
 			pause()
 		
-		if Input.is_action_just_pressed("escape"):
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		#if Input.is_action_just_pressed("escape"):
+		#	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		
 		# TODO: handle death
 

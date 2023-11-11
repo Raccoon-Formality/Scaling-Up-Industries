@@ -8,6 +8,7 @@ onready var player = get_tree().get_nodes_in_group("Player")[0]
 # changes music back, and captures cursor.
 func exitMenu():
 	hide()
+	Global.saveSettings()
 	player.get_node("Pivot/Camera/ViewportContainer").show()
 	player.get_node("game_ui").show()
 	player.paused = false
@@ -17,11 +18,11 @@ func exitMenu():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
-
 # if quit UI button pressed, exit game.
 # currently does nothing
 func _on_QuitButton_pressed():
-	get_tree().change_scene("res://scenes/ui/menus/Main_Menu.tscn")
+	Global.saveSettings()
+	get_tree().change_scene("res://scenes/starting_level.tscn")
 
 # if continue UI button press, exit menu
 func _on_ContinueButton_pressed():

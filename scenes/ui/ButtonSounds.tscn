@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/audio/kenny-interface/click_001.ogg" type="AudioStream" id=1]
+[ext_resource path="res://assets/audio/kenny-interface/bong_001.ogg" type="AudioStream" id=2]
+[ext_resource path="res://assets/audio/kenny-interface/click_002.ogg" type="AudioStream" id=3]
+
+[node name="ButtonSounds" type="Node" groups=["ButtonSounds"]]
+
+[node name="hoverSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -5.0
+bus = "sfx"
+
+[node name="exitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -5.0
+bus = "sfx"
+
+[node name="pressSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -5.0
+bus = "sfx"
+
+[node name="sliderHoverSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -5.0
+bus = "sfx"
+
+[node name="sliderExitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -5.0
+bus = "sfx"
+
+[node name="sliderPressSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -5.0
+bus = "sfx"
