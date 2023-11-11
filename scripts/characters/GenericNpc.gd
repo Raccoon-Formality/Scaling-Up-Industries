@@ -13,9 +13,9 @@ export var MAXIMUM_EARSHOT_DISTANCE = 20
 onready var player_node = get_node("../Player")# TODO: better way of getting player
 
 var navAgent : NavigationAgent
-var path = []
-var waypoint_graph
 var waypoint_index = 0
+export(NodePath) var waypoint_graph_node_path
+onready var waypoint_graph = get_node_or_null(waypoint_graph_node_path)
 
 var _previous_state
 var _current_state
@@ -26,7 +26,7 @@ enum STATES {
 	COMBAT,
 	DECEASED
 }
-# state outputs. TODO: put in class to instantiate each state and reference each state as a static variable
+
 var can_hear
 var can_see
 var is_alerted
@@ -35,43 +35,37 @@ var is_alerted
 var has_just_been_alerted = false
 var has_just_reached_destination = false
 
-var num_health_points #TODO: ensure anything with num_health_points must have recieve damage method
+var num_health_points
 var _enemy_position = null
-
 
 func _ready():
 	# for testing
 	$StateIndicatorTimer.wait_time = 0.25
 	
 	navAgent = $NavigationAgent
-	waypoint_graph = get_node("WaypointGraph")
-	if waypoint_graph: 
-		_add_patrol_points_to_nav_path()
-		
+	if waypoint_graph and waypoint_graph.waypoint_list.size() > 0: 
+		_add_next_waypoint_to_nav()
+	
 	_current_state = STATES.INIT
 	num_health_points = STARTING_HEALTH_POINTS
 	_update_state_machine()
 	
+	$PatrolTimer.connect("timeout", self, "_on_to_next_destination")
 	_register_listener_for_player_gun_sounds()
 	
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	_update_state_machine()
 	_run_state_exit_events()
 	_run_state_dependent_processes()
 
 
-func _add_patrol_points_to_nav_path():
-	waypoint_index = 0
-	_add_next_waypoint_to_nav()
-
-
 func _add_next_waypoint_to_nav():
-	navAgent.set_target_location(waypoint_graph.waypoint_list[waypoint_index].translation)
 	waypoint_index += 1
 	# reset waypoint index so it loops through the waypoints
 	if waypoint_index >= waypoint_graph.waypoint_list.size():
 		waypoint_index = 0
+		
 
 func _update_state_machine():
 	_previous_state = _current_state
@@ -88,8 +82,9 @@ func _update_state_machine():
 			_current_state = STATES.DECEASED
 		elif has_just_been_alerted:
 			_current_state = STATES.COMBAT
-		elif navAgent.get_target_location():
-			_current_state = STATES.PATROL
+		elif waypoint_graph != null:
+			if waypoint_graph.waypoint_list.size() > 0:
+				_current_state = STATES.PATROL
 		
 	elif _current_state == STATES.PATROL:
 		can_hear = true
@@ -98,8 +93,7 @@ func _update_state_machine():
 			_current_state = STATES.DECEASED
 		elif has_just_been_alerted:
 			_current_state = STATES.COMBAT
-		elif has_just_reached_destination:
-			_add_next_waypoint_to_nav()
+		
 	
 	elif _current_state == STATES.COMBAT:
 		can_hear = true
@@ -112,29 +106,33 @@ func _update_state_machine():
 		can_see = false
 
 	self.has_just_been_alerted = false
-	self.has_just_reached_destination = false
 
 
 func _run_state_dependent_processes():
 	if _current_state == STATES.IDLE:
 		_notice_the_player_if_in_los()
+		
 	elif _current_state == STATES.PATROL:
-		turn_towards_target(navAgent.get_next_location())	
-		_move_toward_position(navAgent.get_next_location())
+		turn_towards_target(get_next_waypoint())
+		_move_toward_waypoint(get_next_waypoint())
 		_notice_the_player_if_in_los()
+		
 	elif _current_state == STATES.COMBAT:
-		if _enemy_position == null:
+		if self._enemy_position == null:
 			print("Error: enemy_position is null")
-		
 		_notice_the_player_if_in_los()
-		
-		_enemy_position = player_node.translation # TODO: for tracking of generic targets, some kind of handler to track targets 
-		turn_towards_target(_enemy_position)	
+		self._enemy_position = player_node.translation
+		turn_towards_target(self._enemy_position)	
 		_move_toward_position(navAgent.get_next_location())
+		
 	elif _current_state == STATES.DECEASED:
 		if _previous_state != STATES.DECEASED:
 			_unregister_listener_for_player_gun_sounds()
 			_change_mesh_color(Color(0,0,0,1))
+
+
+func get_next_waypoint():
+	return waypoint_graph.waypoint_list[waypoint_index]
 
 
 func _run_state_exit_events():
@@ -146,10 +144,10 @@ func _run_state_exit_events():
 	
 
 func _notice_the_player_if_in_los():
-	if can_see:
-		if player_is_visible() and _enemy_position != null:
+	if can_see == true:
+		if player_is_visible() and self._enemy_position != null:
 			if ! is_alerted:
-				_alert_the_npc(_enemy_position)
+				_alert_the_npc(self._enemy_position)
 	
 
 func player_is_visible():
@@ -164,8 +162,8 @@ func player_is_visible():
 				if $VisionRaycast.is_colliding():
 					var collider = $VisionRaycast.get_collider()
 					if collider.name == "Player":
-						if _enemy_position == null:
-							_enemy_position = player_node.translation
+						if self._enemy_position == null:
+							self._enemy_position = player_node.translation
 						is_visible = true
 						break
 	
@@ -197,7 +195,7 @@ func turn_towards_target(target_pos):
 	rotate_y(($Body/FrontOfEyes.rotation.y * TURN_SPEED)) 
 	
 	
-func _exit_combat(): #TODO: change the target of the npc to something else?
+func _exit_combat():
 	$AttackTimer.disconnect("timeout", self, "attack")
 
 
@@ -208,27 +206,38 @@ func attack():
 
 # This method only fires at the player. can make a class-scope list or something to be able to fire at other targets
 func _fire_projectile():
-	_enemy_position = player_node.translation
+	self._enemy_position = player_node.translation
 	var projectile = preload(PROJECTILE_RES_PATH).instance()
 	get_parent().add_child(projectile)
 	projectile.global_translation = translation + Vector3(0, 1.5, 0)
 
-	var direction = global_transform.origin.direction_to(_enemy_position)
-	if (global_transform.origin.direction_to(_enemy_position) == Vector3.ZERO):
+	var direction = global_transform.origin.direction_to(self._enemy_position)
+	if (global_transform.origin.direction_to(self._enemy_position) == Vector3.ZERO):
 		print("Error, the distance between the target and the originator/NPC is zero")
 	else:
 		direction = direction.normalized()
 		projectile.apply_impulse(Vector3(), direction * PROJECTILE_SPEED)
 	
 
-func _move_toward_position(target_pos):
-	if navAgent.is_navigation_finished():
-		has_just_reached_destination = true
+func _on_to_next_destination():
+	_add_next_waypoint_to_nav()
+	self.has_just_reached_destination = false
+	$PatrolTimer.stop()
+	
+
+func _move_toward_waypoint(target_pos):
+	if global_transform.origin.distance_to(target_pos) < 0.1:
+		if not self.has_just_reached_destination:
+			self.has_just_reached_destination = true
+			$PatrolTimer.start()
 		return
 		
+	_move_toward_position(target_pos)
+	
+	
+func _move_toward_position(target_pos):
 	var direction = global_transform.origin.direction_to(target_pos)
 	var velocity = direction * RUN_SPEED * Vector3(1, 0, 1) # vector for feet on the ground
-	
 	var _move_result = move_and_slide(velocity, Vector3.UP)
 
 
@@ -242,9 +251,10 @@ func recieve_damage():
 
 func _alert_the_npc(position_of_interest):
 	is_alerted = true
-	
-	_enemy_position = position_of_interest
+	#TODO: put "self" before is_alerted and other vars
+	self._enemy_position = position_of_interest
 	navAgent.set_target_location(position_of_interest)
+	
 	self.has_just_been_alerted = true
 	var _connect_result = $StateIndicatorTimer.connect("timeout", self, "_alternate_color")
 	$StateIndicatorTimer.start()

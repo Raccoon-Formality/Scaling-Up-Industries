@@ -50,6 +50,8 @@ wait_time = 0.5
 wait_time = 3.0
 autostart = true
 
+[node name="PatrolTimer" type="Timer" parent="."]
+
 [node name="VisionArea" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 
