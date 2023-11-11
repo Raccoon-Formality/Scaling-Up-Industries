@@ -12,7 +12,8 @@ var waypoint_list = []
 #  		the waypoint graph for the NPC that you want to patrol
 #   	the waypoint 
 # 5. Place the NPC, the waypointgraph node, and the waypoints
-#	    near each other.
+#	    near each other. The NPC must be within the area of
+#		the waypointgraph node.
 func _ready():
 	init_waypoint_list()
 

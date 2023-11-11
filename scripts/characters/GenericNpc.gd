@@ -185,7 +185,7 @@ func _react_to_gun_sound_if_close():
 
 func _enter_combat():
 	if not $AttackTimer.is_connected("timeout", self, "attack"):
-		attack()
+		#attack()
 		var _connect_result = $AttackTimer.connect("timeout", self, "attack")
 		$AttackTimer.start()
 	
