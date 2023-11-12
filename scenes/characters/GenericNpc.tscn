@@ -52,6 +52,9 @@ autostart = true
 
 [node name="PatrolTimer" type="Timer" parent="."]
 
+[node name="CombatReactionTimer" type="Timer" parent="."]
+one_shot = true
+
 [node name="VisionArea" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 

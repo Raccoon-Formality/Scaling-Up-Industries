@@ -11,6 +11,7 @@ export var RUN_SPEED = 3
 export var MAXIMUM_EARSHOT_DISTANCE = 20
 export var BULLET_DAMAGE = 10
 export var RATE_OF_FIRE_SECONDS_PER_SHOT = 0.3
+export var COMBAT_REACTION_TIME = 0.5
 
 onready var player_node = get_node("../Player")# TODO: better way of getting player
 
@@ -190,13 +191,24 @@ func _react_to_gun_sound_if_close():
 		if ! is_alerted:
 			_alert_the_npc(player_node.global_transform.origin)
 
+
 func _enter_combat():
-	$AttackTimer.wait_time = RATE_OF_FIRE_SECONDS_PER_SHOT
-	if not $AttackTimer.is_connected("timeout", self, "attack"):
-		#attack()
-		var _connect_result = $AttackTimer.connect("timeout", self, "attack")
-		$AttackTimer.start()
+	$CombatReactionTimer.wait_time = COMBAT_REACTION_TIME
+	if not $CombatReactionTimer.is_connected("timeout", self, "start_firing_weapon"):
+		var _connect_result = $CombatReactionTimer.connect("timeout", self, "start_firing_weapon")
+		$CombatReactionTimer.start()
 	
+
+func start_firing_weapon():
+	$CombatReactionTimer.stop()
+	$CombatReactionTimer.disconnect("timeout", self, "start_firing_weapon")
+	
+	$AttackTimer.wait_time = RATE_OF_FIRE_SECONDS_PER_SHOT
+	_fire_projectile()
+	if not $AttackTimer.is_connected("timeout", self, "_fire_projectile"):
+		var _connect_result = $AttackTimer.connect("timeout", self, "_fire_projectile")
+		$AttackTimer.start()
+
 
 func turn_towards_target(target_pos):
 	$Body/FrontOfEyes.look_at(target_pos, Vector3.UP)
@@ -205,11 +217,6 @@ func turn_towards_target(target_pos):
 	
 func _exit_combat():
 	$AttackTimer.disconnect("timeout", self, "attack")
-
-
-func attack():
-	if player_is_visible():
-		_fire_projectile()
 
 
 # This method only fires at the player. can make a class-scope list or something to be able to fire at other targets
