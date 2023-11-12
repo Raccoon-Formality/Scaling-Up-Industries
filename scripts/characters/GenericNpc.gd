@@ -60,6 +60,7 @@ func _ready():
 func _physics_process(delta):
 	_update_state_machine()
 	_run_state_exit_events()
+	_run_state_enter_events()
 	_run_state_dependent_processes()
 
 
@@ -133,10 +134,7 @@ func _run_state_dependent_processes():
 		_move_toward_position(navAgent.get_next_location())
 		
 	elif _current_state == STATES.DECEASED:
-		if _previous_state != STATES.DECEASED:
-			_unregister_listener_for_player_gun_sounds()
-			_change_mesh_color(Color(0,0,0,1))
-			play_dying_animation()
+		pass
 
 
 func get_next_waypoint():
@@ -147,15 +145,24 @@ func _run_state_exit_events():
 	if _previous_state == STATES.COMBAT and _current_state != STATES.COMBAT:
 		_exit_combat()
 		_un_alert_the_npc()
-	elif _previous_state != STATES.COMBAT and _current_state == STATES.COMBAT:
+		
+		
+func _run_state_enter_events():	
+	if _current_state == STATES.COMBAT and _previous_state != STATES.COMBAT:
+		_alert_the_npc(player_node.global_transform.origin)
 		_enter_combat()
+	elif _current_state == STATES.DECEASED and _previous_state != STATES.DECEASED:
+		$PatrolTimer.disconnect("timeout", self, "_on_to_next_destination")
+		_unregister_listener_for_player_gun_sounds()
+		_change_mesh_color(Color(0,0,0,1))
+		play_dying_animation()
 	
 
 func _notice_the_player_if_in_los():
 	if can_see == true:
 		if player_is_visible() and self._enemy_position != null:
-			if ! is_alerted:
-				_alert_the_npc(self._enemy_position)
+			if ! self.is_alerted:
+				self.has_just_been_alerted = true
 	
 
 func player_is_visible():
@@ -189,7 +196,7 @@ func _unregister_listener_for_player_gun_sounds():
 func _react_to_gun_sound_if_close():
 	if can_hear and Vector3(global_transform.origin - player_node.global_transform.origin).length() <= MAXIMUM_EARSHOT_DISTANCE:
 		if ! is_alerted:
-			_alert_the_npc(player_node.global_transform.origin)
+			self.has_just_been_alerted = true
 
 
 func _enter_combat():
@@ -216,7 +223,7 @@ func turn_towards_target(target_pos):
 	
 	
 func _exit_combat():
-	$AttackTimer.disconnect("timeout", self, "attack")
+	$AttackTimer.disconnect("timeout", self, "_fire_projectile")
 
 
 # This method only fires at the player. can make a class-scope list or something to be able to fire at other targets
@@ -240,7 +247,7 @@ func _fire_projectile():
 		bullet.set_damage_caused(BULLET_DAMAGE)
 		bullet.apply_impulse(Vector3(), direction * PROJECTILE_SPEED)
 	
-
+# TODO: wtf
 func _on_to_next_destination():
 	_add_next_waypoint_to_nav()
 	self.has_just_reached_destination = false
@@ -271,7 +278,7 @@ func recieve_damage(collision_point):
 			num_health_points -= 3
 		if _current_state != STATES.COMBAT: #TODO: make independent of current state. timing could be off?
 			if ! is_alerted:
-				_alert_the_npc(player_node.global_transform.origin)
+				self.has_just_been_alerted = true
 
 
 func _is_headshot(collision_point):
@@ -282,12 +289,10 @@ func _is_headshot(collision_point):
 
 
 func _alert_the_npc(position_of_interest):
-	is_alerted = true
-	#TODO: put "self" before is_alerted and other vars
 	self._enemy_position = position_of_interest
 	navAgent.set_target_location(position_of_interest)
 	
-	self.has_just_been_alerted = true
+	self.is_alerted = true
 	var _connect_result = $StateIndicatorTimer.connect("timeout", self, "_alternate_color")
 	$StateIndicatorTimer.start()
 	
