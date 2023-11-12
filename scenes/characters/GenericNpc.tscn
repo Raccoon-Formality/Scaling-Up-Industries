@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/characters/GenericNpc.gd" type="Script" id=1]
 [ext_resource path="res://scenes/characters/cone.tscn" type="PackedScene" id=2]
@@ -8,6 +8,9 @@ radius = 0.5
 
 [sub_resource type="SpatialMaterial" id=3]
 albedo_color = Color( 0.87451, 0.0196078, 0.0196078, 1 )
+
+[sub_resource type="SphereShape" id=8]
+radius = 0.6
 
 [sub_resource type="SphereMesh" id=6]
 radius = 0.4
@@ -30,6 +33,12 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1, 0
 mesh = SubResource( 2 )
 material/0 = SubResource( 3 )
 
+[node name="HeadArea" type="Area" parent="Body"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Body/HeadArea"]
+shape = SubResource( 8 )
+
 [node name="FrontOfEyes" type="Spatial" parent="Body"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 0.5 )
 
@@ -47,10 +56,13 @@ shape = SubResource( 1 )
 wait_time = 0.5
 
 [node name="AttackTimer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 0.3
 autostart = true
 
 [node name="PatrolTimer" type="Timer" parent="."]
+
+[node name="CombatReactionTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="VisionArea" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
@@ -70,3 +82,8 @@ enabled = true
 cast_to = Vector3( 0, -1, -32 )
 collision_mask = 3
 debug_shape_custom_color = Color( 0.737255, 0, 0, 1 )
+
+[node name="BulletSpawnPoint" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 1.25, -1 )
+
+[node name="TargetTrackerTimer" type="Timer" parent="."]
