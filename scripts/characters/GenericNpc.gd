@@ -263,12 +263,22 @@ func _move_toward_position(target_pos):
 	var _move_result = move_and_slide(velocity, Vector3.UP)
 
 
-func recieve_damage():
+func recieve_damage(collision_point):
 	if _current_state != STATES.DECEASED:
-		num_health_points -= 3		
+		if _is_headshot(collision_point):
+			num_health_points = 0
+		else:		
+			num_health_points -= 3
 		if _current_state != STATES.COMBAT: #TODO: make independent of current state. timing could be off?
 			if ! is_alerted:
 				_alert_the_npc(player_node.global_transform.origin)
+
+
+func _is_headshot(collision_point):
+	# head must be a sphere shape
+	var radius_of_head = $Body/HeadArea/CollisionShape.get_shape().get_radius()
+	var distance_to_center_of_head = collision_point.distance_to($Body/HeadArea.global_translation)
+	return distance_to_center_of_head <= radius_of_head
 
 
 func _alert_the_npc(position_of_interest):

@@ -128,7 +128,7 @@ func shoot(weapon):
 		# hit enemy
 		# TODO: make particles local if hit enemy and make the particles blood
 		if raycast.is_colliding() and ("num_health_points" in raycast.get_collider()): # "num_health_points" is composition over inheritance
-				raycast.get_collider().recieve_damage()
+				raycast.get_collider().recieve_damage(raycast.get_collision_point())
 		
 		# if weapon is fist, punch
 		# just realized the argument weapon isn't used, oops
