@@ -393,7 +393,7 @@ func _physics_process(delta):
 		var vigColor = vignette.get_shader_param("vignette_rgb")
 		if vigColor != Color(0,0,0):
 			vignette.set_shader_param("vignette_rgb",lerp(vigColor, Color(0,0,0), 0.1))
-		
+	
 		### PAUSE & DEATH ###
 		
 		# if pause button pressed or mouse uncaptured, pause
@@ -424,3 +424,9 @@ func updateGunAnimationTree():
 
 # and we are finally at the end of this monstrosity that is
 # heald together by scotch-tape, hopes, and prayers
+# Edit: It's duct tape now.
+
+func _on_Hitbox_body_entered(body):
+	if "Bullet" in body.name:
+		damage(body.get_damage_caused())
+

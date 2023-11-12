@@ -89,6 +89,12 @@ script = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1, 0 )
 shape = SubResource( 1 )
 
+[node name="Hitbox" type="Area" parent="."]
+
+[node name="HitboxCollider" type="CollisionShape" parent="Hitbox"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1, 0 )
+shape = SubResource( 1 )
+
 [node name="headCheck" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 enabled = true
@@ -325,6 +331,7 @@ bus = "sfx"
 [node name="hurtSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
 
+[connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]
 [connection signal="pressed" from="pause_menu/Control/QuitButton" to="pause_menu" method="_on_QuitButton_pressed"]
 [connection signal="pressed" from="pause_menu/Control/ContinueButton" to="pause_menu" method="_on_ContinueButton_pressed"]
 [connection signal="pressed" from="death_menu/Control/yesButton" to="death_menu" method="_on_yesButton_pressed"]

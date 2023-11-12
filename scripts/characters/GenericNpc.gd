@@ -9,6 +9,8 @@ export var PROJECTILE_SPEED = 200
 export var TURN_SPEED = 0.1
 export var RUN_SPEED = 3
 export var MAXIMUM_EARSHOT_DISTANCE = 20
+export var BULLET_DAMAGE = 10
+export var RATE_OF_FIRE_SECONDS_PER_SHOT = 0.3
 
 onready var player_node = get_node("../Player")# TODO: better way of getting player
 
@@ -93,7 +95,6 @@ func _update_state_machine():
 			_current_state = STATES.DECEASED
 		elif has_just_been_alerted:
 			_current_state = STATES.COMBAT
-		
 	
 	elif _current_state == STATES.COMBAT:
 		can_hear = true
@@ -106,6 +107,11 @@ func _update_state_machine():
 		can_see = false
 
 	self.has_just_been_alerted = false
+
+
+func play_dying_animation():
+	rotation_degrees.z = 90
+	translation.y = 0.5
 
 
 func _run_state_dependent_processes():
@@ -129,6 +135,7 @@ func _run_state_dependent_processes():
 		if _previous_state != STATES.DECEASED:
 			_unregister_listener_for_player_gun_sounds()
 			_change_mesh_color(Color(0,0,0,1))
+			play_dying_animation()
 
 
 func get_next_waypoint():
@@ -184,6 +191,7 @@ func _react_to_gun_sound_if_close():
 			_alert_the_npc(player_node.global_transform.origin)
 
 func _enter_combat():
+	$AttackTimer.wait_time = RATE_OF_FIRE_SECONDS_PER_SHOT
 	if not $AttackTimer.is_connected("timeout", self, "attack"):
 		#attack()
 		var _connect_result = $AttackTimer.connect("timeout", self, "attack")
@@ -222,6 +230,7 @@ func _fire_projectile():
 		var xy_angle = atan2(direction.x, direction.z)
 		bullet.rotate_y(xy_angle + 0.1)
 		
+		bullet.set_damage_caused(BULLET_DAMAGE)
 		bullet.apply_impulse(Vector3(), direction * PROJECTILE_SPEED)
 	
 
