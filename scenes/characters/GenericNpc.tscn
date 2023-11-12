@@ -85,3 +85,5 @@ debug_shape_custom_color = Color( 0.737255, 0, 0, 1 )
 
 [node name="BulletSpawnPoint" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 1.25, -1 )
+
+[node name="TargetTrackerTimer" type="Timer" parent="."]
