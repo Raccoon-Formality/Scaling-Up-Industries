@@ -233,6 +233,7 @@ func turn_towards_target(target_pos):
 
 func _exit_combat():
 	$AttackTimer.disconnect("timeout", self, "_fire_projectile")
+	$CombatReactionTimer.disconnect("timeout", self, "start_firing_weapon")
 	$TargetTrackerTimer.disconnect("timeout", self, "track_target")
 
 
