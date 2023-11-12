@@ -53,12 +53,12 @@ func _ready():
 	num_health_points = STARTING_HEALTH_POINTS
 	_update_state_machine()
 
-	$PatrolTimer.connect("timeout", self, "_on_to_next_destination")
+	var _connect_result = $PatrolTimer.connect("timeout", self, "_on_to_next_destination")
 	_register_listener_for_player_gun_sounds()
 
 
-func _physics_process(delta):
-	navAgent.get_next_location()
+func _physics_process(_delta):
+	var _result = navAgent.get_next_location()
 	_update_state_machine()
 	_run_state_exit_events()
 	_run_state_enter_events()
@@ -233,7 +233,8 @@ func turn_towards_target(target_pos):
 
 func _exit_combat():
 	$AttackTimer.disconnect("timeout", self, "_fire_projectile")
-	$CombatReactionTimer.disconnect("timeout", self, "start_firing_weapon")
+	if $CombatReactionTimer.is_connected("timeout", self, "start_firing_weapon"):
+		$CombatReactionTimer.disconnect("timeout", self, "start_firing_weapon")
 	$TargetTrackerTimer.disconnect("timeout", self, "track_target")
 
 

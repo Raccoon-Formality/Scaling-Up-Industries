@@ -22,7 +22,7 @@ func _on_continueButton_pressed():
 	Global.loadSave()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	Global.currentSong = Global.musicDict["track1"]
-	get_tree().change_scene("res://levelManager.tscn")
+	var _result = get_tree().change_scene("res://levelManager.tscn")
 
 
 func _on_startButton_pressed():

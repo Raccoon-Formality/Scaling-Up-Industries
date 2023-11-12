@@ -22,7 +22,7 @@ func exitMenu():
 # currently does nothing
 func _on_QuitButton_pressed():
 	Global.saveSettings()
-	get_tree().change_scene("res://scenes/starting_level.tscn")
+	var _result = get_tree().change_scene("res://scenes/starting_level.tscn")
 
 # if continue UI button press, exit menu
 func _on_ContinueButton_pressed():

@@ -3,7 +3,7 @@ extends RigidBody
 var _damage_caused
 
 func _ready():
-	$DoomsdayTimer.connect("timeout", self, "_self_destruct")	
+	var _connect_result = $DoomsdayTimer.connect("timeout", self, "_self_destruct")	
 	$DoomsdayTimer.start()
 	
 

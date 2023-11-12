@@ -25,7 +25,7 @@ func _on_mouseSenSlider_value_changed(value):
 	Global.mouse_sensitivity = value * 0.002 
 
 
-func _on_mouseSenSlider_drag_ended(value_changed):
+func _on_mouseSenSlider_drag_ended(_value_changed):
 	$mouseSenLabel.text = "mouse sensitivity:"
 	Global.saveSettings()
 

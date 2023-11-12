@@ -76,7 +76,7 @@ func resetVars():
 # reload game for testing
 # TODO: make this a function for player death
 # might have to be done per level script
-func _process(delta):
+func _process(_delta):
 #	print(currentLoad)
 	health = clamp(health, -1.0, 100.0)
 	if Input.is_action_just_pressed("reload"):
@@ -93,7 +93,7 @@ func restartLevel():
 	else:
 		resetVars()
 	
-	get_tree().reload_current_scene()
+	var _result = get_tree().reload_current_scene()
 
 func save():
 	var currentLevelNumber = levelNumber
