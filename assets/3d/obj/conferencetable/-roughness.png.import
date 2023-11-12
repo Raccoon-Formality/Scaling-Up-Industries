@@ -2,26 +2,28 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/-roughness.png-2226f48ae7ae64759fede8eb3fc01492.stex"
+path.s3tc="res://.import/-roughness.png-2226f48ae7ae64759fede8eb3fc01492.s3tc.stex"
+path.etc="res://.import/-roughness.png-2226f48ae7ae64759fede8eb3fc01492.etc.stex"
 metadata={
-"vram_texture": false
+"imported_formats": [ "s3tc", "etc" ],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/3d/obj/conferencetable/-roughness.png"
-dest_files=[ "res://.import/-roughness.png-2226f48ae7ae64759fede8eb3fc01492.stex" ]
+dest_files=[ "res://.import/-roughness.png-2226f48ae7ae64759fede8eb3fc01492.s3tc.stex", "res://.import/-roughness.png-2226f48ae7ae64759fede8eb3fc01492.etc.stex" ]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
+flags/repeat=true
 flags/filter=true
-flags/mipmaps=false
+flags/mipmaps=true
 flags/anisotropic=false
 flags/srgb=2
 process/fix_alpha_border=true
@@ -31,5 +33,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

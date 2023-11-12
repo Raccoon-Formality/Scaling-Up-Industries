@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scripts/interactibles/pickups/keyPickup.gd" type="Script" id=1]
 [ext_resource path="res://assets/audio/collect.wav" type="AudioStream" id=2]
-[ext_resource path="res://assets/programmerArt/key.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/Keys/Blue Badge.png" type="Texture" id=3]
 
 [sub_resource type="CylinderShape" id=1]
 height = 1.0
@@ -20,7 +20,9 @@ stream = ExtResource( 2 )
 bus = "sfx"
 
 [node name="Mesh" type="Sprite3D" parent="."]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.5, 0 )
+transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.5, 0 )
+pixel_size = 0.001
+billboard = 2
 texture = ExtResource( 3 )
 
 [connection signal="body_entered" from="." to="." method="_on_ammoPickup_body_entered"]

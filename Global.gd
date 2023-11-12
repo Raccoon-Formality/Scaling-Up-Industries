@@ -7,11 +7,12 @@ var controller_sensitivity = 0.06  # radians/pixel
 # levels load
 var levelsDict = {
 	"level1": preload("res://scenes/levels/level1/World.tscn"),
-	"level2": preload("res://scenes/levels/level2/World.tscn")
+	"level2": preload("res://scenes/levels/level2/World.tscn"),
+	"level3": preload("res://scenes/levels/level3/World.tscn")
 }
 
 # level order
-var levelList = ["level1", "level2"]
+var levelList = ["level1", "level2","level3"]
 
 # what level we are on
 # TODO: save and load level number

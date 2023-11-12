@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/fonts/KrunchBold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scripts/menus/Main_Menu.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scripts/menus/ButtonScript.gd" type="Script" id=4]
 [ext_resource path="res://scenes/ui/settingsPanel.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/textures/SUI/logo-full.svg" type="Texture" id=6]
+[ext_resource path="res://scenes/assets/font.tres" type="DynamicFont" id=7]
 
 [sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
@@ -46,7 +47,6 @@ anchor_bottom = 1.0
 script = ExtResource( 2 )
 
 [node name="Vignette" type="ColorRect" parent="."]
-visible = false
 material = SubResource( 4 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -56,7 +56,7 @@ mouse_filter = 2
 visible = false
 margin_right = 640.0
 margin_bottom = 480.0
-color = Color( 0, 0, 0, 0.290196 )
+color = Color( 0, 0, 0, 0.498039 )
 
 [node name="logo" type="TextureRect" parent="."]
 visible = false
@@ -82,11 +82,13 @@ text = "Scaling Up
 Industries"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchor_bottom = 0.0333333
 margin_left = 32.0
 margin_top = 376.0
 margin_right = 256.0
 margin_bottom = 456.0
-text = "credits:
+custom_fonts/normal_font = ExtResource( 7 )
+text = "Credits:
 Matthew - Engine Wrangler
 Billy - Lead Artist
 David - Lead Programmer"
@@ -95,10 +97,14 @@ __meta__ = {
 }
 
 [node name="continueButton" type="Button" parent="."]
+anchor_top = 0.05
+anchor_right = 0.0046875
+anchor_bottom = 0.0541667
 margin_left = 40.0
 margin_top = 168.0
 margin_right = 112.0
 margin_bottom = 192.0
+custom_fonts/font = ExtResource( 7 )
 text = "Continue"
 script = ExtResource( 4 )
 __meta__ = {
@@ -106,10 +112,13 @@ __meta__ = {
 }
 
 [node name="startButton" type="Button" parent="."]
+anchor_top = 0.05
+anchor_bottom = 0.0541667
 margin_left = 40.0
 margin_top = 208.0
 margin_right = 88.0
 margin_bottom = 232.0
+custom_fonts/font = ExtResource( 7 )
 text = "Start"
 script = ExtResource( 4 )
 __meta__ = {
@@ -121,6 +130,7 @@ margin_left = 40.0
 margin_top = 328.0
 margin_right = 88.0
 margin_bottom = 352.0
+custom_fonts/font = ExtResource( 7 )
 text = "Exit"
 script = ExtResource( 4 )
 __meta__ = {
@@ -138,13 +148,12 @@ __meta__ = {
 }
 
 [node name="settingsPanel" parent="." instance=ExtResource( 5 )]
-margin_left = 352.0
-margin_top = 256.0
-margin_right = -96.0
-margin_bottom = -32.0
-__meta__ = {
-"_edit_use_anchors_": true
-}
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 368.0
+margin_top = 264.0
+margin_right = 624.0
+margin_bottom = 456.0
 
 [connection signal="pressed" from="continueButton" to="." method="_on_continueButton_pressed"]
 [connection signal="pressed" from="startButton" to="." method="_on_startButton_pressed"]

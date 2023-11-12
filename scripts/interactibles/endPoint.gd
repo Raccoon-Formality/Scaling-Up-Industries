@@ -7,3 +7,4 @@ func _on_Area_body_entered(body):
 	# if player enters, will go to next level
 	if body.is_in_group("Player"):
 		levelManager.nextLevel(true)
+		queue_free()

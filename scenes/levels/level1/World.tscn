@@ -1,9 +1,9 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scenes/levels/startPos.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/assets/tilesets/tileset.tres" type="MeshLibrary" id=2]
 [ext_resource path="res://scenes/characters/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/assets/3d/teapot.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/assets/tilesets/ventTileset.tres" type="MeshLibrary" id=4]
 [ext_resource path="res://scenes/interactibles/door.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/interactibles/Button.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/interactibles/singleDoor.tscn" type="PackedScene" id=7]
@@ -13,17 +13,21 @@
 [ext_resource path="res://scenes/interactibles/pickups/ammoPickup.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/interactibles/pickups/healthPickup.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/interactibles/pickups/keyPickup.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/assets/tilesets/furniture.tres" type="MeshLibrary" id=14]
+[ext_resource path="res://assets/textures/Danger Sign 2.png" type="Texture" id=15]
+[ext_resource path="res://assets/textures/Wall Outlet.png" type="Texture" id=16]
+[ext_resource path="res://assets/3d/gltf/plant1.gltf" type="PackedScene" id=17]
 
-[node name="World" type="Spatial"]
-
-[node name="startPos" parent="." instance=ExtResource( 1 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10, 0, -2 )
-
-[node name="endPoint" parent="." instance=ExtResource( 9 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18, -4, 40 )
+[node name="World" type="Spatial" groups=["World"]]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10.6037, 0, -1.86863 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, 0, -2 )
+
+[node name="startPos" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -2, 0, -2 )
+
+[node name="endPoint" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 44 )
 
 [node name="Gridmap" type="GridMap" parent="."]
 transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0 )
@@ -32,26 +36,38 @@ cell_size = Vector3( 1, 1, 1 )
 collision_mask = 3
 bake_navigation = true
 data = {
-"cells": PoolIntArray( 4, 0, 1441792, 4, 1, 655368, 4, 2, 1441792, 3, 3, 655364, 4, 3, 1441792, 5, 3, 655364, 65539, 3, 655364, 65540, 3, 655364, 65541, 3, 655364, -65533, 3, 655364, -65532, 3, 655364, -65531, 3, 655364, 2, 4, 1441796, 3, 4, 1048576, 4, 4, 2, 5, 4, 2, 6, 4, 1048580, 65539, 4, 1048576, 65540, 4, 3, 65541, 4, 3, 65542, 4, 1048580, 131076, 4, 6, 196613, 4, 6, -65534, 4, 1441796, -65533, 4, 2, -65532, 4, 655362, -65531, 4, 655362, -65530, 4, 1048580, -65527, 4, 655364, -65526, 4, 655364, -65525, 4, 655364, 2, 5, 1441796, 3, 5, 1048576, 4, 5, 2, 5, 5, 2, 6, 5, 1048580, 9, 5, 2, 10, 5, 2, 11, 5, 2, 65538, 5, 1441796, 65539, 5, 1048582, 65540, 5, 3, 65541, 5, 3, 65542, 5, 1048580, -65534, 5, 1441796, -65533, 5, 2, -65532, 5, 2, -65531, 5, 2, -65530, 5, 1048580, -65528, 5, 1441796, -65527, 5, 655362, -65526, 5, 655362, -65525, 5, 655362, -65524, 5, 1048580, 2, 6, 1441796, 3, 6, 1048582, 4, 6, 2, 5, 6, 2, 6, 6, 1048580, 9, 6, 2, 10, 6, 2, 11, 6, 2, 65538, 6, 1441796, 65539, 6, 3, 65540, 6, 3, 65541, 6, 3, 65542, 6, 1048580, -65534, 6, 1441796, -65533, 6, 2, -65532, 6, 2, -65531, 6, 2, -65527, 6, 655362, -65526, 6, 655362, -65525, 6, 655362, -65524, 6, 1048580, 2, 7, 1441796, 4, 7, 2, 5, 7, 2, 6, 7, 1048580, 9, 7, 2, 10, 7, 2, 11, 7, 2, 65538, 7, 1441796, 65539, 7, 3, 65540, 7, 3, 65541, 7, 3, 65542, 7, 1048580, -65534, 7, 1441796, -65533, 7, 1048582, -65532, 7, 2, -65531, 7, 2, -65530, 7, 1048580, -65528, 7, 1441796, -65527, 7, 655362, -65526, 7, 655362, -65525, 7, 655362, -65524, 7, 1048580, 2, 8, 1441796, 4, 8, 2, 5, 8, 2, 6, 8, 1048580, 9, 8, 2, 10, 8, 2, 11, 8, 2, 65538, 8, 1441796, 65539, 8, 3, 65540, 8, 3, 65541, 8, 3, 65542, 8, 1048580, -65534, 8, 1441796, -65533, 8, 2, -65532, 8, 2, -65531, 8, 2, -65530, 8, 1048580, -65528, 8, 1441796, -65527, 8, 655362, -65526, 8, 655362, -65525, 8, 655362, -65524, 8, 1048580, 3, 9, 4, 4, 9, 4, 5, 9, 4, 65539, 9, 4, 65540, 9, 4, 65541, 9, 4, -65533, 9, 4, -65532, 9, 1048576, -65531, 9, 4, -65527, 9, 4, -65526, 9, 4, -65525, 9, 4, -65532, 10, 1441792, -65532, 11, 1441798, 4, 12, 1441798, 65540, 13, 1441798, 131076, 14, 1441798, 0, 65535, 0, 1, 65535, 0, 2, 65535, 0, 3, 65535, 0, 4, 65535, 1441793, 65532, 65535, 1441796, 65533, 65535, 0, 65534, 65535, 0, 65535, 65535, 0 )
+"cells": PoolIntArray( 65529, 0, 1441796, 65530, 0, 1441801, 65531, 0, 1441801, 65532, 0, 1441801, 65533, 0, 1441801, 65534, 0, 1441801, 65535, 0, 1048580, 65529, 1, 1441796, 65530, 1, 1441801, 65531, 1, 1441801, 65532, 1, 1441801, 65533, 1, 1441801, 65534, 1, 1441801, 65535, 1, 1048580, 65529, 2, 1441796, 65530, 2, 1441801, 65531, 2, 1441801, 65532, 2, 1441801, 65533, 2, 1441801, 65534, 2, 1441801, 65535, 2, 1048580, 65529, 3, 655364, 65530, 3, 458761, 65531, 3, 1, 65532, 3, 655360, 65533, 3, 655360, 65534, 3, 655361, 65535, 3, 1048580, 65528, 4, 1441796, 65529, 4, 655369, 65530, 4, 655369, 65531, 4, 8, 65532, 4, 1179657, 65533, 4, 1179657, 65534, 4, 1310724, 65528, 5, 1441796, 65529, 5, 655369, 65530, 5, 655369, 65531, 5, 9, 65532, 5, 1179657, 65533, 5, 1179657, 65534, 5, 1310724, 65529, 6, 4, 65530, 6, 4, 65531, 6, 1441792, 65532, 6, 4, 65533, 6, 131076, 65530, 7, 1441796, 65531, 7, 9, 65532, 7, 1441793, 65533, 7, 1048580, 65531, 8, 1048577, 65532, 8, 0, 65533, 8, 131072, 65534, 8, 131073, 65534, 9, 1179648, 65534, 10, 1179648, 65534, 11, 1179648, 65533, 12, 1441796, 65534, 12, 1441798, 65535, 12, 1048580, 131069, 12, 1441796, 131070, 12, 4, 131071, 12, 1048580, 196605, 12, 1441796, 196606, 12, 4, 196607, 12, 1048580, 262141, 12, 1441796, 262142, 12, 3, 262143, 12, 1048580, 131069, 13, 1441796, 131070, 13, 1441798, 131071, 13, 1048580, 196605, 13, 1441796, 196607, 13, 1048580, 262141, 13, 1441796, 262142, 13, 3, 262143, 13, 1048580, 131071, 14, 1048580, 196605, 14, 1441796, 196606, 14, 1441798, 196607, 14, 1048580, 262141, 14, 1441796, 262142, 14, 3, 262143, 14, 1048580, 65530, 65534, 655364, 65531, 65534, 655364, 65532, 65534, 655364, 65533, 65534, 655364, 65534, 65534, 655364, 65529, 65535, 1441796, 65530, 65535, 1441801, 65531, 65535, 1441801, 65532, 65535, 1441801, 65533, 65535, 1441801, 65534, 65535, 1441801, 65535, 65535, 393217 )
+}
+__meta__ = {
+"_editor_clip_": 0,
+"_editor_floor_": Vector3( -3, 0, 12 )
+}
+
+[node name="vents" type="GridMap" parent="."]
+mesh_library = ExtResource( 4 )
+cell_size = Vector3( 1, 1, 1 )
+data = {
+"cells": PoolIntArray( 458753, 65531, 1048577, 262140, 65532, 1441796, 262141, 65532, 1441796, 262142, 65532, 1441796, 262143, 65532, 1441796, 458753, 65532, 1048577, 262140, 65533, 1441796, 262141, 65533, 1441796, 262142, 65533, 1441796, 262143, 65533, 1441796, 458753, 65533, 1048577, 262140, 65534, 1441796, 262141, 65534, 1441796, 262143, 65534, 1441796, 327678, 65534, 851969, 393214, 65534, 851969, 458750, 65534, 851969, 458752, 65534, 1, 458753, 65534, 655362, 524286, 65534, 983042, 524287, 65534, 1, 262140, 65535, 1441796, 262141, 65535, 1441796, 262142, 65535, 1441796, 262143, 65535, 1441796 )
+}
+__meta__ = {
+"_editor_clip_": 0,
+"_editor_floor_": Vector3( 0, 7, 0 )
+}
+
+[node name="furniture" type="GridMap" parent="."]
+mesh_library = ExtResource( 14 )
+cell_size = Vector3( 1, 0.1, 1 )
+cell_center_y = false
+data = {
+"cells": PoolIntArray( 65517, 2, 1048578, 65522, 2, 1441794, 65517, 3, 1048578, 65522, 3, 1441794, 65517, 4, 1048578, 65519, 4, 1441796, 65522, 4, 1441794, 65517, 5, 1048578, 65522, 5, 1441794, 65517, 6, 1048578, 65522, 6, 1441794, 65522, 7, 1441797, 65510, 18, 1048578, 65511, 18, 1048579, 589799, 18, 1441799 )
 }
 __meta__ = {
 "_editor_clip_": 0,
 "_editor_floor_": Vector3( 0, 0, 0 )
 }
 
-[node name="vents" type="GridMap" parent="."]
-mesh_library = ExtResource( 2 )
-cell_size = Vector3( 1, 1, 1 )
-data = {
-"cells": PoolIntArray( -262120, 24, 1048580, -262109, 24, 1441796, -196584, 24, 1048580, -196573, 24, 1441796, -131048, 24, 1048580, -131037, 24, 1441796, -65512, 24, 1048580, -65501, 24, 1441796, -262120, 25, 1048580, -262109, 25, 1441796, -196584, 25, 1048580, -196573, 25, 1441796, -131048, 25, 1048580, -131037, 25, 1441796, -65512, 25, 1048580, -65501, 25, 1441796, -262120, 26, 1048580, -262109, 26, 1441796, -196584, 26, 1048580, -196573, 26, 1441796, -131048, 26, 1048580, -131037, 26, 1441796, -65512, 26, 1048580, -65501, 26, 1441796, -262120, 27, 0, -262119, 27, 0, -262118, 27, 0, -262117, 27, 0, -262116, 27, 0, -262115, 27, 0, -262114, 27, 1441800, -262113, 27, 655360, -262112, 27, 655360, -262111, 27, 655360, -262110, 27, 655360, -262109, 27, 655360, -196584, 27, 1048580, -196573, 27, 1441796, -131048, 27, 1048580, -131037, 27, 1441796, -65512, 27, 1048580, -65501, 27, 1441796 )
-}
-__meta__ = {
-"_editor_clip_": 0,
-"_editor_floor_": Vector3( 0, -5, 0 )
-}
-
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 1, 0, 0, 0, -0.467066, 0.884223, 0, -0.884223, -0.467066, 0, 10.0049, 2.83859 )
+transform = Transform( 0.965926, 0.228854, 0.120886, 0, -0.467066, 0.884223, 0.258819, -0.854093, -0.451151, 0, 44.4896, -15.377 )
 light_energy = 0.3
 light_specular = 0.0
 directional_shadow_mode = 0
@@ -59,41 +75,73 @@ directional_shadow_mode = 0
 [node name="Interactibles" type="Spatial" parent="."]
 
 [node name="door" parent="Interactibles" instance=ExtResource( 5 )]
-transform = Transform( -2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, 18, -4, 36 )
+transform = Transform( -2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, -6, 0, 40 )
 
 [node name="Button" parent="Interactibles" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, -3, 36 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, 1, 38 )
 node_path = NodePath("../door")
 locked = true
 
 [node name="doorway" parent="Interactibles" instance=ExtResource( 8 )]
-transform = Transform( -1.74846e-07, 0, -4, 0, 4, 0, 4, 0, -1.74846e-07, 18, 0, 15.9 )
+transform = Transform( -4, 0, -3.49691e-07, 0, 4, 0, 3.49691e-07, 0, -4, -4, 0, -2 )
 skeleton = NodePath("../..")
 
 [node name="singleDoor" parent="Interactibles/doorway" instance=ExtResource( 7 )]
 transform = Transform( -1.09278e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.09278e-08, 0, 0, 0.25 )
-locked = true
+
+[node name="doorway2" parent="Interactibles" instance=ExtResource( 8 )]
+transform = Transform( 4, 0, -4.40536e-13, 0, 4, 0, 4.40536e-13, 0, 4, -20, 0, 22 )
+skeleton = NodePath("../..")
+
+[node name="singleDoor" parent="Interactibles/doorway2" instance=ExtResource( 7 )]
+transform = Transform( -1.09278e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.09278e-08, 0, 0, 0.25 )
+
+[node name="doorway3" parent="Interactibles" instance=ExtResource( 8 )]
+transform = Transform( -4, 0, -3.49691e-07, 0, 4, 0, 3.49691e-07, 0, -4, -16, 0, 22 )
+skeleton = NodePath("../..")
+
+[node name="singleDoor" parent="Interactibles/doorway3" instance=ExtResource( 7 )]
+transform = Transform( -1.09278e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.09278e-08, 0, 0, 0.25 )
+
+[node name="doorway4" parent="Interactibles" instance=ExtResource( 8 )]
+transform = Transform( -4, 0, -3.49691e-07, 0, 4, 0, 3.49691e-07, 0, -4, -16, 0, 30 )
+skeleton = NodePath("../..")
+
+[node name="singleDoor" parent="Interactibles/doorway4" instance=ExtResource( 7 )]
+transform = Transform( -1.09278e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.09278e-08, 0, 0, 0.25 )
 
 [node name="ventDoor" parent="Interactibles" instance=ExtResource( 10 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 24, -4, 27 )
 
 [node name="ammoPickup" parent="Interactibles" instance=ExtResource( 11 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.9014, 0.0400003, -2.25369 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0986, 0.0400004, 30.7463 )
 spinSpeed = 5.0
 updownSpeed = 4.0
 ammoType = "pistol"
 
 [node name="healthPickup" parent="Interactibles" instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.7915, 0.04, 1.62889 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.2085, 0.04, 22.6289 )
 healthAmount = 25
 
 [node name="keyPickup" parent="Interactibles" instance=ExtResource( 13 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2524, -3.96, 29.9445 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25.7476, 0.04, 21.9445 )
 node_path = NodePath("../Button")
 
 [node name="keyPickup2" parent="Interactibles" instance=ExtResource( 13 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.9695, 0.0399998, 3.58742 )
 node_path = NodePath("../doorway/singleDoor")
 
-[node name="teapot" parent="." instance=ExtResource( 4 )]
-transform = Transform( 4.33013, 0, -2.5, 0, 5, 0, 2.5, 0, 4.33013, 38, -7, 4 )
+[node name="Decor" type="Spatial" parent="."]
+
+[node name="dangerSign" type="Sprite3D" parent="Decor"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -19.99, 2, 26 )
+pixel_size = 0.001
+texture = ExtResource( 15 )
+
+[node name="outlet" type="Sprite3D" parent="Decor"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -19.99, 0.6, 30 )
+pixel_size = 0.0001
+texture = ExtResource( 16 )
+
+[node name="plant1" parent="." instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 11 )

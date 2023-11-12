@@ -21,12 +21,31 @@ var stoppingSpeed = 10.0
 func _ready():
 	grass.set_shader_param("speed",0.0)
 	track.set_shader_param("speed",0.0)
+	for x in range(50 - $startTrees.global_translation.z):
+		var treeInstance = tree.instance()
+		$moving.add_child(treeInstance)
+		treeInstance.global_translation = $startTrees.global_translation
+		treeInstance.global_translation.x = rand_range($startTrees.global_translation.x, $endTrees.global_translation.x)
+		treeInstance.global_translation.z += x
+		if treeInstance.global_translation.x > -5 and treeInstance.global_translation.x < 5:
+			treeInstance.queue_free()
 
-onready var player = preload("res://scenes/characters/Player.tscn")
+onready var player = load("res://scenes/characters/Player.tscn")
+onready var tree = load("res://scenes/assets/3d/tree.tscn")
+
+var counter = 0
 
 func _process(delta):
+	counter += 1
 	if started:
 		$moving.translation.z += 20 * delta * trainSpeed
+		if counter % 1 == 0:
+			var treeInstance = tree.instance()
+			$moving.add_child(treeInstance)
+			treeInstance.global_translation = $startTrees.global_translation
+			treeInstance.global_translation.x = rand_range($startTrees.global_translation.x, $endTrees.global_translation.x)
+			if treeInstance.global_translation.x > -5 and treeInstance.global_translation.x < 5:
+				treeInstance.queue_free()
 	for object in $moving.get_children():
 		if object.global_translation.z > 50:
 			object.queue_free()
@@ -39,6 +58,7 @@ func _process(delta):
 		trainSpeed = lerp(trainSpeed,0.0,0.1)
 		$MeshInstance.global_translation.z += stoppingSpeed * trainSpeed * delta
 		$train_track.global_translation.z += stoppingSpeed * trainSpeed * delta
+		$moving.global_translation.z += stoppingSpeed * trainSpeed * delta
 		$trainSound.volume_db = linear2db(trainSpeed / 2.0)
 
 func startGame():
