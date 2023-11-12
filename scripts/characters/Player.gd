@@ -429,4 +429,5 @@ func updateGunAnimationTree():
 func _on_Hitbox_body_entered(body):
 	if "Bullet" in body.name:
 		damage(body.get_damage_caused())
+		body.queue_free()
 
