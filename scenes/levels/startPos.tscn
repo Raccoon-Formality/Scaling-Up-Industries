@@ -10,5 +10,5 @@ size = Vector3( 0.1, 0.2, 1 )
 [node name="startPos" type="Spatial"]
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0.5 )
 mesh = SubResource( 2 )

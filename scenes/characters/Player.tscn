@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://scripts/characters/Player.gd" type="Script" id=1]
 [ext_resource path="res://scenes/characters/gunarmz.tscn" type="PackedScene" id=2]
@@ -19,7 +19,33 @@
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
 
-[sub_resource type="Shader" id=3]
+[sub_resource type="Shader" id=16]
+code = "// chromatic aberration
+//---------------------------------
+
+shader_type canvas_item;
+
+uniform vec2 r_displacement = vec2(3.0, 0.0);
+uniform vec2 g_displacement = vec2(0.0, 0.0);
+uniform vec2 b_displacement = vec2(-3.0, 0.0);
+
+
+void fragment()
+{
+	float r = texture(SCREEN_TEXTURE, SCREEN_UV + vec2(SCREEN_PIXEL_SIZE*r_displacement), 0.0).r;
+	float g = texture(SCREEN_TEXTURE, SCREEN_UV + vec2(SCREEN_PIXEL_SIZE*g_displacement), 0.0).g;
+	float b = texture(SCREEN_TEXTURE, SCREEN_UV + vec2(SCREEN_PIXEL_SIZE*b_displacement), 0.0).b;
+	
+	COLOR = vec4(r, g, b, 1.0);
+}"
+
+[sub_resource type="ShaderMaterial" id=17]
+shader = SubResource( 16 )
+shader_param/r_displacement = Vector2( -2, 0 )
+shader_param/g_displacement = Vector2( 0, 0 )
+shader_param/b_displacement = Vector2( 2, 0 )
+
+[sub_resource type="Shader" id=8]
 code = "shader_type canvas_item;
 
 uniform float vignette_intensity = 0.4;
@@ -43,7 +69,7 @@ void fragment(){
 }"
 
 [sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 3 )
+shader = SubResource( 8 )
 shader_param/vignette_intensity = 0.4
 shader_param/vignette_opacity = 0.5
 shader_param/vignette_rgb = Color( 0, 0, 0, 1 )
@@ -89,12 +115,6 @@ script = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1, 0 )
 shape = SubResource( 1 )
 
-[node name="Hitbox" type="Area" parent="."]
-
-[node name="HitboxCollider" type="CollisionShape" parent="Hitbox"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1, 0 )
-shape = SubResource( 1 )
-
 [node name="headCheck" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 enabled = true
@@ -105,6 +125,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 
 [node name="Camera" type="Camera" parent="Pivot"]
 cull_mask = 1048573
+current = true
 far = 8192.0
 
 [node name="armz" parent="Pivot/Camera" instance=ExtResource( 7 )]
@@ -154,6 +175,13 @@ spot_angle = 25.4018
 [node name="game_ui" type="CanvasLayer" parent="."]
 
 [node name="Control" type="Control" parent="game_ui"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="chromaticAberation" type="ColorRect" parent="game_ui/Control"]
+visible = false
+material = SubResource( 17 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -331,7 +359,6 @@ bus = "sfx"
 [node name="hurtSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
 
-[connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]
 [connection signal="pressed" from="pause_menu/Control/QuitButton" to="pause_menu" method="_on_QuitButton_pressed"]
 [connection signal="pressed" from="pause_menu/Control/ContinueButton" to="pause_menu" method="_on_ContinueButton_pressed"]
 [connection signal="pressed" from="death_menu/Control/yesButton" to="death_menu" method="_on_yesButton_pressed"]

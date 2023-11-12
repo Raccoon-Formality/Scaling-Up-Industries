@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/vase1.obj-825e9afce28b15547445f807ef62170d.mesh"
+
+[deps]
+
+files=[ "res://.import/vase1.obj-825e9afce28b15547445f807ef62170d.mesh" ]
+
+source_file="res://assets/3d/obj/vase1/vase1.obj"
+dest_files=[ "res://.import/vase1.obj-825e9afce28b15547445f807ef62170d.mesh", "res://.import/vase1.obj-825e9afce28b15547445f807ef62170d.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

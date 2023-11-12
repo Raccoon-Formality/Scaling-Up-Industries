@@ -1,8 +1,8 @@
 [gd_resource type="ShaderMaterial" load_steps=5 format=2]
 
-[ext_resource path="res://assets/textures/Cement.png" type="Texture" id=1]
-[ext_resource path="res://assets/textures/Brick 1.PNG" type="Texture" id=2]
-[ext_resource path="res://assets/textures/Metal Floor 2.PNG" type="Texture" id=3]
+[ext_resource path="res://assets/textures/Carpet1.png" type="Texture" id=1]
+[ext_resource path="res://assets/textures/Drywall.PNG" type="Texture" id=2]
+[ext_resource path="res://assets/textures/Ceiling.PNG" type="Texture" id=3]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type spatial;
@@ -41,9 +41,9 @@ void fragment() {
 
 [resource]
 shader = SubResource( 1 )
-shader_param/wallsScale = 1.5
-shader_param/floorsScale = 1.5
-shader_param/ceilingScale = 1.5
+shader_param/wallsScale = 0.5
+shader_param/floorsScale = 2.0
+shader_param/ceilingScale = 2.0
 shader_param/walls = ExtResource( 2 )
-shader_param/floors = ExtResource( 3 )
-shader_param/ceiling = ExtResource( 1 )
+shader_param/floors = ExtResource( 1 )
+shader_param/ceiling = ExtResource( 3 )
