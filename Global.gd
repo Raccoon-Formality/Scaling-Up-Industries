@@ -1,5 +1,6 @@
 extends Node
 
+var player_node
 
 var mouse_sensitivity = 0.002  # radians/pixel
 var controller_sensitivity = 0.06  # radians/pixel

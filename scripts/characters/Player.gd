@@ -251,6 +251,7 @@ func handleScreenshake(delta):
 # gun is on different viewport to avoid wall clipping.
 func _ready():
 	$pause_menu.player = self
+	Global.player_node = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	changeWeapon(Global.currentSelect)
 	$Pivot/Camera/ViewportContainer/Viewport.size = get_viewport().size

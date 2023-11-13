@@ -13,8 +13,9 @@ export var BULLET_DAMAGE = 10
 export var RATE_OF_FIRE_SECONDS_PER_SHOT = 0.3
 export var COMBAT_REACTION_TIME = 0.5
 
-onready var player_node = get_tree().get_nodes_in_group("Player")[0]
-#get_node("../Player")# TODO: better way of getting player
+var player_node
+#onready var player_node = get_tree().get_nodes_in_group("Player")[0]
+#onready var player_node = get_node("../Player")
 
 var navAgent : NavigationAgent
 var waypoint_index = 0
@@ -43,8 +44,7 @@ var num_health_points
 var _enemy_position = null
 
 func _ready():
-	# for testing
-	#$StateIndicatorTimer.wait_time = 0.25
+	player_node = Global.player_node
 
 	navAgent = $NavigationAgent
 	if waypoint_graph and waypoint_graph.waypoint_list.size() > 0: 
@@ -59,7 +59,6 @@ func _ready():
 
 
 func _process(_delta):
-	player_node = get_tree().get_nodes_in_group("Player")[0]
 	var _result = navAgent.get_next_location()
 	_update_state_machine()
 	_run_state_exit_events()
