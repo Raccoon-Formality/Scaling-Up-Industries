@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scenes/levels/startPos.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/assets/tilesets/tileset.tres" type="MeshLibrary" id=2]
@@ -19,18 +19,19 @@
 [ext_resource path="res://assets/3d/gltf/plant1.gltf" type="PackedScene" id=17]
 [ext_resource path="res://scenes/characters/GenericNpc.tscn" type="PackedScene" id=18]
 
+[sub_resource type="NavigationMesh" id=1]
+vertices = PoolVector3Array( -7.75, 0.5, 11.5, -7.5, 0.5, 12, -4.5, 0.5, 12, -4.5, 0.5, 5.75, -4.5, 0.5, -0.25, -0.5, 0.5, -0.5, -0.5, 0.5, -3.25, -12, 0.5, -3.25, -4.5, 0.5, 5.75, -4.5, 0.5, -0.25, -12, 0.5, -3.25, -15.5, 0.5, 11.5, -7.75, 0.5, 11.5, -4.5, 0.5, 5.75, -12, 0.5, -3.25, -23.25, 0.5, -3.25, -23.25, 0.5, 4, -23.25, 0.5, 4, -23.25, 0.5, 11.5, -15.5, 0.5, 11.5, -4.5, 0.5, 12, -7.5, 0.5, 12, -7.75, 0.5, 12.75, -4.5, 0.5, 15.5, -14.75, 0.5, 15.5, -4.5, 0.5, 15.5, -7.75, 0.5, 12.75, -15, 0.5, 12.75, -19.25, 0.5, 23.75, -19.25, 0.5, 25.5, -16.5, 0.5, 25.5, -16.5, 0.5, 23.75, -16.5, 0.5, 15.75, -19.25, 0.5, 12.75, -19.25, 0.5, 20.25, -16.5, 0.5, 20.25, -20, 0.5, 20.5, -20, 0.5, 23.5, -19.25, 0.5, 23.75, -16.5, 0.5, 23.75, -15.75, 0.5, 23.5, -15.75, 0.5, 20.5, -16.5, 0.5, 15.75, -14.75, 0.5, 15.5, -15, 0.5, 12.75, -19.25, 0.5, 12.75, -19.25, 0.5, 23.75, -16.5, 0.5, 23.75, -15.75, 0.5, 20.5, -16.5, 0.5, 20.25, -19.25, 0.5, 20.25, -20, 0.5, 20.5, -20, 0.5, 23.5, -20, 0.5, 20.5, -20.5, 0.5, 20.25, -27.25, 0.5, 23.5, -20.5, 0.5, 20.25, -20.5, 0.5, 16.75, -27.25, 0.5, 16.75, -27.25, 0.5, 23.5, -15.25, 0.5, 20.25, -15.75, 0.5, 20.5, -15.75, 0.5, 23.5, -8.5, 0.5, 23.5, -8.5, 0.5, 16.75, -15.25, 0.5, 16.75, -15.25, 0.5, 20.25, -8.5, 0.5, 23.5, -19.25, 0.5, 32, -16.5, 0.5, 32, -16.25, 0.5, 31.5, -16.25, 0.5, 28.75, -16.5, 0.5, 25.5, -19.25, 0.5, 25.5, -16.25, 0.5, 31.5, -12.5, 0.5, 31.5, -12.5, 0.5, 28.75, -16.25, 0.5, 28.75, -16.25, 0.5, 32.75, -16.5, 0.5, 32, -19.25, 0.5, 32, -19.25, 0.5, 35.5, -9, 0.5, 35.5, -8.75, 0.5, 32.75, -16.25, 0.5, 32.75, -19.25, 0.5, 35.5, -8.75, 0.5, 32.75, -9, 0.5, 35.5, -7.25, 0.5, 35.75, -4.5, 0.5, 32.75, -8.75, 0.5, 32.75, -7.25, 0.5, 35.75, -4.5, 0.5, 40.25, -7.25, 0.5, 47.75, -4.5, 0.5, 47.75, -4.5, 0.5, 40.25, -7.25, 0.5, 35.75 )
+polygons = [ PoolIntArray( 1, 0, 2 ), PoolIntArray( 2, 0, 3 ), PoolIntArray( 5, 4, 6 ), PoolIntArray( 6, 4, 7 ), PoolIntArray( 10, 9, 8 ), PoolIntArray( 12, 11, 13 ), PoolIntArray( 13, 11, 14 ), PoolIntArray( 14, 11, 16 ), PoolIntArray( 14, 16, 15 ), PoolIntArray( 19, 18, 17 ), PoolIntArray( 21, 20, 22 ), PoolIntArray( 22, 20, 23 ), PoolIntArray( 27, 26, 24 ), PoolIntArray( 24, 26, 25 ), PoolIntArray( 31, 30, 28 ), PoolIntArray( 28, 30, 29 ), PoolIntArray( 35, 34, 32 ), PoolIntArray( 32, 34, 33 ), PoolIntArray( 36, 38, 37 ), PoolIntArray( 41, 40, 39 ), PoolIntArray( 43, 42, 44 ), PoolIntArray( 44, 42, 45 ), PoolIntArray( 49, 48, 50 ), PoolIntArray( 50, 48, 51 ), PoolIntArray( 51, 48, 47 ), PoolIntArray( 51, 47, 46 ), PoolIntArray( 53, 52, 54 ), PoolIntArray( 54, 52, 55 ), PoolIntArray( 57, 56, 58 ), PoolIntArray( 58, 56, 59 ), PoolIntArray( 61, 60, 62 ), PoolIntArray( 62, 60, 63 ), PoolIntArray( 65, 64, 66 ), PoolIntArray( 66, 64, 67 ), PoolIntArray( 69, 68, 70 ), PoolIntArray( 70, 68, 71 ), PoolIntArray( 71, 68, 72 ), PoolIntArray( 72, 68, 73 ), PoolIntArray( 77, 76, 74 ), PoolIntArray( 74, 76, 75 ), PoolIntArray( 79, 78, 80 ), PoolIntArray( 80, 78, 81 ), PoolIntArray( 83, 82, 84 ), PoolIntArray( 84, 82, 85 ), PoolIntArray( 88, 87, 86 ), PoolIntArray( 90, 89, 91 ), PoolIntArray( 91, 89, 92 ), PoolIntArray( 94, 93, 95 ), PoolIntArray( 95, 93, 96 ) ]
+
 [node name="World" type="Spatial" groups=["World"]]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, 0, -2 )
 
-[node name="startPos" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -2, 0, -2 )
+[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="."]
+navmesh = SubResource( 1 )
 
-[node name="endPoint" parent="." instance=ExtResource( 9 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 44 )
-
-[node name="Gridmap" type="GridMap" parent="."]
+[node name="Gridmap" type="GridMap" parent="NavigationMeshInstance"]
 transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0 )
 mesh_library = ExtResource( 2 )
 cell_size = Vector3( 1, 1, 1 )
@@ -44,7 +45,7 @@ __meta__ = {
 "_editor_floor_": Vector3( -3, 0, 12 )
 }
 
-[node name="vents" type="GridMap" parent="."]
+[node name="vents" type="GridMap" parent="NavigationMeshInstance"]
 mesh_library = ExtResource( 4 )
 cell_size = Vector3( 1, 1, 1 )
 data = {
@@ -54,6 +55,12 @@ __meta__ = {
 "_editor_clip_": 0,
 "_editor_floor_": Vector3( 0, 7, 0 )
 }
+
+[node name="startPos" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -2, 0, -2 )
+
+[node name="endPoint" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 44 )
 
 [node name="furniture" type="GridMap" parent="."]
 mesh_library = ExtResource( 14 )

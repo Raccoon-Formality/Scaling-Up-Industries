@@ -154,7 +154,7 @@ func _run_state_exit_events():
 		_un_alert_the_npc()
 
 
-func _run_state_enter_events():
+func _run_state_enter_events():	
 	if _current_state == STATES.COMBAT and _previous_state != STATES.COMBAT:
 		_alert_the_npc(player_node.global_transform.origin)
 		_enter_combat()
@@ -180,7 +180,7 @@ func player_is_visible():
 			if overlap.name == "Player":
 				$VisionRaycast.look_at(player_node.translation + HEIGHT_OF_PLAYER, Vector3.UP)
 				$VisionRaycast.force_raycast_update()
-				
+
 				if $VisionRaycast.is_colliding():
 					var collider = $VisionRaycast.get_collider()
 					if collider.name == "Player":
@@ -195,7 +195,10 @@ func player_is_visible():
 func grid_map_is_in_the_way(player_position):
 	var space_state = get_world().direct_space_state
 	var selection = space_state.intersect_ray($VisionRaycast.global_translation, player_position)
-	
+	return _map_selection(selection)
+
+
+func _map_selection(selection):
 	if selection.empty():
 		return false
 	else: 
