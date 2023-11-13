@@ -152,7 +152,7 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -19.99,
 pixel_size = 0.0001
 texture = ExtResource( 16 )
 
-[node name="plant1" parent="." instance=ExtResource( 17 )]
+[node name="plant1" parent="Decor" instance=ExtResource( 17 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 11 )
 
 [node name="GenericNpc" parent="." instance=ExtResource( 18 )]
