@@ -9,7 +9,7 @@ export(bool) var flip = false
 onready var doorBody = $ventDoorBody
 
 
-func _process(delta):
+func _process(_delta):
 	if not flip:
 		doorBody.translation.y = lerp(doorBody.translation.y,angle,0.2)
 	else:

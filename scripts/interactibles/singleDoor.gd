@@ -10,7 +10,7 @@ export(bool) var locked = false
 onready var doorBody = $singleDoorBody
 
 
-func _process(delta):
+func _process(_delta):
 	if not flip:
 		doorBody.translation.x = lerp(doorBody.translation.x,angle,0.1)
 	else:

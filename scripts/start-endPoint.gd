@@ -4,7 +4,7 @@ func _on_Area_body_entered(body):
 	# if player enters, will go to next level
 	#pos, pos2, rot, vel, vel2, crouch, camTransform
 	if body.is_in_group("Player"):
-		get_tree().change_scene("res://levelManager.tscn")
+		var _result = get_tree().change_scene("res://levelManager.tscn")
 		Global.fromStartList = [
 			body.global_translation,
 			global_translation,

@@ -281,7 +281,7 @@ func _input(event):
 # less important process
 # make sure gun viewport camera and regular camera transform are the same
 # update gun animation tree
-func _process(delta):
+func _process(_delta):
 	guncamera.global_transform = camera.global_transform
 	$Pivot/Camera/ViewportContainer/Viewport.size = get_viewport().size
 	updateGunAnimationTree()

@@ -9,9 +9,9 @@ var selected = false
 
 func _ready():
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-	connect("mouse_entered",self,"mouse_enter")
-	connect("mouse_exited",self,"mouse_exit")
-	connect("value_changed",self,"mouse_press")
+	var _connect_result = connect("mouse_entered",self,"mouse_enter")
+	_connect_result = connect("mouse_exited",self,"mouse_exit")
+	_connect_result = connect("value_changed",self,"mouse_press")
 
 func mouse_enter():
 	hoverSound.play()

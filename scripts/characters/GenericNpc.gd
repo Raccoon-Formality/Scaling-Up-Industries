@@ -3,9 +3,10 @@ class_name GenericNpc extends KinematicBody
 
 const BULLET_RES_PATH = "res://scenes/characters/Bullet.tscn"
 const HEIGHT_OF_PLAYER = Vector3(0, 1.5, 0)
+onready var bullet = preload(BULLET_RES_PATH)
 
 export var STARTING_HEALTH_POINTS = 5
-export var PROJECTILE_SPEED = 200
+export var PROJECTILE_SPEED = 10
 export var TURN_SPEED = 0.1
 export var RUN_SPEED = 3
 export var MAXIMUM_EARSHOT_DISTANCE = 20
@@ -53,12 +54,12 @@ func _ready():
 	num_health_points = STARTING_HEALTH_POINTS
 	_update_state_machine()
 
-	$PatrolTimer.connect("timeout", self, "_on_to_next_destination")
+	var _connect_result = $PatrolTimer.connect("timeout", self, "_on_to_next_destination")
 	_register_listener_for_player_gun_sounds()
 
 
-func _physics_process(delta):
-	navAgent.get_next_location()
+func _physics_process(_delta):
+	var _result = navAgent.get_next_location()
 	_update_state_machine()
 	_run_state_exit_events()
 	_run_state_enter_events()
@@ -148,7 +149,7 @@ func _run_state_exit_events():
 		_un_alert_the_npc()
 
 
-func _run_state_enter_events():	
+func _run_state_enter_events():
 	if _current_state == STATES.COMBAT and _previous_state != STATES.COMBAT:
 		_alert_the_npc(player_node.global_transform.origin)
 		_enter_combat()
@@ -233,30 +234,30 @@ func turn_towards_target(target_pos):
 
 func _exit_combat():
 	$AttackTimer.disconnect("timeout", self, "_fire_projectile")
-	$CombatReactionTimer.disconnect("timeout", self, "start_firing_weapon")
+	if $CombatReactionTimer.is_connected("timeout", self, "start_firing_weapon"):
+		$CombatReactionTimer.disconnect("timeout", self, "start_firing_weapon")
 	$TargetTrackerTimer.disconnect("timeout", self, "track_target")
 
 
 # This method only fires at the player. can make a class-scope list or something to be able to fire at other targets
 func _fire_projectile():
 	self._enemy_position = player_node.translation + HEIGHT_OF_PLAYER
+	var bulletInstance = bullet.instance()
+	get_parent().add_child(bulletInstance)
+	bulletInstance.global_translation = $BulletSpawnPoint.global_translation
 
-	var bullet = preload(BULLET_RES_PATH).instance()
-	get_parent().add_child(bullet)
-	bullet.global_translation = $BulletSpawnPoint.global_translation
-
-	var direction = bullet.global_transform.origin.direction_to(self._enemy_position)
-	if (bullet.global_transform.origin.direction_to(self._enemy_position) == Vector3.ZERO):
+	var direction = bulletInstance.global_transform.origin.direction_to(self._enemy_position)
+	if (bulletInstance.global_transform.origin.direction_to(self._enemy_position) == Vector3.ZERO):
 		print("Error, the distance between the target and the originator/NPC is zero")
 	else:
 		direction = direction.normalized()
 
 		var direction_from_bullet_spawn_point = $BulletSpawnPoint.global_translation.direction_to(self._enemy_position).normalized()
 		var xy_angle = atan2(direction.x, direction.z)
-		bullet.rotate_y(xy_angle + 0.1)
+		bulletInstance.rotate_y(xy_angle + 0.1)
 
-		bullet.set_damage_caused(BULLET_DAMAGE)
-		bullet.apply_impulse(Vector3(), direction * PROJECTILE_SPEED)
+		bulletInstance.set_damage_caused(BULLET_DAMAGE)
+		bulletInstance.velocity = direction * PROJECTILE_SPEED
 
 # TODO: wtf
 func _on_to_next_destination():

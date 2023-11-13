@@ -7,9 +7,9 @@ onready var pressSound = ButtonSounds.get_node("pressSound")
 
 func _ready():
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-	connect("mouse_entered",self,"mouse_enter")
-	connect("mouse_exited",self,"mouse_exit")
-	connect("button_down",self,"mouse_press")
+	var _connect_result = connect("mouse_entered",self,"mouse_enter")
+	_connect_result = connect("mouse_exited",self,"mouse_exit")
+	_connect_result = connect("button_down",self,"mouse_press")
 
 #var size = Vector2.ONE
 

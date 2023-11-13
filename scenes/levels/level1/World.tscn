@@ -148,7 +148,7 @@ texture = ExtResource( 16 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 11 )
 
 [node name="GenericNpc" parent="." instance=ExtResource( 18 )]
-transform = Transform( 0.694658, 0, 0.71934, 0, 1, 0, -0.71934, 0, 0.694658, -11, 0, 11 )
+transform = Transform( 0.694658, 0, 0.71934, 0, 1, 0, -0.71934, 0, 0.694658, -13, 0, 14 )
 
 [node name="GenericNpc2" parent="." instance=ExtResource( 18 )]
 transform = Transform( -0.190809, 0, -0.981627, 0, 1, 0, 0.981627, 0, -0.190809, -15, 0, 10 )
