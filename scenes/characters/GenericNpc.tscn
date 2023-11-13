@@ -54,9 +54,6 @@ mesh = SubResource( 6 )
 transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 1, 0 )
 shape = SubResource( 1 )
 
-[node name="StateIndicatorTimer" type="Timer" parent="."]
-wait_time = 0.5
-
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 0.3
 autostart = true

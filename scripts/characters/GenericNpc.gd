@@ -316,15 +316,10 @@ func _is_headshot(collision_point):
 func _alert_the_npc(position_of_interest):
 	self._enemy_position = position_of_interest
 	navAgent.set_target_location(position_of_interest)
-
 	self.is_alerted = true
-	#var _connect_result = $StateIndicatorTimer.connect("timeout", self, "_alternate_color")
-	#$StateIndicatorTimer.start()
 
 
 func _un_alert_the_npc():
-	#$StateIndicatorTimer.disconnect("timeout", self, "_alternate_color")
-	#$StateIndicatorTimer.stop()
 	is_alerted = false
 
 """
