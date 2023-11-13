@@ -149,7 +149,7 @@ func _run_state_exit_events():
 		_un_alert_the_npc()
 
 
-func _run_state_enter_events():	
+func _run_state_enter_events():
 	if _current_state == STATES.COMBAT and _previous_state != STATES.COMBAT:
 		_alert_the_npc(player_node.global_transform.origin)
 		_enter_combat()
