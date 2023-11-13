@@ -131,9 +131,14 @@ func _run_state_dependent_processes():
 		if self._enemy_position == null:
 			print("Error: enemy_position is null")
 		_notice_the_player_if_in_los()
+		
+		turn_towards_target(navAgent.get_next_location())	
 		self._enemy_position = player_node.translation
-		turn_towards_target(self._enemy_position)	
-		_move_toward_position(navAgent.get_next_location())
+		if player_is_visible() and self._enemy_position != null:
+			attack()
+		else:
+			stop_attacking()
+			_move_toward_position(navAgent.get_next_location())
 
 	elif _current_state == STATES.DECEASED:
 		pass
@@ -175,16 +180,26 @@ func player_is_visible():
 			if overlap.name == "Player":
 				$VisionRaycast.look_at(player_node.translation + HEIGHT_OF_PLAYER, Vector3.UP)
 				$VisionRaycast.force_raycast_update()
-
+				
 				if $VisionRaycast.is_colliding():
 					var collider = $VisionRaycast.get_collider()
 					if collider.name == "Player":
-						if self._enemy_position == null:
-							self._enemy_position = player_node.translation
-						is_visible = true
+						if ! grid_map_is_in_the_way(player_node.translation):
+							if self._enemy_position == null:
+								self._enemy_position = player_node.translation
+							is_visible = true
 						break
-
 	return is_visible
+
+
+func grid_map_is_in_the_way(player_position):
+	var space_state = get_world().direct_space_state
+	var selection = space_state.intersect_ray($VisionRaycast.global_translation, player_position)
+	
+	if selection.empty():
+		return false
+	else: 
+		return selection["collider"] is GridMap
 
 
 func _register_listener_for_player_gun_sounds():
@@ -202,10 +217,6 @@ func _react_to_gun_sound_if_close():
 
 
 func _enter_combat():
-	$CombatReactionTimer.wait_time = COMBAT_REACTION_TIME
-	if not $CombatReactionTimer.is_connected("timeout", self, "start_firing_weapon"):
-		var _connect_result = $CombatReactionTimer.connect("timeout", self, "start_firing_weapon")
-		$CombatReactionTimer.start()
 	if not $TargetTrackerTimer.is_connected("timeout", self, "track_target"):
 		var _connect_result = $TargetTrackerTimer.connect("timeout", self, "track_target")
 		$TargetTrackerTimer.start()
@@ -216,15 +227,16 @@ func track_target():
 	navAgent.set_target_location(self._enemy_position)
 
 
-func start_firing_weapon():
-	$CombatReactionTimer.stop()
-	$CombatReactionTimer.disconnect("timeout", self, "start_firing_weapon")
-
-	$AttackTimer.wait_time = RATE_OF_FIRE_SECONDS_PER_SHOT
-	_fire_projectile()
+func attack():
 	if not $AttackTimer.is_connected("timeout", self, "_fire_projectile"):
+		$AttackTimer.wait_time = RATE_OF_FIRE_SECONDS_PER_SHOT
 		var _connect_result = $AttackTimer.connect("timeout", self, "_fire_projectile")
 		$AttackTimer.start()
+
+
+func stop_attacking():
+	if $AttackTimer.is_connected("timeout", self, "_fire_projectile"):
+		$AttackTimer.disconnect("timeout", self, "_fire_projectile")
 
 
 func turn_towards_target(target_pos):
@@ -233,9 +245,7 @@ func turn_towards_target(target_pos):
 
 
 func _exit_combat():
-	$AttackTimer.disconnect("timeout", self, "_fire_projectile")
-	if $CombatReactionTimer.is_connected("timeout", self, "start_firing_weapon"):
-		$CombatReactionTimer.disconnect("timeout", self, "start_firing_weapon")
+	stop_attacking()
 	$TargetTrackerTimer.disconnect("timeout", self, "track_target")
 
 
