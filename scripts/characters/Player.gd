@@ -31,6 +31,8 @@ onready var punchingAnimation = $Pivot/Camera/armz/AnimationPlayer
 onready var punchParticles = preload("res://scenes/particles/PunchInpactParticles.tscn")
 var punchingArmIsRight = true
 
+onready var bloodParticles = preload("res://scenes/particles/BloodParticles.tscn")
+
 # general variables
 var gravity = -30
 var jump_force = 10
@@ -144,7 +146,10 @@ func shoot(weapon):
 					punchingArmIsRight = true
 				# play punch sound and spawn particles
 				$punchSound.play()
-				spawn_particles(punchParticles, raycast.get_collider(), raycast.get_collision_point(), raycast.get_collision_normal(), false)
+				if raycast.get_collider().is_in_group("enemies"):
+					spawn_particles(bloodParticles, raycast.get_collider(), raycast.get_collision_point(), raycast.get_collision_normal(), true)
+				else:
+					spawn_particles(punchParticles, raycast.get_collider(), raycast.get_collision_point(), raycast.get_collision_normal(), false)
 		# not hands is gun so this handles guns shooting
 		else:
 			# if ammo is greater than 0
@@ -159,7 +164,10 @@ func shoot(weapon):
 				# I don't know why this is here and i'm scared to remove it
 				$Pivot/Camera/gunarmz/AnimationPlayer.play("hipFire")
 				# spawn particles
-				spawn_particles(gunParticles, raycast.get_collider(), raycast.get_collision_point(), raycast.get_collision_normal(), false)
+				if raycast.get_collider().is_in_group("enemies"):
+					spawn_particles(bloodParticles, raycast.get_collider(), raycast.get_collision_point(), raycast.get_collision_normal(), true)
+				else:
+					spawn_particles(gunParticles, raycast.get_collider(), raycast.get_collision_point(), raycast.get_collision_normal(), false)
 				# remove one ammo and update ammo label
 				Global.Inventory[Global.currentSelect][1] -= 1
 			# if no ammo, play shoot animation with empy gun sound

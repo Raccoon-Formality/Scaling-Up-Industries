@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/broom.obj-78965dafd711c74a017f4faa020250c3.mesh"
+
+[deps]
+
+files=[ "res://.import/broom.obj-78965dafd711c74a017f4faa020250c3.mesh" ]
+
+source_file="res://assets/3d/obj/broom/broom.obj"
+dest_files=[ "res://.import/broom.obj-78965dafd711c74a017f4faa020250c3.mesh", "res://.import/broom.obj-78965dafd711c74a017f4faa020250c3.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

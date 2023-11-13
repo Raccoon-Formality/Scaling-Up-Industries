@@ -1,4 +1,3 @@
-
 class_name GenericNpc extends KinematicBody
 
 const BULLET_RES_PATH = "res://scenes/characters/Bullet.tscn"
@@ -14,7 +13,8 @@ export var BULLET_DAMAGE = 10
 export var RATE_OF_FIRE_SECONDS_PER_SHOT = 0.3
 export var COMBAT_REACTION_TIME = 0.5
 
-onready var player_node = get_node("../Player")# TODO: better way of getting player
+onready var player_node = get_tree().get_nodes_in_group("Player")[0]
+#get_node("../Player")# TODO: better way of getting player
 
 var navAgent : NavigationAgent
 var waypoint_index = 0
@@ -44,7 +44,7 @@ var _enemy_position = null
 
 func _ready():
 	# for testing
-	$StateIndicatorTimer.wait_time = 0.25
+	#$StateIndicatorTimer.wait_time = 0.25
 
 	navAgent = $NavigationAgent
 	if waypoint_graph and waypoint_graph.waypoint_list.size() > 0: 
@@ -58,7 +58,8 @@ func _ready():
 	_register_listener_for_player_gun_sounds()
 
 
-func _physics_process(_delta):
+func _process(_delta):
+	player_node = get_tree().get_nodes_in_group("Player")[0]
 	var _result = navAgent.get_next_location()
 	_update_state_machine()
 	_run_state_exit_events()
@@ -161,7 +162,7 @@ func _run_state_enter_events():
 	elif _current_state == STATES.DECEASED and _previous_state != STATES.DECEASED:
 		$PatrolTimer.disconnect("timeout", self, "_on_to_next_destination")
 		_unregister_listener_for_player_gun_sounds()
-		_change_mesh_color(Color(0,0,0,1))
+		#_change_mesh_color(Color(0,0,0,1))
 		play_dying_animation()
 
 
@@ -318,16 +319,16 @@ func _alert_the_npc(position_of_interest):
 	navAgent.set_target_location(position_of_interest)
 
 	self.is_alerted = true
-	var _connect_result = $StateIndicatorTimer.connect("timeout", self, "_alternate_color")
-	$StateIndicatorTimer.start()
+	#var _connect_result = $StateIndicatorTimer.connect("timeout", self, "_alternate_color")
+	#$StateIndicatorTimer.start()
 
 
 func _un_alert_the_npc():
-	$StateIndicatorTimer.disconnect("timeout", self, "_alternate_color")
-	$StateIndicatorTimer.stop()
+	#$StateIndicatorTimer.disconnect("timeout", self, "_alternate_color")
+	#$StateIndicatorTimer.stop()
 	is_alerted = false
 
-
+"""
 func _alternate_color():
 	var old_mesh_color_non_red_val = $Body.get_surface_material(0).albedo_color.b
 	if old_mesh_color_non_red_val == 1:
@@ -346,3 +347,4 @@ func _change_mesh_color(new_color):
 		material.albedo_color = new_color
 	else:
 		print("No SpatialMaterial Found for mesh")
+"""
