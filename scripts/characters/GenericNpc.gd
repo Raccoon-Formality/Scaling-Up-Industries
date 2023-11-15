@@ -11,7 +11,6 @@ export var RUN_SPEED = 3
 export var MAXIMUM_EARSHOT_DISTANCE = 20
 export var BULLET_DAMAGE = 10
 export var RATE_OF_FIRE_SECONDS_PER_SHOT = 0.3
-export var COMBAT_REACTION_TIME = 0.5
 
 var player_node
 #onready var player_node = get_tree().get_nodes_in_group("Player")[0]
