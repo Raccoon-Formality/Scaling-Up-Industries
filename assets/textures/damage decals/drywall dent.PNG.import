@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/drywall dent.PNG-273b1deb6d5a5f7f9b278c7c4af189a2.s3tc.stex"
-path.etc="res://.import/drywall dent.PNG-273b1deb6d5a5f7f9b278c7c4af189a2.etc.stex"
+path.s3tc="res://.import/drywall dent.png-28070fec91157824dea4ef4cacb24f8b.s3tc.stex"
+path.etc="res://.import/drywall dent.png-28070fec91157824dea4ef4cacb24f8b.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/textures/damage decals/drywall dent.PNG"
-dest_files=[ "res://.import/drywall dent.PNG-273b1deb6d5a5f7f9b278c7c4af189a2.s3tc.stex", "res://.import/drywall dent.PNG-273b1deb6d5a5f7f9b278c7c4af189a2.etc.stex" ]
+source_file="res://assets/textures/damage decals/drywall dent.png"
+dest_files=[ "res://.import/drywall dent.png-28070fec91157824dea4ef4cacb24f8b.s3tc.stex", "res://.import/drywall dent.png-28070fec91157824dea4ef4cacb24f8b.etc.stex" ]
 
 [params]
 
