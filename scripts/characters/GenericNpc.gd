@@ -162,6 +162,12 @@ func _run_state_enter_events():
 		_unregister_listener_for_player_gun_sounds()
 		#_change_mesh_color(Color(0,0,0,1))
 		play_dying_animation()
+		_remove_npc_from_player_collisions()
+		
+
+func _remove_npc_from_player_collisions():
+	collision_mask &= ~2
+	collision_layer &= ~2
 
 
 func _notice_the_player_if_in_los():
