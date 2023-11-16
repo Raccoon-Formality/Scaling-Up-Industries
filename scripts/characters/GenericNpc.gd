@@ -38,6 +38,7 @@ var is_alerted
 # state machine inputs
 var has_just_been_alerted = false
 var has_just_reached_destination = false
+var has_reacted_to_attack = false
 
 var num_health_points
 var _enemy_position = null
@@ -133,7 +134,7 @@ func _run_state_dependent_processes():
 		
 		turn_towards_target(navAgent.get_next_location())	
 		self._enemy_position = player_node.translation
-		if player_is_visible() and self._enemy_position != null:
+		if player_is_visible() and self._enemy_position != null and self.has_reacted_to_attack:
 			attack()
 		else:
 			stop_attacking()
@@ -155,6 +156,7 @@ func _run_state_exit_events():
 
 func _run_state_enter_events():	
 	if _current_state == STATES.COMBAT and _previous_state != STATES.COMBAT:
+		self.has_reacted_to_attack = false
 		_alert_the_npc(player_node.global_transform.origin)
 		_enter_combat()
 	elif _current_state == STATES.DECEASED and _previous_state != STATES.DECEASED:
@@ -225,9 +227,16 @@ func _react_to_gun_sound_if_close():
 
 
 func _enter_combat():
+	if not $CombatReactionTimer.is_connected("timeout", self, "_start_attacking"):
+		var _connect_result = $CombatReactionTimer.connect("timeout", self, "_start_attacking")
+		$CombatReactionTimer.start()
 	if not $TargetTrackerTimer.is_connected("timeout", self, "track_target"):
 		var _connect_result = $TargetTrackerTimer.connect("timeout", self, "track_target")
 		$TargetTrackerTimer.start()
+
+
+func _start_attacking():
+	self.has_reacted_to_attack = true
 
 
 func track_target():
