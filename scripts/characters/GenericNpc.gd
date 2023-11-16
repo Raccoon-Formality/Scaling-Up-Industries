@@ -7,10 +7,11 @@ onready var bullet = preload(BULLET_RES_PATH)
 export var STARTING_HEALTH_POINTS = 5
 export var PROJECTILE_SPEED = 10
 export var TURN_SPEED = 0.1
-export var RUN_SPEED = 3
+export var RUN_SPEED = 5
 export var MAXIMUM_EARSHOT_DISTANCE = 20
 export var BULLET_DAMAGE = 10
 export var RATE_OF_FIRE_SECONDS_PER_SHOT = 0.3
+export var ACCELERATION_RATE = 0.1
 
 var player_node
 #onready var player_node = get_tree().get_nodes_in_group("Player")[0]
@@ -42,6 +43,7 @@ var has_reacted_to_attack = false
 
 var num_health_points
 var _enemy_position = null
+var actual_velocity : Vector3
 
 func _ready():
 	player_node = Global.player_node
@@ -53,6 +55,7 @@ func _ready():
 	_current_state = STATES.INIT
 	num_health_points = STARTING_HEALTH_POINTS
 	_update_state_machine()
+	self.actual_velocity = Vector3()
 
 	var _connect_result = $PatrolTimer.connect("timeout", self, "_on_to_next_destination")
 	_register_listener_for_player_gun_sounds()
@@ -305,8 +308,12 @@ func _move_toward_waypoint(target_pos):
 
 func _move_toward_position(target_pos):
 	var direction = global_transform.origin.direction_to(target_pos)
-	var velocity = direction * RUN_SPEED * Vector3(1, 0, 1) # vector for feet on the ground
-	var _move_result = move_and_slide(velocity, Vector3.UP)
+	var final_velocity = direction * RUN_SPEED
+	self.actual_velocity.x = lerp(self.actual_velocity.x, final_velocity.x, ACCELERATION_RATE)
+	self.actual_velocity.z = lerp(self.actual_velocity.z, final_velocity.z, ACCELERATION_RATE)
+	
+	self.actual_velocity *= Vector3(1, 0, 1) # vector for feet on the ground
+	var _move_result = move_and_slide(self.actual_velocity, Vector3.UP)
 
 
 func recieve_damage(collision_point):
