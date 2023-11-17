@@ -8,7 +8,7 @@ export var STARTING_HEALTH_POINTS = 5
 export var PROJECTILE_SPEED = 10
 export var TURN_SPEED = 0.1
 export var RUN_SPEED = 5
-export var MAXIMUM_EARSHOT_DISTANCE = 20
+export var MAXIMUM_EARSHOT_DISTANCE = 100
 export var BULLET_DAMAGE = 10
 export var RATE_OF_FIRE_SECONDS_PER_SHOT = 0.3
 export var ACCELERATION_RATE = 0.1
@@ -223,8 +223,8 @@ func _unregister_listener_for_player_gun_sounds():
 	player_node.disconnect("gun_fired", self, "_react_to_gun_sound_if_close")
 
 
-func _react_to_gun_sound_if_close():
-	if can_hear and Vector3(global_transform.origin - player_node.global_transform.origin).length() <= MAXIMUM_EARSHOT_DISTANCE:
+func _react_to_gun_sound_if_close(weapon_noise_level_ratio):
+	if can_hear and Vector3(global_transform.origin - player_node.global_transform.origin).length() <= MAXIMUM_EARSHOT_DISTANCE * weapon_noise_level_ratio:
 		if ! is_alerted:
 			self.has_just_been_alerted = true
 

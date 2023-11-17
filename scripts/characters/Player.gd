@@ -159,7 +159,7 @@ func shoot(weapon):
 				# play sound at random pitch
 				$shootSound.pitch_scale = rand_range(0.9,1.1)
 				$shootSound.play()
-				emit_signal("gun_fired")
+				emit_signal("gun_fired", weapon["noise_level_ratio"])
 				
 				# I don't know why this is here and i'm scared to remove it
 				$Pivot/Camera/gunarmz/AnimationPlayer.play("hipFire")
