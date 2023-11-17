@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/planet.png-23a6e82f6d752dfbbe41ae8dafe4e38d.s3tc.stex"
-path.etc="res://.import/planet.png-23a6e82f6d752dfbbe41ae8dafe4e38d.etc.stex"
+path.s3tc="res://import/planet.png-23a6e82f6d752dfbbe41ae8dafe4e38d.s3tc.stex"
+path.etc="res://import/planet.png-23a6e82f6d752dfbbe41ae8dafe4e38d.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -12,7 +12,7 @@ metadata={
 [deps]
 
 source_file="res://assets/environment/planet.png"
-dest_files=[ "res://.import/planet.png-23a6e82f6d752dfbbe41ae8dafe4e38d.s3tc.stex", "res://.import/planet.png-23a6e82f6d752dfbbe41ae8dafe4e38d.etc.stex" ]
+dest_files=[ "res://import/planet.png-23a6e82f6d752dfbbe41ae8dafe4e38d.s3tc.stex", "res://import/planet.png-23a6e82f6d752dfbbe41ae8dafe4e38d.etc.stex" ]
 
 [params]
 

@@ -2,7 +2,7 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/-color.png-d690495095f888152f97b136ee119e3d.stex"
+path="res://import/-color.png-d690495095f888152f97b136ee119e3d.stex"
 metadata={
 "vram_texture": false
 }
@@ -10,7 +10,7 @@ metadata={
 [deps]
 
 source_file="res://assets/3d/obj/vase2/-color.png"
-dest_files=[ "res://.import/-color.png-d690495095f888152f97b136ee119e3d.stex" ]
+dest_files=[ "res://import/-color.png-d690495095f888152f97b136ee119e3d.stex" ]
 
 [params]
 

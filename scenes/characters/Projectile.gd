@@ -8,7 +8,8 @@ func _ready():
 	$DoomsdayTimer.start()
 
 func _process(delta):
-	global_translation += velocity * delta
+	if not Global.paused:
+		global_translation += velocity * delta
 
 # used in initialization by npc
 func set_damage_caused(damage_caused):

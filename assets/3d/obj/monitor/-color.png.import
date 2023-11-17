@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/-color.png-262dbfcd47548a4f251b78205a7b3093.s3tc.stex"
-path.etc="res://.import/-color.png-262dbfcd47548a4f251b78205a7b3093.etc.stex"
+path.s3tc="res://import/-color.png-262dbfcd47548a4f251b78205a7b3093.s3tc.stex"
+path.etc="res://import/-color.png-262dbfcd47548a4f251b78205a7b3093.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -12,7 +12,7 @@ metadata={
 [deps]
 
 source_file="res://assets/3d/obj/monitor/-color.png"
-dest_files=[ "res://.import/-color.png-262dbfcd47548a4f251b78205a7b3093.s3tc.stex", "res://.import/-color.png-262dbfcd47548a4f251b78205a7b3093.etc.stex" ]
+dest_files=[ "res://import/-color.png-262dbfcd47548a4f251b78205a7b3093.s3tc.stex", "res://import/-color.png-262dbfcd47548a4f251b78205a7b3093.etc.stex" ]
 
 [params]
 

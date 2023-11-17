@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/skyline.png-4424e6cf8c34394cf1d9689896343bd7.s3tc.stex"
-path.etc="res://.import/skyline.png-4424e6cf8c34394cf1d9689896343bd7.etc.stex"
+path.s3tc="res://import/skyline.png-4424e6cf8c34394cf1d9689896343bd7.s3tc.stex"
+path.etc="res://import/skyline.png-4424e6cf8c34394cf1d9689896343bd7.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -12,7 +12,7 @@ metadata={
 [deps]
 
 source_file="res://assets/programmerArt/skyline.png"
-dest_files=[ "res://.import/skyline.png-4424e6cf8c34394cf1d9689896343bd7.s3tc.stex", "res://.import/skyline.png-4424e6cf8c34394cf1d9689896343bd7.etc.stex" ]
+dest_files=[ "res://import/skyline.png-4424e6cf8c34394cf1d9689896343bd7.s3tc.stex", "res://import/skyline.png-4424e6cf8c34394cf1d9689896343bd7.etc.stex" ]
 
 [params]
 

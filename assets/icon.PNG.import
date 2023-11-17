@@ -2,7 +2,7 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon.PNG-599cb779a9e3ba5524f250f8e69a0faf.stex"
+path="res://import/icon.PNG-599cb779a9e3ba5524f250f8e69a0faf.stex"
 metadata={
 "vram_texture": false
 }
@@ -10,7 +10,7 @@ metadata={
 [deps]
 
 source_file="res://assets/icon.PNG"
-dest_files=[ "res://.import/icon.PNG-599cb779a9e3ba5524f250f8e69a0faf.stex" ]
+dest_files=[ "res://import/icon.PNG-599cb779a9e3ba5524f250f8e69a0faf.stex" ]
 
 [params]
 

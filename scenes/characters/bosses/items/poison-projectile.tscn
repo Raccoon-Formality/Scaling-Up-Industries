@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/characters/bosses/items/poison-projectile.gd" type="Script" id=1]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0, 1, 0.286275, 1 )
+
+[sub_resource type="SphereMesh" id=2]
+material = SubResource( 1 )
+radius = 0.25
+height = 0.5
+radial_segments = 16
+rings = 8
+
+[sub_resource type="SphereShape" id=3]
+radius = 0.25
+
+[node name="poison-projectile" type="Area"]
+script = ExtResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 3 )
+
+[node name="RayCast" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0 )
+enabled = true
+collision_mask = 7
+
+[connection signal="body_entered" from="." to="." method="_on_poisonprojectile_body_entered"]

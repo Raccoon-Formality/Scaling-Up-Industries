@@ -2,7 +2,7 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Orange Badge.png-b5342f41a0dac3b6d39354a727ac6edd.stex"
+path="res://import/Orange Badge.png-b5342f41a0dac3b6d39354a727ac6edd.stex"
 metadata={
 "vram_texture": false
 }
@@ -10,7 +10,7 @@ metadata={
 [deps]
 
 source_file="res://assets/textures/Keys/Orange Badge.png"
-dest_files=[ "res://.import/Orange Badge.png-b5342f41a0dac3b6d39354a727ac6edd.stex" ]
+dest_files=[ "res://import/Orange Badge.png-b5342f41a0dac3b6d39354a727ac6edd.stex" ]
 
 [params]
 

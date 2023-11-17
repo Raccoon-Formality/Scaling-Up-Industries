@@ -2,13 +2,11 @@
 
 [ext_resource path="res://scripts/interactibles/pickups/ammoPickup.gd" type="Script" id=1]
 [ext_resource path="res://assets/audio/collect.wav" type="AudioStream" id=2]
+[ext_resource path="res://assets/textures/Pistol Ammo.png" type="Texture" id=3]
 
 [sub_resource type="CylinderShape" id=1]
 height = 1.0
 radius = 0.5
-
-[sub_resource type="CubeMesh" id=2]
-size = Vector3( 0.5, 0.5, 0.5 )
 
 [node name="ammoPickup" type="Area"]
 script = ExtResource( 1 )
@@ -17,13 +15,15 @@ script = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 shape = SubResource( 1 )
 
-[node name="Mesh" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
-mesh = SubResource( 2 )
-
 [node name="Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
 bus = "sfx"
+
+[node name="Mesh" type="Sprite3D" parent="."]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.5, 0 )
+pixel_size = 0.001
+billboard = 2
+texture = ExtResource( 3 )
 
 [connection signal="body_entered" from="." to="." method="_on_ammoPickup_body_entered"]
 [connection signal="finished" from="Sound" to="." method="_on_Sound_finished"]

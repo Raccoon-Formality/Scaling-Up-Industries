@@ -2,12 +2,12 @@
 
 importer="ogg_vorbis"
 type="AudioStreamOGGVorbis"
-path="res://.import/switch_006.ogg-e7a6ddc24dd7c8eaf10687b09d9fd465.oggstr"
+path="res://import/switch_006.ogg-e7a6ddc24dd7c8eaf10687b09d9fd465.oggstr"
 
 [deps]
 
 source_file="res://assets/audio/kenny-interface/switch_006.ogg"
-dest_files=[ "res://.import/switch_006.ogg-e7a6ddc24dd7c8eaf10687b09d9fd465.oggstr" ]
+dest_files=[ "res://import/switch_006.ogg-e7a6ddc24dd7c8eaf10687b09d9fd465.oggstr" ]
 
 [params]
 

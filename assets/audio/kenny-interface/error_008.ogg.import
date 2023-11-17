@@ -2,12 +2,12 @@
 
 importer="ogg_vorbis"
 type="AudioStreamOGGVorbis"
-path="res://.import/error_008.ogg-d34d5ae164ef180da4f0092ed9f9df69.oggstr"
+path="res://import/error_008.ogg-d34d5ae164ef180da4f0092ed9f9df69.oggstr"
 
 [deps]
 
 source_file="res://assets/audio/kenny-interface/error_008.ogg"
-dest_files=[ "res://.import/error_008.ogg-d34d5ae164ef180da4f0092ed9f9df69.oggstr" ]
+dest_files=[ "res://import/error_008.ogg-d34d5ae164ef180da4f0092ed9f9df69.oggstr" ]
 
 [params]
 

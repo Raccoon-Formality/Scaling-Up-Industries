@@ -27,9 +27,8 @@ _global_script_class_icons={
 [application]
 
 config/name="Scaling Up Industries"
-run/main_scene="res://scenes/starting_level.tscn"
-config/use_custom_user_dir=true
-config/custom_user_dir_name="ScalingUpIndustries"
+run/main_scene="res://scenes/levels/boss1/World.tscn"
+config/custom_user_dir_name="Scaling-Up-Industries"
 boot_splash/image="res://assets/splash.png"
 boot_splash/fullsize=false
 boot_splash/bg_color=Color( 1, 1, 1, 1 )

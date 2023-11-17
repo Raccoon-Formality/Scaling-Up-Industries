@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Blue Badge.png-89463b12e22ebc964af12197f5f2bc29.s3tc.stex"
-path.etc="res://.import/Blue Badge.png-89463b12e22ebc964af12197f5f2bc29.etc.stex"
+path.s3tc="res://import/Blue Badge.png-89463b12e22ebc964af12197f5f2bc29.s3tc.stex"
+path.etc="res://import/Blue Badge.png-89463b12e22ebc964af12197f5f2bc29.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -12,7 +12,7 @@ metadata={
 [deps]
 
 source_file="res://assets/textures/Keys/Blue Badge.png"
-dest_files=[ "res://.import/Blue Badge.png-89463b12e22ebc964af12197f5f2bc29.s3tc.stex", "res://.import/Blue Badge.png-89463b12e22ebc964af12197f5f2bc29.etc.stex" ]
+dest_files=[ "res://import/Blue Badge.png-89463b12e22ebc964af12197f5f2bc29.s3tc.stex", "res://import/Blue Badge.png-89463b12e22ebc964af12197f5f2bc29.etc.stex" ]
 
 [params]
 

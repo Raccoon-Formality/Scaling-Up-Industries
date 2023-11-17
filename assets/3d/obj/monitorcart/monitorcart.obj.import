@@ -2,14 +2,14 @@
 
 importer="wavefront_obj"
 type="Mesh"
-path="res://.import/monitorcart.obj-ae8188477bb2c10ecdfa925522437f7d.mesh"
+path="res://import/monitorcart.obj-ae8188477bb2c10ecdfa925522437f7d.mesh"
 
 [deps]
 
-files=[ "res://.import/monitorcart.obj-ae8188477bb2c10ecdfa925522437f7d.mesh" ]
+files=[ "res://import/monitorcart.obj-ae8188477bb2c10ecdfa925522437f7d.mesh" ]
 
 source_file="res://assets/3d/obj/monitorcart/monitorcart.obj"
-dest_files=[ "res://.import/monitorcart.obj-ae8188477bb2c10ecdfa925522437f7d.mesh", "res://.import/monitorcart.obj-ae8188477bb2c10ecdfa925522437f7d.mesh" ]
+dest_files=[ "res://import/monitorcart.obj-ae8188477bb2c10ecdfa925522437f7d.mesh", "res://import/monitorcart.obj-ae8188477bb2c10ecdfa925522437f7d.mesh" ]
 
 [params]
 

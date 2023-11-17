@@ -2,12 +2,12 @@
 
 importer="ogg_vorbis"
 type="AudioStreamOGGVorbis"
-path="res://.import/open_004.ogg-1112ef0531e9c57466595cf0aeef393e.oggstr"
+path="res://import/open_004.ogg-1112ef0531e9c57466595cf0aeef393e.oggstr"
 
 [deps]
 
 source_file="res://assets/audio/kenny-interface/open_004.ogg"
-dest_files=[ "res://.import/open_004.ogg-1112ef0531e9c57466595cf0aeef393e.oggstr" ]
+dest_files=[ "res://import/open_004.ogg-1112ef0531e9c57466595cf0aeef393e.oggstr" ]
 
 [params]
 

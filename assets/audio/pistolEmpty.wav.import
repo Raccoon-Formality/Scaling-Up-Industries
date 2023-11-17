@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/pistolEmpty.wav-498ac26699dd0e055eee02cb69054ba1.sample"
+path="res://import/pistolEmpty.wav-498ac26699dd0e055eee02cb69054ba1.sample"
 
 [deps]
 
 source_file="res://assets/audio/pistolEmpty.wav"
-dest_files=[ "res://.import/pistolEmpty.wav-498ac26699dd0e055eee02cb69054ba1.sample" ]
+dest_files=[ "res://import/pistolEmpty.wav-498ac26699dd0e055eee02cb69054ba1.sample" ]
 
 [params]
 

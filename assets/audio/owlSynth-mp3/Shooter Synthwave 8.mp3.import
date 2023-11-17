@@ -2,12 +2,12 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/Shooter Synthwave 8.mp3-b837a42cf7c0b72adbc29c0a6a2441ba.mp3str"
+path="res://import/Shooter Synthwave 8.mp3-b837a42cf7c0b72adbc29c0a6a2441ba.mp3str"
 
 [deps]
 
 source_file="res://assets/audio/owlSynth-mp3/Shooter Synthwave 8.mp3"
-dest_files=[ "res://.import/Shooter Synthwave 8.mp3-b837a42cf7c0b72adbc29c0a6a2441ba.mp3str" ]
+dest_files=[ "res://import/Shooter Synthwave 8.mp3-b837a42cf7c0b72adbc29c0a6a2441ba.mp3str" ]
 
 [params]
 

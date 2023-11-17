@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/programmerArt/smoke.png" type="Texture" id=1]
+[ext_resource path="res://scripts/particles/PoisonParticles.gd" type="Script" id=2]
+[ext_resource path="res://assets/textures/damage decals/drywallDent-fixed.PNG" type="Texture" id=3]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_transparent = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="QuadMesh" id=2]
+material = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 1 ), 1.4, 0.0, 0, 0, Vector2( 0.5, 0.5 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="SphereShape" id=4]
+radius = 0.75
+
+[node name="PoisonParticles" type="Spatial"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
+script = ExtResource( 2 )
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.01, 0 )
+texture = ExtResource( 3 )
+
+[node name="Particles" type="CPUParticles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, -0.05 )
+lifetime = 0.5
+mesh = SubResource( 2 )
+emission_shape = 5
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_height = 1.0
+emission_ring_axis = Vector3( 0, 0, 1 )
+direction = Vector3( 0, 1, 0 )
+spread = 10.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 5.0
+scale_amount_curve = SubResource( 3 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+autostart = true
+
+[node name="Area" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+shape = SubResource( 4 )
+
+[node name="damageTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
+[connection signal="body_exited" from="Area" to="." method="_on_Area_body_exited"]
+[connection signal="timeout" from="damageTimer" to="." method="_on_damageTimer_timeout"]

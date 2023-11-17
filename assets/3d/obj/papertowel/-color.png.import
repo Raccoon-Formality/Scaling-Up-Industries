@@ -2,7 +2,7 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/-color.png-95a35d11d8f05fd943e11932ffac9495.stex"
+path="res://import/-color.png-95a35d11d8f05fd943e11932ffac9495.stex"
 metadata={
 "vram_texture": false
 }
@@ -10,7 +10,7 @@ metadata={
 [deps]
 
 source_file="res://assets/3d/obj/papertowel/-color.png"
-dest_files=[ "res://.import/-color.png-95a35d11d8f05fd943e11932ffac9495.stex" ]
+dest_files=[ "res://import/-color.png-95a35d11d8f05fd943e11932ffac9495.stex" ]
 
 [params]
 

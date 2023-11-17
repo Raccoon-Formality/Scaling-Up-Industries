@@ -2,12 +2,12 @@
 
 importer="ogg_vorbis"
 type="AudioStreamOGGVorbis"
-path="res://.import/footstep.ogg-2ebb0af255546d58a0005722a792a4ae.oggstr"
+path="res://import/footstep.ogg-2ebb0af255546d58a0005722a792a4ae.oggstr"
 
 [deps]
 
 source_file="res://assets/audio/footstep.ogg"
-dest_files=[ "res://.import/footstep.ogg-2ebb0af255546d58a0005722a792a4ae.oggstr" ]
+dest_files=[ "res://import/footstep.ogg-2ebb0af255546d58a0005722a792a4ae.oggstr" ]
 
 [params]
 

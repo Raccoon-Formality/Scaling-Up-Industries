@@ -2,15 +2,17 @@ extends Control
 
 
 func _ready():
+	$versionNumber.text = "version: " + Global.versionNumber
 	Global.fromStart = false
 	Global.fromStartList = []
 	Global.startMusicPos = 0.0
 	Global.resetVars()
+	Global.loadSettings()
 	Global.loadSave()
-	if Global.currentLoad != null:
-		$continueButton.show()
+	if Global.currentLoad == null:
+		$continueButton.hide()
 	else:
-		print("no save")
+		$continueButton.show()
 	$audioSliders.updateSliders()
 	$settingsPanel.update()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

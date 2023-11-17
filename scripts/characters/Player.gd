@@ -129,8 +129,9 @@ func shoot(weapon):
 		
 		# hit enemy
 		# TODO: make particles local if hit enemy and make the particles blood
-		if raycast.is_colliding() and ("num_health_points" in raycast.get_collider()): # "num_health_points" is composition over inheritance
-				raycast.get_collider().recieve_damage(raycast.get_collision_point())
+		# "num_health_points" is composition over inheritance
+		
+		## follow-up note: was moved into if statements because was damaging enemies even if the gun was empty
 		
 		# if weapon is fist, punch
 		# just realized the argument weapon isn't used, oops
@@ -146,7 +147,11 @@ func shoot(weapon):
 					punchingArmIsRight = true
 				# play punch sound and spawn particles
 				$punchSound.play()
-				if raycast.get_collider().is_in_group("enemies"):
+				if raycast.get_collider().is_in_group("enemies") and ("num_health_points" in raycast.get_collider()):
+					raycast.get_collider().recieve_damage(raycast.get_collision_point())
+					spawn_particles(bloodParticles, raycast.get_collider(), raycast.get_collision_point(), raycast.get_collision_normal(), true)
+				elif raycast.get_collider().is_in_group("boss"):
+					raycast.get_collider().damage(5)
 					spawn_particles(bloodParticles, raycast.get_collider(), raycast.get_collision_point(), raycast.get_collision_normal(), true)
 				else:
 					spawn_particles(punchParticles, raycast.get_collider(), raycast.get_collision_point(), raycast.get_collision_normal(), false)
@@ -164,7 +169,11 @@ func shoot(weapon):
 				# I don't know why this is here and i'm scared to remove it
 				$Pivot/Camera/gunarmz/AnimationPlayer.play("hipFire")
 				# spawn particles
-				if raycast.get_collider().is_in_group("enemies"):
+				if raycast.get_collider().is_in_group("enemies") and ("num_health_points" in raycast.get_collider()):
+					raycast.get_collider().recieve_damage(raycast.get_collision_point())
+					spawn_particles(bloodParticles, raycast.get_collider(), raycast.get_collision_point(), raycast.get_collision_normal(), true)
+				elif raycast.get_collider().is_in_group("boss"):
+					raycast.get_collider().damage(10)
 					spawn_particles(bloodParticles, raycast.get_collider(), raycast.get_collision_point(), raycast.get_collision_normal(), true)
 				else:
 					spawn_particles(gunParticles, raycast.get_collider(), raycast.get_collision_point(), raycast.get_collision_normal(), false)
@@ -202,6 +211,7 @@ func pause():
 	Global.currentSong = Global.musicDict["pause"]
 	set_physics_process(false)
 	set_process(false)
+	Global.paused = true
 
 func death():
 	paused = true
@@ -217,6 +227,9 @@ func death():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	$death_menu/Control/levelLabel.text = "current saved level:\n" + str(Global.levelList[Global.levelNumber])
 	$death_menu.show()
+	
+	Global.paused = true
+	$footstepsSound.stop()
 
 func damage(amount):
 	#hurtSound.pitch_scale = rand_range(0.6,0.8)
@@ -252,6 +265,7 @@ func handleScreenshake(delta):
 func _ready():
 	$pause_menu.player = self
 	Global.player_node = self
+	Global.paused = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	changeWeapon(Global.currentSelect)
 	$Pivot/Camera/ViewportContainer/Viewport.size = get_viewport().size
@@ -293,7 +307,8 @@ func _input(event):
 func _process(_delta):
 	guncamera.global_transform = camera.global_transform
 	$Pivot/Camera/ViewportContainer/Viewport.size = get_viewport().size
-	updateGunAnimationTree()
+	if !dead:
+		updateGunAnimationTree()
 	if global_translation.y < -50 and !dead:
 		damage(100)
 

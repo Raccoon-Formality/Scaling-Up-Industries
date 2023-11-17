@@ -2,14 +2,14 @@
 
 importer="wavefront_obj"
 type="Mesh"
-path="res://.import/shelf.obj-c2874ca0422ad2020cfbb0dd76ca3c04.mesh"
+path="res://import/shelf.obj-c2874ca0422ad2020cfbb0dd76ca3c04.mesh"
 
 [deps]
 
-files=[ "res://.import/shelf.obj-c2874ca0422ad2020cfbb0dd76ca3c04.mesh" ]
+files=[ "res://import/shelf.obj-c2874ca0422ad2020cfbb0dd76ca3c04.mesh" ]
 
 source_file="res://assets/3d/obj/shelf/shelf.obj"
-dest_files=[ "res://.import/shelf.obj-c2874ca0422ad2020cfbb0dd76ca3c04.mesh", "res://.import/shelf.obj-c2874ca0422ad2020cfbb0dd76ca3c04.mesh" ]
+dest_files=[ "res://import/shelf.obj-c2874ca0422ad2020cfbb0dd76ca3c04.mesh", "res://import/shelf.obj-c2874ca0422ad2020cfbb0dd76ca3c04.mesh" ]
 
 [params]
 

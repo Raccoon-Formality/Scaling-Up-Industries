@@ -2,12 +2,12 @@
 
 importer="ogg_vorbis"
 type="AudioStreamOGGVorbis"
-path="res://.import/maximize_004.ogg-bd11406eb708f0a99c7444d07ebca5ce.oggstr"
+path="res://import/maximize_004.ogg-bd11406eb708f0a99c7444d07ebca5ce.oggstr"
 
 [deps]
 
 source_file="res://assets/audio/kenny-interface/maximize_004.ogg"
-dest_files=[ "res://.import/maximize_004.ogg-bd11406eb708f0a99c7444d07ebca5ce.oggstr" ]
+dest_files=[ "res://import/maximize_004.ogg-bd11406eb708f0a99c7444d07ebca5ce.oggstr" ]
 
 [params]
 

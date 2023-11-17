@@ -2,12 +2,12 @@
 
 importer="ogg_vorbis"
 type="AudioStreamOGGVorbis"
-path="res://.import/jump.ogg-09aff86a6f79a8fce2febb69902962cf.oggstr"
+path="res://import/jump.ogg-09aff86a6f79a8fce2febb69902962cf.oggstr"
 
 [deps]
 
 source_file="res://assets/audio/jump.ogg"
-dest_files=[ "res://.import/jump.ogg-09aff86a6f79a8fce2febb69902962cf.oggstr" ]
+dest_files=[ "res://import/jump.ogg-09aff86a6f79a8fce2febb69902962cf.oggstr" ]
 
 [params]
 

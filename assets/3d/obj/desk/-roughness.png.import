@@ -2,7 +2,7 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/-roughness.png-ec7d746abbed88bb798119c3128e45d3.stex"
+path="res://import/-roughness.png-ec7d746abbed88bb798119c3128e45d3.stex"
 metadata={
 "vram_texture": false
 }
@@ -10,7 +10,7 @@ metadata={
 [deps]
 
 source_file="res://assets/3d/obj/desk/-roughness.png"
-dest_files=[ "res://.import/-roughness.png-ec7d746abbed88bb798119c3128e45d3.stex" ]
+dest_files=[ "res://import/-roughness.png-ec7d746abbed88bb798119c3128e45d3.stex" ]
 
 [params]
 

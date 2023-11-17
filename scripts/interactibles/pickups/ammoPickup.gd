@@ -12,6 +12,19 @@ export(float, 0.0, 15.0, 0.5) var updownSpeed = 1.0
 export(int, 0, 100) var ammoAmount = 10
 export(String, "pistol", "smg") var ammoType
 
+### IMAGES ###
+var pistolSprite = preload("res://assets/textures/Pistol Ammo.png")
+var smgSprite = preload("res://assets/textures/SMG Ammo.png")
+var errorSprite = preload("res://assets/programmerArt/image-asset.jpeg")
+
+func _ready():
+	if ammoType == "pistol":
+		$Mesh.texture = pistolSprite
+	elif ammoType == "smg":
+		$Mesh.texture = smgSprite
+	else:
+		$Mesh.texture = errorSprite
+
 func _process(delta):
 	mesh.translation.y = sin(counter) * amp + 0.5
 	mesh.rotation.y += spinSpeed * delta

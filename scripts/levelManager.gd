@@ -1,5 +1,7 @@
 extends Spatial
 
+
+
 func _ready():
 	if Global.fromStart:
 		

@@ -1,5 +1,7 @@
 extends Node
 
+var versionNumber = "alpha v0.0.1"
+
 var player_node
 
 var mouse_sensitivity = 0.002  # radians/pixel
@@ -8,12 +10,13 @@ var controller_sensitivity = 0.06  # radians/pixel
 # levels load
 var levelsDict = {
 	"level1": preload("res://scenes/levels/level1/World.tscn"),
+	"level0": preload("res://scenes/levels/level1/WorldNewTileset.tscn"),
 	"level2": preload("res://scenes/levels/level2/World.tscn"),
 	"level3": preload("res://scenes/levels/level3/World.tscn")
 }
 
 # level order
-var levelList = ["level1", "level2","level3"]
+var levelList = ["level0", "level2","level3"]
 
 # what level we are on
 # TODO: save and load level number
@@ -63,6 +66,9 @@ var health = 100
 
 var currentLoad = null
 
+func _ready():
+	loadSettings()
+
 func resetVars():
 	currentSong = musicDict["track1"]
 	previousSong = null
@@ -109,7 +115,6 @@ func save():
 	saveSettings()
 
 func loadSave():
-	loadSettings()
 	var file = File.new()
 	if file.file_exists("user://SAVE.json"):
 		file.open("user://SAVE.json", File.READ)
@@ -153,8 +158,8 @@ func loadSettings():
 		var data = parse_json(file.get_as_text())
 		file.close()
 		if typeof(data) == TYPE_ARRAY and data.size() == 7:
-			currentLoad = data
-			var localSettings =  currentLoad
+			var currentLoadSettings = data
+			var localSettings =  currentLoadSettings
 			AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear2db(localSettings[0]))
 			AudioServer.set_bus_volume_db(AudioServer.get_bus_index("music"), linear2db(localSettings[1]))
 			AudioServer.set_bus_volume_db(AudioServer.get_bus_index("sfx"), linear2db(localSettings[2]))
@@ -164,7 +169,6 @@ func loadSettings():
 			setPixelation(localSettings[6])
 		else:
 			printerr("Corrupted data!")
-			currentLoad = null
 			return null
 	else:
 		printerr("No saved data!")
@@ -175,3 +179,5 @@ func setPixelation(bowling):
 		get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_VIEWPORT,  SceneTree.STRETCH_ASPECT_KEEP, Vector2(160,120),0.25)
 	else:
 		get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_2D,  SceneTree.STRETCH_ASPECT_KEEP, Vector2(640,480),1)
+
+var paused = false

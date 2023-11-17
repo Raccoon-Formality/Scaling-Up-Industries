@@ -2,12 +2,12 @@
 
 importer="ogg_vorbis"
 type="AudioStreamOGGVorbis"
-path="res://.import/scratch_003.ogg-0d81eb51a43518e05c9734198be0b7c2.oggstr"
+path="res://import/scratch_003.ogg-0d81eb51a43518e05c9734198be0b7c2.oggstr"
 
 [deps]
 
 source_file="res://assets/audio/kenny-interface/scratch_003.ogg"
-dest_files=[ "res://.import/scratch_003.ogg-0d81eb51a43518e05c9734198be0b7c2.oggstr" ]
+dest_files=[ "res://import/scratch_003.ogg-0d81eb51a43518e05c9734198be0b7c2.oggstr" ]
 
 [params]
 

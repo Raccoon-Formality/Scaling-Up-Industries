@@ -2,6 +2,7 @@
 
 importer="wavefront_obj"
 type="Mesh"
+<<<<<<< Updated upstream
 path="res://.import/spraybottle.obj-87e2c5974fc34286bc602bd0d004a8a1.mesh"
 
 [deps]
@@ -10,6 +11,16 @@ files=[ "res://.import/spraybottle.obj-87e2c5974fc34286bc602bd0d004a8a1.mesh" ]
 
 source_file="res://assets/3d/obj/spraybottle/spraybottle.obj"
 dest_files=[ "res://.import/spraybottle.obj-87e2c5974fc34286bc602bd0d004a8a1.mesh", "res://.import/spraybottle.obj-87e2c5974fc34286bc602bd0d004a8a1.mesh" ]
+=======
+path="res://import/spraybottle.obj-87e2c5974fc34286bc602bd0d004a8a1.mesh"
+
+[deps]
+
+files=[ "res://import/spraybottle.obj-87e2c5974fc34286bc602bd0d004a8a1.mesh" ]
+
+source_file="res://assets/3d/obj/spraybottle/spraybottle.obj"
+dest_files=[ "res://import/spraybottle.obj-87e2c5974fc34286bc602bd0d004a8a1.mesh", "res://import/spraybottle.obj-87e2c5974fc34286bc602bd0d004a8a1.mesh" ]
+>>>>>>> Stashed changes
 
 [params]
 

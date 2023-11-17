@@ -113,6 +113,8 @@ func _update_state_machine():
 
 
 func play_dying_animation():
+	$Body.queue_free()
+	$CollisionShape.queue_free()
 	rotation_degrees.z = 90
 	translation.y = 0.5
 
@@ -253,23 +255,24 @@ func _exit_combat():
 
 # This method only fires at the player. can make a class-scope list or something to be able to fire at other targets
 func _fire_projectile():
-	self._enemy_position = player_node.translation + HEIGHT_OF_PLAYER
-	var bulletInstance = bullet.instance()
-	get_parent().add_child(bulletInstance)
-	bulletInstance.global_translation = $BulletSpawnPoint.global_translation
+	if not ($VisionRaycast.get_collider() is StaticBody) and not Global.paused:
+		self._enemy_position = player_node.translation + HEIGHT_OF_PLAYER
+		var bulletInstance = bullet.instance()
+		get_tree().get_root().add_child(bulletInstance)
+		bulletInstance.global_translation = $BulletSpawnPoint.global_translation
 
-	var direction = bulletInstance.global_transform.origin.direction_to(self._enemy_position)
-	if (bulletInstance.global_transform.origin.direction_to(self._enemy_position) == Vector3.ZERO):
-		print("Error, the distance between the target and the originator/NPC is zero")
-	else:
-		direction = direction.normalized()
+		var direction = bulletInstance.global_transform.origin.direction_to(self._enemy_position)
+		if (bulletInstance.global_transform.origin.direction_to(self._enemy_position) == Vector3.ZERO):
+			print("Error, the distance between the target and the originator/NPC is zero")
+		else:
+			direction = direction.normalized()
 
-		var direction_from_bullet_spawn_point = $BulletSpawnPoint.global_translation.direction_to(self._enemy_position).normalized()
-		var xy_angle = atan2(direction.x, direction.z)
-		bulletInstance.rotate_y(xy_angle + 0.1)
+			var direction_from_bullet_spawn_point = $BulletSpawnPoint.global_translation.direction_to(self._enemy_position).normalized()
+			var xy_angle = atan2(direction.x, direction.z)
+			bulletInstance.rotate_y(xy_angle + 0.1)
 
-		bulletInstance.set_damage_caused(BULLET_DAMAGE)
-		bulletInstance.velocity = direction * PROJECTILE_SPEED
+			bulletInstance.set_damage_caused(BULLET_DAMAGE)
+			bulletInstance.velocity = direction * PROJECTILE_SPEED
 
 # TODO: wtf
 func _on_to_next_destination():

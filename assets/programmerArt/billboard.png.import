@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/billboard.png-b2e30d572c389a124e45af07055c6d82.s3tc.stex"
-path.etc="res://.import/billboard.png-b2e30d572c389a124e45af07055c6d82.etc.stex"
+path.s3tc="res://import/billboard.png-b2e30d572c389a124e45af07055c6d82.s3tc.stex"
+path.etc="res://import/billboard.png-b2e30d572c389a124e45af07055c6d82.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -12,7 +12,7 @@ metadata={
 [deps]
 
 source_file="res://assets/programmerArt/billboard.png"
-dest_files=[ "res://.import/billboard.png-b2e30d572c389a124e45af07055c6d82.s3tc.stex", "res://.import/billboard.png-b2e30d572c389a124e45af07055c6d82.etc.stex" ]
+dest_files=[ "res://import/billboard.png-b2e30d572c389a124e45af07055c6d82.s3tc.stex", "res://import/billboard.png-b2e30d572c389a124e45af07055c6d82.etc.stex" ]
 
 [params]
 

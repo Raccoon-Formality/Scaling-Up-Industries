@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Danger Sign 2.png-34dcd0d9e9f16c2bede78cd9d674837d.s3tc.stex"
-path.etc="res://.import/Danger Sign 2.png-34dcd0d9e9f16c2bede78cd9d674837d.etc.stex"
+path.s3tc="res://import/Danger Sign 2.png-34dcd0d9e9f16c2bede78cd9d674837d.s3tc.stex"
+path.etc="res://import/Danger Sign 2.png-34dcd0d9e9f16c2bede78cd9d674837d.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -12,7 +12,7 @@ metadata={
 [deps]
 
 source_file="res://assets/textures/Danger Sign 2.png"
-dest_files=[ "res://.import/Danger Sign 2.png-34dcd0d9e9f16c2bede78cd9d674837d.s3tc.stex", "res://.import/Danger Sign 2.png-34dcd0d9e9f16c2bede78cd9d674837d.etc.stex" ]
+dest_files=[ "res://import/Danger Sign 2.png-34dcd0d9e9f16c2bede78cd9d674837d.s3tc.stex", "res://import/Danger Sign 2.png-34dcd0d9e9f16c2bede78cd9d674837d.etc.stex" ]
 
 [params]
 

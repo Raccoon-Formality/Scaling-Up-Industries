@@ -1,9 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/characters/Projectile.gd" type="Script" id=1]
+[ext_resource path="res://assets/programmerArt/image-asset.jpeg" type="Texture" id=2]
 
 [sub_resource type="BoxShape" id=1]
-extents = Vector3( 0.01, 0.01, 0.1 )
+extents = Vector3( 0.1, 0.1, 0.1 )
 
 [sub_resource type="CubeMesh" id=2]
 size = Vector3( 0.02, 0.02, 0.1 )
@@ -17,11 +18,17 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
+visible = false
 mesh = SubResource( 2 )
 skeleton = NodePath("")
 
 [node name="DoomsdayTimer" type="Timer" parent="."]
 wait_time = 10.0
 one_shot = true
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+pixel_size = 0.001
+billboard = 1
+texture = ExtResource( 2 )
 
 [connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]

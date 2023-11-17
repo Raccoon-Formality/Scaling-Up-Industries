@@ -16,6 +16,7 @@ func exitMenu():
 	player.set_process(true)
 	Global.currentSong = Global.previousSong
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	Global.paused = false
 
 
 # if quit UI button pressed, exit game.

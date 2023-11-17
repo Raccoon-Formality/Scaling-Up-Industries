@@ -2,14 +2,14 @@
 
 importer="wavefront_obj"
 type="Mesh"
-path="res://.import/cubicle.obj-ec3cb50f78b332a4a8eadc3502129c94.mesh"
+path="res://import/cubicle.obj-ec3cb50f78b332a4a8eadc3502129c94.mesh"
 
 [deps]
 
-files=[ "res://.import/cubicle.obj-ec3cb50f78b332a4a8eadc3502129c94.mesh" ]
+files=[ "res://import/cubicle.obj-ec3cb50f78b332a4a8eadc3502129c94.mesh" ]
 
 source_file="res://assets/3d/obj/cubicle/cubicle.obj"
-dest_files=[ "res://.import/cubicle.obj-ec3cb50f78b332a4a8eadc3502129c94.mesh", "res://.import/cubicle.obj-ec3cb50f78b332a4a8eadc3502129c94.mesh" ]
+dest_files=[ "res://import/cubicle.obj-ec3cb50f78b332a4a8eadc3502129c94.mesh", "res://import/cubicle.obj-ec3cb50f78b332a4a8eadc3502129c94.mesh" ]
 
 [params]
 

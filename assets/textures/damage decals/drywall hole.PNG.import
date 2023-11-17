@@ -2,28 +2,26 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/drywall hole.png-c0a0ad89699218fbe14cb7cd090c3210.s3tc.stex"
-path.etc="res://.import/drywall hole.png-c0a0ad89699218fbe14cb7cd090c3210.etc.stex"
+path="res://.import/drywall hole.PNG-c9b24bbe20ea0efa7bb6be0f5b1ebe67.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/damage decals/drywall hole.png"
-dest_files=[ "res://.import/drywall hole.png-c0a0ad89699218fbe14cb7cd090c3210.s3tc.stex", "res://.import/drywall hole.png-c0a0ad89699218fbe14cb7cd090c3210.etc.stex" ]
+source_file="res://assets/textures/damage decals/drywall hole.PNG"
+dest_files=[ "res://.import/drywall hole.PNG-c9b24bbe20ea0efa7bb6be0f5b1ebe67.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=true
+flags/repeat=0
 flags/filter=true
-flags/mipmaps=true
+flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
 process/fix_alpha_border=true
@@ -33,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=false
+detect_3d=true
 svg/scale=1.0

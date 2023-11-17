@@ -6,7 +6,7 @@
 
 [sub_resource type="Shader" id=1]
 code = "shader_type spatial;
-render_mode cull_disabled;
+render_mode cull_disabled, ensure_correct_normals;
 
 
 
@@ -37,11 +37,15 @@ void fragment() {
 	else {
 		ALBEDO = wallText.rgb; //mix(floorsText.rgb, , );
 	}
+	//ALBEDO = mix(ALBEDO,vec3(0.0,0.0,0.0),0.5);
+	METALLIC = 0.0;
+	ROUGHNESS = 1.0;
+	SPECULAR = 0.0;
 }"
 
 [resource]
 shader = SubResource( 1 )
-shader_param/wallsScale = 0.5
+shader_param/wallsScale = 2.0
 shader_param/floorsScale = 2.0
 shader_param/ceilingScale = 2.0
 shader_param/walls = ExtResource( 2 )

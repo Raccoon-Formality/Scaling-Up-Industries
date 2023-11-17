@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/punch.wav-04c4351538484f956afaa112e489a4c8.sample"
+path="res://import/punch.wav-04c4351538484f956afaa112e489a4c8.sample"
 
 [deps]
 
 source_file="res://assets/audio/punch.wav"
-dest_files=[ "res://.import/punch.wav-04c4351538484f956afaa112e489a4c8.sample" ]
+dest_files=[ "res://import/punch.wav-04c4351538484f956afaa112e489a4c8.sample" ]
 
 [params]
 

@@ -2,12 +2,12 @@
 
 importer="ogg_vorbis"
 type="AudioStreamOGGVorbis"
-path="res://.import/pluck_002.ogg-e8914858eec0926e55fb84f68a8667c4.oggstr"
+path="res://import/pluck_002.ogg-e8914858eec0926e55fb84f68a8667c4.oggstr"
 
 [deps]
 
 source_file="res://assets/audio/kenny-interface/pluck_002.ogg"
-dest_files=[ "res://.import/pluck_002.ogg-e8914858eec0926e55fb84f68a8667c4.oggstr" ]
+dest_files=[ "res://import/pluck_002.ogg-e8914858eec0926e55fb84f68a8667c4.oggstr" ]
 
 [params]
 

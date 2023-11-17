@@ -2,7 +2,7 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Material-Color.png-fd9f182f63ffb21a6d0cd6ce01063f98.stex"
+path="res://import/Material-Color.png-fd9f182f63ffb21a6d0cd6ce01063f98.stex"
 metadata={
 "vram_texture": false
 }
@@ -10,7 +10,7 @@ metadata={
 [deps]
 
 source_file="res://assets/textures/Material-Color.png"
-dest_files=[ "res://.import/Material-Color.png-fd9f182f63ffb21a6d0cd6ce01063f98.stex" ]
+dest_files=[ "res://import/Material-Color.png-fd9f182f63ffb21a6d0cd6ce01063f98.stex" ]
 
 [params]
 

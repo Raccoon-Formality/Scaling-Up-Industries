@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/-roughness.png-3bf03db860a1d04af636a42d4fd1a688.s3tc.stex"
-path.etc="res://.import/-roughness.png-3bf03db860a1d04af636a42d4fd1a688.etc.stex"
+path.s3tc="res://import/-roughness.png-3bf03db860a1d04af636a42d4fd1a688.s3tc.stex"
+path.etc="res://import/-roughness.png-3bf03db860a1d04af636a42d4fd1a688.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -12,7 +12,7 @@ metadata={
 [deps]
 
 source_file="res://assets/3d/obj/chair/-roughness.png"
-dest_files=[ "res://.import/-roughness.png-3bf03db860a1d04af636a42d4fd1a688.s3tc.stex", "res://.import/-roughness.png-3bf03db860a1d04af636a42d4fd1a688.etc.stex" ]
+dest_files=[ "res://import/-roughness.png-3bf03db860a1d04af636a42d4fd1a688.s3tc.stex", "res://import/-roughness.png-3bf03db860a1d04af636a42d4fd1a688.etc.stex" ]
 
 [params]
 

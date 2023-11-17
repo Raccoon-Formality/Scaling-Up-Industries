@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/health.png-47ba6ef9abf8f685ed5b4e3e596662ce.s3tc.stex"
-path.etc="res://.import/health.png-47ba6ef9abf8f685ed5b4e3e596662ce.etc.stex"
+path.s3tc="res://import/health.png-47ba6ef9abf8f685ed5b4e3e596662ce.s3tc.stex"
+path.etc="res://import/health.png-47ba6ef9abf8f685ed5b4e3e596662ce.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -12,7 +12,7 @@ metadata={
 [deps]
 
 source_file="res://assets/programmerArt/health.png"
-dest_files=[ "res://.import/health.png-47ba6ef9abf8f685ed5b4e3e596662ce.s3tc.stex", "res://.import/health.png-47ba6ef9abf8f685ed5b4e3e596662ce.etc.stex" ]
+dest_files=[ "res://import/health.png-47ba6ef9abf8f685ed5b4e3e596662ce.s3tc.stex", "res://import/health.png-47ba6ef9abf8f685ed5b4e3e596662ce.etc.stex" ]
 
 [params]
 

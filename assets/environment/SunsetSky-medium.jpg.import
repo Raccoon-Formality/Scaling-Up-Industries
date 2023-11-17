@@ -2,7 +2,7 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/SunsetSky-medium.jpg-d5cc5753ea8223659dae55e22bcd418e.stex"
+path="res://import/SunsetSky-medium.jpg-d5cc5753ea8223659dae55e22bcd418e.stex"
 metadata={
 "vram_texture": false
 }
@@ -10,7 +10,7 @@ metadata={
 [deps]
 
 source_file="res://assets/environment/SunsetSky-medium.jpg"
-dest_files=[ "res://.import/SunsetSky-medium.jpg-d5cc5753ea8223659dae55e22bcd418e.stex" ]
+dest_files=[ "res://import/SunsetSky-medium.jpg-d5cc5753ea8223659dae55e22bcd418e.stex" ]
 
 [params]
 

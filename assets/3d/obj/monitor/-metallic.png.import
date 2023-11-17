@@ -2,7 +2,7 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/-metallic.png-b9ef81e61db37a67c639e00d92bfe820.stex"
+path="res://import/-metallic.png-b9ef81e61db37a67c639e00d92bfe820.stex"
 metadata={
 "vram_texture": false
 }
@@ -10,7 +10,7 @@ metadata={
 [deps]
 
 source_file="res://assets/3d/obj/monitor/-metallic.png"
-dest_files=[ "res://.import/-metallic.png-b9ef81e61db37a67c639e00d92bfe820.stex" ]
+dest_files=[ "res://import/-metallic.png-b9ef81e61db37a67c639e00d92bfe820.stex" ]
 
 [params]
 

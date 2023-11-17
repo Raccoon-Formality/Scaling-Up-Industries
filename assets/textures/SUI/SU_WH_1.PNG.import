@@ -2,7 +2,7 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/SU_WH_1.PNG-57d5fe3c347b590a3ad3027dcfe2918e.stex"
+path="res://import/SU_WH_1.PNG-57d5fe3c347b590a3ad3027dcfe2918e.stex"
 metadata={
 "vram_texture": false
 }
@@ -10,7 +10,7 @@ metadata={
 [deps]
 
 source_file="res://assets/textures/SUI/SU_WH_1.PNG"
-dest_files=[ "res://.import/SU_WH_1.PNG-57d5fe3c347b590a3ad3027dcfe2918e.stex" ]
+dest_files=[ "res://import/SU_WH_1.PNG-57d5fe3c347b590a3ad3027dcfe2918e.stex" ]
 
 [params]
 
