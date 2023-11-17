@@ -27,11 +27,15 @@ var levelNumber = 0
 var weaponsDict = {
 	"fists": {	"rapid": false,
 				"damage": 10,
-				"raycastLength": 5},
+				"raycastLength": 5,
+				"noise_level_ratio": 0.01
+				},
 
 	"pistol": {	"rapid": false,
 				"damage": 25,
-				"raycastLength": 25}, 
+				"raycastLength": 25,
+				"noise_level_ratio": 0.15
+				}, 
 }
 var weaponList = ["pistol"]
 # add "fireRate": 10, to rapid weapons

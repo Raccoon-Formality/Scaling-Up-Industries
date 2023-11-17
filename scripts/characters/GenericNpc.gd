@@ -7,10 +7,11 @@ onready var bullet = preload(BULLET_RES_PATH)
 export var STARTING_HEALTH_POINTS = 5
 export var PROJECTILE_SPEED = 10
 export var TURN_SPEED = 0.1
-export var RUN_SPEED = 3
-export var MAXIMUM_EARSHOT_DISTANCE = 20
+export var RUN_SPEED = 5
+export var MAXIMUM_EARSHOT_DISTANCE = 100
 export var BULLET_DAMAGE = 10
 export var RATE_OF_FIRE_SECONDS_PER_SHOT = 0.3
+export var ACCELERATION_RATE = 0.1
 
 var player_node
 #onready var player_node = get_tree().get_nodes_in_group("Player")[0]
@@ -38,9 +39,11 @@ var is_alerted
 # state machine inputs
 var has_just_been_alerted = false
 var has_just_reached_destination = false
+var has_reacted_to_attack = false
 
 var num_health_points
 var _enemy_position = null
+var actual_velocity : Vector3
 
 func _ready():
 	player_node = Global.player_node
@@ -52,6 +55,7 @@ func _ready():
 	_current_state = STATES.INIT
 	num_health_points = STARTING_HEALTH_POINTS
 	_update_state_machine()
+	self.actual_velocity = Vector3()
 
 	var _connect_result = $PatrolTimer.connect("timeout", self, "_on_to_next_destination")
 	_register_listener_for_player_gun_sounds()
@@ -135,9 +139,9 @@ func _run_state_dependent_processes():
 		
 		turn_towards_target(navAgent.get_next_location())	
 		self._enemy_position = player_node.translation
-		if player_is_visible() and self._enemy_position != null:
+		if player_is_visible() and self._enemy_position != null and self.has_reacted_to_attack:
 			attack()
-		else:
+		elif self.has_reacted_to_attack:
 			stop_attacking()
 			_move_toward_position(navAgent.get_next_location())
 
@@ -157,6 +161,7 @@ func _run_state_exit_events():
 
 func _run_state_enter_events():	
 	if _current_state == STATES.COMBAT and _previous_state != STATES.COMBAT:
+		self.has_reacted_to_attack = false
 		_alert_the_npc(player_node.global_transform.origin)
 		_enter_combat()
 	elif _current_state == STATES.DECEASED and _previous_state != STATES.DECEASED:
@@ -164,6 +169,12 @@ func _run_state_enter_events():
 		_unregister_listener_for_player_gun_sounds()
 		#_change_mesh_color(Color(0,0,0,1))
 		play_dying_animation()
+		_remove_npc_from_player_collisions()
+		
+
+func _remove_npc_from_player_collisions():
+	collision_mask &= ~2
+	collision_layer &= ~2
 
 
 func _notice_the_player_if_in_los():
@@ -214,16 +225,23 @@ func _unregister_listener_for_player_gun_sounds():
 	player_node.disconnect("gun_fired", self, "_react_to_gun_sound_if_close")
 
 
-func _react_to_gun_sound_if_close():
-	if can_hear and Vector3(global_transform.origin - player_node.global_transform.origin).length() <= MAXIMUM_EARSHOT_DISTANCE:
+func _react_to_gun_sound_if_close(weapon_noise_level_ratio):
+	if can_hear and Vector3(global_transform.origin - player_node.global_transform.origin).length() <= MAXIMUM_EARSHOT_DISTANCE * weapon_noise_level_ratio:
 		if ! is_alerted:
 			self.has_just_been_alerted = true
 
 
 func _enter_combat():
+	if not $CombatReactionTimer.is_connected("timeout", self, "_start_attacking"):
+		var _connect_result = $CombatReactionTimer.connect("timeout", self, "_start_attacking")
+		$CombatReactionTimer.start()
 	if not $TargetTrackerTimer.is_connected("timeout", self, "track_target"):
 		var _connect_result = $TargetTrackerTimer.connect("timeout", self, "track_target")
 		$TargetTrackerTimer.start()
+
+
+func _start_attacking():
+	self.has_reacted_to_attack = true
 
 
 func track_target():
@@ -293,8 +311,12 @@ func _move_toward_waypoint(target_pos):
 
 func _move_toward_position(target_pos):
 	var direction = global_transform.origin.direction_to(target_pos)
-	var velocity = direction * RUN_SPEED * Vector3(1, 0, 1) # vector for feet on the ground
-	var _move_result = move_and_slide(velocity, Vector3.UP)
+	var final_velocity = direction * RUN_SPEED
+	self.actual_velocity.x = lerp(self.actual_velocity.x, final_velocity.x, ACCELERATION_RATE)
+	self.actual_velocity.z = lerp(self.actual_velocity.z, final_velocity.z, ACCELERATION_RATE)
+	
+	self.actual_velocity *= Vector3(1, 0, 1) # vector for feet on the ground
+	var _move_result = move_and_slide(self.actual_velocity, Vector3.UP)
 
 
 func recieve_damage(collision_point):
