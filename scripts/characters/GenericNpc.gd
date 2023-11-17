@@ -139,7 +139,7 @@ func _run_state_dependent_processes():
 		self._enemy_position = player_node.translation
 		if player_is_visible() and self._enemy_position != null and self.has_reacted_to_attack:
 			attack()
-		else:
+		elif self.has_reacted_to_attack:
 			stop_attacking()
 			_move_toward_position(navAgent.get_next_location())
 
