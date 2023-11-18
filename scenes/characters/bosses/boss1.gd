@@ -23,8 +23,8 @@ func _process(delta):
 	if !Global.paused:
 		var playerPos = Vector2(Global.player_node.global_translation.x, Global.player_node.global_translation.z)
 		var direction = Vector2(global_translation.x,global_translation.z).direction_to(playerPos).rotated(rotation.y)
-		angle += atan2(direction.x, direction.y)
-		rotation_degrees.y = lerp(0.0, rad2deg(angle),0.05)
+		angle = atan2(direction.x, direction.y)
+		rotation.y += lerp(0, angle,0.05)
 		
 		var distance = global_translation.distance_to(Global.player_node.global_translation)
 		if distance > 9:
