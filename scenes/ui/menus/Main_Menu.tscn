@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/fonts/KrunchBold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scripts/menus/Main_Menu.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/ui/settingsPanel.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/textures/SUI/logo-full.svg" type="Texture" id=6]
 [ext_resource path="res://scenes/assets/font.tres" type="DynamicFont" id=7]
+[ext_resource path="res://assets/fonts/Mukta_Mahee/MuktaMahee-Regular.ttf" type="DynamicFontData" id=8]
 
 [sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
@@ -40,6 +41,23 @@ shader_param/vignette_rgb = Color( 0, 0, 0, 1 )
 [sub_resource type="DynamicFont" id=1]
 size = 48
 font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 20
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_top = -4
+extra_spacing_bottom = -4
+font_data = ExtResource( 8 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0, 0, 0, 0.270588 )
+corner_radius_top_left = 5
+corner_radius_bottom_right = 5
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
 
 [node name="Main_Menu" type="Control"]
 anchor_right = 1.0
@@ -81,20 +99,35 @@ custom_fonts/font = SubResource( 1 )
 text = "Scaling Up
 Industries"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-anchor_top = -0.0333333
-margin_left = 32.0
-margin_top = 376.0
-margin_right = 256.0
-margin_bottom = 456.0
-custom_fonts/normal_font = ExtResource( 7 )
+[node name="Label" type="Label" parent="."]
+margin_left = 384.0
+margin_top = 16.0
+margin_right = 624.0
+margin_bottom = 160.0
+custom_fonts/font = SubResource( 5 )
+custom_styles/normal = SubResource( 6 )
 text = "Credits:
 Matthew - Engine Wrangler
 Billy - Lead Artist
-David - Lead Programmer"
-__meta__ = {
-"_edit_use_anchors_": true
-}
+David - Lead Programmer
+Rye - Music Producer"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 0.031
+margin_left = -256.0
+margin_top = 16.0
+margin_right = -16.0
+margin_bottom = 169.12
+rect_clip_content = false
+custom_fonts/normal_font = SubResource( 5 )
+text = "Credits:
+Matthew - Engine Wrangler
+Billy - Lead Artist
+David - Lead Programmer
+Rye - Music Producer"
 
 [node name="continueButton" type="Button" parent="."]
 anchor_top = 0.05
