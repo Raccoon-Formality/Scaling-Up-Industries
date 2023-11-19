@@ -44,14 +44,15 @@ var weaponList = ["pistol"]
 # music dictionary
 var musicDict = {
 	"pause": "res://assets/audio/owlSynth-mp3/pause.mp3",
-	"track1" : "res://assets/audio/owlSynth-mp3/Shooter Synthwave 1.mp3",
+	"track1" : "res://assets/audio/music/gameSong_02_mid.mp3",
 	"death" : "res://assets/audio/owlSynth-mp3/Shooter Synthwave 2.mp3",
-	"track3" : "res://assets/audio/owlSynth-mp3/Shooter Synthwave 3.mp3",
+	#"track3" : "res://assets/audio/music/gameSong_02_mid.mp3",
 	"track4" : "res://assets/audio/owlSynth-mp3/Shooter Synthwave 4.mp3",
 	"track5" : "res://assets/audio/owlSynth-mp3/Shooter Synthwave 5.mp3",
 	"track6" : "res://assets/audio/owlSynth-mp3/Shooter Synthwave 6.mp3",
 	"track7" : "res://assets/audio/owlSynth-mp3/Shooter Synthwave 7.mp3",
 	"track8" : "res://assets/audio/owlSynth-mp3/Shooter Synthwave 8.mp3",
+	"action" : "res://assets/audio/music/action_song.mp3",
 }
 
 # variables for music manager

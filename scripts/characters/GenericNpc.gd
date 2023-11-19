@@ -291,6 +291,7 @@ func _fire_projectile():
 
 			bulletInstance.set_damage_caused(BULLET_DAMAGE)
 			bulletInstance.velocity = direction * PROJECTILE_SPEED
+			Global.currentSong = Global.musicDict["action"]
 
 # TODO: wtf
 func _on_to_next_destination():
