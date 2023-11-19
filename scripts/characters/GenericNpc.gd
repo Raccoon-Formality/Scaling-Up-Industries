@@ -120,7 +120,7 @@ func play_dying_animation():
 	$Body.queue_free()
 	$CollisionShape.queue_free()
 	rotation_degrees.z = 90
-	translation.y = 0.5
+	translation.y += 0.5
 
 
 func _run_state_dependent_processes():

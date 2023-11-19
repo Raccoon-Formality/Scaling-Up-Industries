@@ -26,15 +26,16 @@ transform = Transform( -1, 0, -2.62268e-07, 0, 1, 0, 2.62268e-07, 0, -1, -2, 0, 
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.965926, 0.228854, 0.120886, 0, -0.467066, 0.884222, 0.258819, -0.854093, -0.451151, 4, 44.4896, 4 )
+visible = false
 light_energy = 0.3
 light_specular = 0.0
 directional_shadow_mode = 0
 
 [node name="startPos" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1.31135e-07, 0, -1, 0, 1, 0, 1, 0, 1.31135e-07, -3, 16, 38 )
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -2, 0, 0 )
 
 [node name="endPoint" parent="." instance=ExtResource( 9 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.1903, 0.04, 19.5226 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -24, 16, 38 )
 
 [node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="."]
 navmesh = SubResource( 1 )

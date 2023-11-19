@@ -77,7 +77,6 @@ func _process(delta):
 			$building.global_translation.z = lerp($building.global_translation.z, -7.5, 0.1) #stoppingSpeed * trainSpeed * delta
 		$moving.global_translation.z += stoppingSpeed * trainSpeed * delta
 		$trainSound.volume_db = linear2db(trainSpeed / 2.0)
-	print($building.global_translation.z)
 
 func startGame():
 	$trainStoppingSound.play()

@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/programmerArt/door.jpg" type="Texture" id=1]
+[ext_resource path="res://scripts/interactibles/smallsingleDoorBody.gd" type="Script" id=2]
+[ext_resource path="res://scripts/interactibles/smallsingleDoor.gd" type="Script" id=3]
+[ext_resource path="res://assets/3d/gltf/door2.material" type="Material" id=5]
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 0.8, 1.5, 0.05 )
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 2, 3, 0.1 )
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_texture = ExtResource( 1 )
+uv1_scale = Vector3( 3, 2, 1 )
+
+[sub_resource type="ArrayMesh" id=6]
+resource_name = "door2_Cube023"
+surfaces/0 = {
+"aabb": AABB( -0.0408677, -1, -0.487071, 0.0817355, 2, 0.974153 ),
+"array_data": PoolByteArray( 237, 100, 39, 189, 0, 0, 128, 191, 108, 97, 249, 62, 129, 0, 126, 1, 6, 37, 0, 56, 237, 100, 39, 189, 0, 0, 128, 191, 108, 97, 249, 62, 0, 129, 127, 127, 6, 37, 0, 56, 237, 100, 39, 189, 0, 0, 128, 191, 108, 97, 249, 62, 0, 0, 129, 63, 6, 37, 0, 56, 237, 100, 39, 189, 0, 0, 128, 63, 108, 97, 249, 62, 129, 0, 126, 1, 6, 37, 215, 59, 237, 100, 39, 189, 0, 0, 128, 63, 108, 97, 249, 62, 0, 0, 129, 63, 6, 37, 215, 59, 237, 100, 39, 189, 0, 0, 128, 63, 108, 97, 249, 62, 0, 127, 129, 127, 6, 37, 215, 59, 237, 100, 39, 189, 0, 0, 128, 191, 108, 97, 249, 190, 129, 0, 127, 127, 14, 52, 0, 56, 237, 100, 39, 189, 0, 0, 128, 191, 108, 97, 249, 190, 0, 129, 127, 127, 14, 52, 0, 56, 237, 100, 39, 189, 0, 0, 128, 191, 108, 97, 249, 190, 127, 127, 126, 63, 14, 52, 0, 56, 237, 100, 39, 189, 0, 0, 128, 63, 108, 97, 249, 190, 129, 0, 126, 1, 14, 52, 215, 59, 237, 100, 39, 189, 0, 0, 128, 63, 108, 97, 249, 190, 127, 127, 126, 63, 14, 52, 215, 59, 237, 100, 39, 189, 0, 0, 128, 63, 108, 97, 249, 190, 0, 127, 129, 126, 14, 52, 215, 59, 237, 100, 39, 61, 0, 0, 128, 191, 108, 97, 249, 62, 0, 129, 127, 127, 6, 37, 175, 55, 237, 100, 39, 61, 0, 0, 128, 191, 108, 97, 249, 62, 0, 0, 129, 63, 0, 0, 0, 56, 237, 100, 39, 61, 0, 0, 128, 191, 108, 97, 249, 62, 127, 0, 127, 127, 6, 37, 175, 55, 237, 100, 39, 61, 0, 0, 128, 63, 108, 97, 249, 62, 0, 0, 129, 63, 0, 0, 215, 59, 237, 100, 39, 61, 0, 0, 128, 63, 108, 97, 249, 62, 0, 127, 127, 127, 6, 37, 0, 60, 237, 100, 39, 61, 0, 0, 128, 63, 108, 97, 249, 62, 127, 0, 127, 127, 6, 37, 0, 0, 237, 100, 39, 61, 0, 0, 128, 191, 108, 97, 249, 190, 0, 129, 127, 127, 14, 52, 175, 55, 237, 100, 39, 61, 0, 0, 128, 191, 108, 97, 249, 190, 127, 127, 127, 63, 95, 52, 0, 56, 237, 100, 39, 61, 0, 0, 128, 191, 108, 97, 249, 190, 127, 0, 127, 127, 14, 52, 175, 55, 237, 100, 39, 61, 0, 0, 128, 63, 108, 97, 249, 190, 127, 127, 126, 63, 95, 52, 215, 59, 237, 100, 39, 61, 0, 0, 128, 63, 108, 97, 249, 190, 0, 127, 129, 126, 14, 52, 0, 60, 237, 100, 39, 61, 0, 0, 128, 63, 108, 97, 249, 190, 127, 0, 127, 127, 14, 52, 0, 0 ),
+"array_index_data": PoolByteArray( 0, 0, 9, 0, 3, 0, 0, 0, 6, 0, 9, 0, 8, 0, 21, 0, 10, 0, 8, 0, 19, 0, 21, 0, 20, 0, 17, 0, 23, 0, 20, 0, 14, 0, 17, 0, 13, 0, 4, 0, 15, 0, 13, 0, 2, 0, 4, 0, 7, 0, 12, 0, 18, 0, 7, 0, 1, 0, 12, 0, 22, 0, 5, 0, 11, 0, 22, 0, 16, 0, 5, 0 ),
+"blend_shape_data": [  ],
+"format": 2194711,
+"index_count": 36,
+"material": ExtResource( 5 ),
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 24
+}
+
+[node name="singleDoor" type="Spatial"]
+script = ExtResource( 3 )
+
+[node name="singleDoorBody" type="StaticBody" parent="." groups=["CantShoot"]]
+collision_mask = 7
+script = ExtResource( 2 )
+
+[node name="doorCollider" type="CollisionShape" parent="singleDoorBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 1.5, 0 )
+shape = SubResource( 4 )
+
+[node name="doorMesh" type="MeshInstance" parent="singleDoorBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5, 0 )
+visible = false
+mesh = SubResource( 1 )
+material/0 = SubResource( 5 )
+
+[node name="door2" type="MeshInstance" parent="singleDoorBody"]
+transform = Transform( -6.55671e-08, 0, 1.6, 0, 1.5, 0, -1.5, 0, -6.99382e-08, 0.8, 1.5, 0 )
+mesh = SubResource( 6 )

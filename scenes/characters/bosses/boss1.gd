@@ -17,6 +17,7 @@ onready var poisonProjectile = preload("res://scenes/characters/bosses/items/poi
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	healthBar.max_value = health
+	Global.currentSong = Global.musicDict["action"]
 
 var angle = 0.0
 func _process(delta):

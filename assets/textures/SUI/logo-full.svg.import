@@ -2,7 +2,7 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://import/logo-full.svg-fb404f19bca2955e43ce39e26b00d50a.stex"
+path="res://.import/logo-full.svg-fb404f19bca2955e43ce39e26b00d50a.stex"
 metadata={
 "vram_texture": false
 }
@@ -10,7 +10,7 @@ metadata={
 [deps]
 
 source_file="res://assets/textures/SUI/logo-full.svg"
-dest_files=[ "res://import/logo-full.svg-fb404f19bca2955e43ce39e26b00d50a.stex" ]
+dest_files=[ "res://.import/logo-full.svg-fb404f19bca2955e43ce39e26b00d50a.stex" ]
 
 [params]
 
