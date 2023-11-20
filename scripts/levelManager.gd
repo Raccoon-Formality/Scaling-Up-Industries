@@ -34,8 +34,9 @@ func goToLevel(num, save):
 
 func nextLevel(save):
 	
-	
-	Global.currentSong = Global.musicDict["track1"]
+	if (Global.currentSong != Global.musicDict["track1"]):
+		Global.previousSongPoint = 0.0
+		Global.currentSong = Global.musicDict["track1"]
 	
 	# get info from current level
 	var currentLevel = get_tree().get_nodes_in_group("World")[0]

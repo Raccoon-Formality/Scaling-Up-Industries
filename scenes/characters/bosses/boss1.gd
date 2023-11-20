@@ -17,7 +17,13 @@ onready var poisonProjectile = preload("res://scenes/characters/bosses/items/poi
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	healthBar.max_value = health
-	Global.currentSong = Global.musicDict["action"]
+	if (Global.currentSong != Global.musicDict["action"]):
+		Global.previousSongPoint = 0.0
+		Global.currentSong = Global.musicDict["action"]
+
+func death():
+	get_parent().deadBoss()
+	queue_free()
 
 var angle = 0.0
 func _process(delta):
@@ -54,4 +60,4 @@ func _on_attackTimer_timeout():
 func damage(amount):
 	health -= amount
 	if health <= 0:
-		print("dead")
+		death()

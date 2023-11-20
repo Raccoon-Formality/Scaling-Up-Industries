@@ -9,7 +9,7 @@ export(float, 0.0, 0.5, 0.1) var amp = 0.1
 export(float, 0.0, 15.0, 0.5) var spinSpeed = 1.0
 export(float, 0.0, 15.0, 0.5) var updownSpeed = 5.0
 
-export(int, 0, 100) var healthAmount = 10
+export(int, 0, 100) var healthAmount = 15
 
 func _process(delta):
 	mesh.translation.y = sin(counter) * amp + 0.5

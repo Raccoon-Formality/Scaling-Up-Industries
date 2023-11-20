@@ -6,8 +6,8 @@ onready var sound = $Sound
 onready var collider = $CollisionShape
 
 export(float, 0.0, 0.5, 0.1) var amp = 0.1
-export(float, 0.0, 15.0, 0.5) var spinSpeed = 1.0
-export(float, 0.0, 15.0, 0.5) var updownSpeed = 1.0
+export(float, 0.0, 15.0, 0.5) var spinSpeed = 5.0
+export(float, 0.0, 15.0, 0.5) var updownSpeed = 4.0
 
 export(int, 0, 100) var ammoAmount = 10
 export(String, "pistol", "smg") var ammoType
