@@ -2,26 +2,36 @@
 
 importer="texture"
 type="StreamTexture"
+<<<<<<< Updated upstream
 path="res://import/Pages 1.png-16f1f5c8be616b43422f2fb989236710.stex"
+=======
+path.s3tc="res://.import/Pages 1.png-16f1f5c8be616b43422f2fb989236710.s3tc.stex"
+path.etc="res://.import/Pages 1.png-16f1f5c8be616b43422f2fb989236710.etc.stex"
+>>>>>>> Stashed changes
 metadata={
-"vram_texture": false
+"imported_formats": [ "s3tc", "etc" ],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/Pages 1.png"
+<<<<<<< Updated upstream
 dest_files=[ "res://import/Pages 1.png-16f1f5c8be616b43422f2fb989236710.stex" ]
+=======
+dest_files=[ "res://.import/Pages 1.png-16f1f5c8be616b43422f2fb989236710.s3tc.stex", "res://.import/Pages 1.png-16f1f5c8be616b43422f2fb989236710.etc.stex" ]
+>>>>>>> Stashed changes
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
+flags/repeat=true
 flags/filter=true
-flags/mipmaps=false
+flags/mipmaps=true
 flags/anisotropic=false
 flags/srgb=2
 process/fix_alpha_border=true
@@ -31,5 +41,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

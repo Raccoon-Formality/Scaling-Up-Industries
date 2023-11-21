@@ -2,26 +2,36 @@
 
 importer="texture"
 type="StreamTexture"
+<<<<<<< Updated upstream
 path="res://import/Poster.png-904e0d7fd6b63ee0dc7ed5e5428077a1.stex"
+=======
+path.s3tc="res://.import/Poster.png-904e0d7fd6b63ee0dc7ed5e5428077a1.s3tc.stex"
+path.etc="res://.import/Poster.png-904e0d7fd6b63ee0dc7ed5e5428077a1.etc.stex"
+>>>>>>> Stashed changes
 metadata={
-"vram_texture": false
+"imported_formats": [ "s3tc", "etc" ],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/Poster.png"
+<<<<<<< Updated upstream
 dest_files=[ "res://import/Poster.png-904e0d7fd6b63ee0dc7ed5e5428077a1.stex" ]
+=======
+dest_files=[ "res://.import/Poster.png-904e0d7fd6b63ee0dc7ed5e5428077a1.s3tc.stex", "res://.import/Poster.png-904e0d7fd6b63ee0dc7ed5e5428077a1.etc.stex" ]
+>>>>>>> Stashed changes
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
+flags/repeat=true
 flags/filter=true
-flags/mipmaps=false
+flags/mipmaps=true
 flags/anisotropic=false
 flags/srgb=2
 process/fix_alpha_border=true
@@ -31,5 +41,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0
