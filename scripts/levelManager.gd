@@ -34,6 +34,10 @@ func goToLevel(num, save):
 
 func nextLevel(save):
 	
+	if (Global.currentSong != Global.musicDict["track1"]):
+		Global.previousSongPoint = 0.0
+		Global.currentSong = Global.musicDict["track1"]
+	
 	# get info from current level
 	var currentLevel = get_tree().get_nodes_in_group("World")[0]
 	var currentPlayer = currentLevel.get_node("Player")
@@ -49,15 +53,16 @@ func nextLevel(save):
 	var nextLevelPlayer = nextLevelInstance.get_node("Player")
 	var nextLevelCamera = nextLevelInstance.get_node("Player/Pivot")
 	var nextLevelStartPoint = nextLevelInstance.get_node("startPos")
-	var angleDifference = nextLevelStartPoint.rotation.y - currentPlayer.rotation.y
+	var angleDifference = nextLevelStartPoint.rotation.y - currentEndPoint.rotation.y
 	
 	# make smooth transition to next level
-	nextLevelPlayer.translation = nextLevelStartPoint.translation - distanceToEnd#.rotated(Vector3.UP, nextLevelStartPoint.rotation.y)#.rotated(Vector3.UP,nextLevelStartPoint.rotation.y)
+	nextLevelPlayer.translation = nextLevelStartPoint.translation - distanceToEnd.rotated(Vector3.UP, angleDifference)#.rotated(Vector3.UP,nextLevelStartPoint.rotation.y)
 	nextLevelPlayer.rotation = currentPlayer.rotation# + nextLevelStartPoint.rotation
+	nextLevelPlayer.rotation.y += angleDifference
 	nextLevelCamera.transform = currentCamera
-	nextLevelPlayer.velocity = currentPlayer.velocity#.rotated(Vector3.UP,nextLevelStartPoint.rotation.y)#nextLevelStartPoint.rotation.y)
+	nextLevelPlayer.velocity = currentPlayer.velocity.rotated(Vector3.UP, angleDifference)
 	#nextLevelPlayer.health = currentPlayer.health
-	nextLevelPlayer.lerp_velocity = currentPlayer.lerp_velocity#.rotated(Vector3.UP,nextLevelStartPoint.rotation.y)#nextLevelStartPoint.rotation.y)
+	nextLevelPlayer.lerp_velocity = currentPlayer.lerp_velocity.rotated(Vector3.UP, angleDifference)
 	
 	var crouching = currentPlayer.crouching
 	

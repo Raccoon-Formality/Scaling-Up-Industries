@@ -24,7 +24,7 @@ func _on_poisonprojectile_body_entered(body):
 		if body.is_in_group("Player"):
 			body.damage(20)
 			queue_free()
-		elif body is StaticBody:
+		elif body is StaticBody or body is GridMap:
 			if $RayCast.is_colliding():
 				var poisonInstance = poison.instance()
 				poisonInstance.translation = $RayCast.get_collision_point()
