@@ -72,7 +72,7 @@ visible = false
 skeleton = NodePath("../..")
 
 [node name="CollisionShape" type="CollisionShape" parent="VisionArea"]
-transform = Transform( 40, 0, 0, 0, -5.24537e-07, -6, 0, 12, -2.62268e-07, 0, 0.5, -12.25 )
+transform = Transform( 3, 0, 0, 0, -3.93403e-07, -1, 0, 9, -4.37114e-08, 0, 0.5, -9.25 )
 shape = SubResource( 7 )
 
 [node name="VisionRaycast" type="RayCast" parent="."]
