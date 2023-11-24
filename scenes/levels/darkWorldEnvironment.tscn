@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/environment/SunsetSky-mid.jpg" type="Texture" id=1]
+
+[sub_resource type="PanoramaSky" id=5]
+panorama = ExtResource( 1 )
+
+[sub_resource type="Environment" id=4]
+background_mode = 2
+background_sky = SubResource( 5 )
+background_sky_orientation = Basis( -1, 0, 0, 0, -1, 0, 0, 0, 1 )
+background_color = Color( 0.333333, 0.333333, 0.333333, 1 )
+background_energy = 0.5
+ambient_light_color = Color( 1, 1, 1, 1 )
+ambient_light_energy = 0.5
+ambient_light_sky_contribution = 0.0
+fog_enabled = true
+fog_color = Color( 0, 0, 0, 1 )
+fog_sun_color = Color( 1, 1, 1, 1 )
+fog_depth_begin = 2.0
+fog_depth_end = 50.0
+fog_depth_curve = 0.406126
+dof_blur_near_distance = 8192.0
+dof_blur_near_amount = 0.07
+dof_blur_near_quality = 0
+
+[node name="WorldEnvironment" type="WorldEnvironment"]
+environment = SubResource( 4 )

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/gameSong_explore_140.mp3-0624e73c5007dc4d8822b2bd50ed9b6c.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/gameSong_explore_140.mp3"
+dest_files=[ "res://.import/gameSong_explore_140.mp3-0624e73c5007dc4d8822b2bd50ed9b6c.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

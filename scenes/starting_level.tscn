@@ -188,6 +188,22 @@ material/0 = SubResource( 13 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0 )
 shape = SubResource( 10 )
 
+[node name="CollisionShape2" type="CollisionShape" parent="train"]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -2, 1.19209e-07, 0 )
+shape = SubResource( 10 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="train"]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 2, 1.19209e-07, 0 )
+shape = SubResource( 10 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="train"]
+transform = Transform( 1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, -2, 1.19209e-07, 4.5 )
+shape = SubResource( 10 )
+
+[node name="CollisionShape5" type="CollisionShape" parent="train"]
+transform = Transform( 1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, -2, 1.19209e-07, -4.5 )
+shape = SubResource( 10 )
+
 [node name="train" type="MeshInstance" parent="train"]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -2.7, 0 )
 mesh = SubResource( 9 )

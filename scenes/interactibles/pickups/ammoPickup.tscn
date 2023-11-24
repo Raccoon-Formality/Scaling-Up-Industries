@@ -10,8 +10,6 @@ radius = 0.5
 
 [node name="ammoPickup" type="Area"]
 script = ExtResource( 1 )
-spinSpeed = 5.0
-updownSpeed = 4.0
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )

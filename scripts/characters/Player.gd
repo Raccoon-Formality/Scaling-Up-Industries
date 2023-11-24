@@ -32,6 +32,8 @@ onready var punchParticles = preload("res://scenes/particles/PunchInpactParticle
 var punchingArmIsRight = true
 
 onready var bloodParticles = preload("res://scenes/particles/BloodParticles.tscn")
+#
+#onready var flashlight = $flashLight
 
 # general variables
 var gravity = -30
@@ -50,6 +52,7 @@ var lerp_velocity = Vector3()
 
 # what weapon is currently selected
 var handItem = "fists"
+var canShoot = true
 
 # frame counter for rapid fire weapons.
 # TODO: change to only count when mouse is pressed and
@@ -67,7 +70,7 @@ var screenshakeAmp = 0
 func changeWeapon(num):
 	# change hand iteam to inventory number
 	handItem = Global.Inventory[num][0]
-	
+	canShoot = true
 	# changes raycast to correct length for weapon.
 	# currently interact raycast and weapon racast are the same,
 	# so you can reach buttons further away with gun than fists.
@@ -79,14 +82,14 @@ func changeWeapon(num):
 	if handItem == "fists":
 		$Pivot/Camera/armz.show()
 		$Pivot/Camera/gunarmz.hide()
-		ammoLabel.hide()
+		#ammoLabel.hide()
 	# if gun, hide fist hands and show fist hands
 	# update ammo label and show it
 	else:
 		$Pivot/Camera/armz.hide()
 		$Pivot/Camera/gunarmz.show()
 		ammoLabel.text = str(Global.Inventory[num][1])
-		ammoLabel.show()
+		#ammoLabel.show()
 
 # spawn particles, don't look, just a fuckin mess
 # partObject = preloaded particles node
@@ -156,8 +159,9 @@ func shoot(weapon):
 				else:
 					spawn_particles(punchParticles, raycast.get_collider(), raycast.get_collision_point(), raycast.get_collision_normal(), false)
 		# not hands is gun so this handles guns shooting
-		else:
+		elif canShoot:
 			# if ammo is greater than 0
+			canShoot = false
 			if Global.Inventory[Global.currentSelect][1] > 0:
 				# play shooting animation on gun animation tree
 				gunAnimationTree["parameters/conditions/shoot"] = true
@@ -167,7 +171,7 @@ func shoot(weapon):
 				emit_signal("gun_fired", weapon["noise_level_ratio"])
 				
 				# I don't know why this is here and i'm scared to remove it
-				$Pivot/Camera/gunarmz/AnimationPlayer.play("hipFire")
+				#$Pivot/Camera/gunarmz/AnimationPlayer.play("hipFire")
 				# spawn particles
 				if raycast.get_collider().is_in_group("enemies") and ("num_health_points" in raycast.get_collider()):
 					raycast.get_collider().recieve_damage(raycast.get_collision_point())
@@ -263,6 +267,8 @@ func handleScreenshake(delta):
 # set gun viewport size to window size.
 # gun is on different viewport to avoid wall clipping.
 func _ready():
+	$Pivot/Camera/gunarmz/AnimationPlayer.connect("animation_finished",self,"_gunAnimDone")
+	canShoot = true
 	$pause_menu.player = self
 	Global.player_node = self
 	Global.paused = false
@@ -301,10 +307,14 @@ func _input(event):
 	if event is InputEventMouseButton and not paused:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
+
+onready var gunStateMachine = $Pivot/Camera/gunarmz/AnimationTree.get("parameters/playback")
 # less important process
 # make sure gun viewport camera and regular camera transform are the same
 # update gun animation tree
 func _process(_delta):
+	if gunStateMachine.get_current_node() != "aimFire":
+		canShoot = true
 	guncamera.global_transform = camera.global_transform
 	$Pivot/Camera/ViewportContainer/Viewport.size = get_viewport().size
 	if !dead:
@@ -397,13 +407,13 @@ func _physics_process(delta):
 			gunCrosshair.text = "E"
 		elif raycast.is_colliding() and raycast.get_collider().is_in_group("CantShoot"):
 			gunCrosshair.modulate = Color(1,0,0)
-			gunCrosshair.text = "X"
+			gunCrosshair.text = "O"
 		elif raycast.is_colliding():
 			gunCrosshair.modulate = Color(1,1,1)
-			gunCrosshair.text = "X"
+			gunCrosshair.text = "O"
 		else:
 			gunCrosshair.modulate = Color(0.5,0.5,0.5)
-			gunCrosshair.text = "X"
+			gunCrosshair.text = "O"
 		
 		if Input.is_action_just_pressed("TestInputRemoveLater"):
 			damage(5)
@@ -455,3 +465,6 @@ func _on_Hitbox_body_entered(body):
 		damage(body.get_damage_caused())
 		body.queue_free()
 
+func _gunAnimDone(stringOld):
+	if stringOld == "hipFire":
+		canShoot = true
