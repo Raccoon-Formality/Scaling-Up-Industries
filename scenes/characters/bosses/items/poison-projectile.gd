@@ -29,5 +29,5 @@ func _on_poisonprojectile_body_entered(body):
 				var poisonInstance = poison.instance()
 				poisonInstance.translation = $RayCast.get_collision_point()
 				poisonInstance.rotation_degrees.y = rand_range(-180,180)
-				ParticleHolder.add_child(poisonInstance)
+				get_parent().add_child(poisonInstance)
 				queue_free()

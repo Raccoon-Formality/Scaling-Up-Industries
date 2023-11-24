@@ -1,7 +1,14 @@
 extends Control
 
+func PRONOUNS():
+	$PRONOUNS.add_item("She/Her")
+	$PRONOUNS.add_item("They/Them")
+	$PRONOUNS.add_item("it/it's")
+	$PRONOUNS.add_item("he/they")
+
 
 func _ready():
+	PRONOUNS()
 	$versionNumber.text = "version: " + Global.versionNumber
 	Global.fromStart = false
 	Global.fromStartList = []
@@ -17,6 +24,9 @@ func _ready():
 	$settingsPanel.update()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	Global.currentSong = Global.musicDict["track6"]
+	
+	#testing
+	$HSlider.max_value = Global.levelList.size() - 1
 
 
 func _on_continueButton_pressed():
@@ -37,3 +47,12 @@ func _on_startButton_pressed():
 
 func _on_exitButton_pressed():
 	get_tree().quit()
+
+
+func _on_Button_pressed():
+	Global.levelNumber = $HSlider.value
+	get_tree().change_scene("res://levelManager.tscn")
+
+
+func _on_HSlider_value_changed(value):
+	$Label2.text = Global.levelList[value]

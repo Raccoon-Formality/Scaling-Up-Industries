@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://scripts/characters/Player.gd" type="Script" id=1]
 [ext_resource path="res://scenes/characters/gunarmz.tscn" type="PackedScene" id=2]
@@ -15,6 +15,10 @@
 [ext_resource path="res://scripts/menus/death_menu.gd" type="Script" id=13]
 [ext_resource path="res://scripts/menus/ButtonScript.gd" type="Script" id=14]
 [ext_resource path="res://scenes/ui/settingsPanel.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/characters/game_ui.gd" type="Script" id=16]
+[ext_resource path="res://assets/programmerArt/fist.png" type="Texture" id=17]
+[ext_resource path="res://assets/programmerArt/silencerPistol.png" type="Texture" id=18]
+[ext_resource path="res://assets/fonts/Mukta_Mahee/MuktaMahee-Bold.ttf" type="DynamicFontData" id=19]
 
 [sub_resource type="CapsuleShape" id=18]
 radius = 0.5
@@ -77,12 +81,21 @@ shader_param/vignette_intensity = 0.4
 shader_param/vignette_opacity = 0.5
 shader_param/vignette_rgb = Color( 0, 0, 0, 1 )
 
+[sub_resource type="DynamicFont" id=21]
+font_data = ExtResource( 19 )
+
 [sub_resource type="DynamicFont" id=6]
 size = 32
 font_data = ExtResource( 4 )
 
 [sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=19]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=20]
+draw_center = false
 
 [sub_resource type="DynamicFont" id=2]
 size = 36
@@ -173,15 +186,8 @@ enabled = true
 cast_to = Vector3( 0, 0, -10 )
 collision_mask = 15
 
-[node name="flashLight" type="SpotLight" parent="Pivot"]
-transform = Transform( 1, 0, 0, 0, 0.998196, -0.0600381, 0, 0.0600381, 0.998196, -0.497055, -0.5, 0 )
-visible = false
-layers = 3
-light_color = Color( 1, 0.901961, 0.701961, 1 )
-spot_range = 12.0
-spot_angle = 25.4018
-
 [node name="game_ui" type="CanvasLayer" parent="."]
+script = ExtResource( 16 )
 
 [node name="Control" type="Control" parent="game_ui"]
 anchor_right = 1.0
@@ -204,11 +210,13 @@ mouse_filter = 2
 [node name="Label" type="Label" parent="game_ui/Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-text = "X"
+custom_fonts/font = SubResource( 21 )
+text = "O"
 align = 1
 valign = 1
 
 [node name="AmmoLabel" type="Label" parent="game_ui/Control"]
+visible = false
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 56.0
@@ -225,6 +233,56 @@ rect_rotation = 89.9999
 custom_colors/font_color = Color( 0, 0, 0, 0 )
 custom_styles/fg = SubResource( 5 )
 value = 50.0
+
+[node name="ammo" type="Control" parent="game_ui/Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="selectorRect" type="ColorRect" parent="game_ui/Control/ammo"]
+margin_top = 400.0
+margin_right = 64.0
+margin_bottom = 432.0
+color = Color( 1, 0.631373, 0, 0.501961 )
+
+[node name="fist" type="TextureRect" parent="game_ui/Control/ammo"]
+margin_left = 16.0
+margin_top = 400.0
+margin_right = 48.0
+margin_bottom = 432.0
+texture = ExtResource( 17 )
+expand = true
+
+[node name="gun" type="TextureRect" parent="game_ui/Control/ammo"]
+margin_left = 16.0
+margin_top = 432.0
+margin_right = 48.0
+margin_bottom = 464.0
+texture = ExtResource( 18 )
+expand = true
+
+[node name="ammoBar" type="ProgressBar" parent="game_ui/Control/ammo/gun"]
+margin_left = 56.0
+margin_top = 8.0
+margin_right = 168.0
+margin_bottom = 16.0
+custom_styles/fg = SubResource( 19 )
+custom_styles/bg = SubResource( 20 )
+max_value = 45.0
+value = 30.0
+allow_greater = true
+percent_visible = false
+
+[node name="magBar" type="ProgressBar" parent="game_ui/Control/ammo/gun"]
+margin_left = 56.0
+margin_top = 16.0
+margin_right = 168.0
+margin_bottom = 24.0
+custom_styles/fg = SubResource( 19 )
+custom_styles/bg = SubResource( 20 )
+max_value = 15.0
+value = 30.0
+allow_greater = true
+percent_visible = false
 
 [node name="pause_menu" type="CanvasLayer" parent="."]
 visible = false
@@ -367,6 +425,21 @@ bus = "sfx"
 
 [node name="hurtSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="flashLight" type="SpotLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.497055, 1, 0.643648 )
+visible = false
+autoplace_priority = 1
+sorting_use_aabb_center = false
+light_energy = 4.933
+light_specular = 0.0
+light_cull_mask = 4294967293
+shadow_enabled = true
+shadow_reverse_cull_face = true
+spot_range = 62.767
+spot_angle = 24.2814
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]
 [connection signal="pressed" from="pause_menu/Control/QuitButton" to="pause_menu" method="_on_QuitButton_pressed"]

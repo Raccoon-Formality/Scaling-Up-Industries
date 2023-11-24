@@ -20,8 +20,13 @@ var stoppingSpeed = 10.0
 var counter = 0
 
 onready var massiveCube = $building/StaticBody/buildingMesh/CSGBox/massive
+onready var environment = $WorldEnvironment.environment
 
 func _ready():
+	
+	environment.background_energy = 1.0
+	environment.ambient_light_energy = 0.8
+	
 	$building.translation = Vector3(0,-2,-45)
 	trainSpeed = 2.0
 	#massiveCube.hide()
@@ -62,6 +67,7 @@ func _process(delta):
 			$building.translation.z += 20 * delta * trainSpeed
 		elif counter > 300 + timingOffset:
 			stopping = true
+			$train/CollisionShape5.queue_free()
 			grass.set_shader_param("speed",0.0)
 			track.set_shader_param("speed",0.0)
 			started = false
@@ -84,6 +90,9 @@ func startGame():
 	playerInstance.translation = $Camera.translation
 	playerInstance.translation.y -= 1.5
 	playerInstance.rotation.y = $Camera.rotation.y
+	var vig = playerInstance.get_node("game_ui/Control/Vignette").material
+	vig.set_shader_param("vignette_intensity", 0.4)
+	vig.set_shader_param("vignette_opacity", 0.5)
 	add_child(playerInstance)
 	$Main_Menu.hide()
 	started = true

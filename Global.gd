@@ -14,14 +14,17 @@ var levelsDict = {
 	"level2": preload("res://scenes/levels/level2/World.tscn"),
 	"level3": preload("res://scenes/levels/level3/World.tscn"),
 	"boss1": preload("res://scenes/levels/boss1/World.tscn"),
+	"level4": preload("res://scenes/levels/level4/World.tscn"),
+	"boss2": preload("res://scenes/levels/boss2/World.tscn"),
 }
 
 # level order
-var levelList = ["level0", "level2","level3","boss1"]
+var levelList = ["level0", "level2","level3","boss1","level4","boss2"]
 
 # what level we are on
 # TODO: save and load level number
 var levelNumber = 0
+var darkLevelsStart = 6
 
 # weapon dictionary
 # TODO: give weapons default ammo amount
@@ -35,7 +38,8 @@ var weaponsDict = {
 	"pistol": {	"rapid": false,
 				"damage": 25,
 				"raycastLength": 25,
-				"noise_level_ratio": 0.15
+				"noise_level_ratio": 0.15,
+				"magSize": 15,
 				}, 
 }
 var weaponList = ["pistol"]
@@ -44,7 +48,7 @@ var weaponList = ["pistol"]
 # music dictionary
 var musicDict = {
 	"pause": "res://assets/audio/owlSynth-mp3/pause.mp3",
-	"track1" : "res://assets/audio/music/gameSong_02_mid.mp3",
+	"track1" : "res://assets/audio/music/Explore_song1.mp3",#"res://assets/audio/music/gameSong_02_mid.mp3",
 	"death" : "res://assets/audio/owlSynth-mp3/Shooter Synthwave 2.mp3",
 	#"track3" : "res://assets/audio/music/gameSong_02_mid.mp3",
 	"track4" : "res://assets/audio/owlSynth-mp3/Shooter Synthwave 4.mp3",
@@ -52,7 +56,7 @@ var musicDict = {
 	"track6" : "res://assets/audio/owlSynth-mp3/Shooter Synthwave 6.mp3",
 	"track7" : "res://assets/audio/owlSynth-mp3/Shooter Synthwave 7.mp3",
 	"track8" : "res://assets/audio/owlSynth-mp3/Shooter Synthwave 8.mp3",
-	"action" : "res://assets/audio/music/action_song.mp3",
+	"action" : "res://assets/audio/music/Action_song1.mp3",#"res://assets/audio/music/action_song.mp3",
 }
 
 # variables for music manager
@@ -65,9 +69,9 @@ var useController = false
 
 # player inventory
 # TODO: save and load inventory
-var Inventory = [["fists",-1],["pistol",10]]
+var Inventory = [["fists",-1],["pistol",15]]
 #var Ammo = {"pistol" : 10}
-var currentSelect = 0
+var currentSelect = 1
 var health = 100
 
 var currentLoad = null
@@ -81,9 +85,9 @@ func resetVars():
 	previousSongPoint = 0.0
 	levelNumber = 0
 	
-	Inventory = [["fists",-1],["pistol",10]]
+	Inventory = [["fists",-1],["pistol",15]]
 	#Ammo = {"pistol" : 10}
-	currentSelect = 0
+	currentSelect = 1
 	health = 100
 
 # reload game for testing

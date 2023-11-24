@@ -21,6 +21,8 @@ var navAgent : NavigationAgent
 var waypoint_index = 0
 export(NodePath) var waypoint_graph_node_path
 onready var waypoint_graph = get_node_or_null(waypoint_graph_node_path)
+onready var eyes = $Body/FrontOfEyes
+
 
 var _previous_state
 var _current_state
@@ -262,8 +264,8 @@ func stop_attacking():
 
 
 func turn_towards_target(target_pos):
-	$Body/FrontOfEyes.look_at(target_pos, Vector3.UP)
-	rotate_y(($Body/FrontOfEyes.rotation.y * TURN_SPEED)) 
+	eyes.look_at(target_pos, Vector3.UP)
+	rotate_y((eyes.rotation.y * TURN_SPEED)) 
 
 
 func _exit_combat():

@@ -2,12 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-<<<<<<< Updated upstream
-path="res://import/Pages 1.png-16f1f5c8be616b43422f2fb989236710.stex"
-=======
 path.s3tc="res://.import/Pages 1.png-16f1f5c8be616b43422f2fb989236710.s3tc.stex"
 path.etc="res://.import/Pages 1.png-16f1f5c8be616b43422f2fb989236710.etc.stex"
->>>>>>> Stashed changes
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -16,11 +12,7 @@ metadata={
 [deps]
 
 source_file="res://assets/textures/Pages 1.png"
-<<<<<<< Updated upstream
-dest_files=[ "res://import/Pages 1.png-16f1f5c8be616b43422f2fb989236710.stex" ]
-=======
 dest_files=[ "res://.import/Pages 1.png-16f1f5c8be616b43422f2fb989236710.s3tc.stex", "res://.import/Pages 1.png-16f1f5c8be616b43422f2fb989236710.etc.stex" ]
->>>>>>> Stashed changes
 
 [params]
 

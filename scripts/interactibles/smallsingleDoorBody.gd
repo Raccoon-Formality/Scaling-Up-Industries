@@ -21,9 +21,13 @@ func interact():
 		if not doorParent.opened:
 			doorParent.angle = -1.5
 			doorParent.opened = true
+			$openSound.pitch_scale = rand_range(0.8,1.0)
+			$openSound.play()
 		else:
 			doorParent.angle = 0 
 			doorParent.opened = false
+			$closeSound.pitch_scale = rand_range(0.8,1.0)
+			$closeSound.play()
 	else:
 		print("add locked sound")
 

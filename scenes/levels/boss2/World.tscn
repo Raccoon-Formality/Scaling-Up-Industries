@@ -1,0 +1,125 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://assets/programmerArt/header.jpg" type="Texture" id=1]
+[ext_resource path="res://scenes/characters/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/levels/holders.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/levels/startPos.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/levels/endPoint.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/interactibles/door.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/levels/GridMap.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/assets/tilesets/shaderTileset.tres" type="MeshLibrary" id=9]
+[ext_resource path="res://scenes/levels/boss2/World.gd" type="Script" id=10]
+[ext_resource path="res://scenes/levels/tileset.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/levels/furnishings.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/programmerArt/behind-you.png" type="Texture" id=13]
+
+[sub_resource type="CubeMesh" id=1]
+flip_faces = true
+size = Vector3( 20, 8, 20 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 1, 2, 1 )
+
+[sub_resource type="CylinderShape" id=3]
+height = 50.0
+radius = 0.25
+
+[sub_resource type="CylinderMesh" id=4]
+top_radius = 0.25
+bottom_radius = 0.25
+height = 50.0
+radial_segments = 16
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 1, 0, 0, 1 )
+
+[node name="World" type="Spatial" groups=["World"]]
+script = ExtResource( 10 )
+
+[node name="TestRoomMesh" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
+visible = false
+mesh = SubResource( 1 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 8 )
+
+[node name="interactibles" type="Spatial" parent="."]
+
+[node name="door" parent="interactibles" instance=ExtResource( 7 )]
+transform = Transform( -8.74228e-08, 0, -1, 0, 2, 0, 2, 0, -4.37114e-08, 12, 0, 2 )
+
+[node name="door2" parent="interactibles" instance=ExtResource( 7 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1, -2, 0, 16 )
+
+[node name="door3" parent="interactibles" instance=ExtResource( 7 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1, -2, 0, 28 )
+
+[node name="holders" parent="." instance=ExtResource( 3 )]
+
+[node name="startPos" parent="." instance=ExtResource( 5 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2, 0, 24 )
+
+[node name="endPoint" parent="." instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2, 0, -16 )
+
+[node name="GridMap" parent="." instance=ExtResource( 8 )]
+data = {
+"cells": PoolIntArray( 0, 0, 655362, 1, 0, 655362, 2, 0, 655362, 3, 0, 655360, 4, 0, 655360, 65533, 0, 1441802, 65534, 0, 655362, 65535, 0, 655362, 65536, 0, 1048579, 65537, 0, 1048579, 65538, 0, 1048579, 65539, 0, 1048586, 131069, 0, 1441802, 131070, 0, 1048579, 131071, 0, 1048579, 0, 1, 655362, 1, 1, 655362, 2, 1, 655362, 3, 1, 1048586, 65533, 1, 1441802, 65534, 1, 655362, 65535, 1, 655362, 65536, 1, 1048579, 65537, 1, 1048579, 65538, 1, 1048579, 65539, 1, 1048586, 131069, 1, 1441802, 131070, 1, 1048579, 131071, 1, 1048579, 0, 2, 655362, 1, 2, 655362, 2, 2, 655362, 3, 2, 1048586, 65533, 2, 1441802, 65534, 2, 655362, 65535, 2, 655362, 65536, 2, 1048579, 65537, 2, 1048579, 65538, 2, 1048579, 65539, 2, 1048586, 131069, 2, 1441802, 131070, 2, 1048579, 131071, 2, 1048579, 0, 3, 655362, 1, 3, 655362, 2, 3, 655362, 3, 3, 1048586, 65533, 3, 1441802, 65534, 3, 655362, 65535, 3, 655362, 65536, 3, 1048579, 65537, 3, 1048579, 65538, 3, 1048579, 65539, 3, 1048586, 131069, 3, 1441802, 131070, 3, 1048579, 131071, 3, 1048579, 0, 4, 10, 1, 4, 10, 2, 4, 10, 65534, 4, 10, 65535, 4, 1441792, 65536, 4, 10, 65537, 4, 10, 65538, 4, 10, 131070, 4, 10, 131071, 4, 10, 65535, 5, 1441792, 65535, 6, 1441792, 0, 65533, 655370, 1, 65533, 655370, 2, 65533, 655370, 65534, 65533, 655370, 65535, 65533, 655370, 65536, 65533, 655370, 65537, 65533, 655370, 65538, 65533, 655370, 131070, 65533, 655370, 131071, 65533, 655370, 0, 65534, 655362, 1, 65534, 655362, 2, 65534, 655362, 3, 65534, 1048586, 65533, 65534, 1441802, 65534, 65534, 655362, 65535, 65534, 655362, 65536, 65534, 1048579, 65537, 65534, 1048579, 65538, 65534, 1048579, 65539, 65534, 1048586, 131069, 65534, 1441802, 131070, 65534, 1048579, 131071, 65534, 1048579, 0, 65535, 655362, 1, 65535, 655362, 2, 65535, 655362, 3, 65535, 1048586, 65533, 65535, 1441802, 65534, 65535, 655362, 65535, 65535, 655362, 65536, 65535, 1048579, 65537, 65535, 1048579, 65538, 65535, 1048579, 65539, 65535, 1048586, 131069, 65535, 1441802, 131070, 65535, 1048579, 131071, 65535, 1048579 )
+}
+__meta__ = {
+"_editor_clip_": 0,
+"_editor_floor_": Vector3( -1, 1, 0 )
+}
+
+[node name="tileset" parent="." instance=ExtResource( 11 )]
+mesh_library = ExtResource( 9 )
+
+[node name="furnishings" parent="." instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.86805e-07, 0, -9 )
+data = {
+"cells": PoolIntArray( 2, 2, 655363 )
+}
+__meta__ = {
+"_editor_clip_": 0,
+"_editor_floor_": Vector3( 0, 0, 0 )
+}
+
+[node name="Area" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -6 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+shape = SubResource( 2 )
+
+[node name="Sprite3D" type="Sprite3D" parent="Area"]
+transform = Transform( 0.241481, -0.0647047, 1.82827e-08, -2.18557e-08, -1.09278e-08, 0.25, -0.0647047, -0.241481, -1.62122e-08, -0.180322, 0.818748, -0.42032 )
+pixel_size = 0.001
+texture = ExtResource( 13 )
+
+[node name="boss" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 2 )
+visible = false
+
+[node name="Sprite3D" type="Sprite3D" parent="boss"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+flip_h = true
+texture = ExtResource( 1 )
+
+[node name="laser" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 20 )
+visible = false
+collision_layer = 3
+collision_mask = 3
+monitoring = false
+
+[node name="CollisionShape" type="CollisionShape" parent="laser"]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="laser"]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, -2.98023e-08, 0 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
+[connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
+[connection signal="body_entered" from="laser" to="." method="_on_laser_body_entered"]

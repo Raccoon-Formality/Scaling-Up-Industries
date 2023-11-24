@@ -1,8 +1,11 @@
 extends Spatial
 
-
+onready var environment = $WorldEnvironment.environment
+onready var vig = $World/Player/game_ui/Control/Vignette.material
 
 func _ready():
+	
+	
 	if Global.fromStart:
 		
 		fromStart(Global.fromStartList[0],Global.fromStartList[1],Global.fromStartList[2],Global.fromStartList[3],Global.fromStartList[4],Global.fromStartList[5],Global.fromStartList[6])
@@ -29,8 +32,23 @@ func goToLevel(num, save):
 		nodeCheck.queue_free()
 	add_child(LevelInstance)
 	
+	if num > Global.darkLevelsStart and num != Global.levelList.size() - 1:
+		environment.background_energy = 0.25
+		environment.ambient_light_energy = 0.25
+		vig.set_shader_param("vignette_intensity", 1.0)
+		vig.set_shader_param("vignette_opacity", 1.0)
+		
+	else:
+		environment.background_energy = 1.0
+		environment.ambient_light_energy = 0.8
+		vig.set_shader_param("vignette_intensity", 0.4)
+		vig.set_shader_param("vignette_opacity", 0.5)
+	
 	if save:
 		Global.save()
+	
+	if num != 0:
+		$closeSound.play()
 
 func nextLevel(save):
 	
@@ -68,6 +86,18 @@ func nextLevel(save):
 	
 	#nextLevelInstance.translation = currentEndPoint.global_translation
 	
+	
+	if Global.levelNumber > Global.darkLevelsStart and Global.levelNumber != Global.levelList.size() - 1:
+		environment.background_energy = 0.25
+		environment.ambient_light_energy = 0.25
+		vig.set_shader_param("vignette_intensity", 1.0)
+		vig.set_shader_param("vignette_opacity", 1.0)
+	else:
+		environment.background_energy = 1.0
+		environment.ambient_light_energy = 0.8
+		vig.set_shader_param("vignette_intensity", 0.4)
+		vig.set_shader_param("vignette_opacity", 0.5)
+	
 	# clear current level and add next level
 	currentLevel.queue_free()
 	add_child(nextLevelInstance)
@@ -78,6 +108,8 @@ func nextLevel(save):
 	
 	if save:
 		Global.save()
+		
+	$closeSound.play()
 
 func fromStart(pos, pos2, rot, vel, vel2, crouch, camTransform):
 	
