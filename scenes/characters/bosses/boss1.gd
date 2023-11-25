@@ -7,12 +7,14 @@ export var bulletJump = 5.0
 export var bulletSpeed = 5.0
 
 var health = 250
+var dead = false
 
 var velocity = Vector3.FORWARD
 var lerp_velocity = Vector3()
 
 onready var healthBar = $CanvasLayer/Control/ProgressBar
 onready var poisonProjectile = preload("res://scenes/characters/bosses/items/poison-projectile.tscn")
+onready var gunPickup = preload("res://scenes/interactibles/pickups/gunPickup.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,11 +25,18 @@ func _ready():
 
 func death():
 	get_parent().deadBoss()
-	queue_free()
+	var gunInstance = gunPickup.instance()
+	gunInstance.translation = global_translation
+	get_parent().add_child(gunInstance)
+	dead = true
 
 var angle = 0.0
 func _process(delta):
-	if !Global.paused:
+
+	if healthBar.value != health:
+		healthBar.value = lerp(healthBar.value, health, 0.1)
+	
+	if !Global.paused and dead == false:
 		var playerPos = Vector2(Global.player_node.global_translation.x, Global.player_node.global_translation.z)
 		var direction = Vector2(global_translation.x,global_translation.z).direction_to(playerPos).rotated(rotation.y)
 		angle = atan2(direction.x, direction.y)
@@ -45,8 +54,10 @@ func _process(delta):
 		lerp_velocity = lerp(lerp_velocity, velocity, 0.1)
 		move_and_slide(lerp_velocity, Vector3.UP, false)
 		
-		if healthBar.value != health:
-			healthBar.value = lerp(healthBar.value, health, 0.1)
+	elif dead:
+		global_translation.y = lerp(global_translation.y, -15, 0.05)
+		if is_equal_approx(global_translation.y,-15.0):
+			queue_free()
 
 
 func _on_attackTimer_timeout():

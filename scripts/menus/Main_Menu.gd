@@ -56,3 +56,12 @@ func _on_Button_pressed():
 
 func _on_HSlider_value_changed(value):
 	$Label2.text = Global.levelList[value]
+
+
+func _on_creditsButton_pressed():
+	$Label.visible = !$Label.visible
+
+
+func _on_settingsButton_pressed():
+	$audioSliders.visible = !$audioSliders.visible
+	$settingsPanel.visible = !$settingsPanel.visible

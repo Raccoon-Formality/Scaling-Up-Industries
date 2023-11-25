@@ -100,6 +100,7 @@ text = "Scaling Up
 Industries"
 
 [node name="Label" type="Label" parent="."]
+visible = false
 margin_left = 384.0
 margin_top = 16.0
 margin_right = 624.0
@@ -130,9 +131,9 @@ David - Lead Programmer
 Rye - Music Producer"
 
 [node name="continueButton" type="Button" parent="."]
-anchor_top = 0.05
-anchor_right = 0.0046875
-anchor_bottom = 0.0541667
+anchor_top = 0.133333
+anchor_right = 0.0125
+anchor_bottom = 0.1375
 margin_left = 40.0
 margin_top = 168.0
 margin_right = 112.0
@@ -145,8 +146,9 @@ __meta__ = {
 }
 
 [node name="startButton" type="Button" parent="."]
-anchor_top = 0.05
-anchor_bottom = 0.0541667
+anchor_top = -0.0333333
+anchor_right = 0.05
+anchor_bottom = -0.0291667
 margin_left = 40.0
 margin_top = 208.0
 margin_right = 88.0
@@ -159,7 +161,9 @@ __meta__ = {
 }
 
 [node name="exitButton" type="Button" parent="."]
-anchor_bottom = 0.00416667
+anchor_top = 0.116667
+anchor_right = 0.05
+anchor_bottom = 0.120833
 margin_left = 40.0
 margin_top = 328.0
 margin_right = 88.0
@@ -172,6 +176,7 @@ __meta__ = {
 }
 
 [node name="audioSliders" parent="." instance=ExtResource( 3 )]
+visible = false
 margin_left = 296.0
 margin_top = 368.0
 margin_right = 616.0
@@ -182,6 +187,7 @@ __meta__ = {
 }
 
 [node name="settingsPanel" parent="." instance=ExtResource( 5 )]
+visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 368.0
@@ -192,13 +198,55 @@ margin_bottom = 456.0
 [node name="versionNumber" type="Label" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 32.0
-margin_top = -24.0
-margin_right = 88.0
-margin_bottom = -8.0
+margin_left = 24.0
+margin_top = -56.0
+margin_right = 80.0
+margin_bottom = -40.0
+text = "verson:"
 valign = 2
 
+[node name="copyright" type="Label" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 24.0
+margin_top = -32.0
+margin_right = 141.0
+margin_bottom = -16.0
+text = "Copyright © Raccoon Formality 2023"
+valign = 2
+
+[node name="creditsButton" type="Button" parent="."]
+anchor_top = -0.0333333
+anchor_right = 0.05
+anchor_bottom = -0.0291667
+margin_left = 40.0
+margin_top = 328.0
+margin_right = 88.0
+margin_bottom = 352.0
+custom_fonts/font = ExtResource( 7 )
+text = "Credits"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="settingsButton" type="Button" parent="."]
+anchor_top = -0.116667
+anchor_right = 0.05
+anchor_bottom = -0.1125
+margin_left = 40.0
+margin_top = 328.0
+margin_right = 88.0
+margin_bottom = 352.0
+custom_fonts/font = ExtResource( 7 )
+text = "Settings"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
 [node name="Button" type="Button" parent="."]
+visible = false
 margin_left = 48.0
 margin_top = 368.0
 margin_right = 85.0
@@ -206,12 +254,14 @@ margin_bottom = 388.0
 text = "test level"
 
 [node name="HSlider" type="HSlider" parent="."]
+visible = false
 margin_left = 48.0
 margin_top = 400.0
 margin_right = 192.0
 margin_bottom = 416.0
 
 [node name="Label2" type="Label" parent="."]
+visible = false
 margin_left = 48.0
 margin_top = 424.0
 margin_right = 88.0
@@ -228,5 +278,7 @@ margin_bottom = 200.0
 [connection signal="pressed" from="continueButton" to="." method="_on_continueButton_pressed"]
 [connection signal="pressed" from="startButton" to="." method="_on_startButton_pressed"]
 [connection signal="pressed" from="exitButton" to="." method="_on_exitButton_pressed"]
+[connection signal="pressed" from="creditsButton" to="." method="_on_creditsButton_pressed"]
+[connection signal="pressed" from="settingsButton" to="." method="_on_settingsButton_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="value_changed" from="HSlider" to="." method="_on_HSlider_value_changed"]

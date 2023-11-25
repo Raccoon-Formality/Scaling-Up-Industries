@@ -53,7 +53,7 @@ mesh = SubResource( 1 )
 material/0 = SubResource( 5 )
 
 [node name="door2" type="MeshInstance" parent="singleDoorBody"]
-transform = Transform( -9.17939e-08, 0, 2.1, 0, 1.6, 0, -2.1, 0, -9.17939e-08, 1, 1.5, 0 )
+transform = Transform( -1.58546e-07, -1.39876e-07, -2.1, -1.83588e-07, -1.6, 1.83588e-07, -2.1, 1.39876e-07, 1.58546e-07, 1, 1.5, 0 )
 mesh = SubResource( 6 )
 
 [node name="openSound" type="AudioStreamPlayer" parent="singleDoorBody"]

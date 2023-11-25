@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://scripts/characters/Player.gd" type="Script" id=1]
 [ext_resource path="res://scenes/characters/gunarmz.tscn" type="PackedScene" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://assets/programmerArt/silencerPistol.png" type="Texture" id=18]
 [ext_resource path="res://assets/fonts/Mukta_Mahee/MuktaMahee-Bold.ttf" type="DynamicFontData" id=19]
 [ext_resource path="res://scenes/characters/smgarmz.tscn" type="PackedScene" id=20]
+[ext_resource path="res://assets/programmerArt/smg.png" type="Texture" id=21]
 
 [sub_resource type="CapsuleShape" id=18]
 radius = 0.5
@@ -97,6 +98,10 @@ bg_color = Color( 1, 1, 1, 1 )
 
 [sub_resource type="StyleBoxFlat" id=20]
 draw_center = false
+
+[sub_resource type="DynamicFont" id=22]
+size = 24
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 36
@@ -241,33 +246,32 @@ value = 50.0
 percent_visible = false
 
 [node name="ammo" type="Control" parent="game_ui/Control"]
-margin_top = 16.0
-margin_right = 40.0
-margin_bottom = 56.0
+margin_top = 416.0
+margin_right = 200.0
+margin_bottom = 512.0
 
 [node name="selectorRect" type="ColorRect" parent="game_ui/Control/ammo"]
-margin_top = 400.0
 margin_right = 64.0
-margin_bottom = 432.0
+margin_bottom = 32.0
 color = Color( 1, 0.631373, 0, 0.501961 )
 
 [node name="fist" type="TextureRect" parent="game_ui/Control/ammo"]
 margin_left = 16.0
-margin_top = 400.0
 margin_right = 48.0
-margin_bottom = 432.0
+margin_bottom = 32.0
 texture = ExtResource( 17 )
 expand = true
 
 [node name="gun" type="TextureRect" parent="game_ui/Control/ammo"]
 margin_left = 16.0
-margin_top = 432.0
+margin_top = 32.0
 margin_right = 48.0
-margin_bottom = 464.0
+margin_bottom = 64.0
 texture = ExtResource( 18 )
 expand = true
 
 [node name="magBar" type="ProgressBar" parent="game_ui/Control/ammo/gun"]
+visible = false
 modulate = Color( 0.290196, 0.290196, 0.290196, 0.607843 )
 margin_left = 56.0
 margin_top = 8.0
@@ -281,6 +285,7 @@ allow_greater = true
 percent_visible = false
 
 [node name="ammoBar" type="ProgressBar" parent="game_ui/Control/ammo/gun"]
+visible = false
 margin_left = 56.0
 margin_top = 8.0
 margin_right = 168.0
@@ -291,6 +296,32 @@ max_value = 45.0
 value = 30.0
 allow_greater = true
 percent_visible = false
+
+[node name="gunAmmoLabel" type="Label" parent="game_ui/Control/ammo/gun"]
+margin_left = 48.0
+margin_right = 112.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 22 )
+text = "10"
+align = 1
+valign = 1
+
+[node name="gun2" type="TextureRect" parent="game_ui/Control/ammo"]
+margin_top = 48.0
+margin_right = 64.0
+margin_bottom = 112.0
+texture = ExtResource( 21 )
+expand = true
+
+[node name="gunAmmoLabel" type="Label" parent="game_ui/Control/ammo/gun2"]
+margin_left = 64.0
+margin_top = 16.0
+margin_right = 128.0
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 22 )
+text = "10"
+align = 1
+valign = 1
 
 [node name="pause_menu" type="CanvasLayer" parent="."]
 visible = false

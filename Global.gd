@@ -1,6 +1,6 @@
 extends Node
 
-var versionNumber = "alpha v0.0.1"
+var versionNumber = "alpha v0.1.0"
 
 var player_node
 
@@ -77,7 +77,7 @@ var useController = false
 
 # player inventory
 # TODO: save and load inventory
-var Inventory = [["fists",-1],["pistol",15],["smg",25]]
+var Inventory = [["fists",-1],["pistol",15]]
 #var Ammo = {"pistol" : 10}
 var currentSelect = 1
 var health = 100
@@ -93,7 +93,7 @@ func resetVars():
 	previousSongPoint = 0.0
 	levelNumber = 0
 	
-	Inventory = [["fists",-1],["pistol",15],["smg",25]]
+	Inventory = [["fists",-1],["pistol",15]]
 	#Ammo = {"pistol" : 10}
 	currentSelect = 1
 	health = 100
