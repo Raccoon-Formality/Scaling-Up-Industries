@@ -182,7 +182,7 @@ visible = false
 mesh = SubResource( 14 )
 material/0 = SubResource( 13 )
 
-[node name="train" type="StaticBody" parent="."]
+[node name="train" type="StaticBody" parent="." groups=["CantShoot"]]
 
 [node name="CollisionShape" type="CollisionShape" parent="train"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0 )

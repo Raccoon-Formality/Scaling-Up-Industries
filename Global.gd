@@ -41,8 +41,16 @@ var weaponsDict = {
 				"noise_level_ratio": 0.15,
 				"magSize": 15,
 				}, 
+
+	"smg": {	"rapid": true,
+				"damage": 25,
+				"raycastLength": 25,
+				"noise_level_ratio": 0.25,
+				"magSize": 25,
+				"fireRate": 10,
+				}, 
 }
-var weaponList = ["pistol"]
+var weaponList = ["pistol","smg"]
 # add "fireRate": 10, to rapid weapons
 
 # music dictionary
@@ -69,7 +77,7 @@ var useController = false
 
 # player inventory
 # TODO: save and load inventory
-var Inventory = [["fists",-1],["pistol",15]]
+var Inventory = [["fists",-1],["pistol",15],["smg",25]]
 #var Ammo = {"pistol" : 10}
 var currentSelect = 1
 var health = 100
@@ -85,7 +93,7 @@ func resetVars():
 	previousSongPoint = 0.0
 	levelNumber = 0
 	
-	Inventory = [["fists",-1],["pistol",15]]
+	Inventory = [["fists",-1],["pistol",15],["smg",25]]
 	#Ammo = {"pistol" : 10}
 	currentSelect = 1
 	health = 100

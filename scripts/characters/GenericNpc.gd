@@ -23,6 +23,11 @@ export(NodePath) var waypoint_graph_node_path
 onready var waypoint_graph = get_node_or_null(waypoint_graph_node_path)
 onready var eyes = $Body/FrontOfEyes
 
+# ---- MESH ANIMATION STUFF ----
+
+onready var meshAnimationTree = $mesh/AnimationTree
+# meshAnimationTree["parameters/conditions/shoot"]
+
 
 var _previous_state
 var _current_state
@@ -80,9 +85,13 @@ func _add_next_waypoint_to_nav():
 
 func _update_state_machine():
 	_previous_state = _current_state
-
+	
+	
 	if _current_state == STATES.INIT:
 		_current_state = STATES.IDLE
+		meshAnimationTree["parameters/conditions/idle"] = true
+		meshAnimationTree["parameters/conditions/walking"] = false
+		meshAnimationTree["parameters/conditions/alerted"] = false
 		can_hear = true
 		can_see = true
 
@@ -93,11 +102,15 @@ func _update_state_machine():
 			_current_state = STATES.DECEASED
 		elif has_just_been_alerted:
 			_current_state = STATES.COMBAT
+			meshAnimationTree["parameters/conditions/alerted"] = true
 		elif waypoint_graph != null:
 			if waypoint_graph.waypoint_list.size() > 0:
 				_current_state = STATES.PATROL
 
 	elif _current_state == STATES.PATROL:
+		meshAnimationTree["parameters/conditions/idle"] = false
+		meshAnimationTree["parameters/conditions/walking"] = true
+		meshAnimationTree["parameters/conditions/alerted"] = false
 		can_hear = true
 		can_see = true
 		if num_health_points <= 0:
@@ -106,6 +119,7 @@ func _update_state_machine():
 			_current_state = STATES.COMBAT
 
 	elif _current_state == STATES.COMBAT:
+		
 		can_hear = true
 		can_see = true
 		if num_health_points <= 0:
@@ -122,7 +136,10 @@ func play_dying_animation():
 	$Body.queue_free()
 	$CollisionShape.queue_free()
 	rotation_degrees.z = 90
-	translation.y += 0.5
+	
+	$mesh.rotation_degrees.y -= 90
+	translation.y += 0.25
+	meshAnimationTree["parameters/running/Blend2/blend_amount"] = 0.0
 
 
 func _run_state_dependent_processes():
@@ -142,6 +159,7 @@ func _run_state_dependent_processes():
 		turn_towards_target(navAgent.get_next_location())	
 		self._enemy_position = player_node.translation
 		if player_is_visible() and self._enemy_position != null and self.has_reacted_to_attack:
+			meshAnimationTree["parameters/running/Blend2/blend_amount"] = 0.0
 			attack()
 		elif self.has_reacted_to_attack:
 			stop_attacking()
@@ -293,6 +311,7 @@ func _fire_projectile():
 
 			bulletInstance.set_damage_caused(BULLET_DAMAGE)
 			bulletInstance.velocity = direction * PROJECTILE_SPEED
+			meshAnimationTree["parameters/running/shoot/active"] = true
 			if (Global.currentSong != Global.musicDict["action"]):
 				Global.previousSongPoint = 0.0
 				Global.currentSong = Global.musicDict["action"]
@@ -310,7 +329,7 @@ func _move_toward_waypoint(target_pos):
 			self.has_just_reached_destination = true
 			$PatrolTimer.start()
 		return
-
+	
 	_move_toward_position(target_pos)
 
 
@@ -322,6 +341,7 @@ func _move_toward_position(target_pos):
 	
 	self.actual_velocity *= Vector3(1, 0, 1) # vector for feet on the ground
 	var _move_result = move_and_slide(self.actual_velocity, Vector3.UP)
+	meshAnimationTree["parameters/running/Blend2/blend_amount"] = 1.0
 
 
 func recieve_damage(collision_point):

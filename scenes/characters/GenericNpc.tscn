@@ -1,8 +1,12 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scripts/characters/GenericNpc.gd" type="Script" id=1]
 [ext_resource path="res://scenes/characters/cone.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/programmerArt/Untitled.jpg" type="Texture" id=3]
+[ext_resource path="res://scenes/assets/3d/enemy.tscn" type="PackedScene" id=4]
+
+[sub_resource type="BoxShape" id=10]
+extents = Vector3( 0.2, 0.2, 0.5 )
 
 [sub_resource type="CapsuleMesh" id=2]
 radius = 0.5
@@ -11,7 +15,7 @@ radius = 0.5
 albedo_color = Color( 0.87451, 0.0196078, 0.0196078, 1 )
 
 [sub_resource type="SphereShape" id=8]
-radius = 0.6
+radius = 0.5
 
 [sub_resource type="SphereMesh" id=6]
 radius = 0.4
@@ -25,7 +29,7 @@ radius = 0.5
 points = PoolVector3Array( 0, 1, 0, 0.194988, -1, -0.980814, 0, -1, -1, -0.195184, -1, -0.980814, -0.382733, -1, -0.924041, -0.555599, -1, -0.831637, -0.707126, -1, -0.707126, -0.831637, -1, -0.555599, -0.924041, -1, -0.382733, -0.980814, -1, -0.195184, -1, -1, -0.000195742, -0.980814, -1, 0.194988, -0.924041, -1, 0.382537, -0.831637, -1, 0.555403, -0.707126, -1, 0.70693, -0.555599, -1, 0.831441, -0.382733, -1, 0.923845, -0.195184, -1, 0.980619, -0.000195742, -1, 1, 0.194988, -1, 0.980619, 0.382537, -1, 0.923845, 0.555403, -1, 0.831441, 0.70693, -1, 0.70693, 0.831441, -1, 0.555403, 0.923845, -1, 0.382537, 0.980619, -1, 0.194988, 1, -1, -0.000195742, 0.980619, -1, -0.195184, 0.923845, -1, -0.382733, 0.831441, -1, -0.555599, 0.70693, -1, -0.707126, 0.555403, -1, -0.831637, 0.382537, -1, -0.924041 )
 
 [sub_resource type="BoxShape" id=9]
-extents = Vector3( 7, 1, 10 )
+extents = Vector3( 2, 1, 10 )
 
 [node name="GenericNpc" type="KinematicBody" groups=["enemies"]]
 collision_layer = 2
@@ -33,14 +37,24 @@ collision_mask = 7
 script = ExtResource( 1 )
 PROJECTILE_SPEED = 25
 
+[node name="gunCollider" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, -0.3 )
+shape = SubResource( 10 )
+
+[node name="BulletSpawnPoint" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.154683, 1.70342, -0.725742 )
+
+[node name="mesh" parent="." instance=ExtResource( 4 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0.3 )
+
 [node name="Body" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1, 0 )
-visible = false
+layers = 0
 mesh = SubResource( 2 )
 material/0 = SubResource( 3 )
 
 [node name="HeadArea" type="Area" parent="Body"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.31134e-08, 0.8 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Body/HeadArea"]
 shape = SubResource( 8 )
@@ -50,6 +64,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 0
 
 [node name="Face" type="MeshInstance" parent="Body"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.3, 0.5 )
+visible = false
 mesh = SubResource( 6 )
 
 [node name="NavigationAgent" type="NavigationAgent" parent="."]
@@ -93,11 +108,9 @@ collision_mask = 3
 debug_shape_custom_color = Color( 0.737255, 0, 0, 1 )
 debug_shape_thickness = 1
 
-[node name="BulletSpawnPoint" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 1.25, -1 )
-
 [node name="TargetTrackerTimer" type="Timer" parent="."]
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+visible = false
 texture = ExtResource( 3 )

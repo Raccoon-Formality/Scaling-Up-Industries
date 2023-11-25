@@ -10,6 +10,7 @@ onready var headRay = $headCheck
 
 # get gun nodes and particles
 onready var gunAnimationTree = $Pivot/Camera/gunarmz/AnimationTree
+onready var smgAnimationTree = $Pivot/Camera/smgarmz/AnimationTree
 onready var gunParticles = preload("res://scenes/particles/GunInpactParticles.tscn")
 
 # get UI nodes
@@ -82,12 +83,20 @@ func changeWeapon(num):
 	if handItem == "fists":
 		$Pivot/Camera/armz.show()
 		$Pivot/Camera/gunarmz.hide()
+		$Pivot/Camera/smgarmz.hide()
 		#ammoLabel.hide()
 	# if gun, hide fist hands and show fist hands
 	# update ammo label and show it
-	else:
+	elif handItem == "pistol":
 		$Pivot/Camera/armz.hide()
 		$Pivot/Camera/gunarmz.show()
+		$Pivot/Camera/smgarmz.hide()
+		ammoLabel.text = str(Global.Inventory[num][1])
+		#ammoLabel.show()
+	elif handItem == "smg":
+		$Pivot/Camera/armz.hide()
+		$Pivot/Camera/gunarmz.hide()
+		$Pivot/Camera/smgarmz.show()
 		ammoLabel.text = str(Global.Inventory[num][1])
 		#ammoLabel.show()
 
@@ -163,11 +172,21 @@ func shoot(weapon):
 			# if ammo is greater than 0
 			canShoot = false
 			if Global.Inventory[Global.currentSelect][1] > 0:
-				# play shooting animation on gun animation tree
-				gunAnimationTree["parameters/conditions/shoot"] = true
-				# play sound at random pitch
-				$shootSound.pitch_scale = rand_range(0.9,1.1)
-				$shootSound.play()
+				
+				if handItem == "pistol":
+					# play shooting animation on gun animation tree
+					gunAnimationTree["parameters/conditions/shoot"] = true
+					# play sound at random pitch
+					$shootSound.pitch_scale = rand_range(0.9,1.1)
+					$shootSound.play()
+				elif handItem == "smg":
+					# play shooting animation on gun animation tree
+					smgAnimationTree["parameters/conditions/shoot"] = true
+					# play sound at random pitch
+					$shootSound.pitch_scale = rand_range(0.7,0.9)
+					$shootSound.play()
+					
+				
 				emit_signal("gun_fired", weapon["noise_level_ratio"])
 				
 				# I don't know why this is here and i'm scared to remove it
@@ -185,7 +204,10 @@ func shoot(weapon):
 				Global.Inventory[Global.currentSelect][1] -= 1
 			# if no ammo, play shoot animation with empy gun sound
 			else:
-				gunAnimationTree["parameters/conditions/shoot"] = true
+				if handItem == "pistol":
+					gunAnimationTree["parameters/conditions/shoot"] = true
+				elif handItem == "smg":
+					smgAnimationTree["parameters/conditions/shoot"] = true
 				$noAmmoSound.play()
 
 func crouch():
@@ -309,11 +331,14 @@ func _input(event):
 
 
 onready var gunStateMachine = $Pivot/Camera/gunarmz/AnimationTree.get("parameters/playback")
+onready var smgStateMachine = $Pivot/Camera/smgarmz/AnimationTree.get("parameters/playback")
 # less important process
 # make sure gun viewport camera and regular camera transform are the same
 # update gun animation tree
 func _process(_delta):
-	if gunStateMachine.get_current_node() != "aimFire":
+	if gunStateMachine.get_current_node() != "aimFire" and handItem == "pistol":
+		canShoot = true
+	elif smgStateMachine.get_current_node() != "smgShoot" and handItem == "smg":
 		canShoot = true
 	guncamera.global_transform = camera.global_transform
 	$Pivot/Camera/ViewportContainer/Viewport.size = get_viewport().size
@@ -378,9 +403,9 @@ func _physics_process(delta):
 		# TODO: probably doesn't have to be called every frame
 		var currectWeapon = Global.weaponsDict[handItem]
 		# if mouse button held down and weapon is rapid fire
-		if Input.is_action_pressed("mouse_click") and currectWeapon["rapid"]:
-			if counter % currectWeapon["fireRate"] == 0:
-				shoot(currectWeapon)
+		if Input.is_action_pressed("mouse_click") and currectWeapon["rapid"] and canShoot:
+			#if counter % currectWeapon["fireRate"] == 0:
+			shoot(currectWeapon)
 		# if mouse button clicked and weapon isn't rapid fire
 		if Input.is_action_just_pressed("mouse_click") and not currectWeapon["rapid"]:
 			shoot(currectWeapon)
@@ -427,6 +452,8 @@ func _physics_process(delta):
 		var vigColor = vignette.get_shader_param("vignette_rgb")
 		if vigColor != Color(0,0,0):
 			vignette.set_shader_param("vignette_rgb",lerp(vigColor, Color(0,0,0), 0.1))
+		
+		#vignette.set_shader_param("vignette_rgb",lerp(vigColor, Color(0,0,0), 0.1))
 	
 		### PAUSE & DEATH ###
 		
@@ -443,17 +470,29 @@ func _physics_process(delta):
 # update hand animation tree so they play the right one.
 # this will probably become obnoxtious when more guns are added.
 func updateGunAnimationTree():
-	if abs(velocity.x) <= speed / 2 and abs(velocity.z) <= speed / 2:
-		gunAnimationTree["parameters/conditions/idle"] = true
-		gunAnimationTree["parameters/conditions/running"] = false
-	else:
-		gunAnimationTree["parameters/conditions/idle"] = false
-		gunAnimationTree["parameters/conditions/running"] = true
-		if !$footstepsSound.playing and is_on_floor():
-			$footstepsSound.pitch_scale = rand_range(0.9,1.1) * footstepScale
-			$footstepsSound.play()
-	
-	gunAnimationTree["parameters/conditions/shoot"] = false
+	if handItem == "pistol":
+		if abs(velocity.x) <= speed / 2 and abs(velocity.z) <= speed / 2:
+			gunAnimationTree["parameters/conditions/idle"] = true
+			gunAnimationTree["parameters/conditions/running"] = false
+		else:
+			gunAnimationTree["parameters/conditions/idle"] = false
+			gunAnimationTree["parameters/conditions/running"] = true
+			if !$footstepsSound.playing and is_on_floor():
+				$footstepsSound.pitch_scale = rand_range(0.9,1.1) * footstepScale
+				$footstepsSound.play()
+		gunAnimationTree["parameters/conditions/shoot"] = false
+	elif handItem == "smg":
+		if abs(velocity.x) <= speed / 2 and abs(velocity.z) <= speed / 2:
+			smgAnimationTree["parameters/conditions/idle"] = true
+			smgAnimationTree["parameters/conditions/run"] = false
+		else:
+			smgAnimationTree["parameters/conditions/idle"] = false
+			smgAnimationTree["parameters/conditions/run"] = true
+			if !$footstepsSound.playing and is_on_floor():
+				$footstepsSound.pitch_scale = rand_range(0.9,1.1) * footstepScale
+				$footstepsSound.play()
+		smgAnimationTree["parameters/conditions/shoot"] = false
+		
 
 
 # and we are finally at the end of this monstrosity that is
