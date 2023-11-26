@@ -176,7 +176,25 @@ transform = Transform( -0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819,
 transform = Transform( -0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -22, 16, 18 )
 
 [node name="GenericNpc6" parent="." instance=ExtResource( 15 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 16, 60 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.01314, 15.9666, 61.9873 )
+
+[node name="GenericNpc7" parent="." instance=ExtResource( 15 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2, 16, 36 )
+
+[node name="GenericNpc8" parent="." instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 16, 53 )
+
+[node name="GenericNpc11" parent="." instance=ExtResource( 15 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -43.026, 16.089, 21.957 )
+
+[node name="GenericNpc12" parent="." instance=ExtResource( 15 )]
+transform = Transform( -0.866026, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866026, -42, 16, 42 )
+
+[node name="GenericNpc14" parent="." instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 16, 53 )
+
+[node name="GenericNpc15" parent="." instance=ExtResource( 15 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -41.0031, 16.0706, 50.0013 )
 
 [node name="ammoPickup" parent="." instance=ExtResource( 13 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 16, 62 )
