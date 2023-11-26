@@ -27,7 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Scaling Up Industries"
-run/main_scene="res://scenes/starting_level.tscn"
+run/main_scene="res://splash.tscn"
 config/custom_user_dir_name="Scaling-Up-Industries"
 boot_splash/image="res://assets/splash.png"
 boot_splash/fullsize=false

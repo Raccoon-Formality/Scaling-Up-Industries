@@ -21,9 +21,13 @@ var counter = 0
 
 onready var massiveCube = $building/StaticBody/buildingMesh/CSGBox/massive
 onready var environment = $WorldEnvironment.environment
+onready var camera = $Camera
+var cameraPos = Vector3.ZERO
+var camCounter = 0
+
 
 func _ready():
-	
+	camCounter = 0
 	environment.background_energy = 1.0
 	environment.ambient_light_energy = 0.8
 	
@@ -50,6 +54,11 @@ onready var tree = load("res://scenes/assets/3d/tree.tscn")
 var timingOffset = 300
 
 func _process(delta):
+	camCounter += 1
+	camera.translation.y = sin(camCounter / 120.0) * 0.1
+	camera.translation.x = sin(-camCounter / 120.0) * 0.05
+	camera.translation.z = cos(camCounter / 120.0) * 0.05
+	camera.rotation_degrees.z = sin(camCounter / 120.0)
 	if started:
 		counter += 1
 		$moving.translation.z += 20 * delta * trainSpeed
@@ -100,3 +109,5 @@ func startGame():
 	grass.set_shader_param("speed",2.0 * trainSpeed)
 	track.set_shader_param("speed",3.0 * trainSpeed)
 	playerInstance.screenshake(9999999999999,0.5)
+
+

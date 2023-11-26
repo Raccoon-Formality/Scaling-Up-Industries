@@ -69,7 +69,8 @@ anims/close = SubResource( 5 )
 anims/open = SubResource( 3 )
 
 [node name="door" type="StaticBody" parent="." groups=["CantShoot"]]
-collision_layer = 8
+collision_layer = 9
+collision_mask = 15
 
 [node name="MeshInstance" type="MeshInstance" parent="door"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )

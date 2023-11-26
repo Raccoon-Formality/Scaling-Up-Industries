@@ -242,6 +242,7 @@ texture = ExtResource( 3 )
 
 [node name="mesh" type="MeshInstance" parent="gunMeshPos"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.716645, -1.3, -1.56237 )
+layers = 3
 mesh = SubResource( 2 )
 skin = SubResource( 3 )
 skeleton = NodePath("../..")

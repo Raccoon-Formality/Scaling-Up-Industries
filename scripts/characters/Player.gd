@@ -172,7 +172,7 @@ func shoot(weapon):
 			# if ammo is greater than 0
 			#canShoot = false
 			if Global.Inventory[Global.currentSelect][1] > 0:
-				gunAnimationTree.get("parameters/playback").start("aimFire")	
+				#gunAnimationTree.get("parameters/playback").start("aimFire")	
 				if handItem == "pistol":
 					# play shooting animation on gun animation tree
 					gunAnimationTree["parameters/conditions/shoot"] = true
@@ -183,6 +183,7 @@ func shoot(weapon):
 					# play shooting animation on gun animation tree
 					smgAnimationTree["parameters/conditions/shoot"] = true
 					# play sound at random pitch
+					canShoot = false
 					$shootSound.pitch_scale = rand_range(0.7,0.9)
 					$shootSound.play()
 					
@@ -207,6 +208,7 @@ func shoot(weapon):
 				if handItem == "pistol":
 					gunAnimationTree["parameters/conditions/shoot"] = true
 				elif handItem == "smg":
+					canShoot = false
 					smgAnimationTree["parameters/conditions/shoot"] = true
 				$noAmmoSound.play()
 

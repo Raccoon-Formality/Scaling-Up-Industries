@@ -293,7 +293,7 @@ func _exit_combat():
 
 # This method only fires at the player. can make a class-scope list or something to be able to fire at other targets
 func _fire_projectile():
-	if not ($VisionRaycast.get_collider() is StaticBody) and not Global.paused:
+	if not ($VisionRaycast.get_collider() is StaticBody) and not ($VisionRaycast.get_collider().is_in_group("CantShoot")) and not Global.paused:
 		self._enemy_position = player_node.translation + HEIGHT_OF_PLAYER
 		var bulletInstance = bullet.instance()
 		get_tree().get_root().add_child(bulletInstance)
@@ -340,6 +340,7 @@ func _move_toward_position(target_pos):
 	self.actual_velocity.z = lerp(self.actual_velocity.z, final_velocity.z, ACCELERATION_RATE)
 	
 	self.actual_velocity *= Vector3(1, 0, 1) # vector for feet on the ground
+	self.actual_velocity.y -= 4.0
 	var _move_result = move_and_slide(self.actual_velocity, Vector3.UP)
 	meshAnimationTree["parameters/running/Blend2/blend_amount"] = 1.0
 

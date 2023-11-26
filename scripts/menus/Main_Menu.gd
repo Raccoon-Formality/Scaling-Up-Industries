@@ -8,7 +8,13 @@ func PRONOUNS():
 
 
 func _ready():
-	PRONOUNS()
+	if Global.startStartPoint != null:
+		$ColorRect2.show()
+		$menuSong.play(6.0)
+		$AnimationPlayer.play("start")
+	else:
+		$ColorRect2.hide()
+		$menuSong.play()
 	$versionNumber.text = "version: " + Global.versionNumber
 	Global.fromStart = false
 	Global.fromStartList = []
@@ -30,6 +36,7 @@ func _ready():
 
 
 func _on_continueButton_pressed():
+	$menuSong.stop()
 	Global.saveSettings()
 	Global.loadSave()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -38,6 +45,7 @@ func _on_continueButton_pressed():
 
 
 func _on_startButton_pressed():
+	$menuSong.stop()
 	Global.saveSettings()
 	Global.resetVars()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

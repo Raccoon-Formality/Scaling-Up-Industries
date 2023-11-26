@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Menu_droneLow_01.mp3-750b3d3959eca1438e0bfc7cf2607992.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/Menu_droneLow_01.mp3"
+dest_files=[ "res://.import/Menu_droneLow_01.mp3-750b3d3959eca1438e0bfc7cf2607992.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

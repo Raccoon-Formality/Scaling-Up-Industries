@@ -1,6 +1,6 @@
 extends Node
 
-var versionNumber = "alpha v0.1.0"
+var versionNumber = "alpha v0.1.1"
 
 var player_node
 
@@ -16,10 +16,11 @@ var levelsDict = {
 	"boss1": preload("res://scenes/levels/boss1/World.tscn"),
 	"level4": preload("res://scenes/levels/level4/World.tscn"),
 	"boss2": preload("res://scenes/levels/boss2/World.tscn"),
+	"boss3": preload("res://scenes/end_level.tscn"),
 }
 
 # level order
-var levelList = ["level0", "level2","level3","boss1","level4","boss2"]
+var levelList = ["level0", "level2","level3","boss1","level4","boss2","boss3"]
 
 # what level we are on
 # TODO: save and load level number
@@ -37,14 +38,14 @@ var weaponsDict = {
 
 	"pistol": {	"rapid": false,
 				"damage": 25,
-				"raycastLength": 25,
+				"raycastLength": 100,
 				"noise_level_ratio": 0.15,
 				"magSize": 15,
 				}, 
 
 	"smg": {	"rapid": true,
 				"damage": 25,
-				"raycastLength": 25,
+				"raycastLength": 100,
 				"noise_level_ratio": 0.25,
 				"magSize": 25,
 				"fireRate": 10,
@@ -61,7 +62,7 @@ var musicDict = {
 	#"track3" : "res://assets/audio/music/gameSong_02_mid.mp3",
 	"track4" : "res://assets/audio/owlSynth-mp3/Shooter Synthwave 4.mp3",
 	"track5" : "res://assets/audio/owlSynth-mp3/Shooter Synthwave 5.mp3",
-	"track6" : "res://assets/audio/owlSynth-mp3/Shooter Synthwave 6.mp3",
+	"track6" : "res://assets/audio/music/Menu_droneLow_01.mp3",
 	"track7" : "res://assets/audio/owlSynth-mp3/Shooter Synthwave 7.mp3",
 	"track8" : "res://assets/audio/owlSynth-mp3/Shooter Synthwave 8.mp3",
 	"action" : "res://assets/audio/music/Action_song1.mp3",#"res://assets/audio/music/action_song.mp3",
@@ -199,3 +200,5 @@ func setPixelation(bowling):
 		get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_2D,  SceneTree.STRETCH_ASPECT_KEEP, Vector2(640,480),1)
 
 var paused = false
+
+var startStartPoint = null

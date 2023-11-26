@@ -129,19 +129,19 @@ void fragment() {
 
 "
 
-[sub_resource type="OpenSimplexNoise" id=20]
+[sub_resource type="OpenSimplexNoise" id=22]
 
 [sub_resource type="NoiseTexture" id=21]
-noise = SubResource( 20 )
+noise = SubResource( 22 )
 
-[sub_resource type="ShaderMaterial" id=18]
+[sub_resource type="ShaderMaterial" id=23]
 shader = SubResource( 17 )
 shader_param/scale = 12.0
 shader_param/speed = 1.0
 shader_param/sample = SubResource( 21 )
 
 [sub_resource type="PlaneMesh" id=19]
-material = SubResource( 18 )
+material = SubResource( 23 )
 size = Vector2( 1000, 1000 )
 subdivide_width = 100
 subdivide_depth = 100

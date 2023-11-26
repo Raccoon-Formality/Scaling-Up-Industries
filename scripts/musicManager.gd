@@ -10,12 +10,17 @@ func _process(_delta):
 		$track1.stream = load(Global.currentSong)
 		if Global.currentSong == Global.previousSong:
 			$track1.play(Global.previousSongPoint)
+		elif Global.currentSong == Global.musicDict["track6"] and Global.startStartPoint != null: 
+			$track1.stop()
+			Global.startStartPoint = null
 		else:
 			$track1.play(Global.startMusicPos)
 			Global.startMusicPos = 0.0
 		
 		if Global.currentSong == Global.musicDict["pause"] or Global.currentSong == Global.musicDict["death"]:
 			$track1.volume_db = linear2db(0.8)
+		elif Global.currentSong == Global.musicDict["track6"]:
+			$track1.volume_db = linear2db(1.2)
 		else:
 			$track1.volume_db = linear2db(1.0)
 		

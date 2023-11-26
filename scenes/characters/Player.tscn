@@ -240,6 +240,7 @@ margin_top = 480.0
 margin_right = 192.0
 margin_bottom = 496.0
 rect_rotation = 180.0
+mouse_filter = 2
 custom_colors/font_color = Color( 0, 0, 0, 0 )
 custom_styles/fg = SubResource( 5 )
 value = 50.0
@@ -249,6 +250,7 @@ percent_visible = false
 margin_top = 416.0
 margin_right = 200.0
 margin_bottom = 512.0
+mouse_filter = 2
 
 [node name="selectorRect" type="ColorRect" parent="game_ui/Control/ammo"]
 margin_right = 64.0
