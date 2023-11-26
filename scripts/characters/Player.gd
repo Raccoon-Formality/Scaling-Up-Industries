@@ -170,9 +170,9 @@ func shoot(weapon):
 		# not hands is gun so this handles guns shooting
 		elif canShoot:
 			# if ammo is greater than 0
-			canShoot = false
+			#canShoot = false
 			if Global.Inventory[Global.currentSelect][1] > 0:
-				
+				gunAnimationTree.get("parameters/playback").start("aimFire")	
 				if handItem == "pistol":
 					# play shooting animation on gun animation tree
 					gunAnimationTree["parameters/conditions/shoot"] = true
