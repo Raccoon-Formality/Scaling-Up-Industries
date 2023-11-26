@@ -83,6 +83,8 @@ autostart = true
 wait_time = 0.25
 one_shot = true
 
+[node name="ObliterationTimer" type="Timer" parent="."]
+
 [node name="VisionArea" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 

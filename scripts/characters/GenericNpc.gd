@@ -190,6 +190,12 @@ func _run_state_enter_events():
 		#_change_mesh_color(Color(0,0,0,1))
 		play_dying_animation()
 		_remove_npc_from_player_collisions()
+		$ObliterationTimer.connect("timeout", self, "_fade_away")
+		$ObliterationTimer.start()
+		
+		
+func _fade_away():
+	queue_free()
 		
 
 func _remove_npc_from_player_collisions():
