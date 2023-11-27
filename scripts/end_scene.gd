@@ -29,6 +29,7 @@ var camCounter = 0
 func _ready():
 	grass.set_shader_param("speed",0.0)
 	track.set_shader_param("speed",0.0)
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	for x in range(50 - $startTrees.global_translation.z):
 		var treeInstance = tree.instance()
 		$moving.add_child(treeInstance)

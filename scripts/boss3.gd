@@ -7,13 +7,16 @@ extends KinematicBody
 
 var counter = 0
 onready var healthBar = $CanvasLayer/healthBar
+onready var out = $CanvasLayer/ColorRect
 var bullet = load("res://scenes/characters/Bullet.tscn")
 var health = 600.0
 var bullet_speed = 50
 onready var HeliHolder = get_parent().get_node("helicopterPos")
+var dead = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	out.modulate.a = 0
 	healthBar.max_value = health
 	healthBar.value = health
 	if (Global.currentSong != Global.musicDict["action"]):
@@ -35,16 +38,27 @@ func _process(delta):
 		
 		if healthBar.value != health:
 			healthBar.value = lerp(healthBar.value, health, 0.1)
+		
+		
+		if HeliHolder.get_child_count() == 0:
+			get_parent().get_node("Particles").emitting = true
+		
+		if dead:
+			out.modulate.a = lerp(out.modulate.a, 1.0, 0.1)
+			if is_equal_approx(out.modulate.a,1.0):
+				get_tree().change_scene("res://end_scene.tscn")
 	
 	#$bulletSpawner.look_at(Global.player_node.global_translation, Vector3.UP)
 
 func damage(amount):
-	if HeliHolder.get_child_count() == 0:
+	if HeliHolder.bossStart:
 		health -= amount
+		if health < 0:
+			dead = true
 
 
 func _on_Timer_timeout():
-	if HeliHolder.get_child_count() == 0 and !Global.paused:
+	if HeliHolder.bossStart and !Global.paused and !dead:
 		var bulletInstance = bullet.instance()
 		bulletInstance.translation = $Sprite3D/bulletSpawner.global_translation
 		var playerFacePos = Global.player_node.global_translation
