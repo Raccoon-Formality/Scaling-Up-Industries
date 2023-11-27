@@ -1,8 +1,9 @@
-[gd_resource type="ShaderMaterial" load_steps=5 format=2]
+[gd_resource type="ShaderMaterial" load_steps=6 format=2]
 
 [ext_resource path="res://assets/textures/Carpet1.png" type="Texture" id=1]
 [ext_resource path="res://assets/textures/Drywall.PNG" type="Texture" id=2]
 [ext_resource path="res://assets/textures/Ceiling.PNG" type="Texture" id=3]
+[ext_resource path="res://assets/programmerArt/Overlays0006_7_350.jpg" type="Texture" id=4]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type spatial;
@@ -16,6 +17,7 @@ uniform float ceilingScale : hint_range(0, 4);
 uniform sampler2D walls;
 uniform sampler2D floors;
 uniform sampler2D ceiling;
+uniform sampler2D noise;
 
 void vertext() {
 	
@@ -28,6 +30,7 @@ void fragment() {
 	vec4 wallText = texture(walls, wallsUV / 4.0 * wallsScale);
 	vec4 floorsText = texture(floors, wrld_vertex.xz / 2.0 * floorsScale);
 	vec4 ceilingText = texture(ceiling, wrld_vertex.xz / 2.0 * ceilingScale);
+	vec4 noiseText = texture(noise, -wallsUV / 4.0);
 	if (NORMAL.y <= -0.9) {
 		ALBEDO = ceilingText.rgb;
 	}
@@ -36,6 +39,8 @@ void fragment() {
 	}
 	else {
 		ALBEDO = wallText.rgb; //mix(floorsText.rgb, , );
+		//ALBEDO += noiseText.rgb / 10.0;
+		//ALBEDO.g += 0.1;
 	}
 	//ALBEDO = mix(ALBEDO,vec3(0.0,0.0,0.0),0.5);
 	METALLIC = 0.0;
@@ -51,3 +56,4 @@ shader_param/ceilingScale = 2.0
 shader_param/walls = ExtResource( 2 )
 shader_param/floors = ExtResource( 1 )
 shader_param/ceiling = ExtResource( 3 )
+shader_param/noise = ExtResource( 4 )

@@ -1,8 +1,8 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://assets/3d/glb/Material.material" type="Material" id=1]
 [ext_resource path="res://assets/3d/glb/smg.material" type="Material" id=2]
-[ext_resource path="res://assets/programmerArt/image-asset.jpeg" type="Texture" id=3]
+[ext_resource path="res://assets/3d/glb/enemy.material" type="Material" id=3]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "enemies_Mesh001"
@@ -238,10 +238,6 @@ bind/70/pose = Transform( -0.747156, 0.664648, 0, 0, 0, -1, -0.664648, -0.747156
 bind/71/name = "handctrl.R"
 bind/71/bone = -1
 bind/71/pose = Transform( 0.548745, 0.795068, -0.258352, -0.81275, 0.579736, 0.0578178, 0.195745, 0.178248, 0.964319, -0.713896, -1.0875, -0.116304 )
-
-[sub_resource type="SpatialMaterial" id=24]
-albedo_texture = ExtResource( 3 )
-uv1_triplanar = true
 
 [sub_resource type="ArrayMesh" id=3]
 resource_name = "enemies_Cube001"
@@ -2835,7 +2831,7 @@ nodes/Seek/position = Vector2( 140, 80 )
 nodes/output/position = Vector2( 740, 300 )
 nodes/shoot/node = SubResource( 21 )
 nodes/shoot/position = Vector2( 500, 220 )
-node_connections = [ "output", 0, "shoot", "shoot", 0, "Blend2", "shoot", 1, "Animation 3", "Seek", 0, "Animation", "Blend2", 0, "Seek", "Blend2", 1, "Animation 2" ]
+node_connections = [ "shoot", 0, "Blend2", "shoot", 1, "Animation 3", "Blend2", 0, "Seek", "Blend2", 1, "Animation 2", "Seek", 0, "Animation", "output", 0, "shoot" ]
 
 [sub_resource type="AnimationNodeAnimation" id=11]
 animation = "shootingEnemyIdle"
@@ -3236,7 +3232,7 @@ bones/71/bound_children = [  ]
 [node name="Low Poly Characte000" type="MeshInstance" parent="metarig/Skeleton"]
 mesh = SubResource( 1 )
 skin = SubResource( 2 )
-material/0 = SubResource( 24 )
+material/0 = ExtResource( 3 )
 
 [node name="smg" type="MeshInstance" parent="metarig/Skeleton"]
 mesh = SubResource( 3 )
