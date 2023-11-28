@@ -1,6 +1,6 @@
 extends Node
 
-var versionNumber = "alpha v0.1.1"
+var versionNumber = "beta v0.1.0"
 
 var player_node
 
@@ -15,12 +15,13 @@ var levelsDict = {
 	"level3": preload("res://scenes/levels/level3/World.tscn"),
 	"boss1": preload("res://scenes/levels/boss1/World.tscn"),
 	"level4": preload("res://scenes/levels/level4/World.tscn"),
+	"level5": preload("res://scenes/levels/level5/World.tscn"),
 	"boss2": preload("res://scenes/levels/boss2/World.tscn"),
 	"boss3": preload("res://scenes/end_level.tscn"),
 }
 
 # level order
-var levelList = ["level0", "level2","level3","boss1","level4","boss2","boss3"]
+var levelList = ["level0", "level2","level3","boss1","level4","level5","boss2","boss3"]
 
 # what level we are on
 # TODO: save and load level number
@@ -38,14 +39,14 @@ var weaponsDict = {
 
 	"pistol": {	"rapid": false,
 				"damage": 25,
-				"raycastLength": 100,
+				"raycastLength": 1000,
 				"noise_level_ratio": 0.15,
 				"magSize": 15,
 				}, 
 
 	"smg": {	"rapid": true,
 				"damage": 25,
-				"raycastLength": 100,
+				"raycastLength": 1000,
 				"noise_level_ratio": 0.25,
 				"magSize": 25,
 				"fireRate": 10,
