@@ -1,8 +1,14 @@
 class_name GenericNpc extends KinematicBody
 
 const BULLET_RES_PATH = "res://scenes/characters/Bullet.tscn"
+const AMMO_PICKUP_RES_PATH = "res://scenes/interactibles/pickups/ammoPickup.tscn"
 const HEIGHT_OF_PLAYER = Vector3(0, 1.5, 0)
+# if 3, 1 in 3 chance
+const SPAWN_AMMO_CHANCE = 3
+
 onready var bullet = preload(BULLET_RES_PATH)
+onready var AmmoPickup = preload(AMMO_PICKUP_RES_PATH)
+
 
 export var STARTING_HEALTH_POINTS = 5
 export var PROJECTILE_SPEED = 10
@@ -189,10 +195,24 @@ func _run_state_enter_events():
 		_unregister_listener_for_player_gun_sounds()
 		#_change_mesh_color(Color(0,0,0,1))
 		play_dying_animation()
+		EnemySoundController.play_next_death_sound()
 		_remove_npc_from_player_collisions()
+		maybe_spawn_ammo()
 		$ObliterationTimer.connect("timeout", self, "_fade_away")
 		$ObliterationTimer.start()
 		
+		
+func maybe_spawn_ammo():
+	randomize() 
+	if randi() % SPAWN_AMMO_CHANCE == 0:
+		spawn_ammo()
+		
+
+func spawn_ammo():
+	var ammoPickup = AmmoPickup.instance()
+	get_parent().add_child(ammoPickup)
+	ammoPickup.global_translation = global_translation
+
 		
 func _fade_away():
 	queue_free()
@@ -322,7 +342,7 @@ func _fire_projectile():
 				Global.previousSongPoint = 0.0
 				Global.currentSong = Global.musicDict["action"]
 
-# TODO: wtf
+
 func _on_to_next_destination():
 	_add_next_waypoint_to_nav()
 	self.has_just_reached_destination = false
@@ -357,9 +377,12 @@ func recieve_damage(collision_point):
 			num_health_points = 0
 		else:		
 			num_health_points -= 3
+		
 		if _current_state != STATES.COMBAT: #TODO: make independent of current state. timing could be off?
 			if ! is_alerted:
 				self.has_just_been_alerted = true
+		if num_health_points >= 0:
+			EnemySoundController.play_next_injury_sound()
 
 
 func _is_headshot(collision_point):
