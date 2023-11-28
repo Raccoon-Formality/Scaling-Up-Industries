@@ -39,6 +39,7 @@ config/windows_native_icon="res://assets/icon.ico"
 
 Global="*res://Global.gd"
 ButtonSounds="*res://scenes/ui/ButtonSounds.tscn"
+EnemySoundController="*res://scenes/characters/EnemySoundController.tscn"
 
 [display]
 

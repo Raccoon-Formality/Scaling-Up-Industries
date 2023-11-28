@@ -189,6 +189,7 @@ func _run_state_enter_events():
 		_unregister_listener_for_player_gun_sounds()
 		#_change_mesh_color(Color(0,0,0,1))
 		play_dying_animation()
+		EnemySoundController.play_next_death_sound()
 		_remove_npc_from_player_collisions()
 		$ObliterationTimer.connect("timeout", self, "_fade_away")
 		$ObliterationTimer.start()
@@ -357,9 +358,12 @@ func recieve_damage(collision_point):
 			num_health_points = 0
 		else:		
 			num_health_points -= 3
+		
 		if _current_state != STATES.COMBAT: #TODO: make independent of current state. timing could be off?
 			if ! is_alerted:
 				self.has_just_been_alerted = true
+		if num_health_points >= 0:
+			EnemySoundController.play_next_injury_sound()
 
 
 func _is_headshot(collision_point):
