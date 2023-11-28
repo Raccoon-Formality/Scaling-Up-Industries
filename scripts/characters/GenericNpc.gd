@@ -191,8 +191,13 @@ func _run_state_enter_events():
 		play_dying_animation()
 		EnemySoundController.play_next_death_sound()
 		_remove_npc_from_player_collisions()
+		maybe_spawn_ammo()
 		$ObliterationTimer.connect("timeout", self, "_fade_away")
 		$ObliterationTimer.start()
+		
+		
+func maybe_spawn_ammo():
+	pass
 		
 		
 func _fade_away():
