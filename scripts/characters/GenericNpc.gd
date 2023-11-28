@@ -323,7 +323,7 @@ func _fire_projectile():
 				Global.previousSongPoint = 0.0
 				Global.currentSong = Global.musicDict["action"]
 
-# TODO: wtf
+
 func _on_to_next_destination():
 	_add_next_waypoint_to_nav()
 	self.has_just_reached_destination = false
