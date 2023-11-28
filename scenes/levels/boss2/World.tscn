@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=22 format=2]
 
-[ext_resource path="res://assets/programmerArt/header.jpg" type="Texture" id=1]
+[ext_resource path="res://assets/programmerArt/Bonnie_Rabbit.png" type="Texture" id=1]
 [ext_resource path="res://scenes/characters/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/levels/holders.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/3d/gltf/plant1.gltf" type="PackedScene" id=4]
 [ext_resource path="res://scenes/levels/startPos.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/levels/endPoint.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/interactibles/door.tscn" type="PackedScene" id=7]
@@ -12,6 +13,7 @@
 [ext_resource path="res://scenes/levels/tileset.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/levels/furnishings.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/programmerArt/behind-you.png" type="Texture" id=13]
+[ext_resource path="res://assets/textures/Laser Frames/spritesheet-small.png" type="Texture" id=14]
 
 [sub_resource type="CubeMesh" id=1]
 flip_faces = true
@@ -32,6 +34,37 @@ radial_segments = 16
 
 [sub_resource type="SpatialMaterial" id=5]
 albedo_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "laserLoop"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4 ]
+}
 
 [node name="World" type="Spatial" groups=["World"]]
 script = ExtResource( 10 )
@@ -101,7 +134,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 2 )
 visible = false
 
 [node name="Sprite3D" type="Sprite3D" parent="boss"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0 )
 flip_h = true
 texture = ExtResource( 1 )
 
@@ -118,8 +151,24 @@ shape = SubResource( 3 )
 
 [node name="MeshInstance" type="MeshInstance" parent="laser"]
 transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, -2.98023e-08, 0 )
+visible = false
 mesh = SubResource( 4 )
 material/0 = SubResource( 5 )
+
+[node name="Sprite3D" type="Sprite3D" parent="laser"]
+transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 1, 0, 0, 0 )
+texture = ExtResource( 14 )
+vframes = 5
+region_enabled = true
+region_rect = Rect2( 0, 0, 12800, 2560 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="laser"]
+autoplay = "laserLoop"
+anims/RESET = SubResource( 6 )
+anims/laserLoop = SubResource( 7 )
+
+[node name="plant1" parent="." instance=ExtResource( 4 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 2, 0.8138, -6.5 )
 
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
 [connection signal="body_entered" from="laser" to="." method="_on_laser_body_entered"]

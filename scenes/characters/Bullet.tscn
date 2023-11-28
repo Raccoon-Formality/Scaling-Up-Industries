@@ -1,13 +1,44 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/characters/Projectile.gd" type="Script" id=1]
-[ext_resource path="res://assets/programmerArt/image-asset.jpeg" type="Texture" id=2]
+[ext_resource path="res://assets/textures/Lightning Ball Frames/spritesheet-small.png" type="Texture" id=2]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.1, 0.1, 0.1 )
 
 [sub_resource type="CubeMesh" id=2]
 size = Vector3( 0.02, 0.02, 0.1 )
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "loop"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4 ]
+}
 
 [node name="Bullet" type="Area"]
 collision_layer = 3
@@ -30,5 +61,11 @@ one_shot = true
 pixel_size = 0.001
 billboard = 1
 texture = ExtResource( 2 )
+vframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "loop"
+anims/RESET = SubResource( 3 )
+anims/loop = SubResource( 4 )
 
 [connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]
