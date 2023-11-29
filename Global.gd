@@ -75,7 +75,7 @@ var previousSong = null
 var previousSongPoint = 0.0
 
 # controller setting (currently disabled)
-var useController = false
+var useController = true
 
 # player inventory
 # TODO: save and load inventory
@@ -185,7 +185,7 @@ func loadSettings():
 			AudioServer.set_bus_volume_db(AudioServer.get_bus_index("sfx"), linear2db(localSettings[2]))
 			OS.window_fullscreen = localSettings[3]
 			mouse_sensitivity = localSettings[4]
-			useController = localSettings[5]
+			#useController = localSettings[5]
 			setPixelation(localSettings[6])
 		else:
 			printerr("Corrupted data!")

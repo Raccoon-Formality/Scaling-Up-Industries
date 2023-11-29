@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://scenes/levels/WorldEnvironment.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/programmerArt/image-asset.jpeg" type="Texture" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://assets/textures/SUI/SU_WH_3.PNG" type="Texture" id=17]
 [ext_resource path="res://assets/audio/trainStopping.wav" type="AudioStream" id=18]
 [ext_resource path="res://assets/programmerArt/Trans.png" type="Texture" id=19]
+[ext_resource path="res://assets/fonts/Mukta_Mahee/MuktaMahee-Bold.ttf" type="DynamicFontData" id=20]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 100, 100 )
@@ -109,6 +110,10 @@ uv1_triplanar = true
 albedo_texture = ExtResource( 15 )
 uv1_scale = Vector3( 0.5, 0.5, 0.5 )
 uv1_triplanar = true
+
+[sub_resource type="DynamicFont" id=24]
+size = 32
+font_data = ExtResource( 20 )
 
 [sub_resource type="Shader" id=17]
 code = "shader_type spatial;
@@ -343,6 +348,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -19, 0 )
 
 [node name="endPoint" type="Spatial" parent="building"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.982, -1.5, 0.194 )
+visible = false
 script = ExtResource( 7 )
 
 [node name="Area" type="Area" parent="building/endPoint"]
@@ -413,6 +419,14 @@ material = SubResource( 15 )
 
 [node name="ventDoor" parent="building/StaticBody" instance=ExtResource( 14 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.5, 4.7 )
+
+[node name="Label3D" type="Label3D" parent="building/StaticBody/ventDoor"]
+transform = Transform( 1, 0, 0, 0, 1, 2.23517e-08, 0, -2.23517e-08, 1, 0.5, -0.303806, 0.0871558 )
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+text = "^ + shift"
+font = SubResource( 24 )
+uppercase = true
 
 [node name="Sprite3D" type="Sprite3D" parent="building/StaticBody"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -14, 4, 4.8 )

@@ -1,8 +1,8 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://scenes/levels/holders.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/textures/Brick 1.PNG" type="Texture" id=2]
-[ext_resource path="res://assets/programmerArt/mothera.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/Moth/spritesheet-small.png" type="Texture" id=3]
 [ext_resource path="res://scenes/levels/startPos.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/levels/endPoint.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/characters/Player.tscn" type="PackedScene" id=6]
@@ -205,6 +205,38 @@ size = Vector2( 4000, 4000 )
 subdivide_width = 100
 subdivide_depth = 100
 
+[sub_resource type="Animation" id=52]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=53]
+resource_name = "loop"
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.55, 0.85, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 2, 1, 0 ]
+}
+
 [sub_resource type="BoxShape" id=48]
 extents = Vector3( 10, 10, 1 )
 
@@ -274,14 +306,19 @@ collision_layer = 7
 collision_mask = 7
 script = ExtResource( 8 )
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="boss3"]
+autoplay = "loop"
+anims/RESET = SubResource( 52 )
+anims/loop = SubResource( 53 )
+
 [node name="Sprite3D" type="Sprite3D" parent="boss3"]
 pixel_size = 0.1
 texture = ExtResource( 3 )
+vframes = 4
 
 [node name="bulletSpawner" type="Position3D" parent="boss3/Sprite3D"]
 
 [node name="CollisionShape" type="CollisionShape" parent="boss3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0 )
 shape = SubResource( 48 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="boss3"]

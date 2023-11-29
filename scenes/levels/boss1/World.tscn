@@ -41,6 +41,7 @@ transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1, -2, 0, 28 )
 [node name="holders" parent="." instance=ExtResource( 3 )]
 
 [node name="boss1" parent="." instance=ExtResource( 4 )]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, -2 )
 
 [node name="startPos" parent="." instance=ExtResource( 5 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2, 0, 24 )

@@ -7,7 +7,7 @@ func update():
 	$fullscreenCheck.pressed = OS.window_fullscreen
 	$usecontrollerCheck.pressed = Global.useController
 	$mouseSenSlider.value = Global.mouse_sensitivity / 0.002
-	$mouseSenLabel.text = "mouse sensitivity:"
+	$mouseSenLabel.text = "Sensitivity:"
 	$pixelCheck.pressed = !get_tree().root.size_override_stretch
 
 func _on_fullscreenCheck_toggled(button_pressed):
@@ -26,7 +26,7 @@ func _on_mouseSenSlider_value_changed(value):
 
 
 func _on_mouseSenSlider_drag_ended(_value_changed):
-	$mouseSenLabel.text = "mouse sensitivity:"
+	$mouseSenLabel.text = "Sensitivity:"
 	Global.saveSettings()
 
 

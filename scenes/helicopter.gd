@@ -17,12 +17,14 @@ func _process(delta):
 		global_translation.y -= 9.8 * delta
 		if global_translation.y < -30:
 			$explodeSound.play()
+			get_parent().get_parent().get_node("Particles").emitting = true
 			done = true
 
 func damage(amount):
 	health -= amount
 	if health < 0:
 		dead = true
+		$heliSound.stop()
 
 
 var bullet = load("res://scenes/characters/Bullet.tscn")

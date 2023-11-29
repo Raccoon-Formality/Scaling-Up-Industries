@@ -33,7 +33,7 @@ margin_top = 32.0
 margin_right = 118.0
 margin_bottom = 48.0
 custom_fonts/font = ExtResource( 4 )
-text = "Mouse Sensitivity:"
+text = "Sensitivity:"
 
 [node name="mouseSenSlider" type="HSlider" parent="."]
 margin_top = 56.0

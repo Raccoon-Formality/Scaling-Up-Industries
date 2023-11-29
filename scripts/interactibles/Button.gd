@@ -18,7 +18,7 @@ func _ready():
 	if locked:
 		$Mesh.material_override.albedo_color = Color(0.2,0.2,0.2)
 	else:
-		$Mesh.material_override.albedo_color = Color(1.0,1.0,1.0)
+		$Mesh.material_override.albedo_color = Color(0.8,0.415,0.0)
 
 func interact():
 	if !locked:

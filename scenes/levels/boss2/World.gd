@@ -48,6 +48,7 @@ func _process(delta):
 		#handle laser
 		laser.translation += Vector3(0,0,-lazerSpeed).rotated(Vector3.UP, laser.rotation.y) * delta
 		if (laser.translation.z < -25 or laser.translation.z > 25) or (laser.translation.x < -25 or laser.translation.x > 25):
+			"""
 			var roll = floor(rand_range(1,4.9))
 			if roll == 1:
 				laser.translation = Vector3(0,0,25)
@@ -61,7 +62,8 @@ func _process(delta):
 			elif roll == 4:
 				laser.translation = Vector3(25,0,0)
 				laser.rotation_degrees.y = 90
-			
+			"""
+			laser.rotation_degrees.y += 180
 			
 			var flip = floor(rand_range(0,1.9))
 			if flip == 0:
