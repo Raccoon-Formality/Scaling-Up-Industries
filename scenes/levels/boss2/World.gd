@@ -22,6 +22,7 @@ func _ready():
 	lazerNum = 1
 	vig.set_shader_param("vignette_intensity", 0.4)
 	vig.set_shader_param("vignette_opacity", 0.5)
+	$scaryEnemy/playerArea.monitoring = false
 
 
 
@@ -47,7 +48,7 @@ func _process(delta):
 		
 		#handle laser
 		laser.translation += Vector3(0,0,-lazerSpeed).rotated(Vector3.UP, laser.rotation.y) * delta
-		if (laser.translation.z < -25 or laser.translation.z > 25) or (laser.translation.x < -25 or laser.translation.x > 25):
+		if (laser.translation.z < -17 or laser.translation.z > 25) or (laser.translation.x < -25 or laser.translation.x > 25):
 			"""
 			var roll = floor(rand_range(1,4.9))
 			if roll == 1:
@@ -81,6 +82,8 @@ func _process(delta):
 
 func deadBoss():
 	$interactibles/door.activate()
+	$scaryEnemy.go = true
+	$scaryEnemy/scream.play()
 	Global.currentSong = Global.musicDict["track1"]
 
 

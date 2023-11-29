@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://assets/textures/Amoeba/spritesheet-small.png" type="Texture" id=1]
 [ext_resource path="res://scenes/characters/Player.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://scenes/levels/furnishings.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/programmerArt/behind-you.png" type="Texture" id=13]
 [ext_resource path="res://assets/textures/Laser Frames/spritesheet-small.png" type="Texture" id=14]
+[ext_resource path="res://scenes/characters/scaryEnemy.tscn" type="PackedScene" id=15]
 
 [sub_resource type="CubeMesh" id=1]
 flip_faces = true
@@ -207,6 +208,9 @@ anims/laserLoop = SubResource( 7 )
 
 [node name="plant1" parent="." instance=ExtResource( 4 )]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 2, 0.8138, -6.5 )
+
+[node name="scaryEnemy" parent="." instance=ExtResource( 15 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15, 0, 2 )
 
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
 [connection signal="body_entered" from="laser" to="." method="_on_laser_body_entered"]

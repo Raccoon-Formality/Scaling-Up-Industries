@@ -17,11 +17,14 @@ var levelsDict = {
 	"level4": preload("res://scenes/levels/level4/World.tscn"),
 	"level5": preload("res://scenes/levels/level5/World.tscn"),
 	"boss2": preload("res://scenes/levels/boss2/World.tscn"),
+	"level6": preload("res://scenes/levels/level6/World.tscn"),
+	"level7": preload("res://scenes/levels/level7/World.tscn"),
+	"level8": preload("res://scenes/levels/level8/World.tscn"),
 	"boss3": preload("res://scenes/end_level.tscn"),
 }
 
 # level order
-var levelList = ["level0", "level2","level3","boss1","level4","level5","boss2","boss3"]
+var levelList = ["level0", "level2","level3","boss1","level4","level5","boss2","level6","level7","level8","boss3"]
 
 # what level we are on
 # TODO: save and load level number

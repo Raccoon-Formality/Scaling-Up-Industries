@@ -8,7 +8,6 @@ material = SubResource( 1 )
 size = Vector3( 0.1, 0.2, 1 )
 
 [node name="startPos" type="Spatial"]
-visible = false
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0.5 )
