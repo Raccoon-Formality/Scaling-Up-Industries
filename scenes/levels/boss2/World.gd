@@ -35,6 +35,7 @@ func _process(delta):
 		bossStart = true
 		$Area.queue_free()
 		$boss.show()
+		$boss/scream.play()
 		#$Player.flashlight.show()
 		laser.show()
 		laser.monitoring = true

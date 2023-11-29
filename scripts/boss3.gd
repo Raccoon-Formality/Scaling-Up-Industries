@@ -17,6 +17,7 @@ var dead = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	hide()
+	$CanvasLayer.hide()
 	out.modulate.a = 0
 	healthBar.max_value = health
 	healthBar.value = health
@@ -32,6 +33,7 @@ func _process(delta):
 		
 	if !Global.paused and HeliHolder.bossStart:
 		show()
+		$CanvasLayer.show()
 		counter += 1
 		global_translation = lerp(global_translation, Vector3(20,20,-80),0.01)
 		$Sprite3D.rotation_degrees.z = sin(counter/30.0) * 6.0

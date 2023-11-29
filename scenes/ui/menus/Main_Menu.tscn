@@ -325,7 +325,7 @@ margin_left = 24.0
 margin_top = -32.0
 margin_right = 141.0
 margin_bottom = -16.0
-text = "Copyright © Raccoon Formality 2023"
+text = "A game by Racoon Formality"
 valign = 2
 
 [node name="creditsButton" type="Button" parent="."]

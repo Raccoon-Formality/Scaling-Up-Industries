@@ -97,6 +97,7 @@ transform = Transform( -8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -32, 25
 [node name="Button2" parent="Interactibles" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 18, 36 )
 node_path = NodePath("../door2")
+locked = true
 
 [node name="keyPickup" parent="Interactibles" instance=ExtResource( 14 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 16, 73 )

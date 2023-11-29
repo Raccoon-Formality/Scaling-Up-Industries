@@ -316,6 +316,7 @@ func _fire_projectile():
 		self._enemy_position = player_node.translation + HEIGHT_OF_PLAYER
 		var bulletInstance = bullet.instance()
 		get_tree().get_root().add_child(bulletInstance)
+		$shootSound.play()
 		bulletInstance.global_translation = $BulletSpawnPoint.global_translation
 
 		var direction = bulletInstance.global_transform.origin.direction_to(self._enemy_position)
