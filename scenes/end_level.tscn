@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=2]
+[gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://scenes/levels/holders.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/textures/Brick 1.PNG" type="Texture" id=2]
@@ -252,6 +252,18 @@ bg_color = Color( 0.235294, 0.690196, 0.262745, 1 )
 [sub_resource type="BoxShape" id=49]
 extents = Vector3( 3, 3, 4 )
 
+[sub_resource type="SpatialMaterial" id=60]
+flags_transparent = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_color = Color( 0.411765, 0.411765, 0.411765, 1 )
+albedo_texture = ExtResource( 16 )
+
+[sub_resource type="QuadMesh" id=61]
+material = SubResource( 60 )
+
 [sub_resource type="SpatialMaterial" id=50]
 flags_transparent = true
 params_billboard_mode = 3
@@ -402,6 +414,7 @@ script = ExtResource( 12 )
 transform = Transform( -3.78552e-08, -2.18557e-08, 1, -0.5, 0.866025, 0, -0.866025, -0.5, -4.37114e-08, 0, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="helicopterPos/helicopter2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0 )
 shape = SubResource( 49 )
 
 [node name="Timer" type="Timer" parent="helicopterPos/helicopter2"]
@@ -409,6 +422,7 @@ wait_time = 0.25
 autostart = true
 
 [node name="pos" type="Position3D" parent="helicopterPos/helicopter2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -1 )
 
 [node name="explodeSound" type="AudioStreamPlayer" parent="helicopterPos/helicopter2"]
 stream = ExtResource( 13 )
@@ -421,6 +435,17 @@ volume_db = -10.0
 autoplay = true
 bus = "sfx"
 
+[node name="parts" type="CPUParticles" parent="helicopterPos/helicopter2"]
+emitting = false
+amount = 16
+local_coords = false
+mesh = SubResource( 61 )
+emission_shape = 1
+emission_sphere_radius = 2.5
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 15.0
+scale_amount = 4.0
+
 [node name="helicopter1" type="KinematicBody" parent="helicopterPos" groups=["boss"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 36, 44 )
 script = ExtResource( 12 )
@@ -429,7 +454,7 @@ script = ExtResource( 12 )
 transform = Transform( -3.78552e-08, -2.18557e-08, 1, -0.5, 0.866025, 0, -0.866025, -0.5, -4.37114e-08, 0, 0, 0 )
 
 [node name="CollisionShape2" type="CollisionShape" parent="helicopterPos/helicopter1"]
-transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 0 )
+transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -1, 1, 0 )
 shape = SubResource( 49 )
 
 [node name="Timer" type="Timer" parent="helicopterPos/helicopter1"]
@@ -437,6 +462,7 @@ wait_time = 0.25
 autostart = true
 
 [node name="pos" type="Position3D" parent="helicopterPos/helicopter1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -1 )
 
 [node name="explodeSound" type="AudioStreamPlayer" parent="helicopterPos/helicopter1"]
 stream = ExtResource( 13 )
@@ -448,6 +474,17 @@ stream = ExtResource( 15 )
 volume_db = -10.0
 autoplay = true
 bus = "sfx"
+
+[node name="parts" type="CPUParticles" parent="helicopterPos/helicopter1"]
+emitting = false
+amount = 16
+local_coords = false
+mesh = SubResource( 61 )
+emission_shape = 1
+emission_sphere_radius = 2.5
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 15.0
+scale_amount = 4.0
 
 [node name="Particles" type="CPUParticles" parent="."]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 19, -50.9, -15.1 )

@@ -2,22 +2,20 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Vent cover.png-b9d1de998c8ad2a25046fc1fada05c6c.s3tc.stex"
-path.etc="res://.import/Vent cover.png-b9d1de998c8ad2a25046fc1fada05c6c.etc.stex"
+path="res://.import/Vent cover.png-b9d1de998c8ad2a25046fc1fada05c6c.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/textures/Vent cover.png"
-dest_files=[ "res://.import/Vent cover.png-b9d1de998c8ad2a25046fc1fada05c6c.s3tc.stex", "res://.import/Vent cover.png-b9d1de998c8ad2a25046fc1fada05c6c.etc.stex" ]
+dest_files=[ "res://.import/Vent cover.png-b9d1de998c8ad2a25046fc1fada05c6c.stex" ]
 
 [params]
 
-compress/mode=2
-compress/lossy_quality=0.7
+compress/mode=1
+compress/lossy_quality=0.5
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0

@@ -2,22 +2,20 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/drywallDent-fixed-inverted.PNG-9d8fd505bb8a5f85d2d541dc07d272c6.s3tc.stex"
-path.etc="res://.import/drywallDent-fixed-inverted.PNG-9d8fd505bb8a5f85d2d541dc07d272c6.etc.stex"
+path="res://.import/drywallDent-fixed-inverted.PNG-9d8fd505bb8a5f85d2d541dc07d272c6.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/textures/damage decals/drywallDent-fixed-inverted.PNG"
-dest_files=[ "res://.import/drywallDent-fixed-inverted.PNG-9d8fd505bb8a5f85d2d541dc07d272c6.s3tc.stex", "res://.import/drywallDent-fixed-inverted.PNG-9d8fd505bb8a5f85d2d541dc07d272c6.etc.stex" ]
+dest_files=[ "res://.import/drywallDent-fixed-inverted.PNG-9d8fd505bb8a5f85d2d541dc07d272c6.stex" ]
 
 [params]
 
-compress/mode=2
-compress/lossy_quality=0.7
+compress/mode=1
+compress/lossy_quality=0.5
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0

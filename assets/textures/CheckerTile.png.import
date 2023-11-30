@@ -2,22 +2,20 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://import/CheckerTile.png-42f70bc944612e6cae7134f98c0eae04.s3tc.stex"
-path.etc="res://import/CheckerTile.png-42f70bc944612e6cae7134f98c0eae04.etc.stex"
+path="res://.import/CheckerTile.png-42f70bc944612e6cae7134f98c0eae04.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/textures/CheckerTile.png"
-dest_files=[ "res://import/CheckerTile.png-42f70bc944612e6cae7134f98c0eae04.s3tc.stex", "res://import/CheckerTile.png-42f70bc944612e6cae7134f98c0eae04.etc.stex" ]
+dest_files=[ "res://.import/CheckerTile.png-42f70bc944612e6cae7134f98c0eae04.stex" ]
 
 [params]
 
-compress/mode=2
-compress/lossy_quality=0.7
+compress/mode=1
+compress/lossy_quality=0.5
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0

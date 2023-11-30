@@ -2,22 +2,20 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/spritesheet-small.png-507a6f4f956724f1c6ddbfeaf9864f37.s3tc.stex"
-path.etc="res://.import/spritesheet-small.png-507a6f4f956724f1c6ddbfeaf9864f37.etc.stex"
+path="res://.import/spritesheet-small.png-507a6f4f956724f1c6ddbfeaf9864f37.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/textures/Moth/spritesheet-small.png"
-dest_files=[ "res://.import/spritesheet-small.png-507a6f4f956724f1c6ddbfeaf9864f37.s3tc.stex", "res://.import/spritesheet-small.png-507a6f4f956724f1c6ddbfeaf9864f37.etc.stex" ]
+dest_files=[ "res://.import/spritesheet-small.png-507a6f4f956724f1c6ddbfeaf9864f37.stex" ]
 
 [params]
 
-compress/mode=2
-compress/lossy_quality=0.7
+compress/mode=1
+compress/lossy_quality=0.5
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0

@@ -2,22 +2,20 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/spritesheet-small.png-ac7a5133cb1d917c5775f2f0d3e7cd20.s3tc.stex"
-path.etc="res://.import/spritesheet-small.png-ac7a5133cb1d917c5775f2f0d3e7cd20.etc.stex"
+path="res://.import/spritesheet-small.png-ac7a5133cb1d917c5775f2f0d3e7cd20.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/textures/Lightning Ball Frames/spritesheet-small.png"
-dest_files=[ "res://.import/spritesheet-small.png-ac7a5133cb1d917c5775f2f0d3e7cd20.s3tc.stex", "res://.import/spritesheet-small.png-ac7a5133cb1d917c5775f2f0d3e7cd20.etc.stex" ]
+dest_files=[ "res://.import/spritesheet-small.png-ac7a5133cb1d917c5775f2f0d3e7cd20.stex" ]
 
 [params]
 
-compress/mode=2
-compress/lossy_quality=0.7
+compress/mode=1
+compress/lossy_quality=0.5
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0

@@ -14,8 +14,8 @@ dest_files=[ "res://.import/drywall dent.PNG-273b1deb6d5a5f7f9b278c7c4af189a2.st
 
 [params]
 
-compress/mode=0
-compress/lossy_quality=0.7
+compress/mode=1
+compress/lossy_quality=0.5
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0

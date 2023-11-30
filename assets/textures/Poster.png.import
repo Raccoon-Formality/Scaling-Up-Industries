@@ -2,22 +2,20 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Poster.png-904e0d7fd6b63ee0dc7ed5e5428077a1.s3tc.stex"
-path.etc="res://.import/Poster.png-904e0d7fd6b63ee0dc7ed5e5428077a1.etc.stex"
+path="res://.import/Poster.png-904e0d7fd6b63ee0dc7ed5e5428077a1.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/textures/Poster.png"
-dest_files=[ "res://.import/Poster.png-904e0d7fd6b63ee0dc7ed5e5428077a1.s3tc.stex", "res://.import/Poster.png-904e0d7fd6b63ee0dc7ed5e5428077a1.etc.stex" ]
+dest_files=[ "res://.import/Poster.png-904e0d7fd6b63ee0dc7ed5e5428077a1.stex" ]
 
 [params]
 
-compress/mode=2
-compress/lossy_quality=0.7
+compress/mode=1
+compress/lossy_quality=0.5
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0

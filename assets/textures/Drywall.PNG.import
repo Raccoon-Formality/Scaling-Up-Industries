@@ -2,22 +2,20 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://import/Drywall.PNG-ba2d7df295a90039845986c078548eec.s3tc.stex"
-path.etc="res://import/Drywall.PNG-ba2d7df295a90039845986c078548eec.etc.stex"
+path="res://.import/Drywall.PNG-ba2d7df295a90039845986c078548eec.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/textures/Drywall.PNG"
-dest_files=[ "res://import/Drywall.PNG-ba2d7df295a90039845986c078548eec.s3tc.stex", "res://import/Drywall.PNG-ba2d7df295a90039845986c078548eec.etc.stex" ]
+dest_files=[ "res://.import/Drywall.PNG-ba2d7df295a90039845986c078548eec.stex" ]
 
 [params]
 
-compress/mode=2
-compress/lossy_quality=0.7
+compress/mode=1
+compress/lossy_quality=0.5
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0

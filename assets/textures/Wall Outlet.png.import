@@ -2,22 +2,20 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://import/Wall Outlet.png-e886d280ced651ce5ad92ed89c522221.s3tc.stex"
-path.etc="res://import/Wall Outlet.png-e886d280ced651ce5ad92ed89c522221.etc.stex"
+path="res://.import/Wall Outlet.png-e886d280ced651ce5ad92ed89c522221.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/textures/Wall Outlet.png"
-dest_files=[ "res://import/Wall Outlet.png-e886d280ced651ce5ad92ed89c522221.s3tc.stex", "res://import/Wall Outlet.png-e886d280ced651ce5ad92ed89c522221.etc.stex" ]
+dest_files=[ "res://.import/Wall Outlet.png-e886d280ced651ce5ad92ed89c522221.stex" ]
 
 [params]
 
-compress/mode=2
-compress/lossy_quality=0.7
+compress/mode=1
+compress/lossy_quality=0.5
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0

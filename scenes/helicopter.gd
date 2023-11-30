@@ -24,6 +24,7 @@ func damage(amount):
 	health -= amount
 	if health < 0:
 		dead = true
+		$parts.emitting = true
 		$heliSound.stop()
 
 

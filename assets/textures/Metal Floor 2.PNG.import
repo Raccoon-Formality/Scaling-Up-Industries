@@ -2,22 +2,20 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://import/Metal Floor 2.PNG-b39ce94488445ef2ebf92e7817caee67.s3tc.stex"
-path.etc="res://import/Metal Floor 2.PNG-b39ce94488445ef2ebf92e7817caee67.etc.stex"
+path="res://.import/Metal Floor 2.PNG-b39ce94488445ef2ebf92e7817caee67.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/textures/Metal Floor 2.PNG"
-dest_files=[ "res://import/Metal Floor 2.PNG-b39ce94488445ef2ebf92e7817caee67.s3tc.stex", "res://import/Metal Floor 2.PNG-b39ce94488445ef2ebf92e7817caee67.etc.stex" ]
+dest_files=[ "res://.import/Metal Floor 2.PNG-b39ce94488445ef2ebf92e7817caee67.stex" ]
 
 [params]
 
-compress/mode=2
-compress/lossy_quality=0.7
+compress/mode=1
+compress/lossy_quality=0.5
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0

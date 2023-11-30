@@ -103,7 +103,7 @@ mesh_library = ExtResource( 8 )
 cell_size = Vector3( 1, 0.1, 1 )
 cell_center_y = false
 data = {
-"cells": PoolIntArray( 65526, 75, 655361 )
+"cells": PoolIntArray( 65522, 52, 9, 65528, 59, 655366, 65531, 64, 1441798, 65531, 67, 655362, 65526, 75, 655361 )
 }
 __meta__ = {
 "_editor_clip_": 0,
@@ -145,7 +145,7 @@ healthAmount = 25
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 16, 59 )
 
 [node name="keyPickup" parent="Interactibles" instance=ExtResource( 16 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 16, 53 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 16, 46 )
 color = "Blue"
 node_path = NodePath("../Button")
 
@@ -175,11 +175,17 @@ transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107,
 [node name="scaryEnemy2" parent="." instance=ExtResource( 15 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -19, 16, 46 )
 
+[node name="scaryEnemy5" parent="." instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -22, 16, 52 )
+
 [node name="scaryEnemy3" parent="." instance=ExtResource( 15 )]
 transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -10, 16, 59 )
 
 [node name="scaryEnemy4" parent="." instance=ExtResource( 15 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 16, 74 )
+
+[node name="scaryEnemy6" parent="." instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 6, 16, 62 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 44, 156 )
