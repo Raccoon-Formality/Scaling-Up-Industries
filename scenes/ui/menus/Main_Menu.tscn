@@ -359,6 +359,7 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="."]
+visible = false
 margin_left = 232.0
 margin_top = 296.0
 margin_right = 304.0
@@ -366,12 +367,14 @@ margin_bottom = 316.0
 text = "test level"
 
 [node name="HSlider" type="HSlider" parent="."]
+visible = false
 margin_left = 232.0
 margin_top = 328.0
 margin_right = 376.0
 margin_bottom = 344.0
 
 [node name="Label2" type="Label" parent="."]
+visible = false
 margin_left = 232.0
 margin_top = 352.0
 margin_right = 317.0

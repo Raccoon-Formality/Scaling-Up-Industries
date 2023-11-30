@@ -62,13 +62,13 @@ var weaponList = ["pistol","smg"]
 var musicDict = {
 	"pause": "res://assets/audio/music/pauseMenu_song_01.mp3",
 	"track1" : "res://assets/audio/music/Explore_song1.mp3",#"res://assets/audio/music/gameSong_02_mid.mp3",
-	"death" : "res://assets/audio/owlSynth-mp3/Shooter Synthwave 2.mp3",
+	"death" : "res://assets/audio/music/gameoverMenu_Song_01L.mp3",
 	#"track3" : "res://assets/audio/music/gameSong_02_mid.mp3",
-	"track4" : "res://assets/audio/owlSynth-mp3/Shooter Synthwave 4.mp3",
-	"track5" : "res://assets/audio/owlSynth-mp3/Shooter Synthwave 5.mp3",
+	#"track4" : "res://assets/audio/owlSynth-mp3/Shooter Synthwave 4.mp3",
+	#"track5" : "res://assets/audio/owlSynth-mp3/Shooter Synthwave 5.mp3",
 	"track6" : "res://assets/audio/music/Menu_droneLow_01.mp3",
-	"track7" : "res://assets/audio/owlSynth-mp3/Shooter Synthwave 7.mp3",
-	"track8" : "res://assets/audio/owlSynth-mp3/Shooter Synthwave 8.mp3",
+	#"track7" : "res://assets/audio/owlSynth-mp3/Shooter Synthwave 7.mp3",
+	#"track8" : "res://assets/audio/owlSynth-mp3/Shooter Synthwave 8.mp3",
 	"action" : "res://assets/audio/music/Action_song1.mp3",#"res://assets/audio/music/action_song.mp3",
 }
 
