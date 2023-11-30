@@ -60,7 +60,7 @@ var weaponList = ["pistol","smg"]
 
 # music dictionary
 var musicDict = {
-	"pause": "res://assets/audio/owlSynth-mp3/pause.mp3",
+	"pause": "res://assets/audio/music/pauseMenu_song_01.mp3",
 	"track1" : "res://assets/audio/music/Explore_song1.mp3",#"res://assets/audio/music/gameSong_02_mid.mp3",
 	"death" : "res://assets/audio/owlSynth-mp3/Shooter Synthwave 2.mp3",
 	#"track3" : "res://assets/audio/music/gameSong_02_mid.mp3",
