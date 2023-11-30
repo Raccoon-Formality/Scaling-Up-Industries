@@ -472,10 +472,7 @@ func _physics_process(delta):
 		# TODO: optimize and get crosshair assets
 		if altRaycast.is_colliding() and altRaycast.get_collider() is Interactibles:
 			gunCrosshair.modulate = Color(0,1,0)
-			if Global.useController:
-				gunCrosshair.text = "Y"
-			else:
-				gunCrosshair.text = "E"
+			gunCrosshair.text = "E"
 		elif raycast.is_colliding() and raycast.get_collider().is_in_group("CantShoot"):
 			gunCrosshair.modulate = Color(1,0,0)
 			gunCrosshair.text = "O"

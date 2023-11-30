@@ -198,6 +198,7 @@ text = "Scaling Up
 Industries"
 
 [node name="Label" type="Label" parent="."]
+visible = false
 margin_left = 384.0
 margin_top = 16.0
 margin_right = 624.0
@@ -206,9 +207,9 @@ custom_fonts/font = SubResource( 5 )
 custom_styles/normal = SubResource( 6 )
 text = "Credits:
 Matthew - Engine Wrangler
-Billy - Art & Assets
+Billy - Art and Assets
 David - Gameplay Engineer
-Rye - Music & Sound Design"
+Rye - Music Producer"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 visible = false
