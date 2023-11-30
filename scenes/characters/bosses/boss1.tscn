@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/characters/bosses/boss1.gd" type="Script" id=1]
-[ext_resource path="res://assets/environment/rock-medium.png" type="Texture" id=2]
 [ext_resource path="res://assets/3d/gltf/spraybottle.material" type="Material" id=3]
 [ext_resource path="res://assets/3d/glb/bigspraybottle.material" type="Material" id=4]
 
@@ -51,11 +50,6 @@ transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
 script = ExtResource( 1 )
 bulletJump = 0.0
 bulletSpeed = 4.2
-
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
-visible = false
-texture = ExtResource( 2 )
 
 [node name="spawner" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.5, 2 )

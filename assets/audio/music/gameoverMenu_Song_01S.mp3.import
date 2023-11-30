@@ -11,5 +11,5 @@ dest_files=[ "res://.import/gameoverMenu_Song_01S.mp3-cd234701df15d82068f45d8772
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0

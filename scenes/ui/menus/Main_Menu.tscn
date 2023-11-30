@@ -193,9 +193,9 @@ custom_fonts/font = SubResource( 5 )
 custom_styles/normal = SubResource( 6 )
 text = "Credits:
 Matthew - Engine Wrangler
-Billy - Art and Assets
+Billy - Art & Assets
 David - Gameplay Engineer
-Rye - Music Producer"
+Rye - Music & Sound Design"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 visible = false
