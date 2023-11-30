@@ -74,7 +74,7 @@ func _process(delta):
 				laser.translation.y = 2.0
 			lazerSpeed += 2
 			lazerNum += 1
-			if lazerNum > 6:
+			if lazerNum > 4:
 				started = false
 				bossStart = false
 				laser.hide()
