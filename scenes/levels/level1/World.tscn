@@ -124,9 +124,6 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 24, -4,
 
 [node name="ammoPickup" parent="Interactibles" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0986, 0.0400004, 30.7463 )
-spinSpeed = 5.0
-updownSpeed = 4.0
-ammoType = "pistol"
 
 [node name="healthPickup" parent="Interactibles" instance=ExtResource( 12 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.2085, 0.04, 22.6289 )

@@ -1,11 +1,10 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://assets/fonts/KrunchBold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scripts/menus/Main_Menu.gd" type="Script" id=2]
 [ext_resource path="res://scenes/ui/audioSliders.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/menus/ButtonScript.gd" type="Script" id=4]
 [ext_resource path="res://scenes/ui/settingsPanel.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/textures/SUI/logo-full.svg" type="Texture" id=6]
 [ext_resource path="res://scenes/assets/font.tres" type="DynamicFont" id=7]
 [ext_resource path="res://assets/fonts/Mukta_Mahee/MuktaMahee-Regular.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://assets/audio/music/Menu_droneLow_01.mp3" type="AudioStream" id=9]
@@ -173,19 +172,6 @@ visible = false
 margin_right = 640.0
 margin_bottom = 480.0
 color = Color( 0, 0, 0, 0.498039 )
-
-[node name="logo" type="TextureRect" parent="."]
-visible = false
-margin_left = 40.0
-margin_top = 16.0
-margin_right = 376.0
-margin_bottom = 152.0
-texture = ExtResource( 6 )
-expand = true
-stretch_mode = 7
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="title" type="Label" parent="."]
 visible = false
