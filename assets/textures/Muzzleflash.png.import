@@ -2,7 +2,7 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://import/Muzzleflash.png-223572cac53b1f5396435e009b9ac522.stex"
+path="res://.import/Muzzleflash.png-223572cac53b1f5396435e009b9ac522.stex"
 metadata={
 "vram_texture": false
 }
@@ -10,12 +10,12 @@ metadata={
 [deps]
 
 source_file="res://assets/textures/Muzzleflash.png"
-dest_files=[ "res://import/Muzzleflash.png-223572cac53b1f5396435e009b9ac522.stex" ]
+dest_files=[ "res://.import/Muzzleflash.png-223572cac53b1f5396435e009b9ac522.stex" ]
 
 [params]
 
-compress/mode=0
-compress/lossy_quality=0.7
+compress/mode=1
+compress/lossy_quality=0.5
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0

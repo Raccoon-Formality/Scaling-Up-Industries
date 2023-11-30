@@ -14,8 +14,8 @@ dest_files=[ "res://.import/Ceiling light.png-aad9aa026733bc4945633e2556ee8e34.s
 
 [params]
 
-compress/mode=0
-compress/lossy_quality=0.7
+compress/mode=1
+compress/lossy_quality=0.5
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0

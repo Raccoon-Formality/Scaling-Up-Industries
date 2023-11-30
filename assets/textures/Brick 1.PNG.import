@@ -2,22 +2,20 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://import/Brick 1.PNG-2364ebcd0194b0d1c14a1d01d98c930d.s3tc.stex"
-path.etc="res://import/Brick 1.PNG-2364ebcd0194b0d1c14a1d01d98c930d.etc.stex"
+path="res://.import/Brick 1.PNG-2364ebcd0194b0d1c14a1d01d98c930d.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/textures/Brick 1.PNG"
-dest_files=[ "res://import/Brick 1.PNG-2364ebcd0194b0d1c14a1d01d98c930d.s3tc.stex", "res://import/Brick 1.PNG-2364ebcd0194b0d1c14a1d01d98c930d.etc.stex" ]
+dest_files=[ "res://.import/Brick 1.PNG-2364ebcd0194b0d1c14a1d01d98c930d.stex" ]
 
 [params]
 
-compress/mode=2
-compress/lossy_quality=0.7
+compress/mode=1
+compress/lossy_quality=0.5
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
