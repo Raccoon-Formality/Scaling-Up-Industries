@@ -1,0 +1,200 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://scenes/levels/startPos.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/assets/tilesets/tileset.tres" type="MeshLibrary" id=2]
+[ext_resource path="res://scenes/characters/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/levels/holders.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/interactibles/door.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/interactibles/Button.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/assets/tilesets/ventTileset.tres" type="MeshLibrary" id=7]
+[ext_resource path="res://scenes/assets/tilesets/furniture.tres" type="MeshLibrary" id=8]
+[ext_resource path="res://scenes/levels/endPoint.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/3d/gltf/plant1.gltf" type="PackedScene" id=10]
+[ext_resource path="res://assets/textures/Wall Outlet.png" type="Texture" id=11]
+[ext_resource path="res://assets/textures/Danger Sign 2.png" type="Texture" id=12]
+[ext_resource path="res://scenes/interactibles/pickups/healthPickup.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/interactibles/pickups/ammoPickup.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/characters/scaryEnemy.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/interactibles/pickups/keyPickup.tscn" type="PackedScene" id=16]
+[ext_resource path="res://assets/textures/Brick 1.PNG" type="Texture" id=17]
+[ext_resource path="res://assets/3d/gltf/door2.material" type="Material" id=18]
+
+[sub_resource type="NavigationMesh" id=1]
+vertices = PoolVector3Array( -2.99999, 0.5, -3, -2.99999, 0.5, 3.25, -1.24999, 0.5, 3.25, -1.24999, 0.5, -3, -3.49999, 16.5, 37.25, -5.24999, 16.5, 37.25, -4.99999, 16.5, 39, -3.49999, 16.5, 37.25, -4.99999, 16.5, 39, -0.999994, 16.5, 39, -2.74999, 16.5, 36.5, -1.24999, 16.5, 20.5, -2.99999, 16.5, 20.5, -2.74999, 16.5, 28.25, -0.999994, 16.5, 29.5, -2.74999, 16.5, 36.5, -0.999994, 16.5, 39, -0.999994, 16.5, 29.5, -2.74999, 16.5, 28.25, -1.99999, 0.5, 33, -11, 0.5, 44, -11, 0.5, 55, -1.99999, 0.5, 55, 7.00001, 0.5, 44, 7.00001, 0.5, 33, -1.99999, 0.5, 55, 7.00001, 0.5, 55, 7.00001, 0.5, 44, -1.99999, 0.5, 33, -11, 0.5, 33, -11, 0.5, 44, -16.25, 16.5, 37.25, -27, 16.5, 37.25, -27, 16.5, 39, -16, 16.5, 39, -16, 16.5, 39, -4.99999, 16.5, 39, -5.24999, 16.5, 37.25, -16.25, 16.5, 37.25 )
+polygons = [ PoolIntArray( 3, 2, 0 ), PoolIntArray( 0, 2, 1 ), PoolIntArray( 6, 5, 4 ), PoolIntArray( 7, 10, 8 ), PoolIntArray( 8, 10, 9 ), PoolIntArray( 12, 11, 13 ), PoolIntArray( 13, 11, 14 ), PoolIntArray( 18, 17, 15 ), PoolIntArray( 15, 17, 16 ), PoolIntArray( 24, 23, 19 ), PoolIntArray( 19, 23, 20 ), PoolIntArray( 20, 23, 22 ), PoolIntArray( 20, 22, 21 ), PoolIntArray( 27, 26, 25 ), PoolIntArray( 30, 29, 28 ), PoolIntArray( 32, 31, 33 ), PoolIntArray( 33, 31, 34 ), PoolIntArray( 38, 37, 35 ), PoolIntArray( 35, 37, 36 ) ]
+agent_radius = 1.0
+
+[sub_resource type="SpatialMaterial" id=20]
+albedo_texture = ExtResource( 17 )
+uv1_scale = Vector3( 0.5, 0.5, 0.5 )
+uv1_triplanar = true
+
+[sub_resource type="CubeMesh" id=16]
+material = SubResource( 20 )
+size = Vector3( 8, 8, 8 )
+
+[sub_resource type="ArrayMesh" id=17]
+resource_name = "door2_Cube023"
+surfaces/0 = {
+"aabb": AABB( -0.0408677, -1, -0.487071, 0.0817355, 2, 0.974153 ),
+"array_data": PoolByteArray( 237, 100, 39, 189, 0, 0, 128, 191, 108, 97, 249, 62, 129, 0, 126, 1, 6, 37, 0, 56, 237, 100, 39, 189, 0, 0, 128, 191, 108, 97, 249, 62, 0, 129, 127, 127, 6, 37, 0, 56, 237, 100, 39, 189, 0, 0, 128, 191, 108, 97, 249, 62, 0, 0, 129, 63, 6, 37, 0, 56, 237, 100, 39, 189, 0, 0, 128, 63, 108, 97, 249, 62, 129, 0, 126, 1, 6, 37, 215, 59, 237, 100, 39, 189, 0, 0, 128, 63, 108, 97, 249, 62, 0, 0, 129, 63, 6, 37, 215, 59, 237, 100, 39, 189, 0, 0, 128, 63, 108, 97, 249, 62, 0, 127, 129, 127, 6, 37, 215, 59, 237, 100, 39, 189, 0, 0, 128, 191, 108, 97, 249, 190, 129, 0, 127, 127, 14, 52, 0, 56, 237, 100, 39, 189, 0, 0, 128, 191, 108, 97, 249, 190, 0, 129, 127, 127, 14, 52, 0, 56, 237, 100, 39, 189, 0, 0, 128, 191, 108, 97, 249, 190, 127, 127, 126, 63, 14, 52, 0, 56, 237, 100, 39, 189, 0, 0, 128, 63, 108, 97, 249, 190, 129, 0, 126, 1, 14, 52, 215, 59, 237, 100, 39, 189, 0, 0, 128, 63, 108, 97, 249, 190, 127, 127, 126, 63, 14, 52, 215, 59, 237, 100, 39, 189, 0, 0, 128, 63, 108, 97, 249, 190, 0, 127, 129, 126, 14, 52, 215, 59, 237, 100, 39, 61, 0, 0, 128, 191, 108, 97, 249, 62, 0, 129, 127, 127, 6, 37, 175, 55, 237, 100, 39, 61, 0, 0, 128, 191, 108, 97, 249, 62, 0, 0, 129, 63, 0, 0, 0, 56, 237, 100, 39, 61, 0, 0, 128, 191, 108, 97, 249, 62, 127, 0, 127, 127, 6, 37, 175, 55, 237, 100, 39, 61, 0, 0, 128, 63, 108, 97, 249, 62, 0, 0, 129, 63, 0, 0, 215, 59, 237, 100, 39, 61, 0, 0, 128, 63, 108, 97, 249, 62, 0, 127, 127, 127, 6, 37, 0, 60, 237, 100, 39, 61, 0, 0, 128, 63, 108, 97, 249, 62, 127, 0, 127, 127, 6, 37, 0, 0, 237, 100, 39, 61, 0, 0, 128, 191, 108, 97, 249, 190, 0, 129, 127, 127, 14, 52, 175, 55, 237, 100, 39, 61, 0, 0, 128, 191, 108, 97, 249, 190, 127, 127, 127, 63, 95, 52, 0, 56, 237, 100, 39, 61, 0, 0, 128, 191, 108, 97, 249, 190, 127, 0, 127, 127, 14, 52, 175, 55, 237, 100, 39, 61, 0, 0, 128, 63, 108, 97, 249, 190, 127, 127, 126, 63, 95, 52, 215, 59, 237, 100, 39, 61, 0, 0, 128, 63, 108, 97, 249, 190, 0, 127, 129, 126, 14, 52, 0, 60, 237, 100, 39, 61, 0, 0, 128, 63, 108, 97, 249, 190, 127, 0, 127, 127, 14, 52, 0, 0 ),
+"array_index_data": PoolByteArray( 0, 0, 9, 0, 3, 0, 0, 0, 6, 0, 9, 0, 8, 0, 21, 0, 10, 0, 8, 0, 19, 0, 21, 0, 20, 0, 17, 0, 23, 0, 20, 0, 14, 0, 17, 0, 13, 0, 4, 0, 15, 0, 13, 0, 2, 0, 4, 0, 7, 0, 12, 0, 18, 0, 7, 0, 1, 0, 12, 0, 22, 0, 5, 0, 11, 0, 22, 0, 16, 0, 5, 0 ),
+"blend_shape_data": [  ],
+"format": 2194711,
+"index_count": 36,
+"material": ExtResource( 18 ),
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 24
+}
+
+[sub_resource type="ConcavePolygonShape" id=18]
+data = PoolVector3Array( -0.0409, -1, 0.4871, -0.0409, 1, -0.4871, -0.0409, 1, 0.4871, -0.0409, -1, 0.4871, -0.0409, -1, -0.4871, -0.0409, 1, -0.4871, -0.0409, -1, -0.4871, 0.0409, 1, -0.4871, -0.0409, 1, -0.4871, -0.0409, -1, -0.4871, 0.0409, -1, -0.4871, 0.0409, 1, -0.4871, 0.0409, -1, -0.4871, 0.0409, 1, 0.4871, 0.0409, 1, -0.4871, 0.0409, -1, -0.4871, 0.0409, -1, 0.4871, 0.0409, 1, 0.4871, 0.0409, -1, 0.4871, -0.0409, 1, 0.4871, 0.0409, 1, 0.4871, 0.0409, -1, 0.4871, -0.0409, -1, 0.4871, -0.0409, 1, 0.4871, -0.0409, -1, -0.4871, 0.0409, -1, 0.4871, 0.0409, -1, -0.4871, -0.0409, -1, -0.4871, -0.0409, -1, 0.4871, 0.0409, -1, 0.4871, 0.0409, 1, -0.4871, -0.0409, 1, 0.4871, -0.0409, 1, -0.4871, 0.0409, 1, -0.4871, 0.0409, 1, 0.4871, -0.0409, 1, 0.4871 )
+
+[sub_resource type="ConcavePolygonShape" id=19]
+data = PoolVector3Array( -4, 4, 4, 4, 4, 4, -4, -4, 4, 4, 4, 4, 4, -4, 4, -4, -4, 4, 4, 4, -4, -4, 4, -4, 4, -4, -4, -4, 4, -4, -4, -4, -4, 4, -4, -4, 4, 4, 4, 4, 4, -4, 4, -4, 4, 4, 4, -4, 4, -4, -4, 4, -4, 4, -4, 4, -4, -4, 4, 4, -4, -4, -4, -4, 4, 4, -4, -4, 4, -4, -4, -4, 4, 4, 4, -4, 4, 4, 4, 4, -4, -4, 4, 4, -4, 4, -4, 4, 4, -4, -4, -4, 4, 4, -4, 4, -4, -4, -4, 4, -4, 4, 4, -4, -4, -4, -4, -4 )
+
+[node name="World" type="Spatial" groups=["World"]]
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+transform = Transform( -1, 0, -2.62268e-07, 0, 1, 0, 2.62268e-07, 0, -1, -2, 0, -11.377 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.965926, 0.228854, 0.120886, 0, -0.467066, 0.884222, 0.258819, -0.854093, -0.451151, 4, 44.4896, 4 )
+visible = false
+light_energy = 0.3
+light_specular = 0.0
+directional_shadow_mode = 0
+
+[node name="startPos" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -2, 16, 0 )
+
+[node name="endPoint" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -22, 40, 144 )
+
+[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="."]
+navmesh = SubResource( 1 )
+
+[node name="GridMap" type="GridMap" parent="NavigationMeshInstance"]
+transform = Transform( 4, 0, 6.99382e-07, 0, 4, 0, -6.99382e-07, 0, 4, -4, 0, 0 )
+mesh_library = ExtResource( 2 )
+cell_size = Vector3( 1, 1, 1 )
+collision_mask = 3
+bake_navigation = true
+data = {
+"cells": PoolIntArray( 262144, 0, 1441792, 262144, 1, 1441792, 262144, 2, 1441792, 262144, 3, 1441792, 262144, 4, 1441792, 262144, 5, 1441792, 262144, 6, 1441792, 262144, 7, 1441792, 262144, 8, 1441792, 262144, 9, 1048577, 262145, 9, 0, 262146, 9, 1441793, 327673, 9, 655360, 327682, 9, 655370, 262144, 10, 655370, 262145, 10, 1441802, 262146, 10, 1441798, 262147, 10, 1048586, 327675, 10, 655370, 327677, 10, 655370, 327678, 10, 655370, 327679, 10, 655370, 327681, 10, 1441802, 327682, 10, 3, 327683, 10, 1048586, 262144, 11, 1441801, 262145, 11, 1441793, 262146, 11, 1048578, 262147, 11, 1048586, 327674, 11, 1441802, 327675, 11, 1441801, 327676, 11, 1, 327677, 11, 1441801, 327678, 11, 1441801, 327679, 11, 1441801, 327681, 11, 1441802, 327682, 11, 3, 327683, 11, 1048586, 262144, 12, 1441801, 262145, 12, 1441801, 262146, 12, 1441801, 262147, 12, 1048586, 327674, 12, 1441802, 327675, 12, 1441801, 327676, 12, 1048577, 327677, 12, 1441793, 327678, 12, 1441801, 327679, 12, 1441801, 327682, 12, 10, 262144, 13, 1441801, 262145, 13, 1441801, 262146, 13, 1441801, 262147, 13, 1048586, 327674, 13, 1441802, 327675, 13, 1441801, 327676, 13, 1441801, 327677, 13, 1441793, 327678, 13, 1441801, 327679, 13, 1441801, 262144, 14, 1441801, 262145, 14, 1441801, 262146, 14, 1441801, 262147, 14, 1048586, 327674, 14, 1441802, 327675, 14, 1441801, 327676, 14, 1441801, 327677, 14, 1441801, 327678, 14, 655361, 327679, 14, 1441801, 262144, 15, 1441801, 262145, 15, 1441801, 262146, 15, 1, 262147, 15, 1048586, 327674, 15, 1441802, 327675, 15, 1441801, 327676, 15, 1441801, 327677, 15, 1, 327678, 15, 1441801, 327679, 15, 655360, 262144, 16, 1441801, 262145, 16, 1441801, 262146, 16, 1441801, 262147, 16, 1048586, 327674, 16, 1441802, 327675, 16, 1441801, 327676, 16, 1441801, 327677, 16, 1048577, 327678, 16, 655360, 327679, 16, 655361, 262144, 17, 655361, 262145, 17, 1441793, 262146, 17, 1441801, 262147, 17, 1048586, 327674, 17, 1441802, 327675, 17, 1441801, 327676, 17, 1441801, 327677, 17, 1441801, 327678, 17, 1441801, 327679, 17, 1441801, 262144, 18, 1441801, 262145, 18, 1441801, 262146, 18, 1441801, 262147, 18, 1048586, 327674, 18, 1441802, 327675, 18, 1441801, 327676, 18, 1441801, 327677, 18, 1441801, 327678, 18, 1441801, 327679, 18, 1, 262144, 19, 10, 262145, 19, 10, 262146, 19, 10, 327675, 19, 1441792, 327676, 19, 10, 327677, 19, 10, 327678, 19, 10, 327679, 19, 10, 327675, 20, 1441792, 327675, 21, 1048576, 327675, 22, 1048576, 327675, 23, 1048576, 327675, 24, 1048576, 327675, 25, 1048576, 327675, 26, 1048576, 327675, 27, 1048576, 393211, 27, 655370, 458747, 27, 655370, 327674, 28, 1441802, 327675, 28, 1441798, 327676, 28, 1048586, 393210, 28, 1441802, 393212, 28, 1048586, 458746, 28, 1441802, 458747, 28, 655363, 458748, 28, 1048586, 524283, 28, 655370, 327676, 29, 1048586, 393210, 29, 1441802, 393211, 29, 1441798, 393212, 29, 1048586, 458746, 29, 1441802, 458748, 29, 1048586, 524282, 29, 1441802, 524283, 29, 655363, 524284, 29, 1048586, 589819, 29, 655370, 393212, 30, 1048586, 458746, 30, 1441802, 458747, 30, 1441798, 458748, 30, 1048586, 524282, 30, 1441802, 524284, 30, 1048586, 589818, 30, 1441802, 589819, 30, 655363, 589820, 30, 1048586, 655355, 30, 655370, 458748, 31, 1048586, 524282, 31, 1441802, 524283, 31, 1441798, 524284, 31, 1048586, 589818, 31, 1441802, 589820, 31, 1048586, 655354, 31, 1441802, 655355, 31, 655363, 655356, 31, 1048586, 720891, 31, 655370, 589818, 32, 1441802, 589819, 32, 1441798, 589820, 32, 1048586, 655354, 32, 1441802, 655356, 32, 1048586, 720890, 32, 1441802, 720891, 32, 655363, 720892, 32, 1048586, 655354, 33, 1441802, 655355, 33, 1441798, 655356, 33, 1048586, 720890, 33, 1441802, 720891, 33, 655363, 720892, 33, 1048586, 720891, 34, 1048576, 720891, 35, 1048576, 720891, 36, 1048576, 720891, 37, 1048576, 262144, 65532, 1441792, 262144, 65533, 1441792, 262144, 65534, 1441792, 262144, 65535, 1441792 )
+}
+__meta__ = {
+"_editor_clip_": 0,
+"_editor_floor_": Vector3( 1, 10, 0 )
+}
+
+[node name="vents" type="GridMap" parent="NavigationMeshInstance"]
+mesh_library = ExtResource( 7 )
+cell_size = Vector3( 1, 1, 1 )
+__meta__ = {
+"_editor_clip_": 0,
+"_editor_floor_": Vector3( 0, 5, 0 )
+}
+
+[node name="furniture" type="GridMap" parent="NavigationMeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16, 0 )
+mesh_library = ExtResource( 8 )
+cell_size = Vector3( 1, 0.1, 1 )
+cell_center_y = false
+data = {
+"cells": PoolIntArray( 65526, 75, 655361 )
+}
+__meta__ = {
+"_editor_clip_": 0,
+"_editor_floor_": Vector3( 0, 0, 0 )
+}
+
+[node name="holders" parent="." instance=ExtResource( 4 )]
+
+[node name="Interactibles" type="Spatial" parent="."]
+
+[node name="door" parent="Interactibles" instance=ExtResource( 5 )]
+transform = Transform( 2, 0, 8.26529e-07, 0, 2, 0, -8.26529e-07, 0, 2, -2, 16, -16 )
+
+[node name="Button" parent="Interactibles" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -24, 18, 73 )
+node_path = NodePath("../door2")
+locked = true
+
+[node name="door2" parent="Interactibles" instance=ExtResource( 5 )]
+transform = Transform( -2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, -22, 16, 76 )
+
+[node name="Button2" parent="Interactibles" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -24, 18, 80 )
+node_path = NodePath("../door3")
+locked = true
+
+[node name="door3" parent="Interactibles" instance=ExtResource( 5 )]
+transform = Transform( -2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, -22, 16, 84 )
+
+[node name="ammoPickup" parent="Interactibles" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 16, 61 )
+ammoType = "smg"
+
+[node name="healthPickup" parent="Interactibles" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 16, 69 )
+healthAmount = 25
+
+[node name="healthPickup2" parent="Interactibles" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 16, 59 )
+
+[node name="keyPickup" parent="Interactibles" instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 16, 53 )
+color = "Blue"
+node_path = NodePath("../Button")
+
+[node name="keyPickup2" parent="Interactibles" instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 16, 75 )
+color = "Orange"
+node_path = NodePath("../Button2")
+
+[node name="Decor" type="Spatial" parent="."]
+
+[node name="sprite3dPleaseEdit" type="Sprite3D" parent="Decor"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -19.99, 2, 26 )
+pixel_size = 0.001
+texture = ExtResource( 12 )
+
+[node name="outlet" type="Sprite3D" parent="Decor"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -19.99, 0.6, 30 )
+pixel_size = 0.0001
+texture = ExtResource( 11 )
+
+[node name="plant1" parent="Decor" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 16, 39 )
+
+[node name="scaryEnemy" parent="." instance=ExtResource( 15 )]
+transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -1.70711, 16, 57.7071 )
+
+[node name="scaryEnemy2" parent="." instance=ExtResource( 15 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -19, 16, 46 )
+
+[node name="scaryEnemy3" parent="." instance=ExtResource( 15 )]
+transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -10, 16, 59 )
+
+[node name="scaryEnemy4" parent="." instance=ExtResource( 15 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 16, 74 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 44, 156 )
+mesh = SubResource( 16 )
+
+[node name="door2" type="MeshInstance" parent="MeshInstance"]
+transform = Transform( -6.55671e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.55671e-08, 0, -2.46, -4 )
+mesh = SubResource( 17 )
+
+[node name="StaticBody" type="StaticBody" parent="MeshInstance/door2"]
+
+[node name="CollisionShape" type="CollisionShape" parent="MeshInstance/door2/StaticBody"]
+shape = SubResource( 18 )
+
+[node name="StaticBody" type="StaticBody" parent="MeshInstance"]
+
+[node name="CollisionShape" type="CollisionShape" parent="MeshInstance/StaticBody"]
+shape = SubResource( 19 )

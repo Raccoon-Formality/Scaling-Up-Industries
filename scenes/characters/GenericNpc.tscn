@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scripts/characters/GenericNpc.gd" type="Script" id=1]
 [ext_resource path="res://scenes/characters/cone.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/programmerArt/Untitled.jpg" type="Texture" id=3]
 [ext_resource path="res://scenes/assets/3d/enemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/audio/413057__matrixxx__retro-laser-shot-01.wav" type="AudioStream" id=5]
 
 [sub_resource type="BoxShape" id=10]
 extents = Vector3( 0.2, 0.2, 0.5 )
@@ -103,9 +104,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9 )
 shape = SubResource( 9 )
 
 [node name="VisionRaycast" type="RayCast" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0.1 )
 enabled = true
-cast_to = Vector3( 0, -1, -32 )
+cast_to = Vector3( 0, 2, -32 )
 collision_mask = 3
 debug_shape_custom_color = Color( 0.737255, 0, 0, 1 )
 debug_shape_thickness = 1
@@ -116,3 +116,7 @@ debug_shape_thickness = 1
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 visible = false
 texture = ExtResource( 3 )
+
+[node name="shootSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+bus = "sfx"

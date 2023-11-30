@@ -39,6 +39,7 @@ transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -2, 0, -4
 
 [node name="endPoint" parent="." instance=ExtResource( 9 )]
 transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -2, 16, 92 )
+visible = true
 
 [node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="."]
 navmesh = SubResource( 1 )
@@ -70,7 +71,7 @@ mesh_library = ExtResource( 8 )
 cell_size = Vector3( 1, 0.1, 1 )
 cell_center_y = false
 data = {
-"cells": PoolIntArray( 65535, 65523, 1441793, 65535, 65525, 1441793, 65535, 65527, 1441793 )
+"cells": PoolIntArray( 65535, 65525, 1441793, 65535, 65527, 1441793 )
 }
 __meta__ = {
 "_editor_clip_": 0,
@@ -106,6 +107,9 @@ transform = Transform( -2, 0, -1.74846e-07, 0, 2, 0, 1.74846e-07, 0, -2, -2, 16,
 
 [node name="door3" parent="Interactibles" instance=ExtResource( 5 )]
 transform = Transform( -2, 0, -1.74846e-07, 0, 2, 0, 1.74846e-07, 0, -2, -2, 16, 84 )
+
+[node name="door4" parent="Interactibles" instance=ExtResource( 5 )]
+transform = Transform( -2, 0, -1.74846e-07, 0, 2, 0, 1.74846e-07, 0, -2, -2, 16, 100 )
 
 [node name="Button2" parent="Interactibles" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 18, 36 )

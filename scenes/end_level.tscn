@@ -1,8 +1,8 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://scenes/levels/holders.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/textures/Brick 1.PNG" type="Texture" id=2]
-[ext_resource path="res://assets/programmerArt/mothera.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/Moth/spritesheet-small.png" type="Texture" id=3]
 [ext_resource path="res://scenes/levels/startPos.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/levels/endPoint.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/characters/Player.tscn" type="PackedScene" id=6]
@@ -17,6 +17,10 @@
 [ext_resource path="res://assets/audio/military-rotor-loop.wav" type="AudioStream" id=15]
 [ext_resource path="res://assets/programmerArt/smoke.png" type="Texture" id=16]
 [ext_resource path="res://scripts/helicopterPos.gd" type="Script" id=17]
+[ext_resource path="res://assets/3d/gltf/door2.material" type="Material" id=18]
+[ext_resource path="res://assets/textures/Danger Sign 1.png" type="Texture" id=19]
+[ext_resource path="res://scenes/interactibles/pickups/healthPickup.tscn" type="PackedScene" id=20]
+[ext_resource path="res://scenes/interactibles/pickups/ammoPickup.tscn" type="PackedScene" id=21]
 
 [sub_resource type="PanoramaSky" id=5]
 panorama = ExtResource( 9 )
@@ -205,8 +209,45 @@ size = Vector2( 4000, 4000 )
 subdivide_width = 100
 subdivide_depth = 100
 
+[sub_resource type="Animation" id=52]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=53]
+resource_name = "loop"
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.55, 0.85, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 2, 1, 0 ]
+}
+
 [sub_resource type="BoxShape" id=48]
 extents = Vector3( 10, 10, 1 )
+
+[sub_resource type="StyleBoxFlat" id=58]
+bg_color = Color( 0.235294, 0.690196, 0.262745, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=59]
 
 [sub_resource type="BoxShape" id=49]
 extents = Vector3( 3, 3, 4 )
@@ -222,6 +263,36 @@ albedo_texture = ExtResource( 16 )
 
 [sub_resource type="QuadMesh" id=51]
 material = SubResource( 50 )
+
+[sub_resource type="SpatialMaterial" id=15]
+albedo_texture = ExtResource( 2 )
+uv1_scale = Vector3( 0.5, 0.5, 0.5 )
+uv1_triplanar = true
+
+[sub_resource type="CubeMesh" id=54]
+material = SubResource( 15 )
+size = Vector3( 8, 8, 8 )
+
+[sub_resource type="ArrayMesh" id=55]
+resource_name = "door2_Cube023"
+surfaces/0 = {
+"aabb": AABB( -0.0408677, -1, -0.487071, 0.0817355, 2, 0.974153 ),
+"array_data": PoolByteArray( 237, 100, 39, 189, 0, 0, 128, 191, 108, 97, 249, 62, 129, 0, 126, 1, 6, 37, 0, 56, 237, 100, 39, 189, 0, 0, 128, 191, 108, 97, 249, 62, 0, 129, 127, 127, 6, 37, 0, 56, 237, 100, 39, 189, 0, 0, 128, 191, 108, 97, 249, 62, 0, 0, 129, 63, 6, 37, 0, 56, 237, 100, 39, 189, 0, 0, 128, 63, 108, 97, 249, 62, 129, 0, 126, 1, 6, 37, 215, 59, 237, 100, 39, 189, 0, 0, 128, 63, 108, 97, 249, 62, 0, 0, 129, 63, 6, 37, 215, 59, 237, 100, 39, 189, 0, 0, 128, 63, 108, 97, 249, 62, 0, 127, 129, 127, 6, 37, 215, 59, 237, 100, 39, 189, 0, 0, 128, 191, 108, 97, 249, 190, 129, 0, 127, 127, 14, 52, 0, 56, 237, 100, 39, 189, 0, 0, 128, 191, 108, 97, 249, 190, 0, 129, 127, 127, 14, 52, 0, 56, 237, 100, 39, 189, 0, 0, 128, 191, 108, 97, 249, 190, 127, 127, 126, 63, 14, 52, 0, 56, 237, 100, 39, 189, 0, 0, 128, 63, 108, 97, 249, 190, 129, 0, 126, 1, 14, 52, 215, 59, 237, 100, 39, 189, 0, 0, 128, 63, 108, 97, 249, 190, 127, 127, 126, 63, 14, 52, 215, 59, 237, 100, 39, 189, 0, 0, 128, 63, 108, 97, 249, 190, 0, 127, 129, 126, 14, 52, 215, 59, 237, 100, 39, 61, 0, 0, 128, 191, 108, 97, 249, 62, 0, 129, 127, 127, 6, 37, 175, 55, 237, 100, 39, 61, 0, 0, 128, 191, 108, 97, 249, 62, 0, 0, 129, 63, 0, 0, 0, 56, 237, 100, 39, 61, 0, 0, 128, 191, 108, 97, 249, 62, 127, 0, 127, 127, 6, 37, 175, 55, 237, 100, 39, 61, 0, 0, 128, 63, 108, 97, 249, 62, 0, 0, 129, 63, 0, 0, 215, 59, 237, 100, 39, 61, 0, 0, 128, 63, 108, 97, 249, 62, 0, 127, 127, 127, 6, 37, 0, 60, 237, 100, 39, 61, 0, 0, 128, 63, 108, 97, 249, 62, 127, 0, 127, 127, 6, 37, 0, 0, 237, 100, 39, 61, 0, 0, 128, 191, 108, 97, 249, 190, 0, 129, 127, 127, 14, 52, 175, 55, 237, 100, 39, 61, 0, 0, 128, 191, 108, 97, 249, 190, 127, 127, 127, 63, 95, 52, 0, 56, 237, 100, 39, 61, 0, 0, 128, 191, 108, 97, 249, 190, 127, 0, 127, 127, 14, 52, 175, 55, 237, 100, 39, 61, 0, 0, 128, 63, 108, 97, 249, 190, 127, 127, 126, 63, 95, 52, 215, 59, 237, 100, 39, 61, 0, 0, 128, 63, 108, 97, 249, 190, 0, 127, 129, 126, 14, 52, 0, 60, 237, 100, 39, 61, 0, 0, 128, 63, 108, 97, 249, 190, 127, 0, 127, 127, 14, 52, 0, 0 ),
+"array_index_data": PoolByteArray( 0, 0, 9, 0, 3, 0, 0, 0, 6, 0, 9, 0, 8, 0, 21, 0, 10, 0, 8, 0, 19, 0, 21, 0, 20, 0, 17, 0, 23, 0, 20, 0, 14, 0, 17, 0, 13, 0, 4, 0, 15, 0, 13, 0, 2, 0, 4, 0, 7, 0, 12, 0, 18, 0, 7, 0, 1, 0, 12, 0, 22, 0, 5, 0, 11, 0, 22, 0, 16, 0, 5, 0 ),
+"blend_shape_data": [  ],
+"format": 2194711,
+"index_count": 36,
+"material": ExtResource( 18 ),
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 24
+}
+
+[sub_resource type="ConcavePolygonShape" id=56]
+data = PoolVector3Array( -0.0409, -1, 0.4871, -0.0409, 1, -0.4871, -0.0409, 1, 0.4871, -0.0409, -1, 0.4871, -0.0409, -1, -0.4871, -0.0409, 1, -0.4871, -0.0409, -1, -0.4871, 0.0409, 1, -0.4871, -0.0409, 1, -0.4871, -0.0409, -1, -0.4871, 0.0409, -1, -0.4871, 0.0409, 1, -0.4871, 0.0409, -1, -0.4871, 0.0409, 1, 0.4871, 0.0409, 1, -0.4871, 0.0409, -1, -0.4871, 0.0409, -1, 0.4871, 0.0409, 1, 0.4871, 0.0409, -1, 0.4871, -0.0409, 1, 0.4871, 0.0409, 1, 0.4871, 0.0409, -1, 0.4871, -0.0409, -1, 0.4871, -0.0409, 1, 0.4871, -0.0409, -1, -0.4871, 0.0409, -1, 0.4871, 0.0409, -1, -0.4871, -0.0409, -1, -0.4871, -0.0409, -1, 0.4871, 0.0409, -1, 0.4871, 0.0409, 1, -0.4871, -0.0409, 1, 0.4871, -0.0409, 1, -0.4871, 0.0409, 1, -0.4871, 0.0409, 1, 0.4871, -0.0409, 1, 0.4871 )
+
+[sub_resource type="ConcavePolygonShape" id=57]
+data = PoolVector3Array( -4, 4, 4, 4, 4, 4, -4, -4, 4, 4, 4, 4, 4, -4, 4, -4, -4, 4, 4, 4, -4, -4, 4, -4, 4, -4, -4, -4, 4, -4, -4, -4, -4, 4, -4, -4, 4, 4, 4, 4, 4, -4, 4, -4, 4, 4, 4, -4, 4, -4, -4, 4, -4, 4, -4, 4, -4, -4, 4, 4, -4, -4, -4, -4, 4, 4, -4, -4, 4, -4, -4, -4, 4, 4, 4, -4, 4, 4, 4, 4, -4, -4, 4, 4, -4, 4, -4, 4, 4, -4, -4, -4, 4, 4, -4, 4, -4, -4, -4, 4, -4, 4, 4, -4, -4, -4, -4, -4 )
 
 [node name="end_level" type="Spatial"]
 script = ExtResource( 11 )
@@ -268,27 +339,40 @@ transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0.45684
 
 [node name="holders" parent="." instance=ExtResource( 1 )]
 
+[node name="Player" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -498.234, 311.423, 98.9489 )
+
 [node name="boss3" type="KinematicBody" parent="." groups=["boss"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, -28.994, -79.8372 )
 collision_layer = 7
 collision_mask = 7
 script = ExtResource( 8 )
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="boss3"]
+autoplay = "loop"
+anims/RESET = SubResource( 52 )
+anims/loop = SubResource( 53 )
+
 [node name="Sprite3D" type="Sprite3D" parent="boss3"]
 pixel_size = 0.1
 texture = ExtResource( 3 )
+vframes = 4
 
 [node name="bulletSpawner" type="Position3D" parent="boss3/Sprite3D"]
 
 [node name="CollisionShape" type="CollisionShape" parent="boss3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0 )
 shape = SubResource( 48 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="boss3"]
+layer = 2
 
 [node name="healthBar" type="ProgressBar" parent="boss3/CanvasLayer"]
 anchor_right = 1.0
-margin_bottom = 14.0
+margin_bottom = 24.0
+custom_styles/fg = SubResource( 58 )
+custom_styles/bg = SubResource( 59 )
+value = 50.0
+percent_visible = false
 
 [node name="ColorRect" type="ColorRect" parent="boss3/CanvasLayer"]
 modulate = Color( 1, 1, 1, 0 )
@@ -305,9 +389,6 @@ stream = ExtResource( 14 )
 volume_db = -5.0
 autoplay = true
 bus = "sfx"
-
-[node name="Player" parent="." instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -498.234, 311.423, 98.9489 )
 
 [node name="helicopterPos" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, -29 )
@@ -381,6 +462,60 @@ spread = 10.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 5.0
 scale_amount = 25.0
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -11 )
+mesh = SubResource( 54 )
+
+[node name="door2" type="MeshInstance" parent="MeshInstance"]
+transform = Transform( -6.55671e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.55671e-08, 0, -2.46, -4 )
+mesh = SubResource( 55 )
+
+[node name="StaticBody" type="StaticBody" parent="MeshInstance/door2"]
+
+[node name="CollisionShape" type="CollisionShape" parent="MeshInstance/door2/StaticBody"]
+shape = SubResource( 56 )
+
+[node name="StaticBody" type="StaticBody" parent="MeshInstance"]
+
+[node name="CollisionShape" type="CollisionShape" parent="MeshInstance/StaticBody"]
+shape = SubResource( 57 )
+
+[node name="Sprite3D" type="Sprite3D" parent="MeshInstance"]
+transform = Transform( -0.25, 0, -3.7749e-08, 0, 0.25, 0, 3.7749e-08, 0, -0.25, 0, 1, -4.01 )
+texture = ExtResource( 19 )
+
+[node name="interactibles" type="Spatial" parent="."]
+
+[node name="healthPickup" parent="interactibles" instance=ExtResource( 20 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -5 )
+
+[node name="healthPickup2" parent="interactibles" instance=ExtResource( 20 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -5 )
+
+[node name="healthPickup3" parent="interactibles" instance=ExtResource( 20 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5 )
+
+[node name="ammoPickup" parent="interactibles" instance=ExtResource( 21 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41, 1, -6 )
+
+[node name="ammoPickup2" parent="interactibles" instance=ExtResource( 21 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 37, 1, -6 )
+
+[node name="ammoPickup3" parent="interactibles" instance=ExtResource( 21 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 1, -9 )
+
+[node name="ammoPickup4" parent="interactibles" instance=ExtResource( 21 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 1, -9 )
+
+[node name="ammoPickup5" parent="interactibles" instance=ExtResource( 21 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 1, -40 )
+
+[node name="ammoPickup6" parent="interactibles" instance=ExtResource( 21 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1, -46 )
+
+[node name="ammoPickup7" parent="interactibles" instance=ExtResource( 21 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 1, -30 )
 
 [connection signal="timeout" from="boss3/Timer" to="boss3" method="_on_Timer_timeout"]
 [connection signal="timeout" from="helicopterPos/helicopter2/Timer" to="helicopterPos/helicopter2" method="_on_Timer_timeout"]

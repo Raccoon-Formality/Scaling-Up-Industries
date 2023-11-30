@@ -9,6 +9,11 @@ func _ready():
 func _process(delta):
 	if $Player.translation.z < $interactibles/door2.translation.z - 5 and !doorClosed:
 		$interactibles/door2.deactivate()
+		$boss1.start = true
+		
+		if (Global.currentSong != Global.musicDict["action"]):
+			Global.previousSongPoint = 0.0
+			Global.currentSong = Global.musicDict["action"]
 		doorClosed = true
 
 func deadBoss():

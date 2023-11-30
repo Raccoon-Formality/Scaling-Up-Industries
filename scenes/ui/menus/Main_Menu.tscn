@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://assets/fonts/KrunchBold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scripts/menus/Main_Menu.gd" type="Script" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://scenes/assets/font.tres" type="DynamicFont" id=7]
 [ext_resource path="res://assets/fonts/Mukta_Mahee/MuktaMahee-Regular.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://assets/audio/music/Menu_droneLow_01.mp3" type="AudioStream" id=9]
+[ext_resource path="res://assets/textures/xboxController/ButtonA.png" type="Texture" id=10]
+[ext_resource path="res://assets/textures/xboxController/ButtonY.png" type="Texture" id=11]
 
 [sub_resource type="Shader" id=7]
 code = "/*
@@ -123,6 +125,17 @@ expand_margin_right = 5.0
 expand_margin_top = 5.0
 expand_margin_bottom = 5.0
 
+[sub_resource type="InputEventJoypadButton" id=12]
+button_index = 3
+
+[sub_resource type="ShortCut" id=13]
+shortcut = SubResource( 12 )
+
+[sub_resource type="InputEventJoypadButton" id=10]
+
+[sub_resource type="ShortCut" id=11]
+shortcut = SubResource( 10 )
+
 [sub_resource type="Animation" id=9]
 resource_name = "start"
 tracks/0/type = "value"
@@ -224,11 +237,18 @@ margin_top = 168.0
 margin_right = 112.0
 margin_bottom = 192.0
 custom_fonts/font = ExtResource( 7 )
+shortcut_in_tooltip = false
+shortcut = SubResource( 13 )
 text = "Continue"
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
+
+[node name="ButtonY" type="Sprite" parent="continueButton"]
+position = Vector2( 100, 12.0002 )
+scale = Vector2( 0.113208, 0.113208 )
+texture = ExtResource( 11 )
 
 [node name="startButton" type="Button" parent="."]
 anchor_top = -0.0333333
@@ -238,12 +258,20 @@ margin_left = 40.0
 margin_top = 208.0
 margin_right = 88.0
 margin_bottom = 232.0
+rect_pivot_offset = Vector2( 128, 72 )
 custom_fonts/font = ExtResource( 7 )
+shortcut_in_tooltip = false
+shortcut = SubResource( 11 )
 text = "Start"
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
+
+[node name="ButtonA" type="Sprite" parent="startButton"]
+position = Vector2( 100, 12 )
+scale = Vector2( 0.113208, 0.113208 )
+texture = ExtResource( 10 )
 
 [node name="exitButton" type="Button" parent="."]
 anchor_top = 0.116667
@@ -297,7 +325,7 @@ margin_left = 24.0
 margin_top = -32.0
 margin_right = 141.0
 margin_bottom = -16.0
-text = "Copyright © Raccoon Formality 2023"
+text = "A game by Racoon Formality"
 valign = 2
 
 [node name="creditsButton" type="Button" parent="."]

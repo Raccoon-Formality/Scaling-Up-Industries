@@ -5,9 +5,7 @@ onready var vig = $World/Player/game_ui/Control/Vignette.material
 
 func _ready():
 	
-	
 	if Global.fromStart:
-		
 		fromStart(Global.fromStartList[0],Global.fromStartList[1],Global.fromStartList[2],Global.fromStartList[3],Global.fromStartList[4],Global.fromStartList[5],Global.fromStartList[6])
 	elif Global.levelNumber != 0:
 		goToLevel(Global.levelNumber, false)

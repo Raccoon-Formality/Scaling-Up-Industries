@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://scripts/characters/Player.gd" type="Script" id=1]
 [ext_resource path="res://scenes/characters/gunarmz.tscn" type="PackedScene" id=2]
@@ -21,6 +21,9 @@
 [ext_resource path="res://assets/fonts/Mukta_Mahee/MuktaMahee-Bold.ttf" type="DynamicFontData" id=19]
 [ext_resource path="res://scenes/characters/smgarmz.tscn" type="PackedScene" id=20]
 [ext_resource path="res://assets/programmerArt/smg.png" type="Texture" id=21]
+[ext_resource path="res://assets/audio/420668__sypherzent__basic-melee-swing-miss-whoosh.wav" type="AudioStream" id=22]
+[ext_resource path="res://assets/textures/xboxController/ButtonA.png" type="Texture" id=23]
+[ext_resource path="res://assets/textures/xboxController/ButtonB.png" type="Texture" id=24]
 
 [sub_resource type="CapsuleShape" id=18]
 radius = 0.5
@@ -107,8 +110,13 @@ font_data = ExtResource( 4 )
 size = 36
 font_data = ExtResource( 4 )
 
+[sub_resource type="InputEventJoypadButton" id=23]
+button_index = 1
+
+[sub_resource type="ShortCut" id=24]
+shortcut = SubResource( 23 )
+
 [sub_resource type="InputEventJoypadButton" id=9]
-button_index = 11
 
 [sub_resource type="ShortCut" id=13]
 shortcut = SubResource( 9 )
@@ -123,7 +131,7 @@ font_data = ExtResource( 4 )
 shortcut = SubResource( 14 )
 
 [sub_resource type="InputEventJoypadButton" id=15]
-button_index = 2
+button_index = 1
 
 [sub_resource type="ShortCut" id=12]
 shortcut = SubResource( 15 )
@@ -355,8 +363,15 @@ margin_top = -56.0
 margin_right = 101.0
 margin_bottom = -36.0
 mouse_default_cursor_shape = 2
+shortcut_in_tooltip = false
+shortcut = SubResource( 24 )
 text = "quit"
 script = ExtResource( 14 )
+
+[node name="ButtonB" type="Sprite" parent="pause_menu/Control/QuitButton"]
+position = Vector2( 88, 8 )
+scale = Vector2( 0.122642, 0.122642 )
+texture = ExtResource( 24 )
 
 [node name="ContinueButton" type="Button" parent="pause_menu/Control"]
 anchor_top = 1.0
@@ -366,9 +381,15 @@ margin_top = -96.0
 margin_right = 132.0
 margin_bottom = -76.0
 mouse_default_cursor_shape = 2
+shortcut_in_tooltip = false
 shortcut = SubResource( 13 )
 text = "continue"
 script = ExtResource( 14 )
+
+[node name="ButtonA" type="Sprite" parent="pause_menu/Control/ContinueButton"]
+position = Vector2( 88, 8 )
+scale = Vector2( 0.122642, 0.122642 )
+texture = ExtResource( 23 )
 
 [node name="audioSliders" parent="pause_menu/Control" instance=ExtResource( 6 )]
 margin_left = 248.0
@@ -421,18 +442,31 @@ margin_left = 192.0
 margin_top = 360.0
 margin_right = 226.0
 margin_bottom = 380.0
+shortcut_in_tooltip = false
 shortcut = SubResource( 11 )
 text = "yes"
 script = ExtResource( 14 )
+
+[node name="ButtonA" type="Sprite" parent="death_menu/Control/yesButton"]
+position = Vector2( 56, 8 )
+scale = Vector2( 0.122642, 0.122642 )
+texture = ExtResource( 23 )
 
 [node name="noButton" type="Button" parent="death_menu/Control"]
 margin_left = 192.0
 margin_top = 392.0
 margin_right = 226.0
 margin_bottom = 412.0
+rect_pivot_offset = Vector2( -144, -24 )
+shortcut_in_tooltip = false
 shortcut = SubResource( 12 )
 text = "no"
 script = ExtResource( 14 )
+
+[node name="ButtonB" type="Sprite" parent="death_menu/Control/noButton"]
+position = Vector2( 56, 8 )
+scale = Vector2( 0.122642, 0.122642 )
+texture = ExtResource( 24 )
 
 [node name="levelLabel" type="Label" parent="death_menu/Control"]
 margin_left = 256.0
@@ -481,6 +515,10 @@ shadow_enabled = true
 shadow_reverse_cull_face = true
 spot_range = 62.767
 spot_angle = 24.2814
+
+[node name="swingSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 22 )
+bus = "sfx"
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]
 [connection signal="pressed" from="pause_menu/Control/QuitButton" to="pause_menu" method="_on_QuitButton_pressed"]

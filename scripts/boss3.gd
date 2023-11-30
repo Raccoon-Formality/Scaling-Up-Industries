@@ -9,13 +9,15 @@ var counter = 0
 onready var healthBar = $CanvasLayer/healthBar
 onready var out = $CanvasLayer/ColorRect
 var bullet = load("res://scenes/characters/Bullet.tscn")
-var health = 600.0
+var health = 1000.0
 var bullet_speed = 50
 onready var HeliHolder = get_parent().get_node("helicopterPos")
 var dead = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	hide()
+	$CanvasLayer.hide()
 	out.modulate.a = 0
 	healthBar.max_value = health
 	healthBar.value = health
@@ -26,7 +28,12 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if !Global.paused:
+	if healthBar.value != health:
+		healthBar.value = lerp(healthBar.value, health, 0.1)
+		
+	if !Global.paused and HeliHolder.bossStart:
+		show()
+		$CanvasLayer.show()
 		counter += 1
 		global_translation = lerp(global_translation, Vector3(20,20,-80),0.01)
 		$Sprite3D.rotation_degrees.z = sin(counter/30.0) * 6.0
@@ -34,14 +41,12 @@ func _process(delta):
 		$Sprite3D.translation.y = sin(counter/60.0) * 6.0
 		
 		$CollisionShape.transform = $Sprite3D.transform
-		$CollisionShape.translation.y -= 4
+		#$CollisionShape.translation.y -= 4
 		
-		if healthBar.value != health:
-			healthBar.value = lerp(healthBar.value, health, 0.1)
-		
-		
+		"""
 		if HeliHolder.get_child_count() == 0:
 			get_parent().get_node("Particles").emitting = true
+		"""
 		
 		if dead:
 			out.modulate.a = lerp(out.modulate.a, 1.0, 0.1)

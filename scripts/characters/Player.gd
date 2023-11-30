@@ -211,7 +211,48 @@ func shoot(weapon):
 					canShoot = false
 					smgAnimationTree["parameters/conditions/shoot"] = true
 				$noAmmoSound.play()
-
+	else:
+		if handItem == "fists":
+			# if punch animation isn't playing
+			if punchingAnimation.current_animation == "":
+				# change punching hand
+				if punchingArmIsRight:
+					punchingAnimation.play("punchRight")
+					punchingArmIsRight = false
+				else:
+					punchingAnimation.play("punchLeft")
+					punchingArmIsRight = true
+				# play punch sound and spawn particles
+				$swingSound.play()
+		else:
+			if Global.Inventory[Global.currentSelect][1] > 0:
+				if handItem == "pistol":
+					gunAnimationTree.get("parameters/playback").start("aimFire")	
+					# play shooting animation on gun animation tree
+					gunAnimationTree["parameters/conditions/shoot"] = true
+					# play sound at random pitch
+					$shootSound.pitch_scale = rand_range(0.9,1.1)
+					$shootSound.play()
+				elif handItem == "smg":
+					# play shooting animation on gun animation tree
+					smgAnimationTree["parameters/conditions/shoot"] = true
+					# play sound at random pitch
+					canShoot = false
+					$shootSound.pitch_scale = rand_range(0.7,0.9)
+					$shootSound.play()
+					
+				
+				emit_signal("gun_fired", weapon["noise_level_ratio"])
+				# remove one ammo and update ammo label
+				Global.Inventory[Global.currentSelect][1] -= 1
+			# if no ammo, play shoot animation with empy gun sound
+			else:
+				if handItem == "pistol":
+					gunAnimationTree["parameters/conditions/shoot"] = true
+				elif handItem == "smg":
+					canShoot = false
+					smgAnimationTree["parameters/conditions/shoot"] = true
+				$noAmmoSound.play()
 func crouch():
 	footstepScale = 0.6
 	collider.shape.height = 0.3
