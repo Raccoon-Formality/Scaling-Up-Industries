@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/SUI_pauseMenu_LOOPDAMMIT2.mp3-cfa63322818411c1357774de48a37503.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/SUI_pauseMenu_LOOPDAMMIT2.mp3"
+dest_files=[ "res://.import/SUI_pauseMenu_LOOPDAMMIT2.mp3-cfa63322818411c1357774de48a37503.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

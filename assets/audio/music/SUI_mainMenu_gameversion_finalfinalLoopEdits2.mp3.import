@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/SUI_mainMenu_gameversion_finalfinalLoopEdits2.mp3-9a9b5f3b07d77bf4776bf46dddf1af31.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/SUI_mainMenu_gameversion_finalfinalLoopEdits2.mp3"
+dest_files=[ "res://.import/SUI_mainMenu_gameversion_finalfinalLoopEdits2.mp3-9a9b5f3b07d77bf4776bf46dddf1af31.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

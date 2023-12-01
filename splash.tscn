@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/fonts/KrunchBold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://splash.gd" type="Script" id=2]
-[ext_resource path="res://assets/audio/music/SUI_mainMenu_game_finalEdit_THISONE.mp3" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/music/SUI_mainMenu_gameversion_finalfinalLoopEdits2.mp3" type="AudioStream" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
