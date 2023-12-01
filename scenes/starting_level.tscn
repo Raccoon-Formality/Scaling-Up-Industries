@@ -61,7 +61,7 @@ radius = 50.0
 height = 50.0
 
 [sub_resource type="BoxShape" id=10]
-extents = Vector3( 1.5, 0.5, 5 )
+extents = Vector3( 3, 0.5, 5 )
 
 [sub_resource type="ArrayMesh" id=9]
 resource_name = "train_Cube001"

@@ -51,7 +51,7 @@ func _process(delta):
 			velocity = Vector3.FORWARD.rotated(Vector3.UP, rotation.y) * (backupSpeed * (8 - distance))
 		else: 
 			velocity = Vector3.ZERO
-		velocity.y -= 10 * delta
+		velocity.y -= 2
 		
 		lerp_velocity = lerp(lerp_velocity, velocity, 0.1)
 		move_and_slide(lerp_velocity, Vector3.UP, false)

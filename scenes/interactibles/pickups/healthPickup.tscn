@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/interactibles/pickups/healthPickup.gd" type="Script" id=1]
 [ext_resource path="res://assets/audio/collect.wav" type="AudioStream" id=2]
 [ext_resource path="res://assets/3d/gltf/firstaid.material" type="Material" id=3]
+[ext_resource path="res://assets/audio/kenny-interface/error_008.ogg" type="AudioStream" id=4]
 
 [sub_resource type="CylinderShape" id=1]
 height = 1.0
@@ -37,6 +38,11 @@ bus = "sfx"
 [node name="Mesh" type="MeshInstance" parent="."]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.5, 0 )
 mesh = SubResource( 2 )
+
+[node name="lockedSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = 2.0
+bus = "sfx"
 
 [connection signal="body_entered" from="." to="." method="_on_ammoPickup_body_entered"]
 [connection signal="finished" from="Sound" to="." method="_on_Sound_finished"]

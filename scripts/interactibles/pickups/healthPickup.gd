@@ -26,7 +26,7 @@ func _on_ammoPickup_body_entered(body):
 			sound.play()
 			return
 		else:
-			print("full health!")
+			$lockedSound.play()
 
 
 func _on_Sound_finished():

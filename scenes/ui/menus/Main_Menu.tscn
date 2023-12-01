@@ -5,9 +5,9 @@
 [ext_resource path="res://scenes/ui/audioSliders.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/menus/ButtonScript.gd" type="Script" id=4]
 [ext_resource path="res://scenes/ui/settingsPanel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/audio/music/SUI_mainMenu_game_finalEdit_THISONE.mp3" type="AudioStream" id=6]
 [ext_resource path="res://scenes/assets/font.tres" type="DynamicFont" id=7]
 [ext_resource path="res://assets/fonts/Mukta_Mahee/MuktaMahee-Regular.ttf" type="DynamicFontData" id=8]
-[ext_resource path="res://assets/audio/music/Menu_droneLow_01.mp3" type="AudioStream" id=9]
 [ext_resource path="res://assets/textures/xboxController/ButtonA.png" type="Texture" id=10]
 [ext_resource path="res://assets/textures/xboxController/ButtonY.png" type="Texture" id=11]
 
@@ -384,7 +384,7 @@ mouse_filter = 2
 anims/start = SubResource( 9 )
 
 [node name="menuSong" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 9 )
+stream = ExtResource( 6 )
 autoplay = true
 bus = "music"
 

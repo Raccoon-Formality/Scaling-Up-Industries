@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/SUI_mainMenu_game_finalEdit_THISONE.mp3-5b510ad983f422d3ebe35ed09eb3df89.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/SUI_mainMenu_game_finalEdit_THISONE.mp3"
+dest_files=[ "res://.import/SUI_mainMenu_game_finalEdit_THISONE.mp3-5b510ad983f422d3ebe35ed09eb3df89.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
